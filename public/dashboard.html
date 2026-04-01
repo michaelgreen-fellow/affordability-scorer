@@ -4,212 +4,110 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dashboard — Affordability for All</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#E8F4FD;--bg2:#D4EAF8;--navy:#0C1F3A;--navy2:#163258;
-  --gold:#E8A020;--gold2:#C8880A;--white:#FFF;--gray:#5A7A9A;--gray2:#7A9AB8;
-  --earn:#7C3AED;--build:#059669;--save:#DB2777;--care:#EA580C;--recover:#D97706;
-  --serif:'DM Serif Display',Georgia,serif;--sans:'Outfit',sans-serif;--mono:'DM Mono',monospace
-}.ham{width:36px;height:36px;background:rgba(12,31,58,0.07);border:1px solid rgba(12,31,58,0.1);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;flex-shrink:0}
-.ham span{display:block;width:16px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .3s;transform-origin:center}
-.ham.open span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}.ham.open span:nth-child(2){opacity:0}.ham.open span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
-.nav-overlay{position:fixed;inset:0;z-index:54;background:rgba(12,31,58,0);pointer-events:none;transition:background .3s}.nav-overlay.open{background:rgba(12,31,58,0.2);pointer-events:all}
-.nav-drawer{position:fixed;top:0;right:0;bottom:0;width:220px;background:rgba(255,255,255,0.97);border-left:1px solid rgba(12,31,58,0.08);backdrop-filter:blur(20px);z-index:55;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:5rem 1.75rem 2rem}.nav-drawer.open{transform:translateX(0)}
-.nd-link{display:block;padding:.85rem 0;border-bottom:1px solid rgba(12,31,58,0.07);font-family:var(--serif);font-size:24px;color:var(--navy2);text-decoration:none;transition:color .2s}.nd-link:hover{color:var(--gold2)}
-.nd-sub{font-size:9px;color:var(--gray2);letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:2px;font-family:var(--mono)}
-.nd-footer{margin-top:auto;font-size:10px;color:var(--gray2);line-height:1.6}
-body{background:var(--bg);color:var(--navy);font-family:var(--sans);min-height:100vh}
-nav{position:sticky;top:0;z-index:50;background:rgba(214,232,245,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(12,35,64,0.1);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:60px}
-.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--gray);font-size:13px;transition:color .2s}
+:root{--bg:#EAF4FC;--navy:#0B1C33;--gold:#D4870A;--text:#0B1C33;--text2:#2C4A6A;--text3:#6A8AAA;--earn:#6D28D9;--build:#047857;--save:#BE185D;--care:#C2410C;--recover:#B45309;--serif:'DM Serif Display',Georgia,serif;--sans:'Outfit',sans-serif;--mono:'DM Mono',monospace}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh}
+.topnav{position:sticky;top:0;z-index:50;height:58px;background:rgba(234,244,252,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(11,28,51,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem}
+.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text3);font-size:13px;transition:color .2s}
 .nav-back:hover{color:var(--navy)}
-.nav-back svg{width:16px;height:16px}
-.nav-title{font-family:var(--serif);font-size:19px;font-weight:300;color:var(--navy)}
-.nav-right{font-family:var(--mono);font-size:10px;color:var(--gray2);letter-spacing:.08em}
-main{max-width:1200px;margin:0 auto;padding:3rem 2rem 5rem}
-.page-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.75rem;display:flex;align-items:center;gap:10px}
-.page-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold);display:block}
-h1{font-family:var(--serif);font-size:clamp(36px,4vw,54px);font-weight:300;line-height:1.1;margin-bottom:.75rem;color:var(--navy)}
+.nav-back svg{width:15px;height:15px}
+.nav-ttl{font-family:var(--serif);font-size:19px;color:var(--navy)}
+.ham{width:36px;height:36px;background:rgba(11,28,51,0.08);border:1px solid rgba(11,28,51,0.13);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;flex-shrink:0;position:relative;z-index:200}
+.ham span{display:block;width:16px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .28s;transform-origin:center}
+.ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.nav-ov{position:fixed;inset:0;z-index:100;background:rgba(11,28,51,0);pointer-events:none;transition:background .3s}
+.nav-ov.open{background:rgba(11,28,51,0.22);pointer-events:all}
+.nav-dr{position:fixed;top:0;right:0;bottom:0;width:210px;background:#fff;border-left:1px solid rgba(11,28,51,0.09);z-index:150;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:5rem 1.5rem 2rem;box-shadow:-8px 0 32px rgba(11,28,51,0.08)}
+.nav-dr.open{transform:translateX(0)}
+.nl{display:block;padding:.75rem 0;border-bottom:1px solid rgba(11,28,51,0.07);font-family:var(--serif);font-size:22px;color:var(--text2);text-decoration:none;transition:color .2s}
+.nl:hover{color:var(--gold)}
+.nl span{display:block;font-family:var(--sans);font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-top:1px}
+.nf{margin-top:auto;font-size:9px;color:var(--text3);line-height:1.7}
+main{max-width:1200px;margin:0 auto;padding:2.25rem 1.75rem 5rem}
+.eye{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:9px}
+.eye::before{content:'';width:20px;height:1px;background:var(--gold);display:block}
+h1{font-family:var(--serif);font-size:clamp(30px,3.5vw,46px);color:var(--navy);line-height:1.1;margin-bottom:.625rem}
 h1 em{font-style:italic;color:var(--gold)}
-.fact-note{background:rgba(232,168,0,0.12);border:1px solid rgba(232,168,0,0.3);border-radius:6px;padding:.875rem 1.125rem;margin-bottom:2rem;font-size:12px;color:var(--navy2);line-height:1.65}
-.fact-note strong{color:var(--navy)}
-
-.big-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(12,35,64,0.08);border-radius:10px;overflow:hidden;margin-bottom:2rem}
-.big-stat{background:rgba(255,255,255,0.6);padding:1.75rem;transition:background .2s}
-.big-stat:hover{background:rgba(255,255,255,0.85)}
-.bs-num{font-family:var(--serif);font-size:48px;font-weight:300;line-height:1;margin-bottom:6px;color:var(--navy)}
-.bs-num span{color:var(--gold)}
-.bs-label{font-size:13px;color:var(--gray);line-height:1.5}
-.bs-caveat{font-family:var(--mono);font-size:9px;color:var(--gray2);margin-top:4px;letter-spacing:.04em}
-
-.fight-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(12,35,64,0.08);border-radius:10px;overflow:hidden;margin-bottom:2rem}
-.fs-col{background:rgba(255,255,255,0.5);padding:1.25rem}
-.fs-fight{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.625rem}
-.fs-count{font-family:var(--serif);font-size:38px;font-weight:300;line-height:1;color:var(--navy)}
-.fs-label{font-size:11px;color:var(--gray)}
-.fs-bar{height:3px;border-radius:2px;margin-top:.875rem;opacity:0.75}
-
-.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
-.chart-card{background:rgba(255,255,255,0.65);border:1px solid rgba(12,35,64,0.08);border-radius:10px;padding:1.5rem}
-.chart-card.full{grid-column:1/-1}
-.cc-title{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--navy);margin-bottom:3px}
-.cc-sub{font-size:12px;color:var(--gray);margin-bottom:1.25rem}
-.chart-wrap{position:relative;height:240px}
-.chart-wrap.tall{height:320px}
+.note{background:rgba(212,135,10,.1);border:1px solid rgba(212,135,10,.28);border-radius:6px;padding:.75rem 1rem;margin-bottom:1.75rem;font-size:11.5px;color:var(--text2);line-height:1.65}
+.note strong{color:var(--navy)}
+.bigs{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(11,28,51,.08);border-radius:9px;overflow:hidden;margin-bottom:1.5rem}
+.bs{background:rgba(255,255,255,.7);padding:1.5rem;transition:background .2s}
+.bs:hover{background:#fff}
+.bsn{font-family:var(--serif);font-size:44px;line-height:1;margin-bottom:5px;color:var(--navy)}
+.bsn em{color:var(--gold);font-style:normal}
+.bsl{font-size:12px;color:var(--text2);line-height:1.5}
+.bsc{font-family:var(--mono);font-size:8px;color:var(--text3);margin-top:3px}
+.fstrip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(11,28,51,.08);border-radius:9px;overflow:hidden;margin-bottom:1.5rem}
+.fc{background:rgba(255,255,255,.6);padding:1.125rem}
+.ff{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+.fn{font-family:var(--serif);font-size:34px;line-height:1;color:var(--navy)}
+.fl{font-size:10px;color:var(--text3)}
+.fb{height:2.5px;border-radius:2px;margin-top:.75rem;opacity:.7}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:1.125rem}
+.cc{background:rgba(255,255,255,.7);border:1px solid rgba(11,28,51,.08);border-radius:9px;padding:1.375rem}
+.cc.full{grid-column:1/-1}
+.cct{font-family:var(--serif);font-size:18px;color:var(--navy);margin-bottom:2px}
+.ccs{font-size:11px;color:var(--text3);margin-bottom:1.125rem}
+.cw{position:relative;height:220px}
+.cw.tall{height:300px}
 </style>
 </head>
 <body>
-<nav>
-  <a class="nav-back" href="index.html">
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>Back
-  </a>
-  <div class="nav-title" style="font-family:var(--serif);font-size:20px;color:var(--navy)">Data Dashboard</div>
+<nav class="topnav">
+  <a class="nav-back" href="index.html"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>Back</a>
+  <div class="nav-ttl">Data Dashboard</div>
   <div class="ham" id="ham" onclick="toggleNav()"><span></span><span></span><span></span></div>
 </nav>
-<div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
-<nav class="nav-drawer" id="navDrawer">
-  <div>
-    <a class="nd-link" href="index.html" onclick="closeNav()">Home<span class="nd-sub">Five Fights</span></a>
-    <a class="nd-link" href="inventory.html" onclick="closeNav()">Inventory<span class="nd-sub">209 Programs</span></a>
-    <a class="nd-link" href="dashboard.html" onclick="closeNav()">Dashboard<span class="nd-sub">Charts</span></a>
-    <a class="nd-link" href="campaigns.html" onclick="closeNav()">Campaigns<span class="nd-sub">Five Fights</span></a>
-    <a class="nd-link" href="about.html" onclick="closeNav()">About<span class="nd-sub">Sources</span></a>
-    <a class="nd-link" href="contact.html" onclick="closeNav()">Contact<span class="nd-sub">Michael Green II</span></a>
-  </div>
-  <div class="nd-footer">Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026</div>
+<div class="nav-ov" id="nOv" onclick="closeNav()"></div>
+<nav class="nav-dr" id="nDr">
+  <a class="nl" href="index.html" onclick="closeNav()">Home<span>Five Fights</span></a>
+  <a class="nl" href="inventory.html" onclick="closeNav()">Inventory<span>209 Programs</span></a>
+  <a class="nl" href="dashboard.html" onclick="closeNav()">Dashboard<span>Charts</span></a>
+  <a class="nl" href="campaigns.html" onclick="closeNav()">Campaigns<span>Five Fights</span></a>
+  <a class="nl" href="about.html" onclick="closeNav()">About<span>Sources</span></a>
+  <a class="nl" href="contact.html" onclick="closeNav()">Contact<span>Michael Green II</span></a>
+  <div class="nf">Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026</div>
 </nav>
 <main>
-  <div class="page-eyebrow">Affordability for All</div>
+  <div class="eye">Affordability for All</div>
   <h1>The <em>Numbers</em></h1>
-
-  <div class="fact-note">
-    <strong>Data note:</strong> Total program cost figures reflect reported TPC values from the Mayor's Office internal database as of early 2026. Programs with $0 TPC typically represent mayoral directives, regulatory actions, or programs funded through non-city sources. The $5.16B figure reflects the sum of all programs with documented expenditure data. Programs without TPC data (12 entries) and $0-reported programs (76 entries) are excluded from this total.
+  <div class="note"><strong>Data note:</strong> Total program cost figures reflect reported TPC values from the Mayor's Office internal database as of early 2026. Programs with $0 TPC represent mayoral directives, regulatory actions, or non-city-funded programs. The $5.16B figure is the sum of programs with documented expenditure data only.</div>
+  <div class="bigs">
+    <div class="bs"><div class="bsn">$<em>5.16</em>B</div><div class="bsl">Total documented program expenditure</div><div class="bsc">Sum of programs with reported TPC data</div></div>
+    <div class="bs"><div class="bsn"><em>209</em></div><div class="bsl">Active affordability programs (deduplicated)</div><div class="bsc">Across 20+ city departments</div></div>
+    <div class="bs"><div class="bsn"><em>50</em>K+</div><div class="bsl">Households served annually via FamilySource</div><div class="bsc">Across 19 centers citywide</div></div>
+    <div class="bs"><div class="bsn">~<em>29</em>K</div><div class="bsl">Housing units approved under ED1</div><div class="bsc">As of August 2025 · LA City Planning</div></div>
   </div>
-
-  <div class="big-stats">
-    <div class="big-stat"><div class="bs-num">$<span>5.16</span>B</div><div class="bs-label">Total documented program expenditure</div><div class="bs-caveat">Sum of programs with reported TPC data</div></div>
-    <div class="big-stat"><div class="bs-num"><span>209</span></div><div class="bs-label">Active affordability programs (deduplicated)</div><div class="bs-caveat">Across 20+ city departments</div></div>
-    <div class="big-stat"><div class="bs-num"><span>50</span>K+</div><div class="bs-label">Households served annually via FamilySource</div><div class="bs-caveat">Across 19 centers citywide</div></div>
-    <div class="big-stat"><div class="bs-num">~<span>29</span>K</div><div class="bs-label">Housing units approved under ED1</div><div class="bs-caveat">As of August 2025 · LA City Planning data</div></div>
+  <div class="fstrip">
+    <div class="fc"><div class="ff" style="color:#6D28D9">Earn More</div><div class="fn">57</div><div class="fl">programs</div><div class="fb" style="background:#6D28D9;width:100%"></div></div>
+    <div class="fc"><div class="ff" style="color:#047857">Build More</div><div class="fn">48</div><div class="fl">programs</div><div class="fb" style="background:#047857;width:84%"></div></div>
+    <div class="fc"><div class="ff" style="color:#C2410C">Care More</div><div class="fn">53</div><div class="fl">programs</div><div class="fb" style="background:#C2410C;width:93%"></div></div>
+    <div class="fc"><div class="ff" style="color:#B45309">Recover More</div><div class="fn">31</div><div class="fl">programs</div><div class="fb" style="background:#B45309;width:54%"></div></div>
+    <div class="fc"><div class="ff" style="color:#BE185D">Save More</div><div class="fn">20</div><div class="fl">programs</div><div class="fb" style="background:#BE185D;width:35%"></div></div>
   </div>
-
-  <div class="fight-strip">
-    <div class="fs-col"><div class="fs-fight" style="color:#6D28D9">Earn More</div><div class="fs-count">57</div><div class="fs-label">programs</div><div class="fs-bar" style="background:#6D28D9;width:100%"></div></div>
-    <div class="fs-col"><div class="fs-fight" style="color:#047857">Build More</div><div class="fs-count">48</div><div class="fs-label">programs</div><div class="fs-bar" style="background:#047857;width:84%"></div></div>
-    <div class="fs-col"><div class="fs-fight" style="color:#C2410C">Care More</div><div class="fs-count">53</div><div class="fs-label">programs</div><div class="fs-bar" style="background:#C2410C;width:93%"></div></div>
-    <div class="fs-col"><div class="fs-fight" style="color:#B45309">Recover More</div><div class="fs-count">31</div><div class="fs-label">programs</div><div class="fs-bar" style="background:#B45309;width:54%"></div></div>
-    <div class="fs-col"><div class="fs-fight" style="color:#BE185D">Save More</div><div class="fs-count">20</div><div class="fs-label">programs</div><div class="fs-bar" style="background:#BE185D;width:35%"></div></div>
-  </div>
-
-  <div class="charts-grid">
-    <div class="chart-card">
-      <div class="cc-title">Programs by Tier</div>
-      <div class="cc-sub">A-List: 8 · Tier 1: 49 · Tier 2: 59 · Tier 3: 93</div>
-      <div class="chart-wrap"><canvas id="tierChart"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <div class="cc-title">Programs by Fight</div>
-      <div class="cc-sub">Distribution across the five fights (deduplicated)</div>
-      <div class="chart-wrap"><canvas id="fightChart"></canvas></div>
-    </div>
-    <div class="chart-card full">
-      <div class="cc-title">Programs by Topic Area</div>
-      <div class="cc-sub">All 17 topic categories across the inventory</div>
-      <div class="chart-wrap tall"><canvas id="topicChart"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <div class="cc-title">Ongoing vs. One-Time</div>
-      <div class="cc-sub">Program durability across the inventory</div>
-      <div class="chart-wrap"><canvas id="ongoingChart"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <div class="cc-title">A-List + Tier 1 by Fight</div>
-      <div class="cc-sub">Highest-tier programs per fight area</div>
-      <div class="chart-wrap"><canvas id="fightTierChart"></canvas></div>
-    </div>
+  <div class="cgrid">
+    <div class="cc"><div class="cct">Programs by Tier</div><div class="ccs">A-List: 8 · Tier 1: 49 · Tier 2: 59 · Tier 3: 93</div><div class="cw"><canvas id="c1"></canvas></div></div>
+    <div class="cc"><div class="cct">Programs by Fight</div><div class="ccs">Distribution across the five fights</div><div class="cw"><canvas id="c2"></canvas></div></div>
+    <div class="cc full"><div class="cct">Programs by Topic Area</div><div class="ccs">All 17 topic categories</div><div class="cw tall"><canvas id="c3"></canvas></div></div>
+    <div class="cc"><div class="cct">Ongoing vs. One-Time</div><div class="ccs">Program durability across the inventory</div><div class="cw"><canvas id="c4"></canvas></div></div>
+    <div class="cc"><div class="cct">A-List + Tier 1 by Fight</div><div class="ccs">Highest-tier programs per fight area</div><div class="cw"><canvas id="c5"></canvas></div></div>
   </div>
 </main>
-
 <script>
-Chart.defaults.color='#4A6B8A';
-Chart.defaults.borderColor='rgba(12,35,64,0.08)';
-Chart.defaults.font.family="'Outfit', sans-serif";
-
-const NAVY='#0C2340';
-const GOLD='#E8A800';
-
-new Chart(document.getElementById('tierChart'),{
-  type:'doughnut',
-  data:{
-    labels:['A-List','Tier 1','Tier 2','Tier 3'],
-    datasets:[{data:[8,49,59,93],
-      backgroundColor:['#E8A800CC','#6D28D9CC','#047857CC','#CBD5E1CC'],
-      borderColor:'rgba(255,255,255,0.8)',borderWidth:3,hoverOffset:6}]
-  },
-  options:{responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{display:false},
-      tooltip:{callbacks:{label:ctx=>` ${ctx.label}: ${ctx.parsed} programs`}}},
-    cutout:'68%'}
-});
-
-new Chart(document.getElementById('fightChart'),{
-  type:'bar',
-  data:{
-    labels:['Earn More','Build More','Care More','Recover More','Save More'],
-    datasets:[{data:[57,48,53,31,20],
-      backgroundColor:['#6D28D9CC','#047857CC','#C2410CCC','#B45309CC','#BE185DCC'],
-      borderColor:'transparent',borderRadius:4}]
-  },
-  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',
-    plugins:{legend:{display:false}},
-    scales:{x:{grid:{color:'rgba(12,35,64,0.05)'},ticks:{color:'#4A6B8A'}},
-      y:{grid:{display:false},ticks:{color:NAVY,font:{size:12}}}}}
-});
-
-new Chart(document.getElementById('topicChart'),{
-  type:'bar',
-  data:{
-    labels:['Workforce Dev.','Housing Supply','Holistic Support','Homelessness Reduction','Housing Costs',"Renter's Issues",'Wages','Violence Prevention','Utilities','Senior Services','Veterans','Homelessness Prevention','Social Justice','Economic Dev.','Taxes','Small Business','Marginalized Youth'],
-    datasets:[{data:[43,31,28,26,17,10,9,9,8,6,6,5,5,4,2,2,1],
-      backgroundColor:'rgba(12,35,64,0.2)',borderColor:'rgba(12,35,64,0.5)',borderWidth:1,borderRadius:3}]
-  },
-  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',
-    plugins:{legend:{display:false}},
-    scales:{x:{grid:{color:'rgba(12,35,64,0.05)'},ticks:{color:'#4A6B8A'}},
-      y:{grid:{display:false},ticks:{color:NAVY,font:{size:11}}}}}
-});
-
-new Chart(document.getElementById('ongoingChart'),{
-  type:'doughnut',
-  data:{
-    labels:['Ongoing','One-time / Pilot'],
-    datasets:[{data:[168,41],
-      backgroundColor:['#047857CC','rgba(12,35,64,0.2)'],
-      borderColor:'rgba(255,255,255,0.8)',borderWidth:3,hoverOffset:6}]
-  },
-  options:{responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{position:'bottom',labels:{padding:14,color:'#4A6B8A',font:{size:12}}},
-      tooltip:{callbacks:{label:ctx=>` ${ctx.label}: ${ctx.parsed}`}}},
-    cutout:'65%'}
-});
-
-new Chart(document.getElementById('fightTierChart'),{
-  type:'bar',
-  data:{
-    labels:['Earn More','Build More','Care More','Recover More','Save More'],
-    datasets:[
-      {label:'A-List',data:[2,3,1,2,0],backgroundColor:'#E8A800CC',borderRadius:3},
-      {label:'Tier 1',data:[14,12,13,7,3],backgroundColor:'rgba(12,35,64,0.35)',borderRadius:3}
-    ]
-  },
-  options:{responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{position:'bottom',labels:{padding:14,color:'#4A6B8A',font:{size:12}}}},
-    scales:{x:{grid:{display:false},ticks:{color:NAVY,font:{size:11}}},
-      y:{grid:{color:'rgba(12,35,64,0.05)'},ticks:{color:'#4A6B8A'}}}}
-});
+Chart.defaults.color='#6A8AAA';Chart.defaults.borderColor='rgba(11,28,51,0.07)';Chart.defaults.font.family="'Outfit',sans-serif";
+const N='#0B1C33',G='#D4870A';
+new Chart(document.getElementById('c1'),{type:'doughnut',data:{labels:['A-List','Tier 1','Tier 2','Tier 3'],datasets:[{data:[8,49,59,93],backgroundColor:['#D4870ACC','#6D28D9CC','#047857CC','#CBD5E1CC'],borderColor:'rgba(255,255,255,0.9)',borderWidth:3,hoverOffset:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed} programs`}}},cutout:'68%'}});
+new Chart(document.getElementById('c2'),{type:'bar',data:{labels:['Earn More','Build More','Care More','Recover More','Save More'],datasets:[{data:[57,48,53,31,20],backgroundColor:['#6D28D9CC','#047857CC','#C2410CCC','#B45309CC','#BE185DCC'],borderColor:'transparent',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(11,28,51,0.05)'},ticks:{color:'#6A8AAA'}},y:{grid:{display:false},ticks:{color:N,font:{size:12}}}}}});
+new Chart(document.getElementById('c3'),{type:'bar',data:{labels:['Workforce Dev.','Housing Supply','Holistic Support','Homelessness Reduction','Housing Costs',"Renter's Issues",'Wages','Violence Prevention','Utilities','Senior Services','Veterans','Homelessness Prevention','Social Justice','Economic Dev.','Taxes','Small Business','Marginalized Youth'],datasets:[{data:[43,31,28,26,17,10,9,9,8,6,6,5,5,4,2,2,1],backgroundColor:'rgba(11,28,51,0.18)',borderColor:'rgba(11,28,51,0.45)',borderWidth:1,borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(11,28,51,0.05)'},ticks:{color:'#6A8AAA'}},y:{grid:{display:false},ticks:{color:N,font:{size:11}}}}}});
+new Chart(document.getElementById('c4'),{type:'doughnut',data:{labels:['Ongoing','One-time / Pilot'],datasets:[{data:[168,41],backgroundColor:['#047857CC','rgba(11,28,51,0.18)'],borderColor:'rgba(255,255,255,0.9)',borderWidth:3,hoverOffset:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{padding:14,color:'#6A8AAA',font:{size:11}}},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed}`}}},cutout:'65%'}});
+new Chart(document.getElementById('c5'),{type:'bar',data:{labels:['Earn More','Build More','Care More','Recover More','Save More'],datasets:[{label:'A-List',data:[2,3,1,2,0],backgroundColor:'#D4870ACC',borderRadius:3},{label:'Tier 1',data:[14,12,13,7,3],backgroundColor:'rgba(11,28,51,0.32)',borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{padding:13,color:'#6A8AAA',font:{size:11}}}},scales:{x:{grid:{display:false},ticks:{color:N,font:{size:11}}},y:{grid:{color:'rgba(11,28,51,0.05)'},ticks:{color:'#6A8AAA'}}}}});
+function toggleNav(){var o=document.getElementById('nDr').classList.toggle('open');document.getElementById('ham').classList.toggle('open',o);document.getElementById('nOv').classList.toggle('open',o);}
+function closeNav(){document.getElementById('nDr').classList.remove('open');document.getElementById('ham').classList.remove('open');document.getElementById('nOv').classList.remove('open');}
 </script>
-<script>function toggleNav(){var o=document.getElementById("navDrawer").classList.toggle("open");document.getElementById("ham").classList.toggle("open",o);document.getElementById("navOverlay").classList.toggle("open",o);}function closeNav(){document.getElementById("navDrawer").classList.remove("open");document.getElementById("ham").classList.remove("open");document.getElementById("navOverlay").classList.remove("open");}</script></body>
+</body>
 </html>

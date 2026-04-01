@@ -7,73 +7,71 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#E8F4FD;--navy:#0C1F3A;--navy2:#163258;--white:#fff;--text:#0C1F3A;--text2:#2A4A6B;--text3:#5A7A9A;--gold:#E8A020;--gold2:#C8880A;--serif:'DM Serif Display',Georgia,serif;--sans:'Outfit',sans-serif;--mono:'DM Mono',monospace}
+:root{--bg:#EAF4FC;--navy:#0B1C33;--gold:#D4870A;--text:#0B1C33;--text2:#2C4A6A;--text3:#6A8AAA;--serif:'DM Serif Display',Georgia,serif;--sans:'Outfit',sans-serif;--mono:'DM Mono',monospace}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh}
-nav{position:sticky;top:0;z-index:50;height:60px;background:rgba(232,244,253,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(12,31,58,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 2rem}
+.topnav{position:sticky;top:0;z-index:50;height:58px;background:rgba(234,244,252,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(11,28,51,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem}
 .nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text3);font-size:13px;transition:color .2s}
 .nav-back:hover{color:var(--navy)}
-.nav-back svg{width:16px;height:16px}
-.nav-title{font-family:var(--serif);font-size:20px;color:var(--navy)}
-.ham{width:36px;height:36px;background:rgba(12,31,58,0.07);border:1px solid rgba(12,31,58,0.1);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;flex-shrink:0}
-.ham span{display:block;width:16px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .3s;transform-origin:center}
-.ham.open span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
-.ham.open span:nth-child(2){opacity:0}
-.ham.open span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
-.nav-overlay{position:fixed;inset:0;z-index:54;background:rgba(12,31,58,0);pointer-events:none;transition:background .3s}
-.nav-overlay.open{background:rgba(12,31,58,0.2);pointer-events:all}
-.nav-drawer{position:fixed;top:0;right:0;bottom:0;width:220px;background:rgba(255,255,255,0.97);border-left:1px solid rgba(12,31,58,0.08);backdrop-filter:blur(20px);z-index:55;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:5rem 1.75rem 2rem}
-.nav-drawer.open{transform:translateX(0)}
-.nd-link{display:block;padding:.85rem 0;border-bottom:1px solid rgba(12,31,58,0.07);font-family:var(--serif);font-size:24px;color:var(--text2);text-decoration:none;transition:color .2s}
-.nd-link:hover{color:var(--gold2)}
-.nd-sub{font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:2px;font-family:var(--mono)}
-.nd-footer{margin-top:auto;font-size:10px;color:var(--text3);line-height:1.6}
-main{max-width:760px;margin:0 auto;padding:3.5rem 2rem 5rem}
-.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold2);margin-bottom:.625rem;display:flex;align-items:center;gap:10px}
-.eyebrow::before{content:'';width:22px;height:1px;background:var(--gold2);display:block}
-h1{font-family:var(--serif);font-size:clamp(34px,4vw,52px);color:var(--navy);line-height:1.1;margin-bottom:2.5rem}
-h1 em{font-style:italic;color:var(--gold2)}
-.prose-block{margin-bottom:2.25rem}
-.prose-block h2{font-family:var(--serif);font-size:22px;color:var(--gold2);margin-bottom:.625rem}
-.prose-block p{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:.875rem}
-.prose-block ul{list-style:none;display:flex;flex-direction:column;gap:.375rem}
-.prose-block li{font-size:13px;color:var(--text2);line-height:1.6;padding-left:1.25rem;position:relative}
-.prose-block li::before{content:'—';position:absolute;left:0;color:var(--gold);font-family:var(--serif)}
-.acks{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(12,31,58,0.08);border-radius:8px;overflow:hidden;margin-top:.875rem}
-.ack{background:rgba(255,255,255,0.75);padding:1.125rem 1.375rem}
-.ack-name{font-weight:600;font-size:14px;margin-bottom:3px;color:var(--navy)}
-.ack-role{font-size:12px;color:var(--text3);line-height:1.5}
-footer{text-align:center;padding:2rem;font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.06em;margin-top:2rem;border-top:1px solid rgba(12,31,58,0.08)}
+.nav-back svg{width:15px;height:15px}
+.nav-ttl{font-family:var(--serif);font-size:19px;color:var(--navy)}
+.ham{width:36px;height:36px;background:rgba(11,28,51,0.08);border:1px solid rgba(11,28,51,0.13);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;flex-shrink:0;position:relative;z-index:200}
+.ham span{display:block;width:16px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .28s;transform-origin:center}
+.ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.nav-ov{position:fixed;inset:0;z-index:100;background:rgba(11,28,51,0);pointer-events:none;transition:background .3s}
+.nav-ov.open{background:rgba(11,28,51,0.22);pointer-events:all}
+.nav-dr{position:fixed;top:0;right:0;bottom:0;width:210px;background:#fff;border-left:1px solid rgba(11,28,51,0.09);z-index:150;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:5rem 1.5rem 2rem;box-shadow:-8px 0 32px rgba(11,28,51,0.08)}
+.nav-dr.open{transform:translateX(0)}
+.nl{display:block;padding:.75rem 0;border-bottom:1px solid rgba(11,28,51,0.07);font-family:var(--serif);font-size:22px;color:var(--text2);text-decoration:none;transition:color .2s}
+.nl:hover{color:var(--gold)}
+.nl span{display:block;font-family:var(--sans);font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-top:1px}
+.nf{margin-top:auto;font-size:9px;color:var(--text3);line-height:1.7}
+main{max-width:740px;margin:0 auto;padding:3rem 1.75rem 5rem}
+.eye{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:9px}
+.eye::before{content:'';width:20px;height:1px;background:var(--gold);display:block}
+h1{font-family:var(--serif);font-size:clamp(32px,4vw,48px);color:var(--navy);line-height:1.1;margin-bottom:2.25rem}
+h1 em{font-style:italic;color:var(--gold)}
+.pb{margin-bottom:2rem}
+.pb h2{font-family:var(--serif);font-size:20px;color:var(--gold);margin-bottom:.5rem}
+.pb p{font-size:13.5px;color:var(--text2);line-height:1.8;margin-bottom:.75rem}
+.pb ul{list-style:none;display:flex;flex-direction:column;gap:.3rem}
+.pb li{font-size:13px;color:var(--text2);line-height:1.6;padding-left:1.125rem;position:relative}
+.pb li::before{content:'—';position:absolute;left:0;color:var(--gold);font-family:var(--serif)}
+.acks{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(11,28,51,0.08);border-radius:8px;overflow:hidden;margin-top:.75rem}
+.ack{background:rgba(255,255,255,.75);padding:1rem 1.25rem}
+.ack-n{font-weight:600;font-size:14px;margin-bottom:2px;color:var(--navy)}
+.ack-r{font-size:11.5px;color:var(--text3);line-height:1.5}
+footer{text-align:center;padding:1.75rem;font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.06em;border-top:1px solid rgba(11,28,51,0.07)}
 </style>
 </head>
 <body>
-<nav>
+<nav class="topnav">
   <a class="nav-back" href="index.html"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>Back</a>
-  <div class="nav-title">About &amp; Sources</div>
+  <div class="nav-ttl">About &amp; Sources</div>
   <div class="ham" id="ham" onclick="toggleNav()"><span></span><span></span><span></span></div>
 </nav>
-<div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
-<nav class="nav-drawer" id="navDrawer">
-  <div>
-    <a class="nd-link" href="index.html" onclick="closeNav()">Home<span class="nd-sub">Five Fights</span></a>
-    <a class="nd-link" href="inventory.html" onclick="closeNav()">Inventory<span class="nd-sub">209 Programs</span></a>
-    <a class="nd-link" href="dashboard.html" onclick="closeNav()">Dashboard<span class="nd-sub">Charts</span></a>
-    <a class="nd-link" href="campaigns.html" onclick="closeNav()">Campaigns<span class="nd-sub">Five Fights</span></a>
-    <a class="nd-link" href="about.html" onclick="closeNav()">About<span class="nd-sub">Sources</span></a>
-    <a class="nd-link" href="contact.html" onclick="closeNav()">Contact<span class="nd-sub">Michael Green II</span></a>
-  </div>
-  <div class="nd-footer">Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026</div>
+<div class="nav-ov" id="nOv" onclick="closeNav()"></div>
+<nav class="nav-dr" id="nDr">
+  <a class="nl" href="index.html" onclick="closeNav()">Home<span>Five Fights</span></a>
+  <a class="nl" href="inventory.html" onclick="closeNav()">Inventory<span>209 Programs</span></a>
+  <a class="nl" href="dashboard.html" onclick="closeNav()">Dashboard<span>Charts</span></a>
+  <a class="nl" href="campaigns.html" onclick="closeNav()">Campaigns<span>Five Fights</span></a>
+  <a class="nl" href="about.html" onclick="closeNav()">About<span>Sources</span></a>
+  <a class="nl" href="contact.html" onclick="closeNav()">Contact<span>Michael Green II</span></a>
+  <div class="nf">Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026</div>
 </nav>
 <main>
-  <div class="eyebrow">Context</div>
+  <div class="eye">Context</div>
   <h1>About This <em>Project</em></h1>
-  <div class="prose-block">
+  <div class="pb">
     <h2>What This Is</h2>
     <p>Affordability for All is a strategic communications framework developed during a Coro Southern California Fellowship placement with Mayor Karen Bass's Office of Policy and Communications. The goal: take 209 programs across 20+ departments and build a unified narrative architecture that any Angeleno, press contact, or field representative can understand in a single conversation.</p>
     <p>The Five Fights framework organizes those programs into five constituent-facing categories: Earn More, Build More, Save More, Care More, and Recover More. Each fight maps to a real economic pressure Angelenos face and is backed by concrete programs, dollar figures, and measurable outcomes.</p>
   </div>
-  <div class="prose-block">
+  <div class="pb">
     <h2>The Scoring Rubric</h2>
-    <p>Programs in the inventory are scored on a 14-point rubric across five criteria: Bass Attribution, Scale of Impact, Communications Value, Strategic Alignment with the Affordability Agenda, and Implementation Reality. Two binary flags — Equity Depth and Durability — are noted but do not affect the score.</p>
+    <p>Programs are scored on a 14-point rubric across five criteria: Bass Attribution, Scale of Impact, Communications Value, Strategic Alignment with the Affordability Agenda, and Implementation Reality. Two binary flags — Equity Depth and Durability — are noted but do not affect the score.</p>
     <ul>
       <li>A-List: 12+ points — Bass's signature programs with the highest public recognition and impact</li>
       <li>Tier 1: 9–11 points — High-impact programs with strong Bass attribution</li>
@@ -81,7 +79,7 @@ footer{text-align:center;padding:2rem;font-family:var(--mono);font-size:10px;col
       <li>Tier 3: Below 5 — Infrastructure, passthroughs, or programs with limited public legibility</li>
     </ul>
   </div>
-  <div class="prose-block">
+  <div class="pb">
     <h2>Primary Sources</h2>
     <ul>
       <li>Mayor's Office of Policy and Communications internal program database</li>
@@ -89,23 +87,23 @@ footer{text-align:center;padding:2rem;font-family:var(--mono);font-size:10px;col
       <li>LAHSA Greater Los Angeles Homeless Count (2023, 2024)</li>
       <li>LAUSD/SEIU Local 99 Tentative Agreement (March 24, 2023)</li>
       <li>United to House Los Angeles (ULA) program data via LAHD</li>
-      <li>LA City Planning ED1 case data and Bisnow (December 2025)</li>
+      <li>LA City Planning ED1 case data; Bisnow (December 2025)</li>
       <li>California Legislative Analyst's Office (CalEITC utilization data)</li>
     </ul>
   </div>
-  <div class="prose-block">
+  <div class="pb">
     <h2>Acknowledgments</h2>
     <div class="acks">
-      <div class="ack"><div class="ack-name">Jenny Delwood</div><div class="ack-role">Deputy Chief of Staff, Mayor's Office<br>Placement Supervisor</div></div>
-      <div class="ack"><div class="ack-name">Larry Frank</div><div class="ack-role">Senior Policy Advisor, Mayor's Office<br>Framework Co-Developer</div></div>
-      <div class="ack"><div class="ack-name">Department Representatives</div><div class="ack-role">LAHD, HACLA, EWDD, CIFD, CAO<br>Database Sources</div></div>
+      <div class="ack"><div class="ack-n">Jenny Delwood</div><div class="ack-r">Deputy Chief of Staff, Mayor's Office<br>Placement Supervisor</div></div>
+      <div class="ack"><div class="ack-n">Larry Frank</div><div class="ack-r">Senior Policy Advisor, Mayor's Office<br>Framework Co-Developer</div></div>
+      <div class="ack"><div class="ack-n">Department Representatives</div><div class="ack-r">LAHD, HACLA, EWDD, CIFD, CAO<br>Database Sources</div></div>
     </div>
   </div>
 </main>
 <footer>Mayor Karen Bass · Office of Policy &amp; Communications · Michael Green II · Coro Southern California · 2026</footer>
 <script>
-function toggleNav(){const o=document.getElementById('navDrawer').classList.toggle('open');document.getElementById('ham').classList.toggle('open',o);document.getElementById('navOverlay').classList.toggle('open',o);}
-function closeNav(){document.getElementById('navDrawer').classList.remove('open');document.getElementById('ham').classList.remove('open');document.getElementById('navOverlay').classList.remove('open');}
+function toggleNav(){var o=document.getElementById('nDr').classList.toggle('open');document.getElementById('ham').classList.toggle('open',o);document.getElementById('nOv').classList.toggle('open',o);}
+function closeNav(){document.getElementById('nDr').classList.remove('open');document.getElementById('ham').classList.remove('open');document.getElementById('nOv').classList.remove('open');}
 </script>
 </body>
 </html>

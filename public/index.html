@@ -4,425 +4,297 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Affordability for All — Mayor Karen Bass</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#E8F4FD;
-  --bg2:#D4EAF8;
-  --navy:#0C1F3A;
-  --navy2:#163258;
+  --bg:#EAF4FC;
+  --navy:#0B1C33;
+  --blue:#1A4A8C;
+  --gold:#D4870A;
+  --gold-lt:#F5A623;
+  --text:#0B1C33;
+  --text2:#2C4A6A;
+  --text3:#6A8AAA;
   --white:#FFFFFF;
-  --text:#0C1F3A;
-  --text2:#2A4A6B;
-  --text3:#5A7A9A;
-  --gold:#E8A020;
-  --gold2:#C8880A;
-  --earn:#7C3AED;
-  --build:#059669;
-  --save:#DB2777;
-  --care:#EA580C;
-  --recover:#D97706;
+  --earn:#6D28D9;
+  --build:#047857;
+  --save:#BE185D;
+  --care:#C2410C;
+  --recover:#B45309;
   --serif:'DM Serif Display',Georgia,serif;
   --sans:'Outfit',sans-serif;
 }
-html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);font-family:var(--sans);color:var(--text)}
+html,body{width:100%;height:100%;background:var(--bg);font-family:var(--sans);color:var(--text);overflow:hidden}
 
-/* HEADER */
-.site-header{
-  position:fixed;top:0;left:0;right:0;z-index:50;
-  padding:1.25rem 2rem;
-  display:flex;align-items:flex-start;justify-content:space-between;
-}
-.header-left{}
-.header-byline{
-  font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
-  color:var(--text3);margin-bottom:4px;
-}
-.header-title{
-  font-family:var(--serif);
-  font-size:clamp(22px,2.8vw,36px);
-  font-weight:400;color:var(--navy);line-height:1.1;
-}
-.header-title span{color:var(--gold)}
+/* ── HEADER ────────────────────────────────── */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:50;padding:1.1rem 1.75rem;display:flex;align-items:flex-start;justify-content:space-between;background:rgba(234,244,252,0.0)}
+.hdr-left{}
+.hdr-byline{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:3px}
+.hdr-title{font-family:var(--serif);font-size:clamp(18px,2.2vw,28px);color:var(--navy);line-height:1.15}
+.hdr-title b{color:var(--gold);font-weight:400;font-style:italic}
 
-/* HAMBURGER */
-.ham{
-  width:38px;height:38px;
-  background:rgba(12,31,58,0.07);
-  border:1px solid rgba(12,31,58,0.12);
-  border-radius:6px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:5px;cursor:pointer;transition:background .2s;flex-shrink:0;
-}
-.ham:hover{background:rgba(12,31,58,0.13)}
-.ham span{display:block;width:17px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .3s;transform-origin:center}
+/* ── HAMBURGER ─────────────────────────────── */
+.ham{width:36px;height:36px;background:rgba(11,28,51,0.08);border:1px solid rgba(11,28,51,0.14);border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:background .2s;flex-shrink:0;position:relative;z-index:200}
+.ham:hover{background:rgba(11,28,51,0.14)}
+.ham span{display:block;width:16px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .28s;transform-origin:center}
 .ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
 .ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 
-/* NAV */
-.nav-overlay{position:fixed;inset:0;z-index:54;background:rgba(12,31,58,0);pointer-events:none;transition:background .3s}
-.nav-overlay.open{background:rgba(12,31,58,0.2);pointer-events:all}
-.nav-drawer{
-  position:fixed;top:0;right:0;bottom:0;width:220px;
-  background:rgba(255,255,255,0.97);border-left:1px solid rgba(12,31,58,0.1);
-  backdrop-filter:blur(20px);z-index:55;
-  transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);
-  display:flex;flex-direction:column;padding:5rem 1.75rem 2rem;
-}
-.nav-drawer.open{transform:translateX(0)}
-.nav-link{
-  display:block;padding:.85rem 0;border-bottom:1px solid rgba(12,31,58,0.07);
-  font-family:var(--serif);font-size:24px;font-weight:400;
-  color:var(--text2);text-decoration:none;transition:color .2s;
-}
-.nav-link:hover{color:var(--gold2)}
-.nav-link-sub{font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:2px;font-family:var(--sans)}
-.nav-footer{margin-top:auto;font-size:10px;color:var(--text3);line-height:1.6;font-family:var(--sans)}
+/* ── NAV DRAWER ────────────────────────────── */
+.nav-ov{position:fixed;inset:0;z-index:100;background:rgba(11,28,51,0);pointer-events:none;transition:background .3s}
+.nav-ov.open{background:rgba(11,28,51,0.22);pointer-events:all}
+.nav-dr{position:fixed;top:0;right:0;bottom:0;width:210px;background:#fff;border-left:1px solid rgba(11,28,51,0.09);z-index:150;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:5rem 1.5rem 2rem;box-shadow:-8px 0 32px rgba(11,28,51,0.08)}
+.nav-dr.open{transform:translateX(0)}
+.nl{display:block;padding:.75rem 0;border-bottom:1px solid rgba(11,28,51,0.07);font-family:var(--serif);font-size:22px;color:var(--text2);text-decoration:none;transition:color .2s}
+.nl:hover{color:var(--gold)}
+.nl span{display:block;font-family:var(--sans);font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-top:1px}
+.nf{margin-top:auto;font-size:9px;color:var(--text3);line-height:1.7;letter-spacing:.03em}
 
-/* CANVAS */
-#wheelCanvas{position:fixed;inset:0;z-index:1;cursor:default}
+/* ── WHEEL CANVAS ──────────────────────────── */
+#wc{position:fixed;inset:0;z-index:1}
 
-/* FIGHT PANEL */
-.fight-panel{
-  position:fixed;top:50%;right:2rem;
-  transform:translateY(-50%) translateX(calc(100% + 2.5rem));
-  width:270px;
-  background:rgba(255,255,255,0.96);
-  border:1px solid rgba(12,31,58,0.1);
-  border-radius:14px;padding:1.5rem;z-index:20;
-  box-shadow:0 8px 32px rgba(12,31,58,0.12);
-  transition:transform .38s cubic-bezier(.4,0,.2,1),opacity .38s;opacity:0;
-}
-.fight-panel.visible{transform:translateY(-50%) translateX(0);opacity:1}
-.fp-close{
-  position:absolute;top:.875rem;right:.875rem;
-  background:rgba(12,31,58,0.06);border:none;color:var(--text2);
-  font-size:13px;cursor:pointer;width:26px;height:26px;
-  display:flex;align-items:center;justify-content:center;
-  border-radius:5px;transition:background .2s;
-}
-.fp-close:hover{background:rgba(12,31,58,0.12)}
-.fp-accent{width:100%;height:3px;border-radius:2px;margin-bottom:1rem}
-.fp-title{font-family:var(--serif);font-size:30px;line-height:1.1;margin-bottom:.5rem}
-.fp-desc{font-size:12px;color:var(--text2);line-height:1.65;margin-bottom:1rem}
-.fp-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(12,31,58,0.07);border-radius:7px;overflow:hidden;margin-bottom:1rem}
-.fp-stat{background:#F0F7FF;padding:.75rem}
-.fp-stat-num{font-family:var(--serif);font-size:22px;line-height:1;margin-bottom:2px}
-.fp-stat-label{font-size:10px;color:var(--text3);line-height:1.4}
-.fp-progs{display:flex;flex-direction:column}
-.fp-prog{font-size:11px;color:var(--text2);padding:6px 0;border-bottom:1px solid rgba(12,31,58,0.05);display:flex;align-items:center;gap:7px}
-.fp-prog:last-child{border-bottom:none}
+/* ── FIGHT PANEL ───────────────────────────── */
+.fp{position:fixed;top:50%;right:2rem;transform:translateY(-50%) translateX(calc(100% + 3rem));width:255px;background:#fff;border:1px solid rgba(11,28,51,0.1);border-radius:12px;padding:1.375rem;z-index:20;box-shadow:0 6px 28px rgba(11,28,51,0.11);transition:transform .36s cubic-bezier(.4,0,.2,1),opacity .36s;opacity:0;pointer-events:none}
+.fp.show{transform:translateY(-50%) translateX(0);opacity:1;pointer-events:all}
+.fp-x{position:absolute;top:.75rem;right:.75rem;width:24px;height:24px;background:rgba(11,28,51,0.07);border:none;border-radius:4px;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);transition:background .2s}
+.fp-x:hover{background:rgba(11,28,51,0.13)}
+.fp-bar{height:3px;border-radius:2px;margin-bottom:.875rem;width:100%}
+.fp-name{font-family:var(--serif);font-size:27px;line-height:1.1;margin-bottom:.375rem}
+.fp-desc{font-size:11.5px;color:var(--text2);line-height:1.65;margin-bottom:.875rem}
+.fp-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(11,28,51,0.07);border-radius:6px;overflow:hidden;margin-bottom:.875rem}
+.fp-stat{background:#F4F9FD;padding:.625rem .75rem}
+.fp-sn{font-family:var(--serif);font-size:19px;line-height:1;margin-bottom:2px}
+.fp-sl{font-size:9px;color:var(--text3);line-height:1.4}
+.fp-progs{display:flex;flex-direction:column;gap:0}
+.fp-p{font-size:11px;color:var(--text2);padding:5px 0;border-bottom:1px solid rgba(11,28,51,0.05);display:flex;align-items:center;gap:6px}
+.fp-p:last-child{border-bottom:none}
 .fp-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.fp-more{margin-top:.875rem;padding-top:.875rem;border-top:1px solid rgba(12,31,58,0.07);font-size:10px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;justify-content:space-between;font-family:var(--sans)}
-.fp-more:hover{opacity:.75}
+.fp-more{display:flex;align-items:center;justify-content:space-between;margin-top:.875rem;padding-top:.75rem;border-top:1px solid rgba(11,28,51,0.07);font-size:10px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;font-family:var(--sans)}
+.fp-more:hover{opacity:.7}
 
-/* CENTER OVERVIEW PANEL */
-.center-panel{
-  position:fixed;top:50%;left:50%;
-  transform:translate(-50%,-50%) scale(0.9);
-  width:420px;max-width:92vw;
-  background:rgba(255,255,255,0.97);
-  border:1px solid rgba(12,31,58,0.1);
-  border-radius:16px;padding:2rem;z-index:30;
-  box-shadow:0 12px 48px rgba(12,31,58,0.15);
-  transition:transform .35s cubic-bezier(.4,0,.2,1),opacity .35s;
-  opacity:0;pointer-events:none;
-}
-.center-panel.visible{transform:translate(-50%,-50%) scale(1);opacity:1;pointer-events:all}
-.cp-close{position:absolute;top:1rem;right:1rem;background:rgba(12,31,58,0.06);border:none;color:var(--text2);font-size:13px;cursor:pointer;width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:5px;transition:background .2s}
-.cp-close:hover{background:rgba(12,31,58,0.12)}
-.cp-eyebrow{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--text3);margin-bottom:.5rem;font-family:var(--sans)}
-.cp-title{font-family:var(--serif);font-size:32px;line-height:1.1;margin-bottom:.75rem;color:var(--navy)}
-.cp-title span{color:var(--gold)}
-.cp-desc{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:1.25rem}
-.cp-fights{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.cp-fight{border-radius:7px;padding:.625rem .875rem;font-size:12px;font-weight:600;color:#fff}
-.cp-fight span{display:block;font-size:10px;font-weight:300;opacity:0.8;margin-top:2px}
+/* ── CENTER OVERVIEW ───────────────────────── */
+.cp{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.92);width:400px;max-width:90vw;background:#fff;border:1px solid rgba(11,28,51,0.1);border-radius:14px;padding:1.75rem;z-index:25;box-shadow:0 10px 40px rgba(11,28,51,0.13);transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .32s;opacity:0;pointer-events:none}
+.cp.show{transform:translate(-50%,-50%) scale(1);opacity:1;pointer-events:all}
+.cp-x{position:absolute;top:.875rem;right:.875rem;width:26px;height:26px;background:rgba(11,28,51,0.07);border:none;border-radius:4px;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2)}
+.cp-x:hover{background:rgba(11,28,51,0.13)}
+.cp-eye{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:.375rem;font-family:var(--sans)}
+.cp-h{font-family:var(--serif);font-size:28px;color:var(--navy);line-height:1.1;margin-bottom:.625rem}
+.cp-h em{font-style:italic;color:var(--gold)}
+.cp-body{font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:1rem}
+.cp-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.cp-f{border-radius:7px;padding:.5rem .75rem;font-size:11px;font-weight:600;color:#fff}
+.cp-f span{display:block;font-size:9px;font-weight:300;opacity:.8;margin-top:1px}
+.cp-f.full{grid-column:1/-1}
 
-/* BOTTOM THUMBS */
-.bottom-row{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10}
-.thumb{
-  width:116px;background:rgba(255,255,255,0.75);
-  border:1px solid rgba(12,31,58,0.1);border-radius:9px;overflow:hidden;
-  text-decoration:none;color:var(--navy);
-  transition:border-color .2s,transform .2s,background .2s;
-  display:flex;flex-direction:column;
-  box-shadow:0 2px 8px rgba(12,31,58,0.07);
-}
-.thumb:hover{border-color:rgba(232,160,32,0.5);background:rgba(255,255,255,0.95);transform:translateY(-2px)}
-.thumb-preview{height:52px;position:relative;flex-shrink:0}
-.tp-inv{background:linear-gradient(140deg,#D4EAF8,#E8F4FD)}
-.tp-inv::before{content:'';position:absolute;top:8px;left:9px;right:9px;height:3px;background:rgba(232,160,32,0.5);border-radius:2px}
-.tp-inv::after{content:'';position:absolute;top:17px;left:9px;right:9px;bottom:8px;background:repeating-linear-gradient(0deg,rgba(12,31,58,0.08) 0,rgba(12,31,58,0.08) 1px,transparent 1px,transparent 8px);border-radius:1px}
-.tp-dash{background:linear-gradient(140deg,#D4EAF8,#E8F4FD)}
-.tp-dash::after{content:'';position:absolute;bottom:8px;left:9px;right:9px;top:10px;background:linear-gradient(to right,#7C3AED44 18%,#05966944 36%,#DB277744 54%,#EA580C44 72%,#D9770644 90%);border-radius:2px}
-.tp-camp{background:linear-gradient(135deg,#7C3AED11,#05966911,#DB277711,#EA580C11,#D9770611)}
-.tp-camp::after{content:'';position:absolute;inset:6px;background:linear-gradient(to right,#7C3AED66 18%,#05966966 36%,#DB277766 54%,#EA580C66 72%,#D9770666 90%);border-radius:2px;transform:skewX(-6deg)}
-.tp-about{background:linear-gradient(140deg,#D4EAF8,#E8F4FD)}
-.tp-about::before{content:'';position:absolute;top:8px;left:9px;width:45%;height:2px;background:rgba(232,160,32,0.6);border-radius:2px}
-.tp-about::after{content:'';position:absolute;top:15px;left:9px;right:9px;bottom:8px;background:repeating-linear-gradient(0deg,rgba(12,31,58,0.07) 0,rgba(12,31,58,0.07) 1px,transparent 1px,transparent 7px);border-radius:1px}
-.tp-contact{background:linear-gradient(140deg,#D4EAF8,#E8F4FD);display:flex;align-items:center;justify-content:center}
-.tp-contact::after{content:'MG';font-family:var(--serif);font-size:16px;color:rgba(12,31,58,0.2);position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-.thumb-body{padding:7px 9px 8px}
-.thumb-title{font-size:11px;font-weight:600;color:var(--navy)}
-.thumb-sub{font-size:9px;color:var(--text3);margin-top:1px;letter-spacing:.03em}
+/* ── THUMBNAILS ────────────────────────────── */
+.thumbs{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:10}
+.th{width:108px;background:rgba(255,255,255,0.8);border:1px solid rgba(11,28,51,0.1);border-radius:8px;overflow:hidden;text-decoration:none;color:var(--navy);transition:border-color .2s,transform .18s,background .2s;display:flex;flex-direction:column;box-shadow:0 2px 8px rgba(11,28,51,0.06)}
+.th:hover{border-color:rgba(212,135,10,.45);background:#fff;transform:translateY(-2px)}
+.th-prev{height:48px;position:relative;flex-shrink:0;background:linear-gradient(140deg,#D4EAF8,#EAF4FC)}
+.th-prev::before,.th-prev::after{content:'';position:absolute;border-radius:2px}
+.inv-p::before{top:7px;left:8px;right:8px;height:2.5px;background:rgba(212,135,10,.45)}
+.inv-p::after{top:14px;left:8px;right:8px;bottom:7px;background:repeating-linear-gradient(0deg,rgba(11,28,51,.07) 0,rgba(11,28,51,.07) 1px,transparent 1px,transparent 7px)}
+.dash-p::after{bottom:7px;left:8px;right:8px;top:9px;background:linear-gradient(to right,#6D28D933 17%,#04785733 34%,#BE185D33 51%,#C2410C33 68%,#B4530933 85%);border-radius:2px}
+.camp-p::after{inset:5px;background:linear-gradient(to right,#6D28D955 18%,#04785755 36%,#BE185D55 54%,#C2410C55 72%,#B4530955 90%);border-radius:2px;transform:skewX(-6deg)}
+.about-p::before{top:7px;left:8px;width:42%;height:2px;background:rgba(212,135,10,.5)}
+.about-p::after{top:14px;left:8px;right:8px;bottom:7px;background:repeating-linear-gradient(0deg,rgba(11,28,51,.06) 0,rgba(11,28,51,.06) 1px,transparent 1px,transparent 7px)}
+.contact-p{display:flex;align-items:center;justify-content:center}
+.th-body{padding:6px 8px 7px}
+.th-ttl{font-size:11px;font-weight:600;color:var(--navy)}
+.th-sub{font-size:9px;color:var(--text3);margin-top:1px}
 </style>
 </head>
 <body>
 
-<canvas id="wheelCanvas"></canvas>
+<canvas id="wc"></canvas>
 
-<header class="site-header">
-  <div class="header-left">
-    <div class="header-byline">Michael Green II &middot; Coro Fellow</div>
-    <div class="header-title">Mayor Bass: <span>Affordability for All</span></div>
+<header class="hdr">
+  <div class="hdr-left">
+    <div class="hdr-byline">Michael Green II &middot; Coro Fellow</div>
+    <div class="hdr-title">Mayor Bass: <b>Affordability for All</b></div>
   </div>
   <div class="ham" id="ham" onclick="toggleNav()">
     <span></span><span></span><span></span>
   </div>
 </header>
 
-<div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
-<nav class="nav-drawer" id="navDrawer">
-  <div>
-    <a class="nav-link" href="index.html" onclick="closeNav()">Home<span class="nav-link-sub">Five Fights</span></a>
-    <a class="nav-link" href="inventory.html" onclick="closeNav()">Inventory<span class="nav-link-sub">209 Programs</span></a>
-    <a class="nav-link" href="dashboard.html" onclick="closeNav()">Dashboard<span class="nav-link-sub">Charts &amp; Data</span></a>
-    <a class="nav-link" href="campaigns.html" onclick="closeNav()">Campaigns<span class="nav-link-sub">Five Fights</span></a>
-    <a class="nav-link" href="about.html" onclick="closeNav()">About<span class="nav-link-sub">Sources</span></a>
-    <a class="nav-link" href="contact.html" onclick="closeNav()">Contact<span class="nav-link-sub">Michael Green II</span></a>
-  </div>
-  <div class="nav-footer">Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026</div>
+<div class="nav-ov" id="nOv" onclick="closeNav()"></div>
+<nav class="nav-dr" id="nDr">
+  <a class="nl" href="index.html" onclick="closeNav()">Home<span>Five Fights</span></a>
+  <a class="nl" href="inventory.html" onclick="closeNav()">Inventory<span>209 Programs</span></a>
+  <a class="nl" href="dashboard.html" onclick="closeNav()">Dashboard<span>Charts &amp; Data</span></a>
+  <a class="nl" href="campaigns.html" onclick="closeNav()">Campaigns<span>Five Fights</span></a>
+  <a class="nl" href="about.html" onclick="closeNav()">About<span>Sources</span></a>
+  <a class="nl" href="contact.html" onclick="closeNav()">Contact<span>Michael Green II</span></a>
+  <div class="nf">Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026</div>
 </nav>
 
-<!-- Fight detail panel -->
-<div class="fight-panel" id="fightPanel">
-  <button class="fp-close" onclick="closePanel()">&#x2715;</button>
-  <div class="fp-accent" id="fpAccent"></div>
-  <div class="fp-title" id="fpTitle"></div>
+<div class="fp" id="fp">
+  <button class="fp-x" onclick="closeFP()">&#x2715;</button>
+  <div class="fp-bar" id="fpBar"></div>
+  <div class="fp-name" id="fpName"></div>
   <div class="fp-desc" id="fpDesc"></div>
   <div class="fp-stats" id="fpStats"></div>
   <div class="fp-progs" id="fpProgs"></div>
-  <a class="fp-more" href="inventory.html" id="fpMore">View all programs <span>&#8594;</span></a>
+  <a class="fp-more" href="inventory.html" id="fpMore">All programs <span>&#8594;</span></a>
 </div>
 
-<!-- Center overview panel -->
-<div class="center-panel" id="centerPanel">
-  <button class="cp-close" onclick="closeCenterPanel()">&#x2715;</button>
-  <div class="cp-eyebrow">Mayor Karen Bass &middot; 2026</div>
-  <div class="cp-title">Affordability <span>for All</span></div>
-  <div class="cp-desc">Los Angeles is one of the least affordable cities in America. Mayor Bass is not fighting this on one front — she is fighting five simultaneous battles, each essential, all interconnected. Together they form a complete strategy. Separately they get lost.</div>
-  <div class="cp-fights">
-    <div class="cp-fight" style="background:#7C3AED">Earn More<span>57 programs</span></div>
-    <div class="cp-fight" style="background:#059669">Build More<span>48 programs</span></div>
-    <div class="cp-fight" style="background:#DB2777">Save More<span>20 programs</span></div>
-    <div class="cp-fight" style="background:#EA580C">Care More<span>53 programs</span></div>
-    <div class="cp-fight" style="background:#D97706;grid-column:1/-1">Recover More<span>31 programs</span></div>
+<div class="cp" id="cp">
+  <button class="cp-x" onclick="closeCP()">&#x2715;</button>
+  <div class="cp-eye">Mayor Karen Bass &middot; 2026</div>
+  <div class="cp-h">Affordability <em>for All</em></div>
+  <div class="cp-body">Los Angeles is one of the least affordable cities in America. Mayor Bass is not fighting this on one front — she is fighting five simultaneous battles, each essential, all interconnected.</div>
+  <div class="cp-grid">
+    <div class="cp-f" style="background:#6D28D9">Earn More<span>57 programs</span></div>
+    <div class="cp-f" style="background:#047857">Build More<span>48 programs</span></div>
+    <div class="cp-f" style="background:#BE185D">Save More<span>20 programs</span></div>
+    <div class="cp-f" style="background:#C2410C">Care More<span>53 programs</span></div>
+    <div class="cp-f full" style="background:#B45309">Recover More<span>31 programs</span></div>
   </div>
 </div>
 
-<div class="bottom-row">
-  <a class="thumb" href="inventory.html"><div class="thumb-preview tp-inv"></div><div class="thumb-body"><div class="thumb-title">Inventory</div><div class="thumb-sub">209 programs</div></div></a>
-  <a class="thumb" href="dashboard.html"><div class="thumb-preview tp-dash"></div><div class="thumb-body"><div class="thumb-title">Dashboard</div><div class="thumb-sub">Charts</div></div></a>
-  <a class="thumb" href="campaigns.html"><div class="thumb-preview tp-camp"></div><div class="thumb-body"><div class="thumb-title">Campaigns</div><div class="thumb-sub">Five fights</div></div></a>
-  <a class="thumb" href="about.html"><div class="thumb-preview tp-about"></div><div class="thumb-body"><div class="thumb-title">About</div><div class="thumb-sub">Sources</div></div></a>
-  <a class="thumb" href="contact.html"><div class="thumb-preview tp-contact"></div><div class="thumb-body"><div class="thumb-title">Contact</div><div class="thumb-sub">Michael Green II</div></div></a>
+<div class="thumbs">
+  <a class="th" href="inventory.html"><div class="th-prev inv-p"></div><div class="th-body"><div class="th-ttl">Inventory</div><div class="th-sub">209 programs</div></div></a>
+  <a class="th" href="dashboard.html"><div class="th-prev dash-p"></div><div class="th-body"><div class="th-ttl">Dashboard</div><div class="th-sub">Charts</div></div></a>
+  <a class="th" href="campaigns.html"><div class="th-prev camp-p"></div><div class="th-body"><div class="th-ttl">Campaigns</div><div class="th-sub">Five fights</div></div></a>
+  <a class="th" href="about.html"><div class="th-prev about-p"></div><div class="th-body"><div class="th-ttl">About</div><div class="th-sub">Sources</div></div></a>
+  <a class="th" href="contact.html"><div class="th-prev contact-p"><span style="font-family:var(--serif);font-size:13px;color:rgba(11,28,51,0.18)">MG II</span></div><div class="th-body"><div class="th-ttl">Contact</div><div class="th-sub">Michael Green II</div></div></a>
 </div>
 
 <script>
-const FIGHTS=[
-  {label:'Earn More',color:'#7C3AED',
-   desc:'Bass built a floor under LA wages — brokering landmark labor agreements, signing minimum wage laws, and enforcing living wage standards at city contractors.',
-   stats:[{n:'30K',l:'workers in LAUSD/SEIU agreement'},{n:'$22.52',l:'new LAUSD min wage/hr'}],
-   programs:['LAUSD/SEIU 99 Labor Agreement','Airport & Hotel Worker Min. Wage','HACLA Project Labor Agreement','Living Wage Enforcement']},
-  {label:'Build More',color:'#059669',
-   desc:"ED1 streamlined approvals for 100% affordable housing. The Adaptive Reuse Ordinance converts vacant buildings into homes. Bass inherited 50 years of underbuilding.",
-   stats:[{n:'~29K',l:'units approved under ED1'},{n:'Over $300M',l:'ULA construction programs'}],
-   programs:['Executive Directive 1','Adaptive Reuse Ordinance','ULA Construction Programs','Pooled Financing Programs']},
-  {label:'Save More',color:'#DB2777',
-   desc:'Right to Counsel. Rental assistance. Utility discounts. Free tax prep. A real financial floor for renters and low-income families fighting to stay housed.',
-   stats:[{n:'$57M+',l:'ULA Income Support Program'},{n:'$1,800',l:'Mobility Wallet transit cards'}],
-   programs:['ULA Eviction Defense & Prevention','Right to Counsel','EZ-SAVE / Lifeline Programs','Free Tax Prep LA']},
-  {label:'Care More',color:'#EA580C',
-   desc:'FamilySource. Youth Service Corps. Senior services. Violence prevention. The care infrastructure serving tens of thousands of households annually.',
-   stats:[{n:'50K+',l:'households via FamilySource'},{n:'19',l:'FamilySource centers citywide'}],
-   programs:['FamilySource System','Youth Service Corps','Opportunity LA','Summer Lunch Program']},
-  {label:'Recover More',color:'#D97706',
-   desc:'Inside Safe is housing-first, not enforcement-first. Homelessness has declined two consecutive years under Bass. The fight to end street homelessness is real and moving.',
-   stats:[{n:'2',l:'consecutive years homelessness declined'},{n:'75K+',l:'unhoused Angelenos at last count'}],
-   programs:['Inside Safe','Tiny Home Villages','CARE/CARE+ Teams','Emergency Housing Vouchers']}
+const F=[
+  {n:'Earn More',c:'#6D28D9',d:'Bass built a floor under LA wages — brokering landmark labor agreements, signing minimum wage laws, and enforcing living wage standards at city contractors.',s:[{v:'30K',l:'workers in LAUSD/SEIU agreement'},{v:'$22.52',l:'new LAUSD min wage/hr'}],p:['LAUSD/SEIU 99 Labor Agreement','Airport & Hotel Worker Min. Wage','HACLA Project Labor Agreement','Living Wage Enforcement']},
+  {n:'Build More',c:'#047857',d:'ED1 streamlined approvals for 100% affordable housing. Adaptive Reuse converts vacant buildings into homes. Bass inherited 50 years of underbuilding.',s:[{v:'~29K',l:'units approved under ED1'},{v:'Over $300M',l:'ULA construction programs'}],p:['Executive Directive 1','Adaptive Reuse Ordinance','ULA Construction Programs','Pooled Financing Programs']},
+  {n:'Save More',c:'#BE185D',d:'Right to Counsel. Rental assistance. Utility discounts. Free tax prep. A real financial floor for renters and low-income families.',s:[{v:'$57M+',l:'ULA Income Support Program'},{v:'$1,800',l:'Mobility Wallet transit cards'}],p:['ULA Eviction Defense & Prevention','Right to Counsel','EZ-SAVE / Lifeline Programs','Free Tax Prep LA']},
+  {n:'Care More',c:'#C2410C',d:'FamilySource. Youth Service Corps. Senior services. Violence prevention. 50,000+ households served annually across 19 centers.',s:[{v:'50K+',l:'households via FamilySource'},{v:'19',l:'FamilySource centers citywide'}],p:['FamilySource System','Youth Service Corps','Opportunity LA','Summer Lunch Program']},
+  {n:'Recover More',c:'#B45309',d:'Inside Safe is housing-first, not enforcement-first. Homelessness declined two consecutive years under Bass. The fight is real and moving.',s:[{v:'2',l:'consecutive years homelessness declined'},{v:'75K+',l:'unhoused Angelenos at last count'}],p:['Inside Safe','Tiny Home Villages','CARE/CARE+ Teams','Emergency Housing Vouchers']}
 ];
 
-const canvas=document.getElementById('wheelCanvas');
-const ctx=canvas.getContext('2d');
-let W,H,cx,cy,outerR,innerR,sel=null,hov=null;
+const cv=document.getElementById('wc');
+const cx2=cv.getContext('2d');
+let W,H,cx,cy,oR,iR,sel=null,hov=null;
 const SEG=Math.PI*2/5,OFF=-Math.PI/2;
 
-function resize(){
-  W=canvas.width=window.innerWidth;
-  H=canvas.height=window.innerHeight;
+function rsz(){
+  W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;
   cx=W/2;cy=H/2;
   const m=Math.min(W,H);
-  outerR=m*0.30;
-  innerR=m*0.105;
+  oR=m*.295;iR=m*.1;
 }
-resize();
+rsz();
 
 function segAt(mx,my){
   const dx=mx-cx,dy=my-cy,d=Math.sqrt(dx*dx+dy*dy);
-  if(d<innerR||d>outerR+14)return -1;
+  if(d<iR||d>oR+14)return -1;
   let a=Math.atan2(dy,dx)-OFF;
   a=((a%(Math.PI*2))+Math.PI*2)%(Math.PI*2);
   return Math.floor(a/SEG)%5;
 }
 
-function lighten(hex,t){
-  const n=parseInt(hex.slice(1),16);
-  const r=((n>>16)&0xff),g=((n>>8)&0xff),b=n&0xff;
-  return `rgb(${Math.min(255,r+Math.round((255-r)*t))},${Math.min(255,g+Math.round((255-g)*t))},${Math.min(255,b+Math.round((255-b)*t))})`;
-}
-
-function drawWheel(){
-  ctx.clearRect(0,0,W,H);
-
-  FIGHTS.forEach((f,i)=>{
-    const sa=OFF+i*SEG,ea=sa+SEG;
+function draw(){
+  cx2.clearRect(0,0,W,H);
+  F.forEach((f,i)=>{
+    const sa=OFF+i*SEG,ea=sa+SEG,mid=(sa+ea)/2;
     const isSel=sel===i,isHov=hov===i;
-    const r=outerR*(isSel?1.06:isHov?1.03:1);
-    const mid=(sa+ea)/2;
+    const r=oR*(isSel?1.07:isHov?1.035:1);
 
-    // Soft shadow
-    ctx.save();
-    ctx.shadowColor='rgba(12,31,58,0.15)';
-    ctx.shadowBlur=isSel?20:isHov?12:6;
-    ctx.shadowOffsetY=4;
-    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,sa,ea);ctx.closePath();
+    cx2.save();
+    cx2.shadowColor='rgba(11,28,51,.18)';
+    cx2.shadowBlur=isSel?20:isHov?12:6;
+    cx2.shadowOffsetY=4;
+    cx2.beginPath();cx2.moveTo(cx,cy);cx2.arc(cx,cy,r,sa,ea);cx2.closePath();
+    cx2.fillStyle=f.c;cx2.fill();
+    cx2.shadowBlur=0;cx2.strokeStyle='rgba(255,255,255,.9)';cx2.lineWidth=2.5;cx2.stroke();
+    if(isSel){cx2.strokeStyle='rgba(255,255,255,.6)';cx2.lineWidth=4;cx2.stroke();}
+    cx2.restore();
 
-    // Flat fill — light version of the color
-    const fillColor=lighten(f.color, isHov||isSel ? 0.35 : 0.45);
-    ctx.fillStyle=fillColor;
-    ctx.fill();
-    ctx.shadowColor='transparent';
-    ctx.strokeStyle='rgba(255,255,255,0.9)';
-    ctx.lineWidth=2.5;
-    ctx.stroke();
-    ctx.restore();
-
-    // Selected ring
-    if(isSel){
-      ctx.save();
-      ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,sa,ea);ctx.closePath();
-      ctx.strokeStyle=f.color;ctx.lineWidth=3;ctx.stroke();
-      ctx.restore();
-    }
-
-    // Label — rotated to follow segment
-    const lx=cx+Math.cos(mid)*outerR*0.68;
-    const ly=cy+Math.sin(mid)*outerR*0.68;
-    ctx.save();
-    ctx.translate(lx,ly);
-    ctx.rotate(mid+Math.PI/2);
-    const words=f.label.split(' ');
-    const fs=Math.max(11,outerR*0.1);
-    ctx.textAlign='center';ctx.textBaseline='middle';
-    ctx.font=`400 ${fs}px 'Outfit'`;
-    ctx.fillStyle='rgba(255,255,255,0.9)';
-    ctx.fillText(words[0],0,-fs*0.65);
-    ctx.font=`700 ${fs}px 'Outfit'`;
-    ctx.fillStyle='#fff';
-    ctx.fillText(words[1]||'',0,fs*0.65);
-    ctx.restore();
+    // label
+    const lx=cx+Math.cos(mid)*oR*.67,ly=cy+Math.sin(mid)*oR*.67;
+    // Always read upright: flip bottom segments
+    const labelRot = mid + Math.PI/2;
+    const needsFlip = mid > Math.PI/2 && mid < Math.PI*3/2;
+    cx2.save();cx2.translate(lx,ly);
+    cx2.rotate(needsFlip ? labelRot + Math.PI : labelRot);
+    const fs=Math.max(11,oR*.098);
+    const words=f.n.split(' ');
+    cx2.textAlign='center';cx2.textBaseline='middle';
+    cx2.font=`400 ${fs}px 'Outfit'`;cx2.fillStyle='rgba(255,255,255,.88)';
+    cx2.fillText(words[0],0,-fs*.65);
+    cx2.font=`700 ${fs}px 'Outfit'`;cx2.fillStyle='#fff';
+    cx2.fillText(words[1]||'',0,fs*.65);
+    cx2.restore();
   });
 
-  // Center circle
-  const cg=ctx.createRadialGradient(cx,cy-6,0,cx,cy,innerR);
-  cg.addColorStop(0,'#2563EB');
-  cg.addColorStop(0.7,'#1D4ED8');
-  cg.addColorStop(1,'#1E40AF');
-  ctx.save();
-  ctx.shadowColor='rgba(12,31,58,0.25)';
-  ctx.shadowBlur=16;
-  ctx.shadowOffsetY=4;
-  ctx.beginPath();ctx.arc(cx,cy,innerR,0,Math.PI*2);
-  ctx.fillStyle=cg;ctx.fill();
-  ctx.shadowColor='transparent';
-  ctx.strokeStyle='rgba(255,255,255,0.4)';ctx.lineWidth=2;ctx.stroke();
-  ctx.restore();
+  // center circle
+  const cg=cx2.createRadialGradient(cx,cy-5,0,cx,cy,iR);
+  cg.addColorStop(0,'#2563EB');cg.addColorStop(.65,'#1D4ED8');cg.addColorStop(1,'#1E3A8A');
+  cx2.save();
+  cx2.shadowColor='rgba(11,28,51,.2)';cx2.shadowBlur=14;cx2.shadowOffsetY=3;
+  cx2.beginPath();cx2.arc(cx,cy,iR,0,Math.PI*2);
+  cx2.fillStyle=cg;cx2.fill();
+  cx2.shadowBlur=0;cx2.strokeStyle='rgba(255,255,255,.35)';cx2.lineWidth=1.5;cx2.stroke();
+  cx2.restore();
 
-  // Center text
-  ctx.save();
-  ctx.textAlign='center';ctx.textBaseline='middle';
-  const tfs=Math.max(8,innerR*0.19);
-  ctx.font=`300 ${tfs}px 'Outfit'`;
-  ctx.fillStyle='rgba(255,255,255,0.5)';
-  ctx.fillText('AFFORDABILITY',cx,cy-innerR*0.28);
-  const bfs=Math.max(13,innerR*0.38);
-  ctx.font=`italic ${bfs}px 'DM Serif Display'`;
-  ctx.fillStyle='#F0B429';
-  ctx.fillText('for All',cx,cy+innerR*0.1);
-  const sfs=Math.max(6,innerR*0.15);
-  ctx.font=`300 ${sfs}px 'Outfit'`;
-  ctx.fillStyle='rgba(255,255,255,0.35)';
-  ctx.fillText('click to explore',cx,cy+innerR*0.48);
-  ctx.restore();
+  cx2.save();cx2.textAlign='center';cx2.textBaseline='middle';
+  const ts=Math.max(7,iR*.18);
+  cx2.font=`300 ${ts}px 'Outfit'`;cx2.fillStyle='rgba(255,255,255,.45)';
+  cx2.fillText('AFFORDABILITY',cx,cy-iR*.28);
+  const bs=Math.max(12,iR*.36);
+  cx2.font=`italic ${bs}px 'DM Serif Display'`;cx2.fillStyle='#F5A623';
+  cx2.fillText('for All',cx,cy+iR*.1);
+  const ss=Math.max(6,iR*.14);
+  cx2.font=`300 ${ss}px 'Outfit'`;cx2.fillStyle='rgba(255,255,255,.3)';
+  cx2.fillText('tap to explore',cx,cy+iR*.48);
+  cx2.restore();
 }
 
-function loop(){requestAnimationFrame(loop);drawWheel();}
+function loop(){requestAnimationFrame(loop);draw();}
 loop();
 
-canvas.addEventListener('mousemove',e=>{
-  const s=segAt(e.clientX,e.clientY);
-  hov=s;
-  // check center
-  const dx=e.clientX-cx,dy=e.clientY-cy;
-  const d=Math.sqrt(dx*dx+dy*dy);
-  canvas.style.cursor=(s>=0||d<innerR)?'pointer':'default';
+cv.addEventListener('mousemove',e=>{
+  const s=segAt(e.clientX,e.clientY);hov=s;
+  const dx=e.clientX-cx,dy=e.clientY-cy,d=Math.sqrt(dx*dx+dy*dy);
+  cv.style.cursor=(s>=0||d<iR)?'pointer':'default';
 });
-canvas.addEventListener('mouseleave',()=>{hov=null;});
-canvas.addEventListener('click',e=>{
-  const dx=e.clientX-cx,dy=e.clientY-cy;
-  const d=Math.sqrt(dx*dx+dy*dy);
-  if(d<innerR){
-    closePanels();
-    document.getElementById('centerPanel').classList.add('visible');
-    return;
-  }
+cv.addEventListener('mouseleave',()=>{hov=null;});
+cv.addEventListener('click',e=>{
+  const dx=e.clientX-cx,dy=e.clientY-cy,d=Math.sqrt(dx*dx+dy*dy);
+  if(d<iR){closeAll();document.getElementById('cp').classList.add('show');return;}
   const s=segAt(e.clientX,e.clientY);
-  if(s<0){closePanels();return;}
-  if(sel===s){closePanels();return;}
+  if(s<0){closeAll();return;}
+  if(sel===s){closeAll();return;}
   sel=s;
-  document.getElementById('centerPanel').classList.remove('visible');
-  openPanel(FIGHTS[s]);
+  document.getElementById('cp').classList.remove('show');
+  showFP(F[s]);
 });
 
-function openPanel(f){
-  document.getElementById('fpAccent').style.background=f.color;
-  document.getElementById('fpTitle').style.color=f.color;
-  document.getElementById('fpTitle').textContent=f.label;
-  document.getElementById('fpDesc').textContent=f.desc;
-  document.getElementById('fpStats').innerHTML=f.stats.map(s=>`<div class="fp-stat"><div class="fp-stat-num" style="color:${f.color}">${s.n}</div><div class="fp-stat-label">${s.l}</div></div>`).join('');
-  document.getElementById('fpProgs').innerHTML=f.programs.map(p=>`<div class="fp-prog"><span class="fp-dot" style="background:${f.color}"></span>${p}</div>`).join('');
-  document.getElementById('fpMore').style.color=f.color;
-  document.getElementById('fightPanel').classList.add('visible');
+function showFP(f){
+  document.getElementById('fpBar').style.background=f.c;
+  document.getElementById('fpName').textContent=f.n;
+  document.getElementById('fpName').style.color=f.c;
+  document.getElementById('fpDesc').textContent=f.d;
+  document.getElementById('fpStats').innerHTML=f.s.map(s=>`<div class="fp-stat"><div class="fp-sn" style="color:${f.c}">${s.v}</div><div class="fp-sl">${s.l}</div></div>`).join('');
+  document.getElementById('fpProgs').innerHTML=f.p.map(p=>`<div class="fp-p"><span class="fp-dot" style="background:${f.c}"></span>${p}</div>`).join('');
+  document.getElementById('fpMore').style.color=f.c;
+  document.getElementById('fp').classList.add('show');
 }
-
-function closePanels(){sel=null;document.getElementById('fightPanel').classList.remove('visible');}
-function closePanel(){closePanels();}
-function closeCenterPanel(){document.getElementById('centerPanel').classList.remove('visible');}
+function closeFP(){sel=null;document.getElementById('fp').classList.remove('show');}
+function closeCP(){document.getElementById('cp').classList.remove('show');}
+function closeAll(){closeFP();closeCP();}
 
 function toggleNav(){
-  const o=document.getElementById('navDrawer').classList.toggle('open');
+  const o=document.getElementById('nDr').classList.toggle('open');
   document.getElementById('ham').classList.toggle('open',o);
-  document.getElementById('navOverlay').classList.toggle('open',o);
+  document.getElementById('nOv').classList.toggle('open',o);
 }
 function closeNav(){
-  document.getElementById('navDrawer').classList.remove('open');
+  document.getElementById('nDr').classList.remove('open');
   document.getElementById('ham').classList.remove('open');
-  document.getElementById('navOverlay').classList.remove('open');
+  document.getElementById('nOv').classList.remove('open');
 }
-window.addEventListener('resize',()=>resize());
+window.addEventListener('resize',rsz);
 </script>
 </body>
 </html>
