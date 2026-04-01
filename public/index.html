@@ -212,11 +212,11 @@ function draw(){
 
     // label
     const lx=cx+Math.cos(mid)*oR*.67,ly=cy+Math.sin(mid)*oR*.67;
-    // Always read upright: flip bottom segments
-    const labelRot = mid + Math.PI/2;
-    const needsFlip = mid > Math.PI/2 && mid < Math.PI*3/2;
+    // Labels read outward: flip when in bottom half (sin(mid) > 0)
+    const needsFlip = Math.sin(mid) > 0;
+    const labelRot = needsFlip ? mid - Math.PI/2 : mid + Math.PI/2;
     cx2.save();cx2.translate(lx,ly);
-    cx2.rotate(needsFlip ? labelRot + Math.PI : labelRot);
+    cx2.rotate(labelRot);
     const fs=Math.max(11,oR*.098);
     const words=f.n.split(' ');
     cx2.textAlign='center';cx2.textBaseline='middle';
