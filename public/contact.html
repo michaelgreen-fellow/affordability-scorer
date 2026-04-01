@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Michael Green II</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#E8F4FD;--navy:#0C1F3A;--text2:#2A4A6B;--text3:#5A7A9A;--gold:#E8A020;--gold2:#C8880A;--serif:'DM Serif Display',Georgia,serif;--sans:'Outfit',sans-serif;}
+body{background:var(--bg);color:var(--navy);font-family:var(--sans);min-height:100vh;display:flex;flex-direction:column}
+nav{position:sticky;top:0;z-index:50;height:60px;background:rgba(232,244,253,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(12,31,58,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 2rem}
+.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text3);font-size:13px;transition:color .2s}
+.nav-back:hover{color:var(--navy)}
+.nav-back svg{width:16px;height:16px}
+.nav-title{font-family:var(--serif);font-size:20px;color:var(--navy)}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:4rem 2rem}
+.card{max-width:520px;width:100%;text-align:center}
+.eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold2);margin-bottom:.875rem}
+.name{font-family:var(--serif);font-size:clamp(44px,6vw,76px);line-height:1.05;margin-bottom:.5rem;color:var(--navy)}
+.name em{font-style:italic;color:var(--gold2)}
+.title-line{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2.5rem;line-height:1.9}
+.divider{width:36px;height:1px;background:rgba(12,31,58,0.15);margin:0 auto 2.5rem}
+.email-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.625rem}
+.email-link{font-family:var(--serif);font-size:clamp(18px,2.2vw,26px);color:var(--navy);text-decoration:none;border-bottom:1px solid rgba(232,160,32,0.4);padding-bottom:2px;transition:color .2s,border-color .2s}
+.email-link:hover{color:var(--gold2);border-color:var(--gold2)}
+.context{font-size:13px;color:var(--text2);line-height:1.75;max-width:400px;margin:2rem auto}
+.links{display:flex;justify-content:center;gap:1.25rem;flex-wrap:wrap}
+.link-item{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:color .2s}
+.link-item:hover{color:var(--gold2)}
+footer{padding:1.5rem;text-align:center;font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:.06em}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-back" href="index.html"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>Back</a>
+  <div class="nav-title">Contact</div>
+  <div></div>
+</nav>
+<main>
+  <div class="card">
+    <div class="eyebrow">Get in touch</div>
+    <h1 class="name">Michael<br><em>Green II</em></h1>
+    <div class="title-line">Coro Fellow in Public Affairs<br>Mayor's Office of Policy &amp; Communications<br>City of Los Angeles · 2025–2026</div>
+    <div class="divider"></div>
+    <div class="email-label">Email</div>
+    <a class="email-link" href="mailto:michael.green@corofellowsla.org">michael.green@corofellowsla.org</a>
+    <p class="context">Currently placed with Mayor Karen Bass's Office of Policy &amp; Communications, working on the Affordability for All strategic communications framework and EO1 expansion. Available for policy conversations, fellowship inquiries, and collaboration.</p>
+    <div class="links">
+      <a class="link-item" href="index.html">→ Five Fights</a>
+      <a class="link-item" href="inventory.html">→ Inventory</a>
+      <a class="link-item" href="dashboard.html">→ Dashboard</a>
+      <a class="link-item" href="about.html">→ About</a>
+    </div>
+  </div>
+</main>
+<footer>Mayor Karen Bass · Office of Policy &amp; Communications · Michael Green II · 2026</footer>
+</body>
+</html>

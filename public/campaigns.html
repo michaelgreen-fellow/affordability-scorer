@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campaigns — Affordability for All</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#E8F4FD;--navy:#0C1F3A;--navy2:#163258;--white:#fff;
+  --text:#0C1F3A;--text2:#2A4A6B;--text3:#5A7A9A;
+  --gold:#E8A020;--gold2:#C8880A;
+  --earn:#7C3AED;--build:#059669;--save:#DB2777;--care:#EA580C;--recover:#D97706;
+  --serif:'DM Serif Display',Georgia,serif;--sans:'Outfit',sans-serif;
+}
+html,body{height:100%;overflow:hidden;background:var(--bg);font-family:var(--sans);color:var(--text)}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;height:60px;
+  background:rgba(232,244,253,0.95);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(12,31,58,0.08);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;
+}
+.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text3);font-size:13px;transition:color .2s}
+.nav-back:hover{color:var(--navy)}
+.nav-back svg{width:16px;height:16px}
+.nav-title{font-family:var(--serif);font-size:20px;color:var(--navy)}
+.ham{width:36px;height:36px;background:rgba(12,31,58,0.07);border:1px solid rgba(12,31,58,0.1);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;flex-shrink:0}
+.ham span{display:block;width:16px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .3s;transform-origin:center}
+.ham.open span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+.nav-overlay{position:fixed;inset:0;z-index:54;background:rgba(12,31,58,0);pointer-events:none;transition:background .3s}
+.nav-overlay.open{background:rgba(12,31,58,0.2);pointer-events:all}
+.nav-drawer{position:fixed;top:0;right:0;bottom:0;width:220px;background:rgba(255,255,255,0.97);border-left:1px solid rgba(12,31,58,0.08);backdrop-filter:blur(20px);z-index:55;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:5rem 1.75rem 2rem}
+.nav-drawer.open{transform:translateX(0)}
+.nav-link{display:block;padding:.85rem 0;border-bottom:1px solid rgba(12,31,58,0.07);font-family:var(--serif);font-size:24px;color:var(--text2);text-decoration:none;transition:color .2s}
+.nav-link:hover{color:var(--gold2)}
+.nav-link-sub{font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:2px;font-family:var(--sans)}
+.nav-footer{margin-top:auto;font-size:10px;color:var(--text3);line-height:1.6}
+
+/* PAGE */
+.page-wrap{
+  position:fixed;top:60px;left:0;right:0;bottom:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:1.5rem 2rem 1rem;
+}
+.page-title{text-align:center;margin-bottom:1.75rem}
+.page-title h1{font-family:var(--serif);font-size:clamp(28px,4vw,44px);font-weight:400;color:var(--navy);letter-spacing:1px;margin-bottom:6px}
+.page-title h1 span{color:var(--gold)}
+.page-title p{font-size:13px;font-weight:300;color:var(--text3);max-width:460px;margin:0 auto;line-height:1.6}
+
+/* PANELS */
+.panels-row{display:flex;align-items:center;justify-content:center;gap:0}
+.panel{
+  width:155px;height:50vh;min-height:320px;max-height:460px;
+  position:relative;cursor:pointer;
+  transform:skewX(-15deg);margin-left:-8px;
+  transition:all .35s cubic-bezier(.4,0,.2,1);overflow:hidden;
+}
+.panel:first-child{margin-left:0}
+.panel-fill{position:absolute;inset:-4px -20px;border-radius:8px;opacity:0.9;transition:opacity .3s}
+.panel:hover .panel-fill{opacity:1}
+.panel:hover{transform:skewX(-15deg) scale(1.04);z-index:5}
+.panel-inner{position:relative;z-index:2;height:100%;transform:skewX(15deg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem 1rem;text-align:center}
+.panel-num{font-size:9px;letter-spacing:4px;text-transform:uppercase;opacity:0.5;font-weight:700;margin-bottom:10px;color:#fff}
+.panel-title{font-family:var(--serif);font-size:22px;line-height:1.2;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,0.3);margin-bottom:6px}
+.panel-sub{font-size:12px;opacity:0.7;font-weight:400;line-height:1.45;max-width:120px;color:#fff}
+.panel-line{width:24px;height:2px;background:rgba(255,255,255,0.35);margin-top:14px;transition:width .3s,background .3s}
+.panel:hover .panel-line{width:40px;background:rgba(255,255,255,0.8)}
+
+/* OVERLAY */
+.overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(8,20,42,0.65);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:1.5rem}
+.overlay.open{display:flex}
+
+/* POPUP */
+.popup{width:100%;max-width:580px;border-radius:18px;padding:1.5rem 1.75rem;position:relative;animation:popIn .35s cubic-bezier(.2,.8,.2,1);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+@keyframes popIn{from{transform:translateY(20px) scale(.95);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
+.popup-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.875rem}
+.popup-label{font-size:9px;letter-spacing:4px;text-transform:uppercase;opacity:0.45;font-weight:700;color:#fff}
+.popup-title{font-family:var(--serif);font-size:26px;margin-top:2px;color:#fff}
+.popup-close{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0}
+.popup-close:hover{background:rgba(255,255,255,0.25)}
+.popup-desc{font-size:12.5px;line-height:1.7;opacity:0.8;margin-bottom:1.25rem;font-weight:300;color:#fff}
+.cards-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.flip-container{perspective:800px;cursor:pointer;min-height:175px}
+.flip-card{position:relative;width:100%;height:100%;min-height:175px;transition:transform .5s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
+.flip-card.flipped{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;inset:0;border-radius:10px;border:1px solid;padding:.875rem;backface-visibility:hidden;display:flex;flex-direction:column;justify-content:space-between}
+.flip-back{transform:rotateY(180deg)}
+.card-label{font-size:8px;letter-spacing:3px;text-transform:uppercase;opacity:0.45;font-weight:700;margin-bottom:5px;color:#fff}
+.card-name{font-family:var(--serif);font-size:15px;line-height:1.3;margin-bottom:4px;color:#fff}
+.card-preview{font-size:11px;opacity:0.65;line-height:1.5;color:#fff}
+.card-stat{font-size:12px;line-height:1.6;font-weight:500;color:#fff;margin-bottom:8px}
+.card-source{font-size:10px;opacity:0.55;color:#fff}
+.card-source a{color:#fff;opacity:0.8;text-decoration:underline}
+.card-hint{font-size:9px;letter-spacing:2px;text-transform:uppercase;opacity:0.35;text-align:right;color:#fff}
+.site-footer{position:fixed;bottom:0;left:0;right:0;z-index:5;padding:6px 2rem;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);text-align:center}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-back" href="index.html">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>
+    Back
+  </a>
+  <div class="nav-title">The Five Fights</div>
+  <div class="ham" id="ham" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
+<nav class="nav-drawer" id="navDrawer">
+  <div>
+    <a class="nav-link" href="index.html" onclick="closeNav()">Home<span class="nav-link-sub">Five Fights</span></a>
+    <a class="nav-link" href="inventory.html" onclick="closeNav()">Inventory<span class="nav-link-sub">209 Programs</span></a>
+    <a class="nav-link" href="dashboard.html" onclick="closeNav()">Dashboard<span class="nav-link-sub">Charts</span></a>
+    <a class="nav-link" href="campaigns.html" onclick="closeNav()">Campaigns<span class="nav-link-sub">Five Fights</span></a>
+    <a class="nav-link" href="about.html" onclick="closeNav()">About<span class="nav-link-sub">Sources</span></a>
+    <a class="nav-link" href="contact.html" onclick="closeNav()">Contact<span class="nav-link-sub">Michael Green II</span></a>
+  </div>
+  <div class="nav-footer">Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026</div>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-title">
+    <h1>Awareness <span>Campaigns</span></h1>
+    <p>Five fights Angelenos need to know about, five sets of programs most people have never heard of, and the numbers that prove they're working.</p>
+  </div>
+  <div class="panels-row" id="panels"></div>
+</div>
+
+<footer class="site-footer">Mayor Karen Bass · Office of Policy &amp; Communications · City of Los Angeles · 2026</footer>
+
+<div class="overlay" id="overlay">
+  <div class="popup" id="popup">
+    <div class="popup-header">
+      <div>
+        <div class="popup-label" id="popup-label"></div>
+        <div class="popup-title" id="popup-title"></div>
+      </div>
+      <button class="popup-close" id="popup-close">&#x2715;</button>
+    </div>
+    <p class="popup-desc" id="popup-desc"></p>
+    <div class="cards-row" id="cards-row"></div>
+  </div>
+</div>
+
+<script>
+var FIGHTS=[
+  {name:'Earn More',num:'01',sub:'Wages and workforce',color:'#7C3AED',
+   desc:'Working Angelenos deserve wages that keep up with what it actually costs to live here. Bass brokered agreements, signed ordinances, and enforced standards. The results are tangible.',
+   programs:[
+     {label:'01',name:'LAUSD / SEIU 99 Agreement',preview:'Historic contract for 30,000 school workers.',stat:'30% wage increase for 30,000 LAUSD workers. Average salary lifted from $25,000 to $33,000.',source:'SEIU Local 99 (April 2023)',url:'https://www.seiu99.org/2023/04/08/school-workers-at-lausd-vote-overwhelmingly-to-ratify-contract-agreement/'},
+     {label:'02',name:'Airport & Hotel Minimum Wage',preview:'Wage floor timed to the LA28 Olympics.',stat:'Escalating floor reaching $30/hour by 2028 for thousands of tourism and hospitality workers.',source:'LA City Council, Ord. 188610 (May 2025)',url:'https://cityclerk.lacity.org/lacityclerkconnect/index.cfm?fa=ccfi.viewrecord&cfnumber=23-0002-S189'},
+     {label:'03',name:'WorkSource Centers',preview:'Career centers across the city.',stat:'$19M invested annually. Career counseling, training, and placement for thousands of Angelenos.',source:'City of LA / EWDD',url:'https://communityinvestment.lacity.gov/programs-resources'}
+   ]},
+  {name:'Build More',num:'02',sub:'Housing and homelessness',color:'#059669',
+   desc:"LA underbuilt housing for fifty years. Bass dismantled the bureaucratic barriers that made it impossible to catch up. She is keeping people housed and opening doors to ownership.",
+   programs:[
+     {label:'01',name:'Executive Directive 1',preview:'Fast-track for 100% affordable housing.',stat:'Over 42,000 affordable units proposed, roughly 31,700 approved since December 2022.',source:'Propmodo / WSJ (Nov 2025)',url:'https://propmodo.com/the-permit-shortcut-thats-rebooting-affordable-housing-development/'},
+     {label:'02',name:'Inside Safe',preview:'Housing-led homelessness strategy.',stat:'Homelessness declined two consecutive years under Bass — a first in the city\'s recent history.',source:'Mayor Karen Bass',url:'https://mayor.lacity.gov/news/mayor-bass-continues-drive-change-protect-renters-and-prevent-homelessness'},
+     {label:'03',name:'RSO Reform',preview:'First major update in nearly 40 years.',stat:'First overhaul of LA\'s Rent Stabilization Ordinance in nearly 40 years. Caps annual increases. Signed December 2025.',source:'Mayor Bass (Dec 2025)',url:'https://mayor.lacity.gov/news/making-la-more-affordable-mayor-bass-enacts-new-tenant-protections-caps-rent-apartment-units'}
+   ]},
+  {name:'Save More',num:'03',sub:'Utilities, credits, relief',color:'#DB2777',
+   desc:'Every dollar Angelenos earn should go further. This fight is about lower utility costs, tax credits most people don\'t know exist, and direct relief that keeps families stable.',
+   programs:[
+     {label:'01',name:'DWP Rate Advantage',preview:'Public power, lower rates.',stat:'LADWP residential rate roughly 28.6¢/kWh vs. SCE at 35.3¢. LA City residents save about 19% per kilowatt-hour.',source:'UCLA / Legal Planet (Oct 2025)',url:'https://legal-planet.org/2025/10/15/which-is-better-ladwp-or-sce/'},
+     {label:'02',name:'Free Tax Prep / EITC',preview:'Free filing, thousands back.',stat:'Eligible families can claim up to $11,000 in combined federal EITC and California CalEITC credits.',source:'IRS / CA Franchise Tax Board',url:'https://www.irs.gov/credits-deductions/individuals/earned-income-tax-credit/'},
+     {label:'03',name:'Lifeline Reimbursement',preview:'Utility relief for seniors.',stat:'$41.5 million in annual reimbursements for low-income seniors and disabled residents.',source:'City of LA / LASAN',url:'https://www.lacitysan.org/san/faces/home/portal/s-lsh-es/s-lsh-es-si/s-lsh-es-si-llp'}
+   ]},
+  {name:'Care More',num:'04',sub:'Families, food, health',color:'#EA580C',
+   desc:'Affordability is not just about rent. It\'s about whether a family can afford childcare, feed their kids, and access support that keeps a hard month from becoming a crisis.',
+   programs:[
+     {label:'01',name:'FamilySource System',preview:'19 one-stop centers citywide.',stat:'19 centers serving roughly 50,000 households annually. $30.5M in case management, coaching, legal aid, and academic support.',source:'City of LA / CIFD',url:'https://communityinvestment.lacity.gov/familysource-centers'},
+     {label:'02',name:'Summer Lunch Program',preview:'Free meals at rec centers.',stat:'Free meals at 100 recreation center sites citywide every summer. Children ages 1 to 18.',source:'City of LA / RAP',url:'https://www.laparks.org/'},
+     {label:'03',name:'PlayLA Youth Sports',preview:'Sports for all abilities.',stat:'$15.7M invested in youth and adaptive sports programming. Children ages 3 to 17, all abilities.',source:'City of LA / RAP',url:'https://www.laparks.org/playLA'}
+   ]},
+  {name:'Recover More',num:'05',sub:'Disaster recovery',color:'#D97706',
+   desc:'When disaster hits, recovery is an affordability crisis. Every month waiting on a rebuild permit is a month paying rent somewhere else. Bass is fighting to make recovery faster and fairer.',
+   programs:[
+     {label:'01',name:'Emergency Executive Order 1',preview:'Fee waivers, streamlined rebuilds.',stat:'Building permit fees waived for fire-damaged homes. Streamlined rebuild permitting modeled on ED1\'s 60-day framework.',source:'Mayor Bass EO1 (Jan 2025)',url:'https://mayor.lacity.gov/'},
+     {label:'02',name:'Home LA Pilot Program',preview:'Rebates for sustainable rebuilding.',stat:'Up to $15,000 per household in electrification rebates for fire-displaced homeowners rebuilding sustainably.',source:'Mayor\'s Office',url:'https://mayor.lacity.gov/'},
+     {label:'03',name:'Multi-Agency Debris Removal',preview:'Coordinated cleanup at scale.',stat:'Coordinated debris removal from thousands of fire-damaged parcels. City, county, state, and federal agencies working together.',source:'Mayor Bass (2026)',url:'https://mayor.lacity.gov/'}
+   ]}
+];
+
+var panelsEl=document.getElementById('panels');
+FIGHTS.forEach(function(f,i){
+  var p=document.createElement('div');
+  p.className='panel';p.setAttribute('data-idx',String(i));
+  p.innerHTML='<div class="panel-fill" style="background:linear-gradient(175deg,'+f.color+' 0%,'+f.color+'BB 70%,'+f.color+'88 100%);"></div>'+
+    '<div class="panel-inner"><div class="panel-num">'+f.num+'</div><div class="panel-title">'+f.name+'</div><div class="panel-sub">'+f.sub+'</div><div class="panel-line"></div></div>';
+  panelsEl.appendChild(p);
+});
+
+document.querySelectorAll('.panel').forEach(function(panel){
+  panel.addEventListener('click',function(){openPopup(parseInt(this.getAttribute('data-idx')));});
+});
+
+function openPopup(idx){
+  var f=FIGHTS[idx];
+  var popup=document.getElementById('popup');
+  popup.style.background='linear-gradient(140deg,'+f.color+'EE 0%,'+f.color+'CC 100%)';
+  document.getElementById('popup-label').textContent=f.num;
+  document.getElementById('popup-title').textContent=f.name;
+  document.getElementById('popup-desc').textContent=f.desc;
+  var grid=document.getElementById('cards-row');
+  grid.innerHTML='';
+  f.programs.forEach(function(prog){
+    var c=document.createElement('div');
+    c.className='flip-container';
+    var df=f.color+'44',db=f.color+'55',bf=f.color+'66',bb=f.color+'77';
+    c.innerHTML='<div class="flip-card">'+
+      '<div class="flip-front" style="background:'+df+';border-color:'+bf+';">'+
+        '<div><div class="card-label">'+prog.label+'</div><div class="card-name">'+prog.name+'</div><div class="card-preview">'+prog.preview+'</div></div>'+
+        '<div class="card-hint">Click to reveal</div>'+
+      '</div>'+
+      '<div class="flip-back" style="background:'+db+';border-color:'+bb+';">'+
+        '<div><div class="card-stat">'+prog.stat+'</div><div class="card-source">'+prog.source+'<br><a href="'+prog.url+'" target="_blank" rel="noopener">View source</a></div></div>'+
+        '<div class="card-hint">Click to flip back</div>'+
+      '</div>'+
+    '</div>';
+    grid.appendChild(c);
+  });
+  grid.querySelectorAll('.flip-container').forEach(function(fc){
+    fc.addEventListener('click',function(e){e.stopPropagation();this.querySelector('.flip-card').classList.toggle('flipped');});
+  });
+  document.getElementById('overlay').classList.add('open');
+}
+
+document.getElementById('popup-close').addEventListener('click',function(e){e.stopPropagation();closePopup();});
+document.getElementById('overlay').addEventListener('click',function(e){if(e.target===this)closePopup();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closePopup();});
+function closePopup(){document.getElementById('overlay').classList.remove('open');}
+
+function toggleNav(){
+  var o=document.getElementById('navDrawer').classList.toggle('open');
+  document.getElementById('ham').classList.toggle('open',o);
+  document.getElementById('navOverlay').classList.toggle('open',o);
+}
+function closeNav(){
+  document.getElementById('navDrawer').classList.remove('open');
+  document.getElementById('ham').classList.remove('open');
+  document.getElementById('navOverlay').classList.remove('open');
+}
+</script>
+</body>
+</html>
