@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Policy Shortlist | Affordability for All</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#EAF4FC;--navy:#0B1C33;--gold:#D4870A;
+  --text:#0B1C33;--text2:#2C4A6A;--text3:#6A8AAA;--white:#fff;
+  --earn:#6D28D9;--build:#047857;--save:#BE185D;--care:#C2410C;--recover:#B45309;
+  --serif:'DM Serif Display',Georgia,serif;--sans:'Outfit',sans-serif;--mono:'DM Mono',monospace;
+}
+html,body{min-height:100vh;background:var(--bg);font-family:var(--sans);color:var(--text);overflow-x:hidden}
+
+/* ── NAV ───────────────────────────── */
+.topnav{position:sticky;top:0;z-index:50;height:58px;background:rgba(234,244,252,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(11,28,51,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem}
+.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text3);font-size:13px;transition:color .2s}
+.nav-back:hover{color:var(--navy)}
+.nav-back svg{width:15px;height:15px}
+.nav-ttl{font-family:var(--serif);font-size:19px;color:var(--navy)}
+.ham{width:36px;height:36px;background:rgba(11,28,51,0.08);border:1px solid rgba(11,28,51,0.13);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;flex-shrink:0;position:relative;z-index:200}
+.ham span{display:block;width:16px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .28s;transform-origin:center}
+.ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.nav-ov{position:fixed;inset:0;z-index:100;background:rgba(11,28,51,0);pointer-events:none;transition:background .3s}
+.nav-ov.open{background:rgba(11,28,51,0.22);pointer-events:all}
+.nav-dr{position:fixed;top:0;right:0;bottom:0;width:210px;background:#fff;border-left:1px solid rgba(11,28,51,0.09);z-index:150;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:5rem 1.5rem 2rem;box-shadow:-8px 0 32px rgba(11,28,51,0.08)}
+.nav-dr.open{transform:translateX(0)}
+.nl{display:block;padding:.75rem 0;border-bottom:1px solid rgba(11,28,51,0.07);font-family:var(--serif);font-size:22px;color:var(--text2);text-decoration:none;transition:color .2s}
+.nl:hover{color:var(--gold)}
+.nl span{display:block;font-family:var(--sans);font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-top:1px}
+.nf{margin-top:auto;font-size:9px;color:var(--text3);line-height:1.7}
+
+/* ── PAGE HEADER ───────────────────── */
+.pg-head{padding:3rem 2.5rem 2rem;max-width:1400px;margin:0 auto}
+.pg-eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:9px}
+.pg-eyebrow::before{content:'';width:20px;height:1px;background:var(--gold);display:block}
+.pg-title{font-family:var(--serif);font-size:clamp(36px,5vw,68px);color:var(--navy);line-height:1.0;letter-spacing:-.02em;margin-bottom:.375rem}
+.pg-title em{font-style:italic;color:var(--gold)}
+.pg-sub{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+.pg-intro{font-size:14px;color:var(--text2);max-width:560px;line-height:1.75;font-weight:300;margin-top:.75rem}
+
+/* ── MAIN LAYOUT ───────────────────── */
+.layout{display:grid;grid-template-columns:200px 1fr;gap:0;max-width:1400px;margin:0 auto;padding:1.5rem 2.5rem 5rem;align-items:start}
+
+/* ── LEFT COLUMN — Fight labels ─────── */
+.fights-col{position:sticky;top:80px;display:flex;flex-direction:column;gap:0;padding-right:2rem}
+.fight-label{padding:1.5rem 0 1.5rem;border-bottom:1px solid rgba(11,28,51,0.06);cursor:pointer;transition:opacity .2s}
+.fight-label:last-child{border-bottom:none}
+.fight-label.active{opacity:1}
+.fight-label:not(.active){opacity:0.38}
+.fight-label:hover{opacity:0.75}
+.fl-name{font-family:var(--serif);font-size:clamp(18px,2vw,26px);font-weight:400;line-height:1.1;margin-bottom:6px}
+.fl-bar{height:2px;border-radius:1px;width:28px}
+
+/* ── RIGHT COLUMN — Recs ────────────── */
+.recs-col{display:flex;flex-direction:column;gap:0}
+
+/* ── CONNECTOR ROW ──────────────────── */
+.rec-row{display:grid;grid-template-columns:1fr 32px 1fr;gap:0;align-items:center;padding:.625rem 0;border-bottom:1px solid rgba(11,28,51,0.05)}
+.rec-row:last-child{border-bottom:none}
+
+/* ── REC CARD ───────────────────────── */
+.rec-card{
+  border-radius:4px;padding:.875rem 1.125rem;cursor:pointer;
+  border:1px solid transparent;
+  transition:all .25s cubic-bezier(.4,0,.2,1);
+  position:relative;
+}
+.rc-fight{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.25rem;opacity:.7}
+.rc-title{font-family:var(--serif);font-size:clamp(14px,1.6vw,18px);line-height:1.25;color:var(--navy);font-weight:400}
+.rc-subtitle{font-size:10px;font-style:italic;color:var(--text3);margin-top:3px;font-family:var(--serif)}
+
+/* Expanded state */
+.rec-card.open{padding:1.25rem 1.375rem 1.5rem}
+.rec-body{display:none;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(11,28,51,0.07)}
+.rec-card.open .rec-body{display:block}
+.rb-section{margin-bottom:1.25rem}
+.rb-section:last-child{margin-bottom:0}
+.rb-label{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:.375rem}
+.rb-text{font-size:12.5px;color:var(--text2);line-height:1.75;font-weight:300}
+.rb-text p{margin-bottom:.625rem}
+.rb-text p:last-child{margin-bottom:0}
+.rb-stat{display:inline-block;font-family:var(--serif);font-size:15px;font-weight:400;margin-top:.5rem;padding:.375rem .75rem;border-radius:4px;border:1px solid rgba(11,28,51,0.1);background:rgba(255,255,255,0.7);color:var(--navy)}
+.rb-stat em{font-style:normal;font-weight:600}
+.rc-toggle{position:absolute;top:.875rem;right:.875rem;font-size:14px;color:var(--text3);transition:transform .25s,color .2s;line-height:1;font-family:var(--mono)}
+.rec-card.open .rc-toggle{transform:rotate(45deg)}
+.rec-card.open .rc-toggle:hover{color:var(--navy)}
+
+/* Connector line */
+.connector{display:flex;align-items:center;justify-content:center;height:100%}
+.connector-line{width:100%;height:1px;background:linear-gradient(to right, rgba(11,28,51,0.12), rgba(11,28,51,0.06))}
+
+/* fight color variants */
+.fc-earn .rc-fight{color:var(--earn)}
+.fc-earn{background:rgba(109,40,217,0.04);border-color:rgba(109,40,217,0.12)}
+.fc-earn:hover,.fc-earn.open{background:rgba(109,40,217,0.07);border-color:rgba(109,40,217,0.22)}
+.fc-earn .fl-bar{background:var(--earn)}
+.fc-earn .rb-stat{border-color:rgba(109,40,217,.15);background:rgba(109,40,217,.05)}
+
+.fc-build .rc-fight{color:var(--build)}
+.fc-build{background:rgba(4,120,87,0.04);border-color:rgba(4,120,87,0.12)}
+.fc-build:hover,.fc-build.open{background:rgba(4,120,87,0.07);border-color:rgba(4,120,87,0.22)}
+.fc-build .fl-bar{background:var(--build)}
+.fc-build .rb-stat{border-color:rgba(4,120,87,.15);background:rgba(4,120,87,.05)}
+
+.fc-save .rc-fight{color:var(--save)}
+.fc-save{background:rgba(190,24,93,0.04);border-color:rgba(190,24,93,0.12)}
+.fc-save:hover,.fc-save.open{background:rgba(190,24,93,0.07);border-color:rgba(190,24,93,0.22)}
+.fc-save .fl-bar{background:var(--save)}
+.fc-save .rb-stat{border-color:rgba(190,24,93,.15);background:rgba(190,24,93,.05)}
+
+.fc-care .rc-fight{color:var(--care)}
+.fc-care{background:rgba(194,65,12,0.04);border-color:rgba(194,65,12,0.12)}
+.fc-care:hover,.fc-care.open{background:rgba(194,65,12,0.07);border-color:rgba(194,65,12,0.22)}
+.fc-care .fl-bar{background:var(--care)}
+.fc-care .rb-stat{border-color:rgba(194,65,12,.15);background:rgba(194,65,12,.05)}
+
+.fc-recover .rc-fight{color:var(--recover)}
+.fc-recover{background:rgba(180,83,9,0.04);border-color:rgba(180,83,9,0.12)}
+.fc-recover:hover,.fc-recover.open{background:rgba(180,83,9,0.07);border-color:rgba(180,83,9,0.22)}
+.fc-recover .fl-bar{background:var(--recover)}
+.fc-recover .rb-stat{border-color:rgba(180,83,9,.15);background:rgba(180,83,9,.05)}
+
+/* ── SVG connector lines ────────────── */
+.conn-svg{position:absolute;pointer-events:none;left:200px;top:0;z-index:0}
+
+/* ── CLOSING THOUGHT ────────────────── */
+.closing{max-width:1400px;margin:0 auto;padding:2rem 2.5rem 4rem}
+.closing-inner{max-width:640px;border-left:3px solid var(--gold);padding-left:1.5rem}
+.closing-text{font-family:var(--serif);font-size:clamp(18px,2.2vw,26px);font-weight:400;font-style:italic;color:var(--navy);line-height:1.55}
+.closing-by{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-top:.875rem}
+
+footer{text-align:center;padding:1.5rem;font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.06em;border-top:1px solid rgba(11,28,51,0.07)}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <a class="nav-back" href="index.html"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>Back</a>
+  <div class="nav-ttl">Policy Shortlist</div>
+  <div class="ham" id="ham" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+<div class="nav-ov" id="nOv" onclick="closeNav()"></div>
+<nav class="nav-dr" id="nDr">
+  <a class="nl" href="index.html" onclick="closeNav()">Home<span>Five Fights</span></a>
+  <a class="nl" href="inventory.html" onclick="closeNav()">Inventory<span>209 Programs</span></a>
+  <a class="nl" href="dashboard.html" onclick="closeNav()">Dashboard<span>Charts</span></a>
+  <a class="nl" href="campaigns.html" onclick="closeNav()">Campaigns<span>Five Fights</span></a>
+  <a class="nl" href="recommendations.html" onclick="closeNav()">Policy Shortlist<span>Five Recommendations</span></a>
+  <a class="nl" href="about.html" onclick="closeNav()">About<span>Sources</span></a>
+  <a class="nl" href="contact.html" onclick="closeNav()">Contact<span>Michael Green II</span></a>
+  <div class="nf">Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026</div>
+</nav>
+
+<div class="pg-head">
+  <div class="pg-eyebrow">Michael Green II &middot; Mayor's Office &middot; April 2026</div>
+  <h1 class="pg-title">Five Fights:<br><em>Policy Shortlist</em></h1>
+  <div class="pg-sub">Affordability for All &middot; Strategic Communications Framework</div>
+  <p class="pg-intro">Bass has built the foundation. These five recommendations extend it. Each one is mapped to a fight, grounded in a precedent, and designed to be announced.</p>
+</div>
+
+<div class="layout">
+  <!-- LEFT: Fight labels -->
+  <div class="fights-col" id="fightsCol">
+    <div class="fight-label fc-build active" data-fight="build">
+      <div class="fl-name">Build<br>More</div>
+      <div class="fl-bar" style="background:var(--build)"></div>
+    </div>
+    <div class="fight-label fc-save" data-fight="save">
+      <div class="fl-name">Save<br>More</div>
+      <div class="fl-bar" style="background:var(--save)"></div>
+    </div>
+    <div class="fight-label fc-care" data-fight="care">
+      <div class="fl-name">Care<br>More</div>
+      <div class="fl-bar" style="background:var(--care)"></div>
+    </div>
+    <div class="fight-label fc-recover" data-fight="recover">
+      <div class="fl-name">Recover<br>More</div>
+      <div class="fl-bar" style="background:var(--recover)"></div>
+    </div>
+    <div class="fight-label fc-earn" data-fight="earn">
+      <div class="fl-name">Earn<br>More</div>
+      <div class="fl-bar" style="background:var(--earn)"></div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Rec cards -->
+  <div class="recs-col" id="recsCol">
+
+    <!-- REC 1: Build More -->
+    <div class="rec-row" data-fight="build">
+      <div class="rec-card fc-build" onclick="toggleCard(this)">
+        <span class="rc-toggle">+</span>
+        <div class="rc-fight">Build More</div>
+        <div class="rc-title">Expand EO1 Citywide</div>
+        <div class="rc-subtitle">The Affordable Housing Acceleration Act</div>
+        <div class="rec-body">
+          <div class="rb-section">
+            <div class="rb-label">Background</div>
+            <div class="rb-text">
+              <p>The best argument for expanding Emergency Executive Order 1 to all affordable housing citywide is what EO1 already did. After the Palisades fire, Bass signed EO1 on January 13, 2025, and the City stood up an entirely new permitting infrastructure in weeks. One-Stop Rebuilding Center. Department Strike Force. Thirty-day permit reviews. Simultaneous department clearances instead of sequential. The first rebuilding permit was issued 57 days after the wildfires, more than twice as fast as after the Camp and Woolsey fires.</p>
+              <p>Now look at the affordable housing pipeline. ED1 generated over 42,000 proposed affordable units with roughly 31,700 approved since December 2022. A Crosstown analysis found only 4,993 had received actual building permits as of year-end 2025. The bottleneck is no longer planning approval. The bottleneck is everything after: multi-department permitting, sequential reviews that should be simultaneous, and impact fees averaging nearly $20,000 per unit statewide. The Terner Center found fees exceeded $30,000 per unit on roughly 20% of affordable projects studied.</p>
+              <p>EO1 already solved the process problem for wildfire rebuilds. The question is why affordable housing developers are still navigating a system EO1 proved was fixable.</p>
+            </div>
+            <div class="rb-stat"><em>3x</em> faster permits under EO1. Only 4,993 of 42K entitled units permitted.</div>
+          </div>
+          <div class="rb-section">
+            <div class="rb-label">The Recommendation</div>
+            <div class="rb-text">
+              <p>Mayor Bass should expand the EO1 framework citywide to all qualifying affordable housing projects with 30% or more units at or below 60% AMI. Establish Affordable Housing One-Stop Centers, modeled on the Palisades One-Stop, staffed by every relevant department in each APC jurisdiction. Stand up a permanent Affordable Housing Department Strike Force. Require 30-day permit reviews, two-business-day inspections, and simultaneous department clearances for all qualifying projects. Deploy one Affordable Housing Navigator per APC jurisdiction.</p>
+              <p>Alongside the process expansion, create a Fee Deferral and Installment Program allowing qualifying projects to defer impact fee payment from permit issuance to certificate of occupancy, secured by a recorded lien. If the City can process rebuilding permits three times faster for the Palisades, it can process affordable housing permits three times faster for the rest of Los Angeles. The architecture exists. The question is urgency.</p>
+            </div>
+          </div>
+          <div class="rb-section">
+            <div class="rb-label">Precedent</div>
+            <div class="rb-text"><p>Mayor Bass Emergency Executive Order 1, January 2025. UC Berkeley Terner Center, January 2026. LAist/Crosstown, February 2026.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="connector"><div class="connector-line"></div></div>
+      <div style="display:flex;align-items:center;padding:.875rem 0">
+        <div style="font-family:var(--serif);font-size:clamp(11px,1.2vw,14px);color:var(--text3);font-style:italic;line-height:1.4">Affordable Housing<br>Acceleration Act</div>
+      </div>
+    </div>
+
+    <!-- REC 2: Save More -->
+    <div class="rec-row" data-fight="save">
+      <div class="rec-card fc-save" onclick="toggleCard(this)">
+        <span class="rc-toggle">+</span>
+        <div class="rc-fight">Save More</div>
+        <div class="rc-title">LA Community Bank Feasibility Study</div>
+        <div class="rc-subtitle">Housing, Transit, and Small Business Financing</div>
+        <div class="rec-body">
+          <div class="rb-section">
+            <div class="rb-label">Background</div>
+            <div class="rb-text">
+              <p>When LA borrows money, it borrows through Wall Street. When affordable housing developers finance construction, they pay interest rates priced for private risk on projects that are functionally low-risk because they are backed by government subsidies and guaranteed demand. When small businesses in South LA or Pacoima need capital, the most accessible option is often a predatory lender. In California, the average small business using alternative lenders pays 178% of its net income in loan costs.</p>
+              <p>The Bank of North Dakota has been publicly owned for over 100 years. It works alongside local banks, not against them, providing below-market capital for affordable housing, small business development, and infrastructure. Its Flex PACE program buys down interest rates by up to $500,000 per affordable housing project and generates a return to the state while doing it. California passed AB 857 in 2019 authorizing cities and counties to form public banks. San Francisco and Los Angeles have both studied it. Neither has moved.</p>
+            </div>
+            <div class="rb-stat">In CA: small businesses using alt lenders pay <em>178%</em> of net income in loan costs</div>
+          </div>
+          <div class="rb-section">
+            <div class="rb-label">The Recommendation</div>
+            <div class="rb-text">
+              <p>Commission a formal feasibility study for a City of Los Angeles public bank, scoped to three financing verticals: affordable housing construction loans at below-market rates for projects with at least 30% units at or below 60% AMI, small business loans in Community Development Financial Institution-designated census tracts, and transit infrastructure bonds for Metro capital projects.</p>
+              <p>The study should benchmark against the Bank of North Dakota, the proposed San Francisco Public Bank, and the German Sparkassen model. It should assess capitalization requirements, governance structure, risk exposure, and the legislative pathway under AB 857. Deliver findings within 12 months. This is a study, not a commitment. The ask is a serious look at whether LA's financial infrastructure is working for Angelenos or extracting from them.</p>
+            </div>
+          </div>
+          <div class="rb-section">
+            <div class="rb-label">Precedent</div>
+            <div class="rb-text"><p>Bank of North Dakota (est. 1919). California AB 857 (2019). University of Michigan Poverty Solutions, July 2025.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="connector"><div class="connector-line"></div></div>
+      <div style="display:flex;align-items:center;padding:.875rem 0">
+        <div style="font-family:var(--serif);font-size:clamp(11px,1.2vw,14px);color:var(--text3);font-style:italic;line-height:1.4">Public Banking<br>Feasibility Study</div>
+      </div>
+    </div>
+
+    <!-- REC 3: Care More -->
+    <div class="rec-row" data-fight="care">
+      <div class="rec-card fc-care" onclick="toggleCard(this)">
+        <span class="rc-toggle">+</span>
+        <div class="rc-fight">Care More</div>
+        <div class="rc-title">Childcare and Food Access Initiative</div>
+        <div class="rc-subtitle">Tri-Share, Zoning Reform, and Grocery Access Zones</div>
+        <div class="rec-body">
+          <div class="rb-section">
+            <div class="rb-label">Background</div>
+            <div class="rb-text">
+              <p>Childcare in Los Angeles costs an average of $25,000 per year for an infant. That is more than tuition at most California State University campuses. For a family earning median income, childcare alone can consume 30 to 40% of take-home pay. The result is that childcare is the hidden tax that makes every other affordability problem worse: it locks parents out of full-time employment, forces impossible tradeoffs between rent and care, and concentrates its costs most heavily on single mothers and low-income families of color.</p>
+              <p>On food: 1.2 million Angelenos live in food deserts, areas where the nearest grocery store is more than a mile away without a car. Fourteen percent of LA County residents experienced food insecurity in 2023. Families in food deserts spend more money on food and get less nutrition for it. Convenience stores and fast food are not substitutes. They are symptoms of a planning failure that Los Angeles has the power to reverse.</p>
+            </div>
+            <div class="rb-stat">Michigan Tri-Share families saved an average of <em>$11,500</em> per year in childcare costs</div>
+          </div>
+          <div class="rb-section">
+            <div class="rb-label">The Recommendation</div>
+            <div class="rb-text">
+              <p>Pilot a Tri-Share Childcare Program in three Council Districts, modeled on Michigan's program. Costs split three ways: one-third employer, one-third employee, one-third City. Start with city contractors and city-adjacent employers. Cap the pilot at 500 families with a clear evaluation framework and a 24-month expansion decision point.</p>
+              <p>On food access: create Grocery Access Zones designating areas with no full-service grocery store within one mile. Qualifying grocery development in these zones receives expedited permitting, reduced parking minimums, and access to City economic development financing. Pair with a zoning amendment allowing community gardens, urban agriculture, and food co-ops as permitted uses by right in residential zones across the city.</p>
+            </div>
+          </div>
+          <div class="rb-section">
+            <div class="rb-label">Precedent</div>
+            <div class="rb-text"><p>Michigan Tri-Share Childcare Program. Pennsylvania Tri-Share model. USDA Food Desert definitions and mapping.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="connector"><div class="connector-line"></div></div>
+      <div style="display:flex;align-items:center;padding:.875rem 0">
+        <div style="font-family:var(--serif);font-size:clamp(11px,1.2vw,14px);color:var(--text3);font-style:italic;line-height:1.4">Tri-Share Childcare<br>+ Grocery Access</div>
+      </div>
+    </div>
+
+    <!-- REC 4: Recover More -->
+    <div class="rec-row" data-fight="recover">
+      <div class="rec-card fc-recover" onclick="toggleCard(this)">
+        <span class="rc-toggle">+</span>
+        <div class="rc-fight">Recover More</div>
+        <div class="rc-title">Rebuild LA Initiative</div>
+        <div class="rc-subtitle">Navigator Program, Insurance Task Force, and Temp Housing</div>
+        <div class="rec-body">
+          <div class="rb-section">
+            <div class="rb-label">Background</div>
+            <div class="rb-text">
+              <p>A family whose home burned in the Palisades is paying temporary rent on the Westside. At current market rates, that is $3,000 to $5,000 a month they did not budget for and cannot sustain. Their homeowners insurance premium may have tripled or become unavailable entirely as insurers pull back from fire-risk zones. Premiums statewide surged over 8% in 2025, with fire-adjacent areas far steeper. And the rebuild itself faces cost inflation, contractor shortages, and a permitting process that, even streamlined, takes months.</p>
+              <p>Every month waiting on a permit is a month paying rent somewhere else. Every insurance renewal that prices a family out of their neighborhood is a displacement event dressed up as a market correction. Nobody in City Hall is framing recovery as an affordability crisis. It is one.</p>
+            </div>
+            <div class="rb-stat">Displaced Palisades families paying <em>$3,000–$5,000/mo</em> in temporary rent</div>
+          </div>
+          <div class="rb-section">
+            <div class="rb-label">The Recommendation</div>
+            <div class="rb-text">
+              <p>Announce the Rebuild LA Initiative with three components. First, a Rebuild Navigator Program assigning one point of contact to every fire-affected homeowner for the full duration of their rebuild. Permits, inspections, insurance questions, contractor vetting. One person, one family, start to finish.</p>
+              <p>Second, an Insurance Access Task Force coordinating between the California FAIR Plan, the Department of Insurance, private carriers, and fire-impacted homeowners. Produce a public report within 90 days identifying how many fire-affected homeowners have lost coverage and recommended city-level interventions including group purchasing. Third, extend ED1-style streamlined permitting to temporary modular housing on fire-damaged lots. Let displaced families live on their own property while they rebuild instead of hemorrhaging $4,000 a month in rent.</p>
+            </div>
+          </div>
+          <div class="rb-section">
+            <div class="rb-label">Precedent</div>
+            <div class="rb-text"><p>Mayor Bass EO1 Strike Force model applied to disaster recovery. California FAIR Plan. California Department of Insurance.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="connector"><div class="connector-line"></div></div>
+      <div style="display:flex;align-items:center;padding:.875rem 0">
+        <div style="font-family:var(--serif);font-size:clamp(11px,1.2vw,14px);color:var(--text3);font-style:italic;line-height:1.4">Navigator, Insurance<br>Task Force, Temp Housing</div>
+      </div>
+    </div>
+
+    <!-- REC 5: Earn More -->
+    <div class="rec-row" data-fight="earn">
+      <div class="rec-card fc-earn" onclick="toggleCard(this)">
+        <span class="rc-toggle">+</span>
+        <div class="rc-fight">Earn More</div>
+        <div class="rc-title">LA Ownership Economy Initiative</div>
+        <div class="rc-subtitle">Worker Cooperatives and Transit Rewards</div>
+        <div class="rec-body">
+          <div class="rb-section">
+            <div class="rb-label">Background</div>
+            <div class="rb-text">
+              <p>Los Angeles lost roughly 42,000 entertainment industry jobs between 2022 and 2024. The gig economy keeps replacing traditional employment across food service, cleaning, transportation, and delivery. Workers in those sectors earn low wages, get no benefits, build no equity, and own nothing. Worker cooperatives are a structural answer to that. A co-op is a business owned and governed by the people who work in it. Decisions are democratic. Profits go to worker-owners, not outside shareholders. About 60% of new cooperative worker-owners since 2010 are people of color.</p>
+              <p>New York City built the proof. In 2014, the City Council seeded the Worker Cooperative Business Development Initiative with $1.2 million. By the program's ninth year it had helped create 133 cooperatives with 442 new worker-owners. Funding scaled from $1.2 million to over $3 million annually as results proved out.</p>
+            </div>
+            <div class="rb-stat">NYC's WCBDI: <em>133 co-ops, 442 worker-owners</em> in nine years</div>
+          </div>
+          <div class="rb-section">
+            <div class="rb-label">The Recommendation</div>
+            <div class="rb-text">
+              <p>Announce the LA Ownership Economy Initiative with two components. First, a Worker Cooperative Incubator through the Mayor's Office of Economic Development. Business planning, legal formation, seed financing, and guaranteed city contract access for qualifying worker-owned businesses. First cohort: 15 co-ops in building maintenance, food service, childcare, landscaping, and last-mile delivery. Create a city procurement set-aside for certified cooperatives so co-ops have a customer on day one.</p>
+              <p>Second, a Transit Rewards Pilot with Metro. Workers earning below 80% AMI in hospitality, food service, healthcare, education, and building services earn $2 per trip loaded onto a TAP card, capped at $80 a month. Launch in three Council Districts with the highest ridership and lowest median income. If you work in this city, the city works for you.</p>
+            </div>
+          </div>
+          <div class="rb-section">
+            <div class="rb-label">Precedent</div>
+            <div class="rb-text"><p>New York City WCBDI (2014, scaled to $3M+ annually by FY23). NYC SBS FY23 Report. All-In Cities cooperative data.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="connector"><div class="connector-line"></div></div>
+      <div style="display:flex;align-items:center;padding:.875rem 0">
+        <div style="font-family:var(--serif);font-size:clamp(11px,1.2vw,14px);color:var(--text3);font-style:italic;line-height:1.4">Co-op Incubator<br>+ Transit Rewards</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="closing">
+  <div class="closing-inner">
+    <div class="closing-text">Five fights. Five recommendations. One thread running through all of them: ownership. Own your home. Own your bank. Own your family's stability. Own your recovery. Own your job.</div>
+    <div class="closing-by">Michael Green II &middot; Mayor's Office of Policy &amp; Communications &middot; April 2026</div>
+  </div>
+</div>
+
+<footer>Mayor Karen Bass &middot; Office of Policy &amp; Communications &middot; Michael Green II &middot; April 2026</footer>
+
+<script>
+function toggleCard(card){
+  const wasOpen=card.classList.contains('open');
+  // Close all others
+  document.querySelectorAll('.rec-card.open').forEach(c=>{
+    if(c!==card){c.classList.remove('open');}
+  });
+  if(wasOpen){card.classList.remove('open');}
+  else{card.classList.add('open');}
+  // Update fight label active state
+  const fight=card.closest('.rec-row').getAttribute('data-fight');
+  document.querySelectorAll('.fight-label').forEach(fl=>{
+    fl.classList.toggle('active',fl.getAttribute('data-fight')===fight||!card.classList.contains('open')?fl.getAttribute('data-fight')==='build':false);
+  });
+  if(!wasOpen&&fight){
+    document.querySelectorAll('.fight-label').forEach(fl=>{
+      fl.classList.toggle('active',fl.getAttribute('data-fight')===fight);
+    });
+  } else if(wasOpen){
+    document.querySelectorAll('.fight-label').forEach(fl=>{
+      fl.classList.toggle('active',fl===document.querySelector('.fight-label'));
+    });
+  }
+}
+
+function toggleNav(){
+  var o=document.getElementById('nDr').classList.toggle('open');
+  document.getElementById('ham').classList.toggle('open',o);
+  document.getElementById('nOv').classList.toggle('open',o);
+}
+function closeNav(){
+  document.getElementById('nDr').classList.remove('open');
+  document.getElementById('ham').classList.remove('open');
+  document.getElementById('nOv').classList.remove('open');
+}
+</script>
+</body>
+</html>
