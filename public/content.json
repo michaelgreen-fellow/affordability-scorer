@@ -19,10 +19,25 @@
     },
     "pageTitle": "The Five Fights",
     "thumbnails": {
-      "inventory": { "title": "Inventory", "sub": "209 programs", "label": "209" },
-      "campaigns": { "title": "Campaigns", "sub": "Five fights" },
-      "recommendations": { "title": "Executive", "sub": "Directives", "label": "3 EDs" },
-      "talkingPoints": { "title": "Talking", "sub": "Points", "label": "25 pts" }
+      "inventory": {
+        "title": "Inventory",
+        "sub": "209 programs",
+        "label": "209"
+      },
+      "campaigns": {
+        "title": "Campaigns",
+        "sub": "Five fights"
+      },
+      "recommendations": {
+        "title": "Executive",
+        "sub": "Directives",
+        "label": "3 EDs"
+      },
+      "talkingPoints": {
+        "title": "Talking",
+        "sub": "Points",
+        "label": "25 pts"
+      }
     }
   },
   "fights": [
@@ -35,8 +50,14 @@
       "wheelDescription": "Bass built a floor under LA wages. She brokered landmark labor agreements, signing minimum wage laws, and enforced living wage standards at city contractors.",
       "campaignDescription": "Working Angelenos deserve wages that keep up with what it actually costs to live here. Bass brokered agreements, signed ordinances, and enforced standards.",
       "stats": [
-        { "value": "30K", "label": "workers in LAUSD/SEIU agreement" },
-        { "value": "$22.52", "label": "new LAUSD min wage/hr" }
+        {
+          "value": "30K",
+          "label": "workers in LAUSD/SEIU agreement"
+        },
+        {
+          "value": "$22.52",
+          "label": "new LAUSD min wage/hr"
+        }
       ],
       "wheelPrograms": [
         "LAUSD/SEIU 99 Labor Agreement",
@@ -54,8 +75,14 @@
       "wheelDescription": "ED1 streamlined approvals for 100% affordable housing. Adaptive Reuse converts vacant buildings into homes. Bass inherited 50 years of underbuilding.",
       "campaignDescription": "LA underbuilt housing for fifty years. Bass dismantled the bureaucratic barriers that made it impossible to catch up.",
       "stats": [
-        { "value": "~31.7K", "label": "units approved under ED1" },
-        { "value": "Over $300M", "label": "ULA construction programs" }
+        {
+          "value": "~31.7K",
+          "label": "units approved under ED1"
+        },
+        {
+          "value": "Over $300M",
+          "label": "ULA construction programs"
+        }
       ],
       "wheelPrograms": [
         "Executive Directive 1",
@@ -73,8 +100,14 @@
       "wheelDescription": "DWP savings. Free tax prep that puts thousands back. Utility relief for seniors. Public power that keeps rates lower than any private utility in the state.",
       "campaignDescription": "Every dollar Angelenos earn should go further. Lower utility costs, tax credits most people do not know exist, and savings programs that stretch every paycheck.",
       "stats": [
-        { "value": "$41.5M", "label": "annual Lifeline reimbursements" },
-        { "value": "$1,800", "label": "Mobility Wallet transit cards" }
+        {
+          "value": "$41.5M",
+          "label": "annual Lifeline reimbursements"
+        },
+        {
+          "value": "$1,800",
+          "label": "Mobility Wallet transit cards"
+        }
       ],
       "wheelPrograms": [
         "DWP Rate Advantage",
@@ -92,8 +125,14 @@
       "wheelDescription": "FamilySource. Inside Safe. Youth programs. Eviction defense. Maternal health. The safety net that catches people before they fall and lifts them when they do.",
       "campaignDescription": "The programs that catch people before they fall and lift them when they do. Families, youth, homelessness, eviction defense, veterans, and maternal health.",
       "stats": [
-        { "value": "50K+", "label": "households via FamilySource" },
-        { "value": "2", "label": "years homelessness declined" }
+        {
+          "value": "50K+",
+          "label": "households via FamilySource"
+        },
+        {
+          "value": "2",
+          "label": "years homelessness declined"
+        }
       ],
       "wheelPrograms": [
         "FamilySource System",
@@ -111,8 +150,14 @@
       "wheelDescription": "Renters are the majority of Angelenos. Bass signed the first RSO overhaul in 40 years, funded eviction defense through ULA, and built a legal shield for tenants facing displacement.",
       "campaignDescription": "Protecting tenants from displacement, funding eviction defense, and enforcing the strongest renter protections LA has seen in a generation.",
       "stats": [
-        { "value": "$57M+", "label": "ULA eviction defense funding" },
-        { "value": "11K+", "label": "households served by Right to Counsel" }
+        {
+          "value": "$57M+",
+          "label": "ULA eviction defense funding"
+        },
+        {
+          "value": "11K+",
+          "label": "households served by Right to Counsel"
+        }
       ],
       "wheelPrograms": [
         "ULA Eviction Defense & Prevention",
@@ -173,96 +218,159 @@
   "executiveDirectives": [
     {
       "id": "making-ends-meet",
-      "num": "ED 18",
+      "num": "18",
       "title": "Making Ends Meet",
-      "subtitle": "Reducing the Cost of Living for Angelenos",
+      "subject": "Reducing the Cost of Living for Angelenos",
+      "issueDate": "April 2026",
       "color": "#BE185D",
-      "fights": ["Save More", "Earn More"],
-      "summary": "Auto-enroll eligible households into LADWP EZ-SAVE and Metro LIFE, launch a Tri-Share childcare feasibility study, build a neighborhood market pilot, and coordinate a national Cost of Living Mayor's Conference.",
-      "background": [
-        "Utility costs, childcare, and transportation represent the three largest non-housing expenditures for low-to-moderate income households in Los Angeles, routinely exceeding $8,000 per household before subsidies.",
-        "LADWP's EZ-SAVE program and Metro's LIFE program both exist and are funded, yet hundreds of thousands of eligible Angelenos remain unenrolled because neither program uses proactive enrollment.",
-        "Center-based infant care in Los Angeles runs $1,800 to $2,500 per month. Michigan's Tri-Share program, splitting costs between employer, employee, and state, has saved participating families an average of $464 per month since 2021.",
-        "Mayor Bass has previously chaired the USCM Task Force on Homelessness and used that platform to produce documented change in federal HUD policy. The same convening power applies to affordability."
+      "fights": [
+        "Save More",
+        "Earn More"
       ],
-      "sections": [
+      "summary": "Auto-enroll eligible households into LADWP EZ-SAVE and Metro LIFE, launch a Tri-Share childcare feasibility study, build a neighborhood market pilot, and coordinate a national Cost of Living Mayor's Conference.",
+      "preamble": [
+        "Los Angeles is one of the most expensive cities in the country, and the families who feel that pressure most are the ones least likely to know what help already exists. Utility costs, childcare, and transportation consume thousands of dollars a year for low-to-moderate income households in this city before a single subsidy is applied. For a single parent earning below the county median, childcare alone can take 30 to 40 percent of take-home pay. That is not a policy abstraction. That is rent or daycare, every single month, for hundreds of thousands of Angelenos.",
+        "The programs designed to ease that burden are real and they are funded. The Los Angeles Department of Water and Power operates EZ-SAVE, a rate discount program for income-eligible households. The Metropolitan Transportation Authority operates LIFE, a reduced-fare program serving riders at or below 200 percent of the federal poverty level across 13 transit systems. Both programs work. Neither uses proactive enrollment. The result is that the people who need them most are the least likely to be enrolled, because no one told them and no one signed them up.",
+        "Childcare is the single largest cost barrier keeping parents out of full-time work in Los Angeles. Center-based infant care in this city runs approximately $1,800 per month at the median, and significantly higher in many neighborhoods. Michigan launched the Tri-Share Child Care Program in 2021, splitting costs equally among employer, employee, and government. The program has expanded to dozens of counties with hundreds of participating employers, saving families an average of $464 per month. Los Angeles has no comparable program, and the families earning between 200 and 400 percent of the federal poverty level, too much for state childcare subsidies and too little for market-rate care, have no structured relief.",
+        "Food insecurity compounds every one of these pressures. Hundreds of thousands of Angelenos live in neighborhoods where affordable, fresh food is difficult to access, and existing federal nutrition programs do not close the gap at the neighborhood level. To address the full cost of living for working Angelenos and to ensure that existing programs reach the people they were built for, I am establishing the Mayoral Office of Affordability and I hereby order the following:"
+      ],
+      "directives": [
         {
-          "title": "Section 1: Automated Enrollment in Utility and Transit Assistance",
-          "body": "The Department of Water and Power and the Los Angeles Housing Department shall, within 60 days, establish an automated enrollment protocol for eligible households into LADWP EZ-SAVE and Metro LIFE. The City shall use existing administrative data from LA County DPSS, HACLA, and municipal utility records to pre-identify eligible households. Eligible households shall receive direct notification with clear opt-out mechanisms. DWP shall project aggregate household savings within six months. Note: the water discount component of EZ-SAVE was ended by court ruling in July 2023; savings projections reflect electricity and sewer benefits only."
+          "letter": "A",
+          "text": "I hereby direct the Los Angeles Department of Water and Power and the Los Angeles Housing Department, in coordination with the Metropolitan Transportation Authority, to establish an automated enrollment protocol for eligible households into LADWP EZ-SAVE and the Metro LIFE program within 60 days of this Directive, subject to the following:",
+          "items": [
+            "The City shall use existing administrative data from the Los Angeles County Department of Public Social Services, the Housing Authority of the City of Los Angeles, and municipal utility records to pre-identify households meeting income eligibility thresholds for both programs.",
+            "Eligible households shall receive direct notification of enrollment status with clear opt-out mechanisms, a timeline for benefit activation, and contact information for support in English and Spanish.",
+            "The Department of Water and Power shall project and report on aggregate household savings accruing from expanded EZ-SAVE enrollment within six months of implementation. The water discount component of EZ-SAVE was ended by court ruling in July 2023 and does not apply to this enrollment expansion. Savings projections shall reflect electricity and sewer benefits only.",
+            "Both departments shall report to the Mayoral Office of Affordability quarterly on enrollment numbers, benefit uptake, and barriers encountered by households attempting to access support."
+          ]
         },
         {
-          "title": "Section 2: Childcare Affordability Study",
-          "body": "EWDD, in coordination with CIFD and DCFS, shall conduct a feasibility study on the Tri-Share childcare model. The study shall evaluate regulatory compliance under California childcare licensing, cost efficiency, and scaling potential. Financial modeling shall include fees generated under ED 17 if passed by Council, property tax increment financing, and philanthropic capital. The study shall identify 3-5 neighborhoods with the highest childcare access gaps and target families earning between 200 and 400 percent of the federal poverty level. Final recommendations due to the Mayor by November 30, 2026."
+          "letter": "B",
+          "text": "I hereby direct the Economic and Workforce Development Department, in coordination with the Community Investment for Families Department and the Department of Children and Family Services, to conduct a feasibility study on the Tri-Share childcare model within 90 days of this Directive, subject to the following:",
+          "items": [
+            "The study shall evaluate regulatory compliance under California childcare licensing law, cost efficiency compared to traditional center-based models, capacity scaling potential for the City's highest-need neighborhoods, and workforce development pathways for participating families.",
+            "Financial modeling shall include multiple potential funding sources, including fees generated under any ordinance drafted pursuant to Executive Directive 17 if passed by Council, property tax increment financing, federal childcare tax credit frameworks, and philanthropic capital.",
+            "The study shall identify three to five neighborhoods with the highest documented childcare access gaps and conduct community feedback sessions in those areas.",
+            "The study shall target families earning between 200 and 400 percent of the federal poverty level. Final recommendations shall be delivered to the Mayor by November 30, 2026."
+          ]
         },
         {
-          "title": "Section 3: Neighborhood Market Feasibility",
-          "body": "The Mayor's Office of Economic Development, in coordination with the LA Food Policy Council and EWDD, shall evaluate the feasibility of a subsidized neighborhood market pilot in three high food-insecurity neighborhoods. The study shall assess models from peer cities, identify potential sites using existing city-owned or underutilized commercial space, and propose financing mechanisms including USDA Community Food Projects grants and philanthropic capital. Preliminary findings due September 1, 2026."
+          "letter": "C",
+          "text": "I hereby direct the Mayor's Office of Economic Development, in coordination with the LA Food Policy Council and EWDD, to evaluate the feasibility of a subsidized neighborhood market pilot in three high food-insecurity neighborhoods, subject to the following:",
+          "items": [
+            "The study shall assess neighborhood market models from peer cities, identify potential sites using existing city-owned or underutilized commercial space, and propose financing mechanisms including USDA Community Food Projects grants and philanthropic capital.",
+            "Preliminary findings shall be delivered to the Mayoral Office of Affordability by September 1, 2026."
+          ]
         },
         {
-          "title": "Section 4: National Cost of Living Coordination",
-          "body": "The Mayor shall leverage her position with the U.S. Conference of Mayors to advance federal and state policy interventions addressing utility affordability, childcare accessibility, and transportation cost burdens. A working group of peer mayors shall be convened by June 1, 2026. A federal legislative package shall be drafted by August 1, 2026. A USCM resolution on municipal utility rate affordability shall be introduced by November 2026."
+          "letter": "D",
+          "text": "I further direct the Mayoral Office of Affordability to coordinate with the U.S. Conference of Mayors to advance federal and state policy interventions addressing utility affordability, childcare accessibility, and transportation cost burdens on working families, subject to the following:",
+          "items": [
+            "A working group of peer mayors from cities with similar affordability challenges shall be convened by June 1, 2026, to develop a unified federal legislative agenda.",
+            "A federal legislative package shall be drafted by August 1, 2026.",
+            "A resolution on municipal utility rate affordability shall be introduced at the U.S. Conference of Mayors by November 2026."
+          ]
         }
       ],
-      "implementation": "Departments referenced in this Directive are authorized to reallocate existing resources, modify procurement timelines, and coordinate across agencies as necessary. Budget implications reported to the Mayor's Office within 30 days.",
-      "reporting": "Quarterly integrated progress reports to the Mayor. First comprehensive report due July 15, 2026."
+      "implementation": "The departments referenced in this Directive are authorized to reallocate existing resources, modify procurement timelines, and coordinate across agencies as necessary to execute these directives. Budget implications shall be reported to the Mayor's Office within 30 days of issuance.",
+      "reporting": "The Mayoral Office of Affordability shall submit integrated progress reports to the Mayor quarterly, consolidating updates from all sections of this Directive. The first comprehensive report is due July 15, 2026."
     },
     {
       "id": "production-economy",
-      "num": "ED 19",
+      "num": "19",
       "title": "Production Economy",
-      "subtitle": "Housing and Jobs for Los Angeles",
+      "subject": "Housing and Jobs for Los Angeles",
+      "issueDate": "April 2026",
       "color": "#047857",
-      "fights": ["Build More", "Earn More"],
-      "summary": "Extend emergency permitting speed to all affordable housing, establish One-Stop Centers and a Department Strike Force, and conduct a feasibility study for a local film and TV production incentive tied to local hire.",
-      "background": [
-        "Of the approximately 31,700 affordable housing units approved under ED1 since December 2022, only about 4,993 have received building permits. The bottleneck is permitting, not planning.",
-        "Emergency Executive Order 1, issued after the Palisades fire, proved the city can process permits three times faster when institutional will exists. The question is whether that speed is only available after a disaster.",
-        "LA County's motion picture and sound recording industry lost approximately 42,000 jobs between 2022 and 2024, a workforce reduction of nearly 30 percent, as productions relocated to jurisdictions with more competitive incentive structures.",
-        "The California Film Commission administers Film Tax Credit Program 4.0 at $750 million annually through June 2030. Several California cities have supplemented this with local incentive programs."
+      "fights": [
+        "Build More",
+        "Earn More"
       ],
-      "sections": [
+      "summary": "Extend emergency permitting speed to all affordable housing, establish One-Stop Centers and a Department Strike Force, and conduct a feasibility study for a local film and TV production incentive tied to local hire.",
+      "preamble": [
+        "Los Angeles has approved more affordable housing in the last three years than at any point in its modern history. Since I signed Executive Directive 1 in December 2022, more than 31,000 affordable housing units have been approved through expedited review. But fewer than 5,000 of those units have received building permits. The gap between approval and construction is not a planning failure. It is a permitting failure, and it is the single biggest obstacle between entitled housing and actual homes.",
+        "We proved this can be fixed. After the Palisades fire in January 2025, I signed Emergency Executive Order 1 and stood up an entirely new permitting system in weeks. The first rebuilding permit was issued 57 days after the wildfire, more than twice as fast as after the Camp and Woolsey fires. Permits under EO1 are being processed nearly three times faster than before, and more than 70 percent of single-family permit clearances are no longer required. If the City can move at that speed after a disaster, it can move at that speed for the families who have been waiting years for affordable housing that was already approved.",
+        "At the same time, the economic base that employs working Angelenos is eroding. The entertainment industry in Los Angeles County has experienced tens of thousands of job losses since 2022 as productions have relocated to states and countries with more competitive incentive structures. Soundstage occupancy across the county has fallen from the mid-90 percent range to approximately 62 percent in the first half of 2025. California's Film Tax Credit Program 4.0 provides $750 million annually through June 2030, but the City of Los Angeles has no local incentive to complement the state program or retain productions that are leaving.",
+        "Housing and jobs are the same fight. You cannot build an affordable city if the homes sit in permitting limbo and the jobs that sustain working families disappear. To permanently extend the permitting speed we demonstrated under emergency conditions and to rebuild the production economy that defines this city, I hereby order the following:"
+      ],
+      "directives": [
         {
-          "title": "Section 1: Affordable Housing Permitting Acceleration",
-          "body": "LADBS, DCP, and LAHD shall, within 45 days, develop a proposal to extend the permitting speed of EO1 to all affordable housing projects with 30 percent or more units at or below 60 percent AMI. Affordable Housing One-Stop Centers shall be established in each APC jurisdiction within 90 days. A permanent Department Strike Force with 30-day permit reviews, two-business-day inspections, and simultaneous department clearances shall be the operating standard. One Affordable Housing Navigator per APC jurisdiction shall guide qualifying projects from application through certificate of occupancy. A Fee Deferral and Installment Program shall allow qualifying projects to defer impact fees to certificate of occupancy, consistent with California Government Code Section 66007."
+          "letter": "A",
+          "text": "I hereby direct the Department of Building and Safety, the Department of City Planning, and the Los Angeles Housing Department to develop, within 45 days, a proposal to extend the permitting speed and process architecture of Emergency Executive Order 1 to all affordable housing projects with 30 percent or more units restricted to households at or below 60 percent of Area Median Income, subject to the following:",
+          "items": [
+            "Affordable Housing One-Stop Centers shall be established, staffed jointly by representatives of Building and Safety, City Planning, Transportation, the Department of Water and Power, the Fire Department, the Housing Department, and Public Works. At least one center shall be operational in each Area Planning Commission jurisdiction within 90 days of this Directive.",
+            "A permanent Affordable Housing Department Strike Force shall be established with 30-day permit reviews, two-business-day inspections, and simultaneous rather than sequential department clearances as the operating standard.",
+            "One Affordable Housing Navigator shall be deployed per APC jurisdiction to guide qualifying projects from application through certificate of occupancy, with a direct line of escalation to the Mayor's Office for any project stalled beyond timeline.",
+            "A Fee Deferral and Installment Program shall be designed allowing qualifying affordable housing projects to defer impact fees from permit issuance to certificate of occupancy, secured by a recorded lien on the property, consistent with California Government Code Section 66007 as amended by SB 937 (2024)."
+          ]
         },
         {
-          "title": "Section 2: Local Film and Production Incentive Feasibility Study",
-          "body": "The Mayor's Office of Economic Development, EWDD, and the CLA shall conduct a feasibility study on a City of Los Angeles film and television production incentive program. The study shall evaluate direct subsidies, permitting fee waivers, below-market rates for city-owned facilities, and tax credit structures requiring state enabling legislation. Any proposed incentive shall include a local hire requirement for below-the-line crew positions, consistent with the market participant doctrine. The study shall analyze at least five peer jurisdictions including New York City, Georgia, the UK, Canada, and New Mexico. Final recommendations due December 1, 2026."
+          "letter": "B",
+          "text": "I hereby direct the Mayor's Office of Economic Development, the Economic and Workforce Development Department, and the Office of the Chief Legislative Analyst to conduct a feasibility study on the design and implementation of a City of Los Angeles film and television production incentive program, subject to the following:",
+          "items": [
+            "The study shall evaluate the legal authority, fiscal impact, and program design options for a locally administered production incentive, including a direct subsidy, a permitting fee waiver or reduction, a below-market rate for city-owned facilities, or a tax credit structure requiring state enabling legislation.",
+            "The study shall evaluate the complementarity of any local incentive with California Film Tax Credit Program 4.0, ensuring that local and state incentives reinforce rather than duplicate each other.",
+            "Any proposed local incentive program shall include a local hire requirement, requiring that a minimum percentage of below-the-line crew positions on incentivized productions be filled by City of Los Angeles residents, consistent with the market participant doctrine.",
+            "The study shall include an analysis of incentive structures in at least five peer jurisdictions including New York City, Georgia, the United Kingdom, Canada, and New Mexico.",
+            "Final recommendations shall be submitted to the Mayor by December 1, 2026."
+          ]
         }
       ],
-      "implementation": "Departments referenced in this Directive are authorized to reallocate existing resources, modify procurement timelines, and coordinate across agencies. Budget implications reported to the Mayor's Office within 30 days.",
-      "reporting": "Quarterly integrated progress reports to the Mayor. First comprehensive report due 90 days after issuance."
+      "implementation": "The departments referenced in this Directive are authorized to reallocate existing resources, modify procurement timelines, and coordinate across agencies as necessary to execute these directives. Budget implications shall be reported to the Mayor's Office within 30 days of issuance.",
+      "reporting": "The Mayor's Office shall receive quarterly integrated progress reports. The first comprehensive report is due 90 days after issuance."
     },
     {
       "id": "community-anchors",
-      "num": "ED 20",
+      "num": "20",
       "title": "Community Anchors",
-      "subtitle": "Neighborhood Business Networks for a Stronger City",
+      "subject": "Neighborhood Business Networks for a Stronger City",
+      "issueDate": "April 2026",
       "color": "#6D28D9",
-      "fights": ["Earn More", "Care More"],
-      "summary": "Create a voluntary Community Anchor designation for small businesses, connecting them to city services, CIRCLE crisis response, FamilySource referrals, and an expedited procurement pathway.",
-      "background": [
-        "Small business owners across LA report that interactions with unhoused individuals represent one of their most significant day-to-day operational challenges, and that calling LAPD is frequently misaligned with the outcomes they actually want.",
-        "CIRCLE, the Mayor's 24-hour unarmed crisis response program, has handled over 14,000 diverted incidents and connected hundreds of Angelenos to services, yet awareness among small business owners remains low.",
-        "The city's 10 BusinessSource Centers and 14 WorkSource Centers provide free technical assistance and workforce services but remain siloed from the community-level relationships small businesses maintain.",
-        "Peer cities have demonstrated that networked, neighborhood-level small business programs connecting businesses to public agencies and nonprofits create measurable improvements in business stability and community safety."
+      "fights": [
+        "Earn More",
+        "Care More"
       ],
-      "sections": [
+      "summary": "Create a voluntary Community Anchor designation for small businesses, connecting them to city services, CIRCLE crisis response, FamilySource referrals, and an expedited procurement pathway.",
+      "preamble": [
+        "The small businesses that line the commercial corridors of Los Angeles are more than economic units. They are the places where neighbors meet, where first jobs begin, where communities hold together at the block level. And across this city, those businesses are struggling with a problem the City has not given them adequate tools to address.",
+        "Small business owners report consistently that interactions with unhoused individuals in and around their storefronts represent one of their most significant day-to-day operational challenges. The response options available to them are limited and frequently misaligned with the situation. Calling LAPD for a mental health crisis or a person sleeping in a doorway is not what most business owners want, and it is not what produces the best outcome for anyone involved. The City operates CIRCLE, a 24/7 unarmed crisis response program within the Mayor's Office of Community Safety that has diverted more than 14,000 incidents and connected hundreds of Angelenos to interim housing and vital services. But most small business owners have never heard of CIRCLE and have no direct line to request it.",
+        "Meanwhile, the City's BusinessSource Centers and 14 WorkSource Centers provide free technical assistance, capital access, and workforce services across Los Angeles. These resources exist and they are effective. But they remain siloed from the trust and relationships that small businesses maintain in their neighborhoods every day. A laundromat owner who knows every family on her block is a better referral point for city services than a flyer in a government office. The infrastructure is there. The connection is not.",
+        "To build that connection, to give small businesses a direct pathway into city services and to give the City a direct pathway into the neighborhoods that need the most support, I hereby order the following:"
+      ],
+      "directives": [
         {
-          "title": "Section 1: Community Anchor Designation Program",
-          "body": "EWDD, in coordination with MOCS and CIFD, shall design and launch a voluntary Community Anchor designation program. Eligibility shall prioritize locally owned businesses operating for at least two years in high-need neighborhoods. Designated businesses receive a named point of contact within MOCS, EWDD, and CIFD. MOCS shall provide direct access to CIRCLE dispatch for unarmed crisis response. CIFD shall connect each Anchor to a FamilySource Center for community referrals. Pilot launch in three Council Districts within 120 days."
+          "letter": "A",
+          "text": "I hereby direct the Economic and Workforce Development Department, in coordination with the Mayor's Office of Community Safety and the Community Investment for Families Department, to design and launch a voluntary Community Anchor designation program for qualifying small businesses, subject to the following:",
+          "items": [
+            "Small businesses may apply for or be nominated to Community Anchor status. Eligibility shall prioritize businesses that are locally owned, have operated in their community for at least two years, and are located in neighborhoods identified by the City as high-need based on poverty, displacement risk, and unhoused population concentration.",
+            "Community Anchor businesses shall receive a direct, named point of contact within the Mayor's Office of Community Safety, EWDD, and CIFD, replacing the current experience of calling general city hotlines.",
+            "The Mayor's Office of Community Safety shall provide each designated Anchor with direct access to CIRCLE dispatch, including a simplified referral pathway for requesting unarmed crisis response for situations involving unhoused individuals, mental health crises, or non-violent conflicts in or around the business location.",
+            "CIFD shall connect each designated Anchor to a FamilySource Center in its neighborhood, creating a referral pathway for customers or community members who present with housing instability, benefits needs, or family service needs.",
+            "Pilot launch in three Council Districts within 120 days of this Directive."
+          ]
         },
         {
-          "title": "Section 2: Anchor Network Coordination",
-          "body": "The Mayor's Office of Economic Development shall convene quarterly Anchor Network Convenings in each pilot Council District, bringing together designated businesses, local nonprofits, school principals, FamilySource staff, and MOCS representatives. Agendas shall be driven by participants, not pre-set by city staff. Each convening shall produce one concrete deliverable. EWDD shall maintain a public-facing dashboard tracking network activity."
+          "letter": "B",
+          "text": "I further direct the Mayor's Office of Economic Development to convene a quarterly Anchor Network Convening in each pilot Council District, bringing together designated businesses, local nonprofits, school principals, FamilySource Center staff, and representatives from the Mayor's Office of Community Safety, subject to the following:",
+          "items": [
+            "Convening agendas shall be driven by participating businesses and community members, not pre-set by city staff. EWDD staff shall facilitate, not lead.",
+            "Each convening shall produce one concrete deliverable: a shared resource list, a resolved coordination gap, a joint referral protocol, or a documented problem surfaced to the Mayor's Office for systemic response.",
+            "EWDD shall maintain a public-facing dashboard tracking the Anchor Network's activity, including businesses designated, referrals made, convenings held, and outcomes documented."
+          ]
         },
         {
-          "title": "Section 3: Procurement Pathway for Anchor Businesses",
-          "body": "Designated Anchor businesses completing ProcureLA shall be eligible for a City Contracts Fast Track with expedited certification review and a guaranteed introductory contract opportunity. EWDD shall assign a Small Business Procurement Concierge within the nearest BusinessSource Center. A pilot micro-enterprise set-aside requiring 10 percent of eligible city contracts under $500,000 go to certified micro-enterprises shall be established in the three pilot Council Districts for 24 months."
+          "letter": "C",
+          "text": "I hereby direct the Mayor's Office of Economic Development, in coordination with EWDD and the Bureau of Contract Administration, to develop an expedited pathway for designated Community Anchor businesses to access city contracting opportunities, subject to the following:",
+          "items": [
+            "Designated Anchor businesses that complete the ProcureLA program shall be eligible for a City Contracts Fast Track, providing expedited certification review and a guaranteed introductory contract opportunity within their first year of designation.",
+            "EWDD shall assign a dedicated Small Business Procurement Concierge within the nearest BusinessSource Center to each designated Anchor, providing hands-on navigation of the certification, bonding, and contract readiness process.",
+            "A pilot micro-enterprise set-aside requiring that a minimum of 10 percent of eligible city contracts under $500,000 be awarded to certified micro-enterprises with fewer than five employees and annual revenue under $1 million shall be established within the three pilot Council Districts for a period of 24 months."
+          ]
         }
       ],
-      "implementation": "Departments referenced in this Directive are authorized to reallocate existing resources, modify procurement timelines, and coordinate across agencies. Budget implications reported to the Mayor's Office within 30 days.",
-      "reporting": "Quarterly integrated progress reports to the Mayor. First comprehensive report due 120 days after issuance."
+      "implementation": "The departments referenced in this Directive are authorized to reallocate existing resources, modify procurement timelines, and coordinate across agencies as necessary to execute these directives. Budget implications shall be reported to the Mayor's Office within 30 days of issuance.",
+      "reporting": "The Mayor's Office shall receive quarterly integrated progress reports, consolidating updates from all sections of this Directive. The first comprehensive report is due 120 days after issuance."
     }
   ],
   "talkingPoints": {
@@ -308,9 +416,21 @@
     "frameworkDescription": "The Five Fights framework organizes those programs into five constituent-facing categories: Earn More, Build More, Save More, Care More, and Protect More Rights. Each fight maps to a real economic pressure Angelenos face and is backed by concrete programs, dollar figures, and measurable outcomes.",
     "rubricDescription": "Programs are scored on a 14-point rubric across five criteria: Bass Attribution, Scale of Impact, Communications Value, Strategic Alignment with the Affordability Agenda, and Implementation Reality. Two binary flags (Equity Depth and Durability) are noted but do not affect the score.",
     "acknowledgments": [
-      { "name": "Jenny Delwood", "role": "Deputy Chief of Staff, Mayor's Office", "description": "Placement Supervisor" },
-      { "name": "Larry Frank", "role": "Senior Policy Advisor, Mayor's Office", "description": "Framework Co-Developer" },
-      { "name": "Department Representatives", "role": "LAHD, HACLA, EWDD, CIFD, CAO", "description": "Database Sources" }
+      {
+        "name": "Jenny Delwood",
+        "role": "Deputy Chief of Staff, Mayor's Office",
+        "description": "Placement Supervisor"
+      },
+      {
+        "name": "Larry Frank",
+        "role": "Senior Policy Advisor, Mayor's Office",
+        "description": "Framework Co-Developer"
+      },
+      {
+        "name": "Department Representatives",
+        "role": "LAHD, HACLA, EWDD, CIFD, CAO",
+        "description": "Database Sources"
+      }
     ],
     "primarySources": [
       "Mayor's Office of Policy and Communications internal program database",
@@ -322,10 +442,26 @@
       "California Legislative Analyst's Office (CalEITC utilization data)"
     ],
     "tierDescriptions": [
-      { "tier": "A-List", "range": "12+", "description": "Bass's signature programs with the highest public recognition and impact" },
-      { "tier": "Tier 1", "range": "9-11", "description": "High-impact programs with strong Bass attribution" },
-      { "tier": "Tier 2", "range": "5-8", "description": "Solid programmatic work with moderate communications potential" },
-      { "tier": "Tier 3", "range": "Below 5", "description": "Infrastructure, passthroughs, or programs with limited public legibility" }
+      {
+        "tier": "A-List",
+        "range": "12+",
+        "description": "Bass's signature programs with the highest public recognition and impact"
+      },
+      {
+        "tier": "Tier 1",
+        "range": "9-11",
+        "description": "High-impact programs with strong Bass attribution"
+      },
+      {
+        "tier": "Tier 2",
+        "range": "5-8",
+        "description": "Solid programmatic work with moderate communications potential"
+      },
+      {
+        "tier": "Tier 3",
+        "range": "Below 5",
+        "description": "Infrastructure, passthroughs, or programs with limited public legibility"
+      }
     ]
   },
   "dashboard": {
@@ -333,10 +469,26 @@
     "title": "The Numbers",
     "dataNote": "Total program cost figures reflect reported TPC values from the Mayor's Office internal database as of early 2026. Programs with $0 TPC represent mayoral directives, regulatory actions, or non-city-funded programs.",
     "bigStats": [
-      { "value": "$5.16B", "label": "Total documented program expenditure", "caption": "Sum of programs with reported TPC data" },
-      { "value": "209", "label": "Active affordability programs (deduplicated)", "caption": "Across 20+ city departments" },
-      { "value": "50K+", "label": "Households served annually via FamilySource", "caption": "Across 19 centers citywide" },
-      { "value": "~31.7K", "label": "Housing units approved under ED1", "caption": "As of late 2025, LA City Planning" }
+      {
+        "value": "$5.16B",
+        "label": "Total documented program expenditure",
+        "caption": "Sum of programs with reported TPC data"
+      },
+      {
+        "value": "209",
+        "label": "Active affordability programs (deduplicated)",
+        "caption": "Across 20+ city departments"
+      },
+      {
+        "value": "50K+",
+        "label": "Households served annually via FamilySource",
+        "caption": "Across 19 centers citywide"
+      },
+      {
+        "value": "~31.7K",
+        "label": "Housing units approved under ED1",
+        "caption": "As of late 2025, LA City Planning"
+      }
     ]
   }
 }

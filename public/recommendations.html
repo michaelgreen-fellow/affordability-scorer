@@ -69,7 +69,6 @@
   cursor:pointer;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s;
   display:flex;align-items:center;justify-content:center;
   box-shadow:0 4px 24px rgba(11,28,51,.12);
-  overflow:visible;
 }
 @media(max-width:640px){.ed-circle{position:relative;width:180px;height:180px}}
 
@@ -93,14 +92,13 @@
   position:relative;z-index:2;text-align:center;padding:1.25rem;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   width:100%;height:100%;border-radius:50%;
-  transition:opacity .3s;
 }
 .ed-num{font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:6px}
 .ed-name{font-family:var(--serif);font-size:clamp(17px,2vw,21px);color:#fff;line-height:1.2;max-width:140px}
 
-/* ── HOVER CARD ── */
+/* ── HOVER CARD (positioned to the side) ── */
 .ed-hover-card{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.88);
+  position:absolute;
   width:260px;background:rgba(255,255,255,.97);
   border-radius:14px;padding:1.125rem 1.25rem;
   box-shadow:0 12px 48px rgba(11,28,51,.18);
@@ -109,19 +107,39 @@
   z-index:10;
   backdrop-filter:blur(8px);
 }
-.ed-circle:hover .ed-hover-card{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:all}
+
+/* Top circle: card appears below */
+.ed-circle[data-ed="0"] .ed-hover-card{
+  top:calc(100% + 12px);left:50%;transform:translate(-50%,8px);
+}
+.ed-circle[data-ed="0"]:hover .ed-hover-card{
+  opacity:1;pointer-events:all;transform:translate(-50%,0);
+}
+
+/* Bottom-left circle: card appears to the right */
+.ed-circle[data-ed="1"] .ed-hover-card{
+  top:50%;left:calc(100% + 14px);transform:translate(8px,-50%);
+}
+.ed-circle[data-ed="1"]:hover .ed-hover-card{
+  opacity:1;pointer-events:all;transform:translate(0,-50%);
+}
+
+/* Bottom-right circle: card appears to the left */
+.ed-circle[data-ed="2"] .ed-hover-card{
+  top:50%;right:calc(100% + 14px);left:auto;transform:translate(-8px,-50%);
+}
+.ed-circle[data-ed="2"]:hover .ed-hover-card{
+  opacity:1;pointer-events:all;transform:translate(0,-50%);
+}
+
+@media(max-width:640px){
+  .ed-hover-card{display:none}
+}
+
 .ehc-fights{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
 .ehc-fight-tag{font-family:var(--mono);font-size:7px;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:3px;color:#fff}
 .ehc-summary{font-size:12px;color:var(--text2);line-height:1.65;margin-bottom:10px}
 .ehc-cta{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);text-align:center}
-
-/* ── CONNECTING LINES ── */
-.ed-arena::before,.ed-arena::after{content:'';position:absolute;background:rgba(11,28,51,.06);z-index:0}
-.ed-arena::before{
-  top:100px;left:calc(8% + 100px);width:calc(50% - 8% - 100px);height:1px;
-  transform-origin:left;transform:rotate(42deg);
-}
-@media(max-width:640px){.ed-arena::before,.ed-arena::after{display:none}}
 
 /* ── LEGEND ── */
 .ed-legend{display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
@@ -137,8 +155,8 @@
 .ed-overlay.open{display:flex}
 
 .ed-modal{
-  width:100%;max-width:740px;max-height:calc(100vh - 3rem);
-  background:#fff;border-radius:16px;
+  width:100%;max-width:720px;max-height:calc(100vh - 3rem);
+  background:#fff;border-radius:4px;
   display:flex;flex-direction:column;overflow:hidden;
   animation:edPopIn .36s cubic-bezier(.2,.8,.2,1);
   box-shadow:0 24px 80px rgba(11,28,51,.3);
@@ -159,34 +177,35 @@
 .ed-modal-scroll::-webkit-scrollbar-track{background:transparent}
 .ed-modal-scroll::-webkit-scrollbar-thumb{background:rgba(11,28,51,.12);border-radius:3px}
 
-/* ── MODAL HEADER (colored) ── */
-.ed-modal-hdr{padding:2.5rem 2.25rem 1.75rem;position:relative}
-.ed-seal-row{display:flex;align-items:center;gap:14px;margin-bottom:1.25rem}
-.ed-seal{width:56px;height:56px;border-radius:50%;border:2px solid rgba(255,255,255,.3);overflow:hidden;flex-shrink:0;background:rgba(255,255,255,.15)}
-.ed-seal img{width:100%;height:100%;object-fit:contain}
-.ed-office{font-family:var(--serif);font-size:14px;color:rgba(255,255,255,.9);line-height:1.3}
-.ed-office-sub{font-family:var(--mono);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:3px}
-.ed-modal-num{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:6px}
-.ed-modal-title{font-family:var(--serif);font-size:clamp(24px,3.5vw,34px);color:#fff;line-height:1.1;margin-bottom:4px}
-.ed-modal-subtitle{font-family:var(--serif);font-size:14px;font-style:italic;color:rgba(255,255,255,.7)}
-.ed-modal-fights{display:flex;gap:6px;flex-wrap:wrap;margin-top:1rem}
-.ed-modal-fight-tag{font-family:var(--mono);font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:3px;background:rgba(255,255,255,.2);color:#fff}
+/* ── FORMAL DOCUMENT HEADER ── */
+.ed-doc{padding:2.5rem 2.75rem 2rem;font-family:'Times New Roman',Times,Georgia,serif}
+.ed-doc-seal{display:flex;justify-content:center;margin-bottom:1.25rem}
+.ed-doc-seal img{width:72px;height:72px}
+.ed-doc-org{text-align:center;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#222;margin-bottom:2px;font-weight:700}
+.ed-doc-office{text-align:center;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#555;margin-bottom:1.5rem}
+.ed-doc-rule{height:2px;background:#222;margin-bottom:1.5rem}
+.ed-doc-title{text-align:center;font-size:16px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#222;margin-bottom:4px}
+.ed-doc-date{text-align:center;font-size:11px;color:#555;margin-bottom:4px}
+.ed-doc-subject{text-align:center;font-size:12px;color:#333;margin-bottom:1.75rem;font-style:italic}
+.ed-doc-rule2{height:1px;background:#ccc;margin-bottom:1.75rem}
 
-/* ── MODAL BODY ── */
-.ed-modal-body{padding:0 2.25rem 2rem}
-.ed-body-section{margin-bottom:1.75rem}
-.ed-body-section:last-child{margin-bottom:0}
-.ed-sec-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:1px solid rgba(11,28,51,.08)}
-.ed-whereas{font-size:13px;color:var(--text2);line-height:1.75;margin-bottom:.75rem;padding-left:1rem;border-left:2px solid rgba(11,28,51,.08)}
-.ed-whereas:last-child{margin-bottom:0}
-.ed-section-title{font-family:var(--serif);font-size:16px;color:var(--navy);margin-bottom:.5rem;line-height:1.3}
-.ed-section-body{font-size:13px;color:var(--text2);line-height:1.75;margin-bottom:1.25rem}
-.ed-section-body:last-child{margin-bottom:0}
-.ed-impl{font-size:12px;color:var(--text3);line-height:1.65;padding:.875rem 1rem;background:rgba(11,28,51,.03);border-radius:8px;border:1px solid rgba(11,28,51,.06)}
-.ed-impl strong{color:var(--navy);font-weight:600}
+/* ── FORMAL DOCUMENT BODY ── */
+.ed-doc-whereas{font-size:13px;color:#333;line-height:1.8;margin-bottom:.875rem;text-indent:2rem;text-align:justify}
+.ed-doc-whereas strong{font-weight:700;font-style:normal}
+.ed-doc-therefore{font-size:13px;color:#222;line-height:1.8;margin:1.5rem 0;text-indent:2rem;font-weight:700;text-align:justify}
+.ed-doc-section-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#222;margin:1.5rem 0 .75rem;border-bottom:1px solid #ddd;padding-bottom:4px}
+.ed-doc-section-body{font-size:13px;color:#333;line-height:1.8;margin-bottom:1rem;text-align:justify;text-indent:2rem}
+.ed-doc-impl{font-size:12px;color:#444;line-height:1.7;margin-top:1.5rem;padding-top:1rem;border-top:1px solid #ddd}
+.ed-doc-impl strong{color:#222}
+
+/* ── SIGNATURE BLOCK ── */
+.ed-doc-sig{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #ddd}
+.ed-doc-sig-line{width:200px;height:1px;background:#999;margin-bottom:6px;margin-top:2rem}
+.ed-doc-sig-name{font-size:13px;font-weight:700;color:#222}
+.ed-doc-sig-title{font-size:11px;color:#555}
 
 /* ── MODAL FOOTER ── */
-.ed-modal-footer{padding:.875rem 2.25rem;border-top:1px solid rgba(11,28,51,.08);display:flex;justify-content:flex-end;flex-shrink:0}
+.ed-modal-footer{padding:.875rem 2.25rem;border-top:1px solid rgba(11,28,51,.08);display:flex;justify-content:flex-end;flex-shrink:0;gap:10px}
 .ed-download-btn{
   font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
   padding:9px 20px;border-radius:6px;border:1px solid var(--navy);
@@ -235,6 +254,7 @@ document.getElementById('pwIn').focus();})();
   <div class="nf">Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026</div>
 </nav>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <div class="ed-page">
   <div class="ed-header">
@@ -293,10 +313,7 @@ document.getElementById('pwIn').focus();})();
 <div class="ed-overlay" id="edOverlay">
   <div class="ed-modal" id="edModal">
     <button class="ed-modal-close" onclick="closeEdModal()">&#x2715;</button>
-    <div class="ed-modal-scroll" id="edModalScroll">
-      <div class="ed-modal-header" id="edModalHeader"></div>
-      <div class="ed-modal-body" id="edModalBody"></div>
-    </div>
+    <div class="ed-modal-scroll" id="edModalScroll"></div>
     <div class="ed-modal-footer">
       <button class="ed-download-btn" id="edDownloadBtn" onclick="downloadED()">Download PDF</button>
     </div>
@@ -315,7 +332,7 @@ fetch('content.json?v='+Date.now()).then(function(r){return r.json();}).then(fun
   EDS=data.executiveDirectives||[];
 
   EDS.forEach(function(ed,i){
-    document.getElementById('edNum'+i).textContent=ed.num;
+    document.getElementById('edNum'+i).textContent='Executive Directive No. '+ed.num;
     document.getElementById('edName'+i).textContent=ed.title;
 
     var circle=document.getElementById('edCircle'+i);
@@ -328,10 +345,7 @@ fetch('content.json?v='+Date.now()).then(function(r){return r.json();}).then(fun
     document.getElementById('ehcFights'+i).innerHTML=fightTags;
     document.getElementById('ehcSummary'+i).textContent=ed.summary;
 
-    circle.addEventListener('click',function(e){
-      if(e.target.closest('.ed-hover-card')) openEdModal(i);
-      else openEdModal(i);
-    });
+    circle.addEventListener('click',function(){openEdModal(i);});
   });
 }).catch(function(err){console.error('Failed to load EDs:',err);});
 
@@ -340,53 +354,64 @@ function openEdModal(idx){
   var ed=EDS[idx];
   if(!ed) return;
 
-  var hdr=document.getElementById('edModalHeader');
-  hdr.style.background='linear-gradient(140deg,'+ed.color+'F0,'+ed.color+'CC)';
+  var scroll=document.getElementById('edModalScroll');
+  var html='<div class="ed-doc">';
 
-  var fightTags='';
-  (ed.fights||[]).forEach(function(f){
-    fightTags+='<span class="ed-modal-fight-tag">'+f+'</span>';
+  // Seal and header (page 1 style)
+  html+='<div class="ed-doc-seal"><img src="seal.svg" alt="City of Los Angeles Seal"></div>';
+  html+='<div class="ed-doc-org">KAREN BASS</div>';
+  html+='<div class="ed-doc-office">MAYOR</div>';
+  html+='<div class="ed-doc-rule"></div>';
+  html+='<div class="ed-doc-title">EXECUTIVE DIRECTIVE NO. '+ed.num+'</div>';
+  html+='<div class="ed-doc-date">Issue Date: '+ed.issueDate+'</div>';
+  html+='<div class="ed-doc-subject"><strong>Subject:</strong>&emsp;'+ed.subject+'</div>';
+  html+='<div class="ed-doc-rule2"></div>';
+
+  // Preamble paragraphs
+  (ed.preamble||[]).forEach(function(p){
+    html+='<div class="ed-doc-para">'+p+'</div>';
   });
 
-  hdr.innerHTML=
-    '<div class="ed-modal-hdr">'+
-      '<div class="ed-seal-row">'+
-        '<div class="ed-seal"><img src="seal.svg" alt="City Seal"></div>'+
-        '<div><div class="ed-office">Office of the Mayor</div><div class="ed-office-sub">City of Los Angeles</div></div>'+
-      '</div>'+
-      '<div class="ed-modal-num">'+ed.num+'</div>'+
-      '<div class="ed-modal-title">'+ed.title+'</div>'+
-      '<div class="ed-modal-subtitle">'+ed.subtitle+'</div>'+
-      '<div class="ed-modal-fights">'+fightTags+'</div>'+
-    '</div>';
-
-  var body=document.getElementById('edModalBody');
-  var html='';
-
-  html+='<div class="ed-body-section"><div class="ed-sec-label">Findings</div>';
-  (ed.background||[]).forEach(function(b){
-    html+='<div class="ed-whereas">WHEREAS, '+b+'</div>';
+  // Directives
+  (ed.directives||[]).forEach(function(d){
+    html+='<div class="ed-doc-directive">';
+    html+='<div class="ed-doc-dir-letter">'+d.letter+'.</div>';
+    html+='<div class="ed-doc-dir-body">';
+    html+='<div class="ed-doc-dir-text">'+d.text+'</div>';
+    if(d.items&&d.items.length){
+      html+='<ol class="ed-doc-items">';
+      d.items.forEach(function(item){
+        html+='<li>'+item+'</li>';
+      });
+      html+='</ol>';
+    }
+    html+='</div></div>';
   });
+
+  // Implementation and reporting
+  html+='<div class="ed-doc-impl-section">';
+  html+='<div class="ed-doc-para">'+ed.implementation+'</div>';
+  html+='<div class="ed-doc-para">'+ed.reporting+'</div>';
   html+='</div>';
 
-  html+='<div class="ed-body-section"><div class="ed-sec-label">Operative Directives</div>';
-  (ed.sections||[]).forEach(function(s){
-    html+='<div class="ed-section-title">'+s.title+'</div>';
-    html+='<div class="ed-section-body">'+s.body+'</div>';
-  });
+  // Signature block
+  html+='<div class="ed-doc-sig">';
+  html+='<div class="ed-doc-sig-exec">Executed this _____ day of __________, 2026</div>';
+  html+='<div class="ed-doc-sig-line"></div>';
+  html+='<div class="ed-doc-sig-name">KAREN BASS</div>';
+  html+='<div class="ed-doc-sig-title">Mayor</div>';
   html+='</div>';
 
-  html+='<div class="ed-body-section">';
-  html+='<div class="ed-impl"><strong>Implementation Authority:</strong> '+ed.implementation+'</div>';
+  // Footer
+  html+='<div class="ed-doc-footer">';
+  html+='200 N. SPRING STREET, ROOM 303 LOS ANGELES, CA 90012 (213) 978-0600';
+  html+='<br>MAYOR.LACITY.ORG';
   html+='</div>';
 
-  html+='<div class="ed-body-section">';
-  html+='<div class="ed-impl"><strong>Reporting Requirement:</strong> '+ed.reporting+'</div>';
   html+='</div>';
 
-  body.innerHTML=html;
-
-  document.getElementById('edModalScroll').scrollTop=0;
+  scroll.innerHTML=html;
+  scroll.scrollTop=0;
   document.getElementById('edOverlay').classList.add('open');
 }
 
@@ -400,28 +425,153 @@ function downloadED(){
   var ed=EDS[currentEdIdx];
   if(!ed) return;
 
-  var text='OFFICE OF THE MAYOR\nCITY OF LOS ANGELES\n\n';
-  text+=ed.num.toUpperCase()+': '+ed.title.toUpperCase()+'\n';
-  text+=ed.subtitle+'\n\n';
-  text+='FINDINGS\n\n';
-  (ed.background||[]).forEach(function(b){
-    text+='WHEREAS, '+b+'\n\n';
-  });
-  text+='NOW, THEREFORE, I direct the following:\n\n';
-  (ed.sections||[]).forEach(function(s){
-    text+=s.title.toUpperCase()+'\n\n';
-    text+=s.body+'\n\n';
-  });
-  text+='IMPLEMENTATION AUTHORITY\n\n'+ed.implementation+'\n\n';
-  text+='REPORTING REQUIREMENT\n\n'+ed.reporting+'\n\n';
-  text+='Mayor Karen Bass\nCity of Los Angeles\n';
+  var jsPDF=window.jspdf.jsPDF;
+  var doc=new jsPDF({unit:'pt',format:'letter'});
+  var W=612,H=792;
+  var ML=72,MR=72,MT=72,MB=72;
+  var TW=W-ML-MR;
+  var y=MT;
+  var pageNum=1;
+  var totalPages=1; // Will calculate after
 
-  var blob=new Blob([text],{type:'text/plain'});
-  var a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download=ed.id+'-draft.txt';
-  a.click();
-  URL.revokeObjectURL(a.href);
+  function addPageHeader(){
+    if(pageNum>1){
+      doc.setFont('times','normal');
+      doc.setFontSize(10);
+      doc.text('Mayor Karen Bass',W-MR,54,{align:'right'});
+      doc.text('Executive Directive No. '+ed.num,W-MR,66,{align:'right'});
+      doc.text('Page '+pageNum,W-MR,78,{align:'right'});
+      y=MT+20;
+    }
+  }
+
+  function checkPage(needed){
+    if(y+needed>H-MB){
+      doc.addPage();
+      pageNum++;
+      y=MT;
+      addPageHeader();
+    }
+  }
+
+  function wrapText(text,fontSize,fontStyle,indent){
+    indent=indent||0;
+    doc.setFontSize(fontSize);
+    doc.setFont('times',fontStyle||'normal');
+    var lines=doc.splitTextToSize(text,TW-indent);
+    lines.forEach(function(line){
+      checkPage(fontSize*1.4);
+      doc.text(line,ML+indent,y);
+      y+=fontSize*1.4;
+    });
+  }
+
+  // Page 1: Title block
+  doc.setFont('times','bold');
+  doc.setFontSize(14);
+  doc.text('KAREN BASS',W/2,y,{align:'center'});
+  y+=18;
+  doc.setFont('times','normal');
+  doc.setFontSize(12);
+  doc.text('MAYOR',W/2,y,{align:'center'});
+  y+=30;
+
+  // Rule
+  doc.setLineWidth(1.5);
+  doc.line(ML,y,W-MR,y);
+  y+=24;
+
+  // Title
+  doc.setFont('times','bold');
+  doc.setFontSize(14);
+  doc.text('EXECUTIVE DIRECTIVE NO. '+ed.num,W/2,y,{align:'center'});
+  y+=28;
+
+  // Issue date
+  doc.setFont('times','normal');
+  doc.setFontSize(11);
+  doc.text('Issue Date: '+ed.issueDate,W/2,y,{align:'center'});
+  y+=24;
+
+  // Subject
+  doc.setFont('times','bold');
+  doc.setFontSize(11);
+  doc.text('Subject:',ML,y);
+  doc.text(ed.subject,ML+70,y);
+  y+=28;
+
+  // Rule
+  doc.setLineWidth(0.5);
+  doc.line(ML,y,W-MR,y);
+  y+=20;
+
+  // Preamble
+  (ed.preamble||[]).forEach(function(p){
+    wrapText(p,11,'normal',24);
+    y+=8;
+  });
+
+  // Directives
+  (ed.directives||[]).forEach(function(d){
+    y+=6;
+    checkPage(30);
+    doc.setFont('times','normal');
+    doc.setFontSize(11);
+    doc.text(d.letter+'.',ML+24,y);
+
+    var dirLines=doc.splitTextToSize(d.text,TW-48);
+    dirLines.forEach(function(line){
+      checkPage(15);
+      doc.text(line,ML+48,y);
+      y+=15;
+    });
+    y+=4;
+
+    if(d.items&&d.items.length){
+      d.items.forEach(function(item,idx){
+        checkPage(15);
+        doc.text((idx+1)+'.',ML+60,y);
+        var itemLines=doc.splitTextToSize(item,TW-84);
+        itemLines.forEach(function(line){
+          checkPage(15);
+          doc.text(line,ML+84,y);
+          y+=15;
+        });
+        y+=6;
+      });
+    }
+  });
+
+  // Implementation
+  y+=12;
+  wrapText(ed.implementation,11,'normal',24);
+  y+=8;
+  wrapText(ed.reporting,11,'normal',24);
+
+  // Signature block
+  y+=36;
+  checkPage(80);
+  doc.setFont('times','normal');
+  doc.setFontSize(11);
+  doc.text('Executed this _____ day of __________, 2026',W/2,y,{align:'center'});
+  y+=48;
+  doc.setLineWidth(0.5);
+  doc.line(W/2-100,y,W/2+100,y);
+  y+=16;
+  doc.setFont('times','bold');
+  doc.text('KAREN BASS',W/2,y,{align:'center'});
+  y+=14;
+  doc.setFont('times','normal');
+  doc.text('Mayor',W/2,y,{align:'center'});
+
+  // Footer on page 1
+  doc.setPage(1);
+  doc.setFont('times','normal');
+  doc.setFontSize(8);
+  doc.text('200 N. SPRING STREET, ROOM 303 LOS ANGELES, CA 90012 (213) 978-0600',W/2,H-36,{align:'center'});
+  doc.text('MAYOR.LACITY.ORG',W/2,H-26,{align:'center'});
+
+  doc.save('Executive-Directive-No-'+ed.num+'-'+ed.title.replace(/\s+/g,'-')+'.pdf');
 }
 
 document.getElementById('edOverlay').addEventListener('click',function(e){

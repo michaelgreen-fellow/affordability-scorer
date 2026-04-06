@@ -1,5 +1,6 @@
 {{TOPNAV}}
 {{NAV_DRAWER}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <div class="ed-page">
   <div class="ed-header">
@@ -57,10 +58,7 @@
 <div class="ed-overlay" id="edOverlay">
   <div class="ed-modal" id="edModal">
     <button class="ed-modal-close" onclick="closeEdModal()">&#x2715;</button>
-    <div class="ed-modal-scroll" id="edModalScroll">
-      <div class="ed-modal-header" id="edModalHeader"></div>
-      <div class="ed-modal-body" id="edModalBody"></div>
-    </div>
+    <div class="ed-modal-scroll" id="edModalScroll"></div>
     <div class="ed-modal-footer">
       <button class="ed-download-btn" id="edDownloadBtn" onclick="downloadED()">Download PDF</button>
     </div>
