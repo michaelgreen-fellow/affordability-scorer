@@ -118,6 +118,7 @@ document.getElementById('pwIn').focus();})();
   <div class="nf">Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026</div>
 </nav>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <main>
   <div class="eye">Affordability for All</div>
   <h1>The <em>Numbers</em></h1>
@@ -125,11 +126,11 @@ document.getElementById('pwIn').focus();})();
   <div class="bigs" id="bigStats"></div>
   <div class="fstrip" id="fightStrip"></div>
   <div class="cgrid">
-    <div class="cc"><div class="cct" id="c1t">Programs by Tier</div><div class="ccs" id="c1s">Loading...</div><div class="cw"><canvas id="c1"></canvas></div></div>
-    <div class="cc"><div class="cct" id="c2t">Programs by Fight</div><div class="ccs" id="c2s">Loading...</div><div class="cw"><canvas id="c2"></canvas></div></div>
+    <div class="cc"><div class="cct" id="c1t">Program Expenditure by Fight</div><div class="ccs" id="c1s">Total documented spending</div><div class="cw"><canvas id="c1"></canvas></div></div>
+    <div class="cc"><div class="cct" id="c2t">Programs by Fight</div><div class="ccs" id="c2s">Distribution across the five fights</div><div class="cw"><canvas id="c2"></canvas></div></div>
     <div class="cc full"><div class="cct" id="c3t">Programs by Topic Area</div><div class="ccs" id="c3s">Loading...</div><div class="cw tall"><canvas id="c3"></canvas></div></div>
     <div class="cc"><div class="cct" id="c4t">Ongoing vs. One-Time</div><div class="ccs" id="c4s">Loading...</div><div class="cw"><canvas id="c4"></canvas></div></div>
-    <div class="cc"><div class="cct" id="c5t">A-List + Tier 1 by Fight</div><div class="ccs" id="c5s">Loading...</div><div class="cw"><canvas id="c5"></canvas></div></div>
+    <div class="cc"><div class="cct" id="c5t">A-List + Tier 1 by Fight</div><div class="ccs" id="c5s">Highest-tier programs per fight</div><div class="cw"><canvas id="c5"></canvas></div></div>
   </div>
 </main><footer style="text-align:center;padding:1.375rem;font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.06em;border-top:1px solid rgba(11,28,51,0.07)"></footer>
 
@@ -223,6 +224,15 @@ Promise.all([
     if(p.tier==='Tier 1'&&t1ByFight.hasOwnProperty(p.fight)) t1ByFight[p.fight]++;
   });
 
+  // Spending by fight
+  var spendByFight={};
+  FIGHTS.forEach(function(f){spendByFight[f]=0;});
+  programs.forEach(function(p){
+    if(spendByFight.hasOwnProperty(p.fight)){
+      spendByFight[p.fight]+=parseTPC(p.tpc);
+    }
+  });
+
   // Data note from content.json
   var noteEl=document.getElementById('dataNote');
   if(noteEl && db && db.dataNote) noteEl.innerHTML='<strong>Data note:</strong> '+db.dataNote;
@@ -266,9 +276,8 @@ Promise.all([
     });
   }
 
-  // Update tier subtitle dynamically
-  var c1s=document.getElementById('c1s');
-  if(c1s) c1s.textContent='A-List: '+(tierCounts['A-List']||0)+' \u00B7 Tier 1: '+(tierCounts['Tier 1']||0)+' \u00B7 Tier 2: '+(tierCounts['Tier 2']||0)+' \u00B7 Tier 3: '+(tierCounts['Tier 3']||0);
+  // C1: Program Expenditure by Fight (doughnut)
+  // No tier subtitle needed anymore, spending subtitle is in template
 
   // Topic subtitle
   var topicKeys=Object.keys(topicCounts);
@@ -284,15 +293,15 @@ Promise.all([
   Chart.defaults.borderColor='rgba(11,28,51,0.07)';
   Chart.defaults.font.family="'Outfit',sans-serif";
 
-  // C1: Programs by Tier (doughnut)
+  // C1: Program Expenditure by Fight (doughnut)
   new Chart(document.getElementById('c1'),{
     type:'doughnut',
-    data:{labels:TIERS,datasets:[{
-      data:TIERS.map(function(t){return tierCounts[t]||0;}),
-      backgroundColor:['#D4870ACC','#6D28D9CC','#047857CC','#CBD5E1CC'],
+    data:{labels:FIGHTS,datasets:[{
+      data:FIGHTS.map(function(f){return spendByFight[f]||0;}),
+      backgroundColor:FIGHTS.map(function(f){return FC[f]+'CC';}),
       borderColor:'rgba(255,255,255,0.9)',borderWidth:3,hoverOffset:5
     }]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.label+': '+c.parsed+' programs';}}}},cutout:'68%'}
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.label+': '+fmtB(c.parsed);}}}},cutout:'68%'}
   });
 
   // C2: Programs by Fight (horizontal bar)

@@ -69,8 +69,6 @@
     { "id": "dashboard", "href": "dashboard.html", "style": "bars", "feature": "showDashboard" },
     { "id": "campaigns", "href": "campaigns.html", "style": "skew", "feature": "showCampaigns" },
     { "id": "recommendations", "href": "recommendations.html", "style": "gradient", "feature": "showRecommendations" },
-    { "id": "talkingPoints", "href": "talking-points.html", "style": "draft", "feature": "showTalkingPoints" },
-    { "id": "sources", "href": "sources.html", "style": "lines", "feature": "showSources" },
-    { "id": "contact", "href": "contact.html", "style": "initials", "feature": "showContact" }
+    { "id": "talkingPoints", "href": "talking-points.html", "style": "draft", "feature": "showTalkingPoints" }
   ]
 }

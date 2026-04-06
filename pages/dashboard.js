@@ -86,6 +86,15 @@ Promise.all([
     if(p.tier==='Tier 1'&&t1ByFight.hasOwnProperty(p.fight)) t1ByFight[p.fight]++;
   });
 
+  // Spending by fight
+  var spendByFight={};
+  FIGHTS.forEach(function(f){spendByFight[f]=0;});
+  programs.forEach(function(p){
+    if(spendByFight.hasOwnProperty(p.fight)){
+      spendByFight[p.fight]+=parseTPC(p.tpc);
+    }
+  });
+
   // Data note from content.json
   var noteEl=document.getElementById('dataNote');
   if(noteEl && db && db.dataNote) noteEl.innerHTML='<strong>Data note:</strong> '+db.dataNote;
@@ -129,9 +138,8 @@ Promise.all([
     });
   }
 
-  // Update tier subtitle dynamically
-  var c1s=document.getElementById('c1s');
-  if(c1s) c1s.textContent='A-List: '+(tierCounts['A-List']||0)+' \u00B7 Tier 1: '+(tierCounts['Tier 1']||0)+' \u00B7 Tier 2: '+(tierCounts['Tier 2']||0)+' \u00B7 Tier 3: '+(tierCounts['Tier 3']||0);
+  // C1: Program Expenditure by Fight (doughnut)
+  // No tier subtitle needed anymore, spending subtitle is in template
 
   // Topic subtitle
   var topicKeys=Object.keys(topicCounts);
@@ -147,15 +155,15 @@ Promise.all([
   Chart.defaults.borderColor='rgba(11,28,51,0.07)';
   Chart.defaults.font.family="'Outfit',sans-serif";
 
-  // C1: Programs by Tier (doughnut)
+  // C1: Program Expenditure by Fight (doughnut)
   new Chart(document.getElementById('c1'),{
     type:'doughnut',
-    data:{labels:TIERS,datasets:[{
-      data:TIERS.map(function(t){return tierCounts[t]||0;}),
-      backgroundColor:['#D4870ACC','#6D28D9CC','#047857CC','#CBD5E1CC'],
+    data:{labels:FIGHTS,datasets:[{
+      data:FIGHTS.map(function(f){return spendByFight[f]||0;}),
+      backgroundColor:FIGHTS.map(function(f){return FC[f]+'CC';}),
       borderColor:'rgba(255,255,255,0.9)',borderWidth:3,hoverOffset:5
     }]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.label+': '+c.parsed+' programs';}}}},cutout:'68%'}
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.label+': '+fmtB(c.parsed);}}}},cutout:'68%'}
   });
 
   // C2: Programs by Fight (horizontal bar)
