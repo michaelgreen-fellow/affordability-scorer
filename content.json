@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Single source of truth for all editable copy on the Affordability for All site.",
-    "lastUpdated": "2026-04-01",
+    "lastUpdated": "2026-04-06",
     "author": "Michael Green II",
     "notes": "Edit this file to update any text on the site. Pages that read from this file will auto-populate on load."
   },
@@ -19,12 +19,10 @@
     },
     "pageTitle": "The Five Fights",
     "thumbnails": {
-      "inventory": { "title": "Inventory", "sub": "209 programs" },
-      "dashboard": { "title": "Dashboard", "sub": "Charts" },
+      "inventory": { "title": "Inventory", "sub": "209 programs", "label": "209" },
       "campaigns": { "title": "Campaigns", "sub": "Five fights" },
-      "recommendations": { "title": "Policy", "sub": "Shortlist", "label": "5 recs" },
-      "talkingPoints": { "title": "Talking", "sub": "Points", "label": "WIP" },
-      "contact": { "title": "Contact", "sub": "Michael Green II", "label": "MG II" }
+      "recommendations": { "title": "Executive", "sub": "Directives", "label": "3 EDs" },
+      "talkingPoints": { "title": "Talking", "sub": "Points", "label": "25 pts" }
     }
   },
   "fights": [
@@ -37,14 +35,8 @@
       "wheelDescription": "Bass built a floor under LA wages. She brokered landmark labor agreements, signing minimum wage laws, and enforced living wage standards at city contractors.",
       "campaignDescription": "Working Angelenos deserve wages that keep up with what it actually costs to live here. Bass brokered agreements, signed ordinances, and enforced standards.",
       "stats": [
-        {
-          "value": "30K",
-          "label": "workers in LAUSD/SEIU agreement"
-        },
-        {
-          "value": "$22.52",
-          "label": "new LAUSD min wage/hr"
-        }
+        { "value": "30K", "label": "workers in LAUSD/SEIU agreement" },
+        { "value": "$22.52", "label": "new LAUSD min wage/hr" }
       ],
       "wheelPrograms": [
         "LAUSD/SEIU 99 Labor Agreement",
@@ -62,14 +54,8 @@
       "wheelDescription": "ED1 streamlined approvals for 100% affordable housing. Adaptive Reuse converts vacant buildings into homes. Bass inherited 50 years of underbuilding.",
       "campaignDescription": "LA underbuilt housing for fifty years. Bass dismantled the bureaucratic barriers that made it impossible to catch up.",
       "stats": [
-        {
-          "value": "~29K",
-          "label": "units approved under ED1"
-        },
-        {
-          "value": "Over $300M",
-          "label": "ULA construction programs"
-        }
+        { "value": "~31.7K", "label": "units approved under ED1" },
+        { "value": "Over $300M", "label": "ULA construction programs" }
       ],
       "wheelPrograms": [
         "Executive Directive 1",
@@ -87,14 +73,8 @@
       "wheelDescription": "DWP savings. Free tax prep that puts thousands back. Utility relief for seniors. Public power that keeps rates lower than any private utility in the state.",
       "campaignDescription": "Every dollar Angelenos earn should go further. Lower utility costs, tax credits most people do not know exist, and savings programs that stretch every paycheck.",
       "stats": [
-        {
-          "value": "$41.5M",
-          "label": "annual Lifeline reimbursements"
-        },
-        {
-          "value": "$1,800",
-          "label": "Mobility Wallet transit cards"
-        }
+        { "value": "$41.5M", "label": "annual Lifeline reimbursements" },
+        { "value": "$1,800", "label": "Mobility Wallet transit cards" }
       ],
       "wheelPrograms": [
         "DWP Rate Advantage",
@@ -112,14 +92,8 @@
       "wheelDescription": "FamilySource. Inside Safe. Youth programs. Eviction defense. Maternal health. The safety net that catches people before they fall and lifts them when they do.",
       "campaignDescription": "The programs that catch people before they fall and lift them when they do. Families, youth, homelessness, eviction defense, veterans, and maternal health.",
       "stats": [
-        {
-          "value": "50K+",
-          "label": "households via FamilySource"
-        },
-        {
-          "value": "2",
-          "label": "years homelessness declined"
-        }
+        { "value": "50K+", "label": "households via FamilySource" },
+        { "value": "2", "label": "years homelessness declined" }
       ],
       "wheelPrograms": [
         "FamilySource System",
@@ -137,14 +111,8 @@
       "wheelDescription": "Renters are the majority of Angelenos. Bass signed the first RSO overhaul in 40 years, funded eviction defense through ULA, and built a legal shield for tenants facing displacement.",
       "campaignDescription": "Protecting tenants from displacement, funding eviction defense, and enforcing the strongest renter protections LA has seen in a generation.",
       "stats": [
-        {
-          "value": "$57M+",
-          "label": "ULA eviction defense funding"
-        },
-        {
-          "value": "11K+",
-          "label": "households served by Right to Counsel"
-        }
+        { "value": "$57M+", "label": "ULA eviction defense funding" },
+        { "value": "11K+", "label": "households served by Right to Counsel" }
       ],
       "wheelPrograms": [
         "ULA Eviction Defense & Prevention",
@@ -155,260 +123,146 @@
     }
   ],
   "campaigns": {
-    "_note": "Three featured programs per fight, shown as flip cards on the Campaigns page.",
-    "earn": [
-      {
-        "num": "01",
-        "name": "LAUSD / SEIU 99 Agreement",
-        "preview": "Historic contract for 30,000 school workers.",
-        "stat": "30% wage increase for 30,000 LAUSD workers. Average salary lifted from $25,000 to $33,000.",
-        "source": "SEIU Local 99 (April 2023)",
-        "url": "https://www.seiu99.org/2023/05/19/see-everything-we-won-in-our-historic-contract/"
-      },
-      {
-        "num": "02",
-        "name": "Airport & Hotel Minimum Wage",
-        "preview": "Wage floor timed to LA28.",
-        "stat": "Escalating floor reaching $30/hr by 2028 for thousands of tourism and hospitality workers.",
-        "source": "NBC LA / City Council (May 2025)",
-        "url": "https://www.nbclosangeles.com/news/local/la-city-council-tourism-wage-increase/3708138/"
-      },
-      {
-        "num": "03",
-        "name": "WorkSource Centers",
-        "preview": "Career centers across the city.",
-        "stat": "$19M invested annually in career counseling, training, and placement across 14 centers.",
-        "source": "City of LA / EWDD",
-        "url": "https://ewdd.lacity.gov/index.php/employment/worksource"
-      }
-    ],
-    "build": [
-      {
-        "num": "01",
-        "name": "Executive Directive 1",
-        "preview": "Fast-track for 100% affordable housing.",
-        "stat": "Over 42,000 affordable units proposed, ~31,700 approved since December 2022.",
-        "source": "Propmodo / WSJ (Nov 2025)",
-        "url": "https://propmodo.com/the-permit-shortcut-thats-rebooting-affordable-housing-development/"
-      },
-      {
-        "num": "02",
-        "name": "RSO Reform",
-        "preview": "First major update in nearly 40 years.",
-        "stat": "First overhaul of LA's Rent Stabilization Ordinance in roughly 40 years. Caps annual increases at 1-4%. Signed December 2025.",
-        "source": "Mayor Bass (Dec 2025)",
-        "url": "https://mayor.lacity.gov/news/making-la-more-affordable-mayor-bass-enacts-new-tenant-protections-caps-rent-apartment-units"
-      },
-      {
-        "num": "03",
-        "name": "ULA Construction Programs",
-        "preview": "Voter-approved housing investment.",
-        "stat": "Over $300M in ULA-funded construction programs for affordable housing production.",
-        "source": "City of LA / LAHD",
-        "url": "https://housing.lacity.gov/"
-      }
-    ],
-    "save": [
-      {
-        "num": "01",
-        "name": "DWP Rate Advantage",
-        "preview": "Public power, lower rates.",
-        "stat": "LADWP rates are among the lowest of any major metro utility in California. Public ownership keeps costs down for 4 million residents.",
-        "source": "UCLA / Legal Planet (Oct 2025)",
-        "url": "https://legal-planet.org/2025/10/15/which-is-better-ladwp-or-sce/"
-      },
-      {
-        "num": "02",
-        "name": "Free Tax Prep / EITC",
-        "preview": "Free filing, thousands back.",
-        "stat": "Eligible families can claim up to $11,000 in combined federal EITC and CalEITC credits. Billions go unclaimed every year.",
-        "source": "IRS / CA Franchise Tax Board",
-        "url": "https://www.irs.gov/credits-deductions/individuals/earned-income-tax-credit/"
-      },
-      {
-        "num": "03",
-        "name": "Lifeline Reimbursement",
-        "preview": "Utility relief for seniors.",
-        "stat": "$41.5M in annual reimbursements for low-income seniors and disabled residents.",
-        "source": "City of LA / LADWP",
-        "url": "https://www.ladwp.com/residential-services/bill-help/low-income-discount-programs"
-      }
-    ],
-    "care": [
-      {
-        "num": "01",
-        "name": "Inside Safe",
-        "preview": "Housing-first homelessness strategy.",
-        "stat": "Homelessness declined two consecutive years under Bass, a first in the city's recent history.",
-        "source": "Mayor Karen Bass",
-        "url": "https://mayor.lacity.gov/insideSafe"
-      },
-      {
-        "num": "02",
-        "name": "FamilySource System",
-        "preview": "19 one-stop centers citywide.",
-        "stat": "19 centers serving ~50,000 households annually. $30.5M in case management, coaching, legal aid.",
-        "source": "City of LA / CIFD",
-        "url": "https://communityinvestment.lacity.gov/familysource-centers"
-      },
-      {
-        "num": "03",
-        "name": "Right to Counsel",
-        "preview": "Eviction defense for tenants.",
-        "stat": "Free legal representation for tenants facing eviction. ULA-funded. Keeps families housed.",
-        "source": "City of LA / LAHD",
-        "url": "https://housing.lacity.gov/"
-      }
-    ],
-    "protect": [
-      {
-        "num": "01",
-        "name": "ULA Eviction Defense & Prevention",
-        "preview": "Legal representation for tenants facing eviction.",
-        "stat": "$57M+ in ULA funding for eviction defense, prevention services, and the Right to Counsel program since 2023.",
-        "source": "City of LA / LAHD",
-        "url": "https://housing.lacity.gov/"
-      },
-      {
-        "num": "02",
-        "name": "RSO Reform",
-        "preview": "First overhaul in nearly 40 years.",
-        "stat": "Caps annual rent increases at 1 to 4%, down from the prior 3 to 8% range. Signed December 2025.",
-        "source": "Mayor Bass (Dec 2025)",
-        "url": "https://mayor.lacity.gov/news/making-la-more-affordable-mayor-bass-enacts-new-tenant-protections-caps-rent-apartment-units"
-      },
-      {
-        "num": "03",
-        "name": "TAHO (Tenant Anti-Harassment)",
-        "preview": "Protecting tenants from landlord intimidation.",
-        "stat": "$5.6M in ULA funding for targeted outreach, education, and legal enforcement against tenant harassment.",
-        "source": "City of LA / LAHD",
-        "url": "https://housing.lacity.gov/"
-      }
-    ]
+    "_note": "One featured campaign per fight. Tagline plus three bullets. Awareness and adoption focus.",
+    "earn": {
+      "name": "WorkSource Centers",
+      "tagline": "If you are looking for work, or better work, there is a free center near you.",
+      "bullets": [
+        "The City of Los Angeles operates 14 WorkSource Centers offering free career counseling, job training, resume help, and placement services to adults, veterans, returning residents, and anyone navigating a job transition. Services are available in Armenian, Farsi, Korean, Russian, Spanish, and Tagalog.",
+        "WorkSource Centers are connected to the city's Olympic, World Cup, and FIFA procurement pipelines through 2028, meaning the next three years represent an unusually large window for Angelenos to enter new industries and secure contracts they would not otherwise reach.",
+        "Most Angelenos who qualify have never walked through the door. Find your nearest center and walk in this week at ewdd.lacity.gov."
+      ]
+    },
+    "build": {
+      "name": "ADUs",
+      "tagline": "The fastest way to add housing in Los Angeles is already on your property.",
+      "bullets": [
+        "California law now allows most homeowners to build an accessory dwelling unit with four-foot side setbacks, no parking requirement, and a permit decision within 60 days. LADBS's Standard Plan Program offers pre-approved architectural plans that can cut approval time significantly and reduce design costs compared to custom plans.",
+        "ADUs cost less to build than any other new housing type because they require no new land purchase. They generate rental income, provide housing for family members, and increase property value on the same lot you already own.",
+        "Eligibility depends on your property's zoning and existing structures. Use ZIMAS at zimas.lacity.org to check your property and visit adu.lacity.gov to start the process."
+      ]
+    },
+    "save": {
+      "name": "Low-Cost Auto Insurance & EITC",
+      "tagline": "There is money waiting for you. Here is how to claim it.",
+      "bullets": [
+        "California's Low-Cost Auto Insurance program covers eligible drivers for $401 per year, with 10/20/3 liability coverage. To qualify, your household income must be at or below 250 percent of the federal poverty level and your driving record must have no more than one point. Seventy-three percent of enrollees had no insurance before signing up. Ask about it at any FamilySource or WorkSource Center.",
+        "If your household qualifies, you may be able to claim up to $11,802 in combined federal EITC and CalEITC tax credits for tax year 2025. Free Tax Prep LA filed over 17,400 returns in 2024 and returned $21.4 million to low-income Angelenos. Forty-five locations. No cost to file.",
+        "Both programs are available through the city's 19 FamilySource Centers and 14 WorkSource Centers. No appointment needed to ask a navigator what you qualify for."
+      ]
+    },
+    "care": {
+      "name": "Mayors for Moms",
+      "tagline": "Black mothers in this city are dying at three to four times the rate of white mothers. That is not inevitable.",
+      "bullets": [
+        "LA County's AAIMM initiative, run through the Department of Public Health, funds doulas, group prenatal care, and community health workers for pregnant women in the highest-risk communities. Most women who qualify do not know it exists.",
+        "New York City's Citywide Doula Initiative has served over 3,245 mothers since 2022 with no maternal deaths reported among participants and reduced rates of C-section and preterm birth among Black and Hispanic participants compared to citywide averages. Mayor Bass is building a national coalition of mayors to replicate and scale that model.",
+        "If you are pregnant or know someone who is, connect now with LA County's maternal health programs at publichealth.lacounty.gov before the next prenatal appointment."
+      ]
+    },
+    "protect": {
+      "name": "Tenant Anti-Harassment Ordinance",
+      "tagline": "If your landlord is trying to push you out, that is not just wrong. In Los Angeles, it is against the law.",
+      "bullets": [
+        "The Tenant Anti-Harassment Ordinance makes it illegal for landlords to use pressure tactics to force tenants out of their homes. This covers all residential renters in the City of Los Angeles, regardless of whether the unit is rent-stabilized. Illegal tactics include lockouts, utility shutoffs, construction disruption, and verbal intimidation designed to make you leave.",
+        "Most tenants being harassed do not know what is happening to them has a legal name or that the city will act on a complaint. Over 16,000 households have filed TAHO complaints since the program launched. The ordinance is enforceable and ULA funding supports ongoing outreach and enforcement.",
+        "If your landlord is doing this to you, file a complaint with LAHD at housing.lacity.gov or call 866-557-7368. You do not have to leave. You have rights and the city will back them up."
+      ]
+    }
   },
-  "recommendations": [
+  "executiveDirectives": [
     {
-      "fight": "Build More",
-      "fightId": "build",
-      "color": "#047857",
-      "num": "01",
-      "title": "Expand EO1 Citywide",
-      "subtitle": "The Affordable Housing Acceleration Act",
-      "cardClass": "bc",
-      "background": [
-        "After the Palisades fire, Bass signed EO1 on January 13, 2025. The City stood up an entirely new permitting system in weeks.",
-        "The first rebuilding permit was issued 57 days after the wildfires. That is more than twice as fast as after the Camp and Woolsey fires.",
-        "Permits are being approved three times faster than before. Over 70% of single-family permit clearances are no longer required.",
-        "Of the roughly 42,000 affordable units entitled under ED1, only about 4,993 have received building permits. The bottleneck is not planning. It is permitting.",
-        "ED1 opened the door. EO1 proved the system could move at speed. The question is whether that speed is only available after a disaster."
-      ],
-      "backgroundStat": "3x faster permits under EO1. Only 4,993 of 42,000 entitled units have received building permits.",
-      "asks": [
-        "Expand the EO1 permitting framework citywide to all affordable housing projects with 30% or more units at or below 60% AMI.",
-        "Establish Affordable Housing One-Stop Centers staffed by Building and Safety, City Planning, Transportation, DWP, Fire, Housing, and Public Works in each APC jurisdiction.",
-        "Stand up a permanent Affordable Housing Department Strike Force with 30-day permit reviews, two-business-day inspections, and simultaneous department clearances.",
-        "Deploy one Affordable Housing Navigator per APC jurisdiction to guide developers through the process start to finish.",
-        "Create a Fee Deferral and Installment Program letting qualifying projects defer impact fees from permit issuance to certificate of occupancy, secured by a recorded lien."
-      ],
-      "asksStat": "Terner Center found impact fees exceeded $30,000 on 20% of affordable projects studied."
-    },
-    {
-      "fight": "Save More",
-      "fightId": "save",
+      "id": "making-ends-meet",
+      "num": "ED 18",
+      "title": "Making Ends Meet",
+      "subtitle": "Reducing the Cost of Living for Angelenos",
       "color": "#BE185D",
-      "num": "02",
-      "title": "Tri-Share Childcare Initiative",
-      "subtitle": "Affordable Childcare Through Cost-Sharing",
-      "cardClass": "sc",
+      "fights": ["Save More", "Earn More"],
+      "summary": "Auto-enroll eligible households into LADWP EZ-SAVE and Metro LIFE, launch a Tri-Share childcare feasibility study, build a neighborhood market pilot, and coordinate a national Cost of Living Mayor's Conference.",
       "background": [
-        "Center-based infant care in Los Angeles runs $1,800 to $2,500 per month. That is $22,000 to $30,000 a year, more than annual tuition at every CSU campus in the state.",
-        "For a single-parent family earning below the county median, childcare can consume 30 to 40% of take-home pay. It locks parents out of full-time work and forces impossible tradeoffs between rent and care.",
-        "Michigan launched the Tri-Share Child Care Program in 2021. Costs split three ways: one-third employer, one-third employee, one-third state. Participating families save roughly $464 per month.",
-        "The cost burden falls hardest on single mothers and low-income families of color. For every parent locked out of full-time work by childcare costs, the city loses a taxpayer, an employee, and a household that could be stable."
+        "Utility costs, childcare, and transportation represent the three largest non-housing expenditures for low-to-moderate income households in Los Angeles, routinely exceeding $8,000 per household before subsidies.",
+        "LADWP's EZ-SAVE program and Metro's LIFE program both exist and are funded, yet hundreds of thousands of eligible Angelenos remain unenrolled because neither program uses proactive enrollment.",
+        "Center-based infant care in Los Angeles runs $1,800 to $2,500 per month. Michigan's Tri-Share program, splitting costs between employer, employee, and state, has saved participating families an average of $464 per month since 2021.",
+        "Mayor Bass has previously chaired the USCM Task Force on Homelessness and used that platform to produce documented change in federal HUD policy. The same convening power applies to affordability."
       ],
-      "backgroundStat": "Michigan Tri-Share: $464/month average savings per family. 290 employers, 900+ families served statewide.",
-      "asks": [
-        "Pilot a Tri-Share Childcare Program in three Council Districts. Costs split three ways: one-third employer, one-third employee, one-third City. Start with city contractors and city-adjacent employers.",
-        "Cap the pilot at 500 families with a 24-month expansion decision point.",
-        "Partner with EWDD and CIFD to integrate childcare navigation into FamilySource center intake across all 19 centers."
+      "sections": [
+        {
+          "title": "Section 1: Automated Enrollment in Utility and Transit Assistance",
+          "body": "The Department of Water and Power and the Los Angeles Housing Department shall, within 60 days, establish an automated enrollment protocol for eligible households into LADWP EZ-SAVE and Metro LIFE. The City shall use existing administrative data from LA County DPSS, HACLA, and municipal utility records to pre-identify eligible households. Eligible households shall receive direct notification with clear opt-out mechanisms. DWP shall project aggregate household savings within six months. Note: the water discount component of EZ-SAVE was ended by court ruling in July 2023; savings projections reflect electricity and sewer benefits only."
+        },
+        {
+          "title": "Section 2: Childcare Affordability Study",
+          "body": "EWDD, in coordination with CIFD and DCFS, shall conduct a feasibility study on the Tri-Share childcare model. The study shall evaluate regulatory compliance under California childcare licensing, cost efficiency, and scaling potential. Financial modeling shall include fees generated under ED 17 if passed by Council, property tax increment financing, and philanthropic capital. The study shall identify 3-5 neighborhoods with the highest childcare access gaps and target families earning between 200 and 400 percent of the federal poverty level. Final recommendations due to the Mayor by November 30, 2026."
+        },
+        {
+          "title": "Section 3: Neighborhood Market Feasibility",
+          "body": "The Mayor's Office of Economic Development, in coordination with the LA Food Policy Council and EWDD, shall evaluate the feasibility of a subsidized neighborhood market pilot in three high food-insecurity neighborhoods. The study shall assess models from peer cities, identify potential sites using existing city-owned or underutilized commercial space, and propose financing mechanisms including USDA Community Food Projects grants and philanthropic capital. Preliminary findings due September 1, 2026."
+        },
+        {
+          "title": "Section 4: National Cost of Living Coordination",
+          "body": "The Mayor shall leverage her position with the U.S. Conference of Mayors to advance federal and state policy interventions addressing utility affordability, childcare accessibility, and transportation cost burdens. A working group of peer mayors shall be convened by June 1, 2026. A federal legislative package shall be drafted by August 1, 2026. A USCM resolution on municipal utility rate affordability shall be introduced by November 2026."
+        }
       ],
-      "asksStat": "$464/month average family savings under Michigan Tri-Share. 290 employers participating statewide."
+      "implementation": "Departments referenced in this Directive are authorized to reallocate existing resources, modify procurement timelines, and coordinate across agencies as necessary. Budget implications reported to the Mayor's Office within 30 days.",
+      "reporting": "Quarterly integrated progress reports to the Mayor. First comprehensive report due July 15, 2026."
     },
     {
-      "fight": "Care More",
-      "fightId": "care",
-      "color": "#C2410C",
-      "num": "03",
-      "title": "Mayors for Moms Coalition",
-      "subtitle": "A National Municipal Maternal Health Initiative",
-      "cardClass": "cc",
+      "id": "production-economy",
+      "num": "ED 19",
+      "title": "Production Economy",
+      "subtitle": "Housing and Jobs for Los Angeles",
+      "color": "#047857",
+      "fights": ["Build More", "Earn More"],
+      "summary": "Extend emergency permitting speed to all affordable housing, establish One-Stop Centers and a Department Strike Force, and conduct a feasibility study for a local film and TV production incentive tied to local hire.",
       "background": [
-        "Black women in LA County are four times more likely to die from pregnancy-related causes than women of other racial groups. Nationally, the maternal mortality rate for Black women was 44.8 per 100,000 live births in 2024. For white women it was 14.2.",
-        "New York City launched its Citywide Doula Initiative in 2022. Total cost: $4 million over three years. Over 3,200 people served. More than 2,300 births attended. Zero maternal deaths among participants.",
-        "NYC's program reduced C-section and preterm birth rates among Black and Hispanic participants compared to citywide averages. The comptroller's audit confirmed the results.",
-        "LA County already runs the AAIMM initiative through the Department of Public Health. It funds doulas, group prenatal care, and community health workers. But the city itself has no dedicated maternal health program.",
-        "No mayor in the country has Bass's relationships across state and federal government. That is not a talking point. It is an asset that should be deployed on a crisis that kills Black mothers at four times the rate of white mothers in her own city."
+        "Of the approximately 31,700 affordable housing units approved under ED1 since December 2022, only about 4,993 have received building permits. The bottleneck is permitting, not planning.",
+        "Emergency Executive Order 1, issued after the Palisades fire, proved the city can process permits three times faster when institutional will exists. The question is whether that speed is only available after a disaster.",
+        "LA County's motion picture and sound recording industry lost approximately 42,000 jobs between 2022 and 2024, a workforce reduction of nearly 30 percent, as productions relocated to jurisdictions with more competitive incentive structures.",
+        "The California Film Commission administers Film Tax Credit Program 4.0 at $750 million annually through June 2030. Several California cities have supplemented this with local incentive programs."
       ],
-      "backgroundStat": "Black maternal mortality: 44.8 per 100,000 live births (2024). White: 14.2. NYC doula program: 3,200 served, zero deaths.",
-      "asks": [
-        "Launch the Mayors for Moms Coalition with ten founding cities. New York, Chicago, Atlanta, Houston, and Detroit are natural co-founders given existing maternal health programs.",
-        "Through the coalition, jointly advocate to CMS for standardized Medicaid doula reimbursement rates across all participating states.",
-        "Publish an annual Maternal Health Equity Report Card tracking maternal mortality, doula coverage, and prenatal care access by race across coalition cities.",
-        "Use the coalition platform to share program design, training curricula, and outcome data so that no city has to build from scratch.",
-        "Set a coalition-wide target: reduce Black maternal mortality by 20% within five years across participating cities."
+      "sections": [
+        {
+          "title": "Section 1: Affordable Housing Permitting Acceleration",
+          "body": "LADBS, DCP, and LAHD shall, within 45 days, develop a proposal to extend the permitting speed of EO1 to all affordable housing projects with 30 percent or more units at or below 60 percent AMI. Affordable Housing One-Stop Centers shall be established in each APC jurisdiction within 90 days. A permanent Department Strike Force with 30-day permit reviews, two-business-day inspections, and simultaneous department clearances shall be the operating standard. One Affordable Housing Navigator per APC jurisdiction shall guide qualifying projects from application through certificate of occupancy. A Fee Deferral and Installment Program shall allow qualifying projects to defer impact fees to certificate of occupancy, consistent with California Government Code Section 66007."
+        },
+        {
+          "title": "Section 2: Local Film and Production Incentive Feasibility Study",
+          "body": "The Mayor's Office of Economic Development, EWDD, and the CLA shall conduct a feasibility study on a City of Los Angeles film and television production incentive program. The study shall evaluate direct subsidies, permitting fee waivers, below-market rates for city-owned facilities, and tax credit structures requiring state enabling legislation. Any proposed incentive shall include a local hire requirement for below-the-line crew positions, consistent with the market participant doctrine. The study shall analyze at least five peer jurisdictions including New York City, Georgia, the UK, Canada, and New Mexico. Final recommendations due December 1, 2026."
+        }
       ],
-      "asksStat": "NYC spent $4M over three years. Zero maternal deaths among participants. LA can match that and scale it nationally."
+      "implementation": "Departments referenced in this Directive are authorized to reallocate existing resources, modify procurement timelines, and coordinate across agencies. Budget implications reported to the Mayor's Office within 30 days.",
+      "reporting": "Quarterly integrated progress reports to the Mayor. First comprehensive report due 90 days after issuance."
     },
     {
-      "fight": "Protect More Rights",
-      "fightId": "protect",
-      "color": "#B45309",
-      "num": "04",
-      "title": "Proactive Tenant Protection Unit",
-      "subtitle": "Expanding LAHD Enforcement and Renter Education",
-      "cardClass": "pr",
-      "background": [
-        "Over 60% of Angelenos are renters. In many neighborhoods, that number exceeds 80%. Tenant displacement is not a side effect of the housing crisis. It is the housing crisis for most residents.",
-        "LAHD's RSO enforcement is complaint-driven. Tenants who do not know their rights, or who fear retaliation, never file. Violations go unaddressed for years in buildings where residents cannot afford to fight back.",
-        "Landlord harassment, including illegal lockouts, utility shutoffs, construction disruption, and verbal intimidation, pushes tenants out without a formal eviction. TAHO created the legal framework to address it, but enforcement capacity has not matched the scale of the problem.",
-        "The ULA-funded Right to Counsel program has proven that legal representation changes outcomes. Tenants with attorneys are far more likely to remain housed. But coverage does not yet reach every neighborhood or every courtroom.",
-        "The infrastructure exists. RSO reform, TAHO, ULA eviction defense, Stay Housed LA. What is missing is a proactive enforcement posture that reaches tenants before they are already in crisis."
-      ],
-      "backgroundStat": "Over 60% of Angelenos are renters. LAHD enforcement is complaint-driven, leaving thousands of violations unaddressed.",
-      "asks": [
-        "Create a Proactive Tenant Protection Unit within LAHD that conducts building-level audits in high-displacement ZIP codes without waiting for individual complaints.",
-        "Deploy mobile tenant rights clinics in partnership with FamilySource Centers, rotating through the 19 centers on a quarterly basis to provide legal screening, RSO education, and TAHO intake.",
-        "Establish whistleblower protections for tenants and building staff who report habitability violations or landlord harassment, including a dedicated anonymous reporting line.",
-        "Expand Right to Counsel coverage to guarantee representation in 100% of eviction proceedings citywide by 2028.",
-        "Publish a quarterly Tenant Protection Report Card tracking eviction filings, TAHO complaints, RSO violations, and displacement rates by Council District."
-      ],
-      "asksStat": "ULA has committed $57M+ to eviction defense. Proactive enforcement ensures that funding reaches tenants before they reach court."
-    },
-    {
-      "fight": "Earn More",
-      "fightId": "earn",
+      "id": "community-anchors",
+      "num": "ED 20",
+      "title": "Community Anchors",
+      "subtitle": "Neighborhood Business Networks for a Stronger City",
       "color": "#6D28D9",
-      "num": "05",
-      "title": "LA Ownership Economy Initiative",
-      "subtitle": "Worker Cooperatives and Transit Rewards",
-      "cardClass": "ec",
+      "fights": ["Earn More", "Care More"],
+      "summary": "Create a voluntary Community Anchor designation for small businesses, connecting them to city services, CIRCLE crisis response, FamilySource referrals, and an expedited procurement pathway.",
       "background": [
-        "Los Angeles lost roughly 42,000 entertainment industry jobs between 2022 and 2024. The gig economy keeps replacing traditional employment across food service, cleaning, transportation, and delivery.",
-        "Workers in those sectors earn low wages, get no benefits, build no equity, and own nothing.",
-        "A worker cooperative is a business owned and governed by the people who work in it. Profits go to worker-owners, not outside shareholders. About 60% of new cooperative worker-owners since 2010 are people of color.",
-        "New York City seeded its Worker Cooperative Business Development Initiative with $1.2 million in 2014. By the program's ninth year: 133 cooperatives, 442 new worker-owners. Funding scaled from $1.2 million to over $3 million annually as results proved out.",
-        "If you work in this city, the city should work for you."
+        "Small business owners across LA report that interactions with unhoused individuals represent one of their most significant day-to-day operational challenges, and that calling LAPD is frequently misaligned with the outcomes they actually want.",
+        "CIRCLE, the Mayor's 24-hour unarmed crisis response program, has handled over 14,000 diverted incidents and connected hundreds of Angelenos to services, yet awareness among small business owners remains low.",
+        "The city's 10 BusinessSource Centers and 14 WorkSource Centers provide free technical assistance and workforce services but remain siloed from the community-level relationships small businesses maintain.",
+        "Peer cities have demonstrated that networked, neighborhood-level small business programs connecting businesses to public agencies and nonprofits create measurable improvements in business stability and community safety."
       ],
-      "backgroundStat": "NYC WCBDI: 133 co-ops, 442 worker-owners in nine years. 60% of new co-op worker-owners since 2010 are people of color.",
-      "asks": [
-        "Create a Worker Cooperative Incubator through the Mayor's Office of Economic Development. Business planning, legal formation, seed financing, and guaranteed city contract access for qualifying worker-owned businesses.",
-        "Launch a first cohort of 15 co-ops in building maintenance, food service, childcare, landscaping, and last-mile delivery.",
-        "Create a city procurement set-aside for certified cooperatives so co-ops have a customer on day one.",
-        "Launch a Transit Rewards Pilot with Metro. Workers earning below 80% AMI in hospitality, food service, healthcare, education, and building services earn $2 per trip on a TAP card, capped at $80 a month.",
-        "Start in three Council Districts with the highest ridership and lowest median income."
+      "sections": [
+        {
+          "title": "Section 1: Community Anchor Designation Program",
+          "body": "EWDD, in coordination with MOCS and CIFD, shall design and launch a voluntary Community Anchor designation program. Eligibility shall prioritize locally owned businesses operating for at least two years in high-need neighborhoods. Designated businesses receive a named point of contact within MOCS, EWDD, and CIFD. MOCS shall provide direct access to CIRCLE dispatch for unarmed crisis response. CIFD shall connect each Anchor to a FamilySource Center for community referrals. Pilot launch in three Council Districts within 120 days."
+        },
+        {
+          "title": "Section 2: Anchor Network Coordination",
+          "body": "The Mayor's Office of Economic Development shall convene quarterly Anchor Network Convenings in each pilot Council District, bringing together designated businesses, local nonprofits, school principals, FamilySource staff, and MOCS representatives. Agendas shall be driven by participants, not pre-set by city staff. Each convening shall produce one concrete deliverable. EWDD shall maintain a public-facing dashboard tracking network activity."
+        },
+        {
+          "title": "Section 3: Procurement Pathway for Anchor Businesses",
+          "body": "Designated Anchor businesses completing ProcureLA shall be eligible for a City Contracts Fast Track with expedited certification review and a guaranteed introductory contract opportunity. EWDD shall assign a Small Business Procurement Concierge within the nearest BusinessSource Center. A pilot micro-enterprise set-aside requiring 10 percent of eligible city contracts under $500,000 go to certified micro-enterprises shall be established in the three pilot Council Districts for 24 months."
+        }
       ],
-      "asksStat": "Model on NYC WCBDI, tied to city procurement in a way New York never did. $2 per trip, capped at $80/month."
+      "implementation": "Departments referenced in this Directive are authorized to reallocate existing resources, modify procurement timelines, and coordinate across agencies. Budget implications reported to the Mayor's Office within 30 days.",
+      "reporting": "Quarterly integrated progress reports to the Mayor. First comprehensive report due 120 days after issuance."
     }
   ],
   "talkingPoints": {
@@ -445,7 +299,7 @@
     "name": "Michael Green II",
     "title": "Coro Fellow in Public Affairs",
     "organization": "Mayor's Office of Policy & Communications",
-    "location": "City of Los Angeles · 2025-2026",
+    "location": "City of Los Angeles, 2025-2026",
     "email": "michael.green@corofellowsla.org",
     "description": "Currently placed with Mayor Karen Bass's Office of Policy & Communications, working on the Affordability for All strategic communications framework and EO1 expansion."
   },
@@ -454,21 +308,9 @@
     "frameworkDescription": "The Five Fights framework organizes those programs into five constituent-facing categories: Earn More, Build More, Save More, Care More, and Protect More Rights. Each fight maps to a real economic pressure Angelenos face and is backed by concrete programs, dollar figures, and measurable outcomes.",
     "rubricDescription": "Programs are scored on a 14-point rubric across five criteria: Bass Attribution, Scale of Impact, Communications Value, Strategic Alignment with the Affordability Agenda, and Implementation Reality. Two binary flags (Equity Depth and Durability) are noted but do not affect the score.",
     "acknowledgments": [
-      {
-        "name": "Jenny Delwood",
-        "role": "Deputy Chief of Staff, Mayor's Office",
-        "description": "Placement Supervisor"
-      },
-      {
-        "name": "Larry Frank",
-        "role": "Senior Policy Advisor, Mayor's Office",
-        "description": "Framework Co-Developer"
-      },
-      {
-        "name": "Department Representatives",
-        "role": "LAHD, HACLA, EWDD, CIFD, CAO",
-        "description": "Database Sources"
-      }
+      { "name": "Jenny Delwood", "role": "Deputy Chief of Staff, Mayor's Office", "description": "Placement Supervisor" },
+      { "name": "Larry Frank", "role": "Senior Policy Advisor, Mayor's Office", "description": "Framework Co-Developer" },
+      { "name": "Department Representatives", "role": "LAHD, HACLA, EWDD, CIFD, CAO", "description": "Database Sources" }
     ],
     "primarySources": [
       "Mayor's Office of Policy and Communications internal program database",
@@ -480,107 +322,21 @@
       "California Legislative Analyst's Office (CalEITC utilization data)"
     ],
     "tierDescriptions": [
-      {
-        "tier": "A-List",
-        "range": "12+",
-        "description": "Bass's signature programs with the highest public recognition and impact"
-      },
-      {
-        "tier": "Tier 1",
-        "range": "9-11",
-        "description": "High-impact programs with strong Bass attribution"
-      },
-      {
-        "tier": "Tier 2",
-        "range": "5-8",
-        "description": "Solid programmatic work with moderate communications potential"
-      },
-      {
-        "tier": "Tier 3",
-        "range": "Below 5",
-        "description": "Infrastructure, passthroughs, or programs with limited public legibility"
-      }
+      { "tier": "A-List", "range": "12+", "description": "Bass's signature programs with the highest public recognition and impact" },
+      { "tier": "Tier 1", "range": "9-11", "description": "High-impact programs with strong Bass attribution" },
+      { "tier": "Tier 2", "range": "5-8", "description": "Solid programmatic work with moderate communications potential" },
+      { "tier": "Tier 3", "range": "Below 5", "description": "Infrastructure, passthroughs, or programs with limited public legibility" }
     ]
   },
   "dashboard": {
-    "_note": "Dashboard chart data and labels. Chart configs remain in dashboard.html but labels and descriptions are editable here.",
+    "_note": "Dashboard chart data and labels.",
     "title": "The Numbers",
-    "dataNote": "Total program cost figures reflect reported TPC values from the Mayor's Office internal database as of early 2026. Programs with $0 TPC represent mayoral directives, regulatory actions, or non-city-funded programs. The $5.16B figure is the sum of programs with documented expenditure data only.",
+    "dataNote": "Total program cost figures reflect reported TPC values from the Mayor's Office internal database as of early 2026. Programs with $0 TPC represent mayoral directives, regulatory actions, or non-city-funded programs.",
     "bigStats": [
-      {
-        "value": "$5.16B",
-        "label": "Total documented program expenditure",
-        "caption": "Sum of programs with reported TPC data"
-      },
-      {
-        "value": "209",
-        "label": "Active affordability programs (deduplicated)",
-        "caption": "Across 20+ city departments"
-      },
-      {
-        "value": "50K+",
-        "label": "Households served annually via FamilySource",
-        "caption": "Across 19 centers citywide"
-      },
-      {
-        "value": "~29K",
-        "label": "Housing units approved under ED1",
-        "caption": "As of August 2025 · LA City Planning"
-      }
-    ],
-    "fightStrip": [
-      {
-        "name": "Earn More",
-        "count": 57,
-        "color": "#6D28D9"
-      },
-      {
-        "name": "Build More",
-        "count": 48,
-        "color": "#047857"
-      },
-      {
-        "name": "Care More",
-        "count": 83,
-        "color": "#C2410C"
-      },
-      {
-        "name": "Protect More Rights",
-        "count": 11,
-        "color": "#B45309"
-      },
-      {
-        "name": "Save More",
-        "count": 10,
-        "color": "#BE185D"
-      }
-    ],
-    "charts": [
-      {
-        "id": "c1",
-        "title": "Programs by Tier",
-        "subtitle": "A-List: 8 · Tier 1: 49 · Tier 2: 59 · Tier 3: 93"
-      },
-      {
-        "id": "c2",
-        "title": "Programs by Fight",
-        "subtitle": "Distribution across the five fights"
-      },
-      {
-        "id": "c3",
-        "title": "Programs by Topic Area",
-        "subtitle": "All 17 topic categories"
-      },
-      {
-        "id": "c4",
-        "title": "Ongoing vs. One-Time",
-        "subtitle": "Program durability across the inventory"
-      },
-      {
-        "id": "c5",
-        "title": "A-List + Tier 1 by Fight",
-        "subtitle": "Highest-tier programs per fight area"
-      }
+      { "value": "$5.16B", "label": "Total documented program expenditure", "caption": "Sum of programs with reported TPC data" },
+      { "value": "209", "label": "Active affordability programs (deduplicated)", "caption": "Across 20+ city departments" },
+      { "value": "50K+", "label": "Households served annually via FamilySource", "caption": "Across 19 centers citywide" },
+      { "value": "~31.7K", "label": "Housing units approved under ED1", "caption": "As of late 2025, LA City Planning" }
     ]
   }
 }

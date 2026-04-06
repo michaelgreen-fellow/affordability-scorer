@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Design tokens, feature flags, and environment settings. Controls how the site looks and behaves. Edit colors, fonts, and visibility here.",
-    "lastUpdated": "2026-04-02"
+    "lastUpdated": "2026-04-06"
   },
 
   "env": {
@@ -17,7 +17,7 @@
     "talkingPointsDraft": false,
     "showSources": true,
     "showInventory": true,
-    "showDashboard": true,
+    "showDashboard": false,
     "showCampaigns": true,
     "showRecommendations": true,
     "showAbout": true,
@@ -54,7 +54,7 @@
       { "href": "index.html", "label": "Home", "sub": "Five Fights" },
       { "href": "inventory.html", "label": "Inventory", "sub": "209 Programs", "feature": "showInventory" },
       { "href": "campaigns.html", "label": "Campaigns", "sub": "Awareness", "feature": "showCampaigns" },
-      { "href": "recommendations.html", "label": "Policy Shortlist", "sub": "Five Recommendations", "feature": "showRecommendations" },
+      { "href": "recommendations.html", "label": "Executive Directives", "sub": "Three Proposals", "feature": "showRecommendations" },
       { "href": "talking-points.html", "label": "Talking Points", "sub": "Narratives", "feature": "showTalkingPoints" },
       { "href": "sources.html", "label": "Sources", "sub": "Research", "feature": "showSources" },
       { "href": "about.html", "label": "About", "sub": "Project", "feature": "showAbout" },
@@ -64,9 +64,9 @@
   },
 
   "thumbnails": [
-    { "id": "inventory", "href": "inventory.html", "style": "lines", "feature": "showInventory" },
+    { "id": "inventory", "href": "inventory.html", "style": "inventory", "feature": "showInventory" },
     { "id": "campaigns", "href": "campaigns.html", "style": "skew", "feature": "showCampaigns" },
-    { "id": "recommendations", "href": "recommendations.html", "style": "gradient", "feature": "showRecommendations" },
-    { "id": "talkingPoints", "href": "talking-points.html", "style": "draft", "feature": "showTalkingPoints" }
+    { "id": "recommendations", "href": "recommendations.html", "style": "circles", "feature": "showRecommendations" },
+    { "id": "talkingPoints", "href": "talking-points.html", "style": "points", "feature": "showTalkingPoints" }
   ]
 }

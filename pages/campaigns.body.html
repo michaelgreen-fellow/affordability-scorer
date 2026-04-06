@@ -5,7 +5,7 @@
 <main class="page">
   <div class="pg-head">
     <h1>Awareness <em>Campaigns</em></h1>
-    <p>Five fights Angelenos need to know about, five sets of programs most people have never heard of, and the numbers that prove they're working.</p>
+    <p>Five programs most Angelenos have never heard of, each backed by real numbers, each available right now. This is the awareness layer: what exists, why it matters, and how to access it.</p>
   </div>
   <div class="panels" id="panels"></div>
 </main>
@@ -14,11 +14,12 @@
 
 <div class="ov" id="ov">
   <div class="popup" id="popup">
+    <button class="pop-x" onclick="closePopup()">&#x2715;</button>
     <div class="pop-hdr">
-      <div><div class="pop-lbl" id="pLbl"></div><div class="pop-ttl" id="pTtl"></div></div>
-      <button class="pop-x" onclick="closePopup()">&#x2715;</button>
+      <div class="pop-fight" id="pFight"></div>
+      <div class="pop-campaign" id="pCampaign"></div>
+      <div class="pop-tagline" id="pTagline"></div>
     </div>
-    <p class="pop-desc" id="pDesc"></p>
-    <div class="cards" id="cards"></div>
+    <div class="pop-body" id="pBody"></div>
   </div>
 </div>

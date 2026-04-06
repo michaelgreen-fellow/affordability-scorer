@@ -139,10 +139,10 @@ document.getElementById('pwIn').focus();}})();
 pages = [
     ('index.html', 'Home'),
     ('campaigns.html', 'Five Fights'),
-    ('recommendations.html', 'Policy Shortlist'),
+    ('recommendations.html', 'Executive Directives'),
     ('inventory.html', 'Program Inventory'),
     ('talking-points.html', 'Talking Points'),
-    ('sources.html', 'Sources & References'),
+    ('sources.html', 'Sources &amp; References'),
     ('about.html', 'About'),
     ('contact.html', 'Contact'),
 ]

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Policy Shortlist | Affordability for All</title>
+<title>Executive Directives | Affordability for All</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════════════
@@ -51,88 +51,151 @@
 .eye{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:9px}
 .eye::before{content:'';width:20px;height:1px;background:var(--gold);display:block}
 
-/* PAGE HEADER */
-.pg-head{padding:2.75rem 2.5rem 2rem;max-width:1300px;margin:0 auto}
-.pg-eye{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:9px}
-.pg-eye::before{content:'';width:20px;height:1px;background:var(--gold)}
-.pg-title{font-family:var(--serif);font-size:clamp(34px,5vw,64px);color:var(--navy);line-height:1.0;letter-spacing:-.02em}
-.pg-title em{font-style:italic;color:var(--gold)}
-.pg-intro{font-size:13.5px;color:var(--text2);max-width:500px;line-height:1.75;font-weight:300;margin-top:.75rem}
+/* ── PAGE LAYOUT ── */
+.ed-page{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:0 2rem 3rem}
+.ed-header{text-align:center;padding:2.5rem 0 1.5rem;max-width:560px}
+.ed-eye{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.ed-h1{font-family:var(--serif);font-size:clamp(34px,5vw,64px);color:var(--navy);line-height:1.0;letter-spacing:-.02em}
+.ed-h1 em{font-style:italic;color:var(--gold)}
+.ed-intro{font-size:13.5px;color:var(--text2);line-height:1.75;font-weight:300;margin-top:.75rem}
 
-/* MAIN GRID */
-.layout{display:grid;grid-template-columns:160px 1fr;max-width:1300px;margin:0 auto;padding:.5rem 2.5rem 5rem;align-items:start;position:relative}
-@media(max-width:640px){.layout{grid-template-columns:1fr;padding:.5rem 1.25rem 3rem}.fights-col{display:none}.conn-line{display:none}}
+/* ── CIRCLE ARENA ── */
+.ed-arena{position:relative;width:100%;max-width:680px;height:520px;margin:1rem auto 1.5rem}
+@media(max-width:640px){.ed-arena{height:auto;display:flex;flex-direction:column;gap:1.5rem;align-items:center;padding:1rem 0}}
 
-/* FIGHT LABELS */
-.fights-col{position:sticky;top:80px}
-.fight-item{height:88px;display:flex;flex-direction:column;justify-content:center;padding-right:1.5rem;cursor:pointer;transition:opacity .25s}
-.fight-item.faded{opacity:0.28}
-.fight-item:not(.faded){opacity:1}
-.fi-name{font-family:var(--serif);font-size:clamp(17px,1.8vw,22px);color:var(--navy);line-height:1.1;margin-bottom:7px}
-.fi-bar{height:4px;border-radius:2px;width:32px;transition:width .3s}
-.fight-item:not(.faded) .fi-bar{width:40px}
+/* ── CIRCLES ── */
+.ed-circle{
+  position:absolute;width:200px;height:200px;border-radius:50%;
+  cursor:pointer;transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 24px rgba(11,28,51,.12);
+  overflow:visible;
+}
+@media(max-width:640px){.ed-circle{position:relative;width:180px;height:180px}}
 
-/* RECS COLUMN */
-.recs-col{display:flex;flex-direction:column}
-.rec-row{height:88px;display:flex;align-items:center;position:relative;border-bottom:1px solid rgba(11,28,51,0.05)}
-.rec-row:last-child{border-bottom:none}
-@media(max-width:640px){.rec-row{height:auto;padding:.5rem 0}}
-.conn-line{position:absolute;left:-1.5rem;top:50%;transform:translateY(-50%);width:1.5rem;height:1px}
+/* Triangle positions: top center, bottom-left, bottom-right */
+.ed-circle[data-ed="0"]{top:0;left:50%;transform:translateX(-50%)}
+.ed-circle[data-ed="1"]{bottom:20px;left:8%}
+.ed-circle[data-ed="2"]{bottom:20px;right:8%}
+@media(max-width:640px){
+  .ed-circle[data-ed="0"],.ed-circle[data-ed="1"],.ed-circle[data-ed="2"]{
+    top:auto;bottom:auto;left:auto;right:auto;transform:none;
+  }
+}
 
-/* THIN CARD */
-.rec-card{flex:1;height:64px;border-radius:4px;padding:0 1rem 0 .875rem;cursor:pointer;border:1px solid transparent;display:flex;align-items:center;justify-content:space-between;gap:.75rem;transition:all .2s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
-@media(max-width:640px){.rec-card{height:auto;padding:.75rem .875rem}}
-.rc-left{display:flex;flex-direction:column;gap:3px;min-width:0}
-.rc-fight-tag{font-family:var(--mono);font-size:7.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.65}
-.rc-title{font-family:var(--serif);font-size:clamp(13px,1.4vw,16px);color:var(--navy);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-@media(max-width:640px){.rc-title{white-space:normal}}
-.rc-sub{font-size:9px;font-style:italic;color:var(--text3);font-family:var(--serif)}
-.rc-plus{font-family:var(--mono);font-size:16px;color:var(--text3);flex-shrink:0;transition:transform .2s,color .2s;line-height:1}
+/* Hover grow */
+.ed-circle:hover{transform:scale(1.08);box-shadow:0 8px 40px rgba(11,28,51,.2)}
+.ed-circle[data-ed="0"]:hover{transform:translateX(-50%) scale(1.08)}
+@media(max-width:640px){.ed-circle[data-ed="0"]:hover{transform:scale(1.08)}}
 
-/* Color variants */
-.ec{--fc:var(--earn);background:rgba(109,40,217,0.06);border-color:rgba(109,40,217,0.15)}
-.ec .rc-fight-tag{color:var(--earn)}.ec:hover{background:rgba(109,40,217,0.1);border-color:rgba(109,40,217,0.28)}
-.bc{--fc:var(--build);background:rgba(4,120,87,0.06);border-color:rgba(4,120,87,0.15)}
-.bc .rc-fight-tag{color:var(--build)}.bc:hover{background:rgba(4,120,87,0.1);border-color:rgba(4,120,87,0.28)}
-.sc{--fc:var(--save);background:rgba(190,24,93,0.06);border-color:rgba(190,24,93,0.15)}
-.sc .rc-fight-tag{color:var(--save)}.sc:hover{background:rgba(190,24,93,0.1);border-color:rgba(190,24,93,0.28)}
-.cc{--fc:var(--care);background:rgba(194,65,12,0.06);border-color:rgba(194,65,12,0.15)}
-.cc .rc-fight-tag{color:var(--care)}.cc:hover{background:rgba(194,65,12,0.1);border-color:rgba(194,65,12,0.28)}
-.pr{--fc:var(--protect);background:rgba(180,83,9,0.06);border-color:rgba(180,83,9,0.15)}
-.pr .rc-fight-tag{color:var(--protect)}.pr:hover{background:rgba(180,83,9,0.1);border-color:rgba(180,83,9,0.28)}
+/* Inner content */
+.ed-inner{
+  position:relative;z-index:2;text-align:center;padding:1.25rem;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  width:100%;height:100%;border-radius:50%;
+  transition:opacity .3s;
+}
+.ed-num{font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:6px}
+.ed-name{font-family:var(--serif);font-size:clamp(17px,2vw,21px);color:#fff;line-height:1.2;max-width:140px}
 
-/* OVERLAY + POPUP */
-.ov{display:none;position:fixed;inset:0;z-index:1000;background:rgba(11,28,51,.68);backdrop-filter:blur(7px);align-items:center;justify-content:center;padding:1.5rem}
-.ov.open{display:flex}
-.popup{width:100%;max-width:680px;max-height:calc(100vh - 3rem);border-radius:16px;position:relative;animation:popIn .32s cubic-bezier(.2,.8,.2,1);box-shadow:0 20px 60px rgba(0,0,0,.4);display:flex;flex-direction:column;overflow:hidden}
-@keyframes popIn{from{transform:translateY(18px) scale(.94);opacity:0}to{transform:none;opacity:1}}
-.pop-hdr{padding:1.5rem 1.75rem 1rem;flex-shrink:0}
-.pop-label{font-family:var(--mono);font-size:8px;letter-spacing:4px;text-transform:uppercase;opacity:.4;font-weight:700;color:#fff;margin-bottom:4px}
-.pop-title{font-family:var(--serif);font-size:clamp(22px,3vw,30px);color:#fff;line-height:1.15}
-.pop-subtitle{font-family:var(--serif);font-size:13px;font-style:italic;color:rgba(255,255,255,.6);margin-top:4px}
-.pop-close{position:absolute;top:1rem;right:1rem;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:10}
-.pop-close:hover{background:rgba(255,255,255,.28)}
-.pop-body{flex:1;overflow-y:auto;padding:0 1.75rem 1.5rem;-webkit-overflow-scrolling:touch}
-.pop-body::-webkit-scrollbar{width:4px}
-.pop-body::-webkit-scrollbar-track{background:transparent}
-.pop-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:2px}
+/* ── HOVER CARD ── */
+.ed-hover-card{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.88);
+  width:260px;background:rgba(255,255,255,.97);
+  border-radius:14px;padding:1.125rem 1.25rem;
+  box-shadow:0 12px 48px rgba(11,28,51,.18);
+  opacity:0;pointer-events:none;
+  transition:opacity .3s cubic-bezier(.2,.8,.2,1),transform .3s cubic-bezier(.2,.8,.2,1);
+  z-index:10;
+  backdrop-filter:blur(8px);
+}
+.ed-circle:hover .ed-hover-card{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:all}
+.ehc-fights{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+.ehc-fight-tag{font-family:var(--mono);font-size:7px;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:3px;color:#fff}
+.ehc-summary{font-size:12px;color:var(--text2);line-height:1.65;margin-bottom:10px}
+.ehc-cta{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);text-align:center}
 
-/* Section styling */
-.pop-section{margin-bottom:1.5rem}.pop-section:last-child{margin-bottom:0}
-.pop-sec-label{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.625rem;padding-bottom:.375rem;border-bottom:1px solid rgba(255,255,255,.12)}
-.pop-bullets{list-style:none;padding:0;margin:0}
-.pop-bullets li{font-size:13px;line-height:1.75;color:rgba(255,255,255,.88);font-weight:300;padding:.375rem 0 .375rem 1rem;position:relative;border-bottom:1px solid rgba(255,255,255,.06)}
-.pop-bullets li:last-child{border-bottom:none}
-.pop-bullets li::before{content:'\2022';position:absolute;left:0;color:rgba(255,255,255,.4);font-size:14px}
-.pop-numbers{list-style:none;padding:0;margin:0;counter-reset:pol}
-.pop-numbers li{font-size:13px;line-height:1.75;color:rgba(255,255,255,.88);font-weight:300;padding:.5rem 0 .5rem 2rem;position:relative;border-bottom:1px solid rgba(255,255,255,.06);counter-increment:pol}
-.pop-numbers li:last-child{border-bottom:none}
-.pop-numbers li::before{content:counter(pol);position:absolute;left:0;font-family:var(--serif);font-size:16px;color:rgba(255,255,255,.35);top:.45rem;width:1.5rem;text-align:center}
-.pop-stat{display:inline-block;font-family:var(--serif);font-size:13px;color:#fff;margin-top:.75rem;padding:.375rem .75rem;border-radius:4px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);line-height:1.5}
-.pop-divider{height:1px;background:rgba(255,255,255,.1);margin:0 0 1.5rem}
+/* ── CONNECTING LINES ── */
+.ed-arena::before,.ed-arena::after{content:'';position:absolute;background:rgba(11,28,51,.06);z-index:0}
+.ed-arena::before{
+  top:100px;left:calc(8% + 100px);width:calc(50% - 8% - 100px);height:1px;
+  transform-origin:left;transform:rotate(42deg);
+}
+@media(max-width:640px){.ed-arena::before,.ed-arena::after{display:none}}
 
+/* ── LEGEND ── */
+.ed-legend{display:flex;gap:1.25rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+.ed-leg-item{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--text3);font-family:var(--sans)}
+.ed-leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* ── MODAL OVERLAY ── */
+.ed-overlay{
+  display:none;position:fixed;inset:0;z-index:2000;
+  background:rgba(11,28,51,.72);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;padding:1.5rem;
+}
+.ed-overlay.open{display:flex}
+
+.ed-modal{
+  width:100%;max-width:740px;max-height:calc(100vh - 3rem);
+  background:#fff;border-radius:16px;
+  display:flex;flex-direction:column;overflow:hidden;
+  animation:edPopIn .36s cubic-bezier(.2,.8,.2,1);
+  box-shadow:0 24px 80px rgba(11,28,51,.3);
+}
+@keyframes edPopIn{from{transform:translateY(20px) scale(.95);opacity:0}to{transform:none;opacity:1}}
+
+.ed-modal-close{
+  position:absolute;top:1rem;right:1rem;z-index:10;
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(11,28,51,.08);border:none;
+  font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  color:var(--text2);transition:background .2s;
+}
+.ed-modal-close:hover{background:rgba(11,28,51,.15)}
+
+.ed-modal-scroll{flex:1;overflow-y:auto;padding:0;-webkit-overflow-scrolling:touch}
+.ed-modal-scroll::-webkit-scrollbar{width:5px}
+.ed-modal-scroll::-webkit-scrollbar-track{background:transparent}
+.ed-modal-scroll::-webkit-scrollbar-thumb{background:rgba(11,28,51,.12);border-radius:3px}
+
+/* ── MODAL HEADER (colored) ── */
+.ed-modal-hdr{padding:2.5rem 2.25rem 1.75rem;position:relative}
+.ed-seal-row{display:flex;align-items:center;gap:14px;margin-bottom:1.25rem}
+.ed-seal{width:56px;height:56px;border-radius:50%;border:2px solid rgba(255,255,255,.3);overflow:hidden;flex-shrink:0;background:rgba(255,255,255,.15)}
+.ed-seal img{width:100%;height:100%;object-fit:contain}
+.ed-office{font-family:var(--serif);font-size:14px;color:rgba(255,255,255,.9);line-height:1.3}
+.ed-office-sub{font-family:var(--mono);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:3px}
+.ed-modal-num{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:6px}
+.ed-modal-title{font-family:var(--serif);font-size:clamp(24px,3.5vw,34px);color:#fff;line-height:1.1;margin-bottom:4px}
+.ed-modal-subtitle{font-family:var(--serif);font-size:14px;font-style:italic;color:rgba(255,255,255,.7)}
+.ed-modal-fights{display:flex;gap:6px;flex-wrap:wrap;margin-top:1rem}
+.ed-modal-fight-tag{font-family:var(--mono);font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:3px;background:rgba(255,255,255,.2);color:#fff}
+
+/* ── MODAL BODY ── */
+.ed-modal-body{padding:0 2.25rem 2rem}
+.ed-body-section{margin-bottom:1.75rem}
+.ed-body-section:last-child{margin-bottom:0}
+.ed-sec-label{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:1px solid rgba(11,28,51,.08)}
+.ed-whereas{font-size:13px;color:var(--text2);line-height:1.75;margin-bottom:.75rem;padding-left:1rem;border-left:2px solid rgba(11,28,51,.08)}
+.ed-whereas:last-child{margin-bottom:0}
+.ed-section-title{font-family:var(--serif);font-size:16px;color:var(--navy);margin-bottom:.5rem;line-height:1.3}
+.ed-section-body{font-size:13px;color:var(--text2);line-height:1.75;margin-bottom:1.25rem}
+.ed-section-body:last-child{margin-bottom:0}
+.ed-impl{font-size:12px;color:var(--text3);line-height:1.65;padding:.875rem 1rem;background:rgba(11,28,51,.03);border-radius:8px;border:1px solid rgba(11,28,51,.06)}
+.ed-impl strong{color:var(--navy);font-weight:600}
+
+/* ── MODAL FOOTER ── */
+.ed-modal-footer{padding:.875rem 2.25rem;border-top:1px solid rgba(11,28,51,.08);display:flex;justify-content:flex-end;flex-shrink:0}
+.ed-download-btn{
+  font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  padding:9px 20px;border-radius:6px;border:1px solid var(--navy);
+  background:var(--navy);color:#fff;cursor:pointer;transition:all .2s;
+}
+.ed-download-btn:hover{background:transparent;color:var(--navy)}
 
 footer{text-align:center;padding:1.375rem;font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.06em;border-top:1px solid rgba(11,28,51,0.07)}
+
 </style>
 </head>
 <body>
@@ -154,7 +217,7 @@ document.getElementById('pwIn').focus();})();
 
 <nav class="topnav">
   <a class="nav-back" href="index.html"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>Back</a>
-  <div class="nav-ttl">Policy Shortlist</div>
+  <div class="nav-ttl">Executive Directives</div>
   <div class="ham" id="ham" onclick="toggleNav()"><span></span><span></span><span></span></div>
 </nav>
 
@@ -163,7 +226,7 @@ document.getElementById('pwIn').focus();})();
   <a class="nl" href="index.html" onclick="closeNav()">Home<span>Five Fights</span></a>
   <a class="nl" href="inventory.html" onclick="closeNav()">Inventory<span>209 Programs</span></a>
   <a class="nl" href="campaigns.html" onclick="closeNav()">Campaigns<span>Awareness</span></a>
-  <a class="nl" href="recommendations.html" onclick="closeNav()">Policy Shortlist<span>Five Recommendations</span></a>
+  <a class="nl" href="recommendations.html" onclick="closeNav()">Executive Directives<span>Three Proposals</span></a>
   <a class="nl" href="talking-points.html" onclick="closeNav()">Talking Points<span>Narratives</span></a>
   <a class="nl" href="sources.html" onclick="closeNav()">Sources<span>Research</span></a>
   <a class="nl" href="about.html" onclick="closeNav()">About<span>Project</span></a>
@@ -173,138 +236,202 @@ document.getElementById('pwIn').focus();})();
 </nav>
 
 
-<div class="pg-head">
-  <div class="pg-eye">Michael Green II &middot; Mayor's Office &middot; April 2026</div>
-  <h1 class="pg-title">Five Fights:<br><em>Policy Shortlist</em></h1>
-  <p class="pg-intro">Bass has built the foundation. These five recommendations extend it. Each one is mapped to a fight, grounded in a precedent, and designed to be announced.</p>
-</div>
+<div class="ed-page">
+  <div class="ed-header">
+    <div class="ed-eye">Michael Green II · Mayor's Office · April 2026</div>
+    <h1 class="ed-h1">Executive<br><em>Directives</em></h1>
+    <p class="ed-intro">Three proposed Executive Directives that extend the Mayor's affordability agenda. Each one is grounded in existing authority, mapped to specific departments, and designed to be signed.</p>
+  </div>
 
-<div class="layout">
-  <div class="fights-col" id="fightsCol">
-    <div class="fight-item" data-fight="0" onclick="setActive(0)">
-      <div class="fi-name">Build<br>More</div>
-      <div class="fi-bar" style="background:var(--build)"></div>
+  <div class="ed-arena" id="edArena">
+    <div class="ed-circle" data-ed="0" id="edCircle0">
+      <div class="ed-inner">
+        <div class="ed-num" id="edNum0"></div>
+        <div class="ed-name" id="edName0"></div>
+      </div>
+      <div class="ed-hover-card" id="edHover0">
+        <div class="ehc-fights" id="ehcFights0"></div>
+        <div class="ehc-summary" id="ehcSummary0"></div>
+        <div class="ehc-cta">Click to read full directive</div>
+      </div>
     </div>
-    <div class="fight-item" data-fight="1" onclick="setActive(1)">
-      <div class="fi-name">Save<br>More</div>
-      <div class="fi-bar" style="background:var(--save)"></div>
+    <div class="ed-circle" data-ed="1" id="edCircle1">
+      <div class="ed-inner">
+        <div class="ed-num" id="edNum1"></div>
+        <div class="ed-name" id="edName1"></div>
+      </div>
+      <div class="ed-hover-card" id="edHover1">
+        <div class="ehc-fights" id="ehcFights1"></div>
+        <div class="ehc-summary" id="ehcSummary1"></div>
+        <div class="ehc-cta">Click to read full directive</div>
+      </div>
     </div>
-    <div class="fight-item" data-fight="2" onclick="setActive(2)">
-      <div class="fi-name">Care<br>More</div>
-      <div class="fi-bar" style="background:var(--care)"></div>
-    </div>
-    <div class="fight-item" data-fight="3" onclick="setActive(3)">
-      <div class="fi-name">Protect More<br>Rights</div>
-      <div class="fi-bar" style="background:var(--protect)"></div>
-    </div>
-    <div class="fight-item" data-fight="4" onclick="setActive(4)">
-      <div class="fi-name">Earn<br>More</div>
-      <div class="fi-bar" style="background:var(--earn)"></div>
+    <div class="ed-circle" data-ed="2" id="edCircle2">
+      <div class="ed-inner">
+        <div class="ed-num" id="edNum2"></div>
+        <div class="ed-name" id="edName2"></div>
+      </div>
+      <div class="ed-hover-card" id="edHover2">
+        <div class="ehc-fights" id="ehcFights2"></div>
+        <div class="ehc-summary" id="ehcSummary2"></div>
+        <div class="ehc-cta">Click to read full directive</div>
+      </div>
     </div>
   </div>
 
-  <div class="recs-col">
-    <div class="rec-row">
-      <svg class="conn-line" viewBox="0 0 24 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="24" y2="1" stroke="rgba(4,120,87,0.35)" stroke-width="1"/></svg>
-      <div class="rec-card bc" data-idx="0" onclick="openPopup(0)"><div class="rc-left"><div class="rc-fight-tag">Build More</div><div class="rc-title">Expand EO1 Citywide</div><div class="rc-sub">The Affordable Housing Acceleration Act</div></div><div class="rc-plus">+</div></div>
-    </div>
-    <div class="rec-row">
-      <svg class="conn-line" viewBox="0 0 24 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="24" y2="1" stroke="rgba(190,24,93,0.35)" stroke-width="1"/></svg>
-      <div class="rec-card sc" data-idx="1" onclick="openPopup(1)"><div class="rc-left"><div class="rc-fight-tag">Save More</div><div class="rc-title">Tri-Share Childcare Initiative</div><div class="rc-sub">Affordable Childcare Through Cost-Sharing</div></div><div class="rc-plus">+</div></div>
-    </div>
-    <div class="rec-row">
-      <svg class="conn-line" viewBox="0 0 24 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="24" y2="1" stroke="rgba(194,65,12,0.35)" stroke-width="1"/></svg>
-      <div class="rec-card cc" data-idx="2" onclick="openPopup(2)"><div class="rc-left"><div class="rc-fight-tag">Care More</div><div class="rc-title">Mayors for Moms Coalition</div><div class="rc-sub">A National Municipal Maternal Health Initiative</div></div><div class="rc-plus">+</div></div>
-    </div>
-    <div class="rec-row">
-      <svg class="conn-line" viewBox="0 0 24 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="24" y2="1" stroke="rgba(180,83,9,0.35)" stroke-width="1"/></svg>
-      <div class="rec-card pr" data-idx="3" onclick="openPopup(3)"><div class="rc-left"><div class="rc-fight-tag">Protect More Rights</div><div class="rc-title">Proactive Tenant Protection Unit</div><div class="rc-sub">Expanding LAHD Enforcement and Renter Education</div></div><div class="rc-plus">+</div></div>
-    </div>
-    <div class="rec-row">
-      <svg class="conn-line" viewBox="0 0 24 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="24" y2="1" stroke="rgba(109,40,217,0.35)" stroke-width="1"/></svg>
-      <div class="rec-card ec" data-idx="4" onclick="openPopup(4)"><div class="rc-left"><div class="rc-fight-tag">Earn More</div><div class="rc-title">LA Ownership Economy Initiative</div><div class="rc-sub">Worker Cooperatives and Transit Rewards</div></div><div class="rc-plus">+</div></div>
-    </div>
+  <div class="ed-legend">
+    <div class="ed-leg-item"><span class="ed-leg-dot" style="background:var(--save)"></span> Save More</div>
+    <div class="ed-leg-item"><span class="ed-leg-dot" style="background:var(--build)"></span> Build More</div>
+    <div class="ed-leg-item"><span class="ed-leg-dot" style="background:var(--earn)"></span> Earn More</div>
+    <div class="ed-leg-item"><span class="ed-leg-dot" style="background:var(--care)"></span> Care More</div>
   </div>
 </div>
-
-
 
 <footer style="text-align:center;padding:1.375rem;font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.06em;border-top:1px solid rgba(11,28,51,0.07)"></footer>
 
 
-<div class="ov" id="ov" onclick="handleOvClick(event)">
-  <div class="popup" id="popup">
-    <button class="pop-close" onclick="closePopup(event)">&#x2715;</button>
-    <div class="pop-hdr" id="popHdr"></div>
-    <div class="pop-body" id="popBody"></div>
+<div class="ed-overlay" id="edOverlay">
+  <div class="ed-modal" id="edModal">
+    <button class="ed-modal-close" onclick="closeEdModal()">&#x2715;</button>
+    <div class="ed-modal-scroll" id="edModalScroll">
+      <div class="ed-modal-header" id="edModalHeader"></div>
+      <div class="ed-modal-body" id="edModalBody"></div>
+    </div>
+    <div class="ed-modal-footer">
+      <button class="ed-download-btn" id="edDownloadBtn" onclick="downloadED()">Download PDF</button>
+    </div>
   </div>
 </div>
+
 <script>
+var FIGHT_COLORS={
+  'Save More':'#BE185D','Build More':'#047857','Earn More':'#6D28D9','Care More':'#C2410C','Protect More Rights':'#B45309'
+};
+
+var currentEdIdx=null;
+var EDS=[];
+
 fetch('content.json?v='+Date.now()).then(function(r){return r.json();}).then(function(data){
-  var RECS=data.recommendations.map(function(rec){
-    return {
-      fight:rec.fight,color:rec.color,num:rec.num,
-      title:rec.title,subtitle:rec.subtitle,
-      bgItems:rec.background,
-      bgStat:rec.backgroundStat,
-      recItems:rec.asks,
-      recStat:rec.asksStat
-    };
+  EDS=data.executiveDirectives||[];
+
+  EDS.forEach(function(ed,i){
+    document.getElementById('edNum'+i).textContent=ed.num;
+    document.getElementById('edName'+i).textContent=ed.title;
+
+    var circle=document.getElementById('edCircle'+i);
+    circle.style.background='linear-gradient(140deg,'+ed.color+'EE,'+ed.color+'BB)';
+
+    var fightTags='';
+    (ed.fights||[]).forEach(function(f){
+      fightTags+='<span class="ehc-fight-tag" style="background:'+(FIGHT_COLORS[f]||ed.color)+'">'+f+'</span>';
+    });
+    document.getElementById('ehcFights'+i).innerHTML=fightTags;
+    document.getElementById('ehcSummary'+i).textContent=ed.summary;
+
+    circle.addEventListener('click',function(e){
+      if(e.target.closest('.ed-hover-card')) openEdModal(i);
+      else openEdModal(i);
+    });
+  });
+}).catch(function(err){console.error('Failed to load EDs:',err);});
+
+function openEdModal(idx){
+  currentEdIdx=idx;
+  var ed=EDS[idx];
+  if(!ed) return;
+
+  var hdr=document.getElementById('edModalHeader');
+  hdr.style.background='linear-gradient(140deg,'+ed.color+'F0,'+ed.color+'CC)';
+
+  var fightTags='';
+  (ed.fights||[]).forEach(function(f){
+    fightTags+='<span class="ed-modal-fight-tag">'+f+'</span>';
   });
 
-  window._RECS=RECS;
-  window._renderPopup=renderPopup;
-
-  function renderPopup(){
-    var r2=RECS[currentIdx];
-    var pop=document.getElementById('popup');
-    pop.style.background='linear-gradient(140deg,'+r2.color+'EE,'+r2.color+'CC)';
-    document.getElementById('popHdr').innerHTML=
-      '<div class="pop-label">'+r2.num+' / 05 &middot; '+r2.fight+'</div>'+
-      '<div class="pop-title">'+r2.title+'</div>'+
-      '<div class="pop-subtitle">'+r2.subtitle+'</div>';
-    var bgHtml='<ul class="pop-bullets">'+r2.bgItems.map(function(item){return '<li>'+item+'</li>';}).join('')+'</ul>';
-    var recHtml='<ol class="pop-numbers">'+r2.recItems.map(function(item){return '<li>'+item+'</li>';}).join('')+'</ol>';
-    document.getElementById('popBody').innerHTML=
-      '<div class="pop-section">'+
-        '<div class="pop-sec-label">Background</div>'+
-        bgHtml+
-        '<div class="pop-stat">'+r2.bgStat+'</div>'+
+  hdr.innerHTML=
+    '<div class="ed-modal-hdr">'+
+      '<div class="ed-seal-row">'+
+        '<div class="ed-seal"><img src="seal.svg" alt="City Seal"></div>'+
+        '<div><div class="ed-office">Office of the Mayor</div><div class="ed-office-sub">City of Los Angeles</div></div>'+
       '</div>'+
-      '<div class="pop-divider"></div>'+
-      '<div class="pop-section">'+
-        '<div class="pop-sec-label">The Recommendation</div>'+
-        recHtml+
-        '<div class="pop-stat">'+r2.recStat+'</div>'+
-      '</div>';
-  }
+      '<div class="ed-modal-num">'+ed.num+'</div>'+
+      '<div class="ed-modal-title">'+ed.title+'</div>'+
+      '<div class="ed-modal-subtitle">'+ed.subtitle+'</div>'+
+      '<div class="ed-modal-fights">'+fightTags+'</div>'+
+    '</div>';
 
-  window.openPopup=function(idx){
-    currentIdx=idx;
-    renderPopup();
-    document.getElementById('ov').classList.add('open');
-    setActive(idx);
-  };
-}).catch(function(err){console.error('Failed to load content.json:',err);});
+  var body=document.getElementById('edModalBody');
+  var html='';
 
-var currentIdx=null;
+  html+='<div class="ed-body-section"><div class="ed-sec-label">Findings</div>';
+  (ed.background||[]).forEach(function(b){
+    html+='<div class="ed-whereas">WHEREAS, '+b+'</div>';
+  });
+  html+='</div>';
 
-function closePopup(e){e&&e.stopPropagation();document.getElementById('ov').classList.remove('open');currentIdx=null;
-  document.querySelectorAll('.fight-item').forEach(function(fi){fi.classList.remove('faded');});
+  html+='<div class="ed-body-section"><div class="ed-sec-label">Operative Directives</div>';
+  (ed.sections||[]).forEach(function(s){
+    html+='<div class="ed-section-title">'+s.title+'</div>';
+    html+='<div class="ed-section-body">'+s.body+'</div>';
+  });
+  html+='</div>';
+
+  html+='<div class="ed-body-section">';
+  html+='<div class="ed-impl"><strong>Implementation Authority:</strong> '+ed.implementation+'</div>';
+  html+='</div>';
+
+  html+='<div class="ed-body-section">';
+  html+='<div class="ed-impl"><strong>Reporting Requirement:</strong> '+ed.reporting+'</div>';
+  html+='</div>';
+
+  body.innerHTML=html;
+
+  document.getElementById('edModalScroll').scrollTop=0;
+  document.getElementById('edOverlay').classList.add('open');
 }
-function handleOvClick(e){if(e.target===document.getElementById('ov'))closePopup();}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closePopup();});
 
-function setActive(idx){
-  document.querySelectorAll('.fight-item').forEach(function(fi,i){fi.classList.toggle('faded',i!==idx);});
+function closeEdModal(){
+  document.getElementById('edOverlay').classList.remove('open');
+  currentEdIdx=null;
 }
-document.querySelectorAll('.rec-card').forEach(function(card){
-  card.addEventListener('mouseenter',function(){setActive(parseInt(this.getAttribute('data-idx')));});
-  card.addEventListener('mouseleave',function(){if(currentIdx===null){document.querySelectorAll('.fight-item').forEach(function(fi){fi.classList.remove('faded');});}});
+
+function downloadED(){
+  if(currentEdIdx===null) return;
+  var ed=EDS[currentEdIdx];
+  if(!ed) return;
+
+  var text='OFFICE OF THE MAYOR\nCITY OF LOS ANGELES\n\n';
+  text+=ed.num.toUpperCase()+': '+ed.title.toUpperCase()+'\n';
+  text+=ed.subtitle+'\n\n';
+  text+='FINDINGS\n\n';
+  (ed.background||[]).forEach(function(b){
+    text+='WHEREAS, '+b+'\n\n';
+  });
+  text+='NOW, THEREFORE, I direct the following:\n\n';
+  (ed.sections||[]).forEach(function(s){
+    text+=s.title.toUpperCase()+'\n\n';
+    text+=s.body+'\n\n';
+  });
+  text+='IMPLEMENTATION AUTHORITY\n\n'+ed.implementation+'\n\n';
+  text+='REPORTING REQUIREMENT\n\n'+ed.reporting+'\n\n';
+  text+='Mayor Karen Bass\nCity of Los Angeles\n';
+
+  var blob=new Blob([text],{type:'text/plain'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=ed.id+'-draft.txt';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+document.getElementById('edOverlay').addEventListener('click',function(e){
+  if(e.target===this) closeEdModal();
 });
+document.addEventListener('keydown',function(e){if(e.key==='Escape') closeEdModal();});
 
 function toggleNav(){var o=document.getElementById('nDr').classList.toggle('open');document.getElementById('ham').classList.toggle('open',o);document.getElementById('nOv').classList.toggle('open',o);}
 function closeNav(){document.getElementById('nDr').classList.remove('open');document.getElementById('ham').classList.remove('open');document.getElementById('nOv').classList.remove('open');}
+
 </script>
 </body>
 </html>
