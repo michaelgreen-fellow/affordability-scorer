@@ -42,6 +42,7 @@ function openEdModal(idx){
   html+='<div class="ed-doc-title">EXECUTIVE DIRECTIVE NO. '+ed.num+'</div>';
   html+='<div class="ed-doc-date">Issue Date: '+ed.issueDate+'</div>';
   html+='<div class="ed-doc-subject"><strong>Subject:</strong>&emsp;'+ed.subject+'</div>';
+  html+='<div class="ed-doc-disclaimer">DRAFT. This document has not been reviewed, approved, or endorsed by anyone in the Mayor\'s Office. It is purely the independent work of Michael Green II, developed as part of a Coro Fellowship placement.</div>';
   html+='<div class="ed-doc-rule2"></div>';
 
   // Preamble paragraphs
@@ -175,7 +176,21 @@ function downloadED(){
   doc.setFontSize(11);
   doc.text('Subject:',ML,y);
   doc.text(ed.subject,ML+70,y);
-  y+=28;
+  y+=24;
+
+  // Disclaimer
+  doc.setFont('courier','normal');
+  doc.setFontSize(7);
+  doc.setTextColor(153,153,153);
+  var discText='DRAFT. This document has not been reviewed, approved, or endorsed by anyone in the Mayor\'s Office. It is purely the independent work of Michael Green II, developed as part of a Coro Fellowship placement.';
+  var discLines=doc.splitTextToSize(discText,TW-24);
+  doc.rect(ML+12,y-4,TW-24,discLines.length*9+8);
+  discLines.forEach(function(line){
+    doc.text(line,W/2,y+4,{align:'center'});
+    y+=9;
+  });
+  doc.setTextColor(0,0,0);
+  y+=12;
 
   // Rule
   doc.setLineWidth(0.5);

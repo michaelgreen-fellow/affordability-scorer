@@ -58,6 +58,7 @@
 .ed-h1{font-family:var(--serif);font-size:clamp(34px,5vw,64px);color:var(--navy);line-height:1.0;letter-spacing:-.02em}
 .ed-h1 em{font-style:italic;color:var(--gold)}
 .ed-intro{font-size:13.5px;color:var(--text2);line-height:1.75;font-weight:300;margin-top:.75rem}
+.ed-disclaimer{font-family:var(--mono);font-size:9px;letter-spacing:.04em;color:var(--text3);line-height:1.7;margin-top:.75rem;padding:.625rem .875rem;background:rgba(11,28,51,.04);border:1px solid rgba(11,28,51,.08);border-radius:6px}
 
 /* ── CIRCLE ARENA ── */
 .ed-arena{position:relative;width:100%;max-width:680px;height:520px;margin:1rem auto 1.5rem}
@@ -189,7 +190,8 @@
 .ed-doc-rule{height:2px;background:#222;margin-bottom:1.5rem}
 .ed-doc-title{text-align:center;font-size:16px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#222;margin-bottom:4px}
 .ed-doc-date{text-align:center;font-size:11px;color:#555;margin-bottom:4px}
-.ed-doc-subject{text-align:center;font-size:12px;color:#333;margin-bottom:1.75rem;font-style:italic}
+.ed-doc-subject{text-align:center;font-size:12px;color:#333;margin-bottom:1rem;font-style:italic}
+.ed-doc-disclaimer{font-family:'Courier New',Courier,monospace;font-size:9px;letter-spacing:.03em;color:#999;text-align:center;line-height:1.6;margin-bottom:1.75rem;padding:.5rem .75rem;border:1px solid #ddd;border-radius:3px}
 .ed-doc-rule2{height:1px;background:#ccc;margin-bottom:1.75rem}
 
 /* ── FORMAL DOCUMENT BODY ── */
@@ -264,6 +266,7 @@ document.getElementById('pwIn').focus();})();
     <div class="ed-eye">Michael Green II · Mayor's Office · April 2026</div>
     <h1 class="ed-h1">Executive<br><em>Directives</em></h1>
     <p class="ed-intro">Three proposed Executive Directives that extend the Mayor's affordability agenda. Each one is grounded in existing authority, mapped to specific departments, and designed to be signed.</p>
+    <p class="ed-disclaimer">These draft Executive Directives have not been reviewed, approved, or endorsed by anyone in the Mayor's Office. They are purely the independent work of Michael Green II, developed as part of a Coro Fellowship placement.</p>
   </div>
 
   <div class="ed-arena" id="edArena">
@@ -362,6 +365,7 @@ function openEdModal(idx){
   html+='<div class="ed-doc-title">EXECUTIVE DIRECTIVE NO. '+ed.num+'</div>';
   html+='<div class="ed-doc-date">Issue Date: '+ed.issueDate+'</div>';
   html+='<div class="ed-doc-subject"><strong>Subject:</strong>&emsp;'+ed.subject+'</div>';
+  html+='<div class="ed-doc-disclaimer">DRAFT. This document has not been reviewed, approved, or endorsed by anyone in the Mayor\'s Office. It is purely the independent work of Michael Green II, developed as part of a Coro Fellowship placement.</div>';
   html+='<div class="ed-doc-rule2"></div>';
 
   // Preamble paragraphs
@@ -495,7 +499,21 @@ function downloadED(){
   doc.setFontSize(11);
   doc.text('Subject:',ML,y);
   doc.text(ed.subject,ML+70,y);
-  y+=28;
+  y+=24;
+
+  // Disclaimer
+  doc.setFont('courier','normal');
+  doc.setFontSize(7);
+  doc.setTextColor(153,153,153);
+  var discText='DRAFT. This document has not been reviewed, approved, or endorsed by anyone in the Mayor\'s Office. It is purely the independent work of Michael Green II, developed as part of a Coro Fellowship placement.';
+  var discLines=doc.splitTextToSize(discText,TW-24);
+  doc.rect(ML+12,y-4,TW-24,discLines.length*9+8);
+  discLines.forEach(function(line){
+    doc.text(line,W/2,y+4,{align:'center'});
+    y+=9;
+  });
+  doc.setTextColor(0,0,0);
+  y+=12;
 
   // Rule
   doc.setLineWidth(0.5);
