@@ -140,7 +140,6 @@ pages = [
     ('index.html', 'Home'),
     ('campaigns.html', 'Five Fights'),
     ('recommendations.html', 'Policy Shortlist'),
-    ('dashboard.html', 'Data Dashboard'),
     ('inventory.html', 'Program Inventory'),
     ('talking-points.html', 'Talking Points'),
     ('sources.html', 'Sources & References'),

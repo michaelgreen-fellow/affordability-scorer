@@ -53,7 +53,6 @@
     "links": [
       { "href": "index.html", "label": "Home", "sub": "Five Fights" },
       { "href": "inventory.html", "label": "Inventory", "sub": "209 Programs", "feature": "showInventory" },
-      { "href": "dashboard.html", "label": "Dashboard", "sub": "Charts & Data", "feature": "showDashboard" },
       { "href": "campaigns.html", "label": "Campaigns", "sub": "Awareness", "feature": "showCampaigns" },
       { "href": "recommendations.html", "label": "Policy Shortlist", "sub": "Five Recommendations", "feature": "showRecommendations" },
       { "href": "talking-points.html", "label": "Talking Points", "sub": "Narratives", "feature": "showTalkingPoints" },
@@ -66,7 +65,6 @@
 
   "thumbnails": [
     { "id": "inventory", "href": "inventory.html", "style": "lines", "feature": "showInventory" },
-    { "id": "dashboard", "href": "dashboard.html", "style": "bars", "feature": "showDashboard" },
     { "id": "campaigns", "href": "campaigns.html", "style": "skew", "feature": "showCampaigns" },
     { "id": "recommendations", "href": "recommendations.html", "style": "gradient", "feature": "showRecommendations" },
     { "id": "talkingPoints", "href": "talking-points.html", "style": "draft", "feature": "showTalkingPoints" }
