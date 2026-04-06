@@ -142,9 +142,10 @@ pages = [
     ('recommendations.html', 'Policy Shortlist'),
     ('dashboard.html', 'Data Dashboard'),
     ('inventory.html', 'Program Inventory'),
-    ('about.html', 'About &amp; Sources'),
-    ('contact.html', 'Contact'),
     ('talking-points.html', 'Talking Points'),
+    ('sources.html', 'Sources & References'),
+    ('about.html', 'About'),
+    ('contact.html', 'Contact'),
 ]
 
 for filename, title in pages:

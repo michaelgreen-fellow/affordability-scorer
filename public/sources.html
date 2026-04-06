@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sources & References | Affordability for All</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   SHARED.CSS - Generated from config.json
+   Do not edit directly. Edit config.json and rebuild.
+   ══════════════════════════════════════════════ */
+
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0}
+
+/* CSS Variables - from config.json */
+:root{
+  --bg:#EAF4FC;--navy:#0B1C33;--gold:#D4870A;--gold-lt:#F5A623;
+  --text:#0B1C33;--text2:#2C4A6A;--text3:#6A8AAA;--white:#FFFFFF;
+  --earn:#6D28D9;--build:#047857;--save:#BE185D;
+  --care:#C2410C;--protect:#B45309;
+  --serif:'DM Serif Display', Georgia, serif;--sans:'Outfit', sans-serif;--mono:'DM Mono', monospace;
+}
+
+/* ── Top Nav ── */
+.topnav{position:sticky;top:0;z-index:50;height:58px;background:rgba(234,244,252,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(11,28,51,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem}
+.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text3);font-size:13px;transition:color .2s}
+.nav-back:hover{color:var(--navy)}
+.nav-back svg{width:15px;height:15px}
+.nav-ttl{font-family:var(--serif);font-size:19px;color:var(--navy)}
+
+/* ── Hamburger ── */
+.ham{width:36px;height:36px;background:rgba(11,28,51,0.08);border:1px solid rgba(11,28,51,0.13);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;flex-shrink:0;position:relative;z-index:200}
+.ham span{display:block;width:16px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .28s;transform-origin:center}
+.ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ── Nav Overlay + Drawer ── */
+.nav-ov{position:fixed;inset:0;z-index:100;background:rgba(11,28,51,0);pointer-events:none;transition:background .3s}
+.nav-ov.open{background:rgba(11,28,51,0.22);pointer-events:all}
+.nav-dr{position:fixed;top:0;right:0;bottom:0;width:210px;background:#fff;border-left:1px solid rgba(11,28,51,0.09);z-index:150;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:5rem 1.5rem 2rem;box-shadow:-8px 0 32px rgba(11,28,51,0.08)}
+.nav-dr.open{transform:translateX(0)}
+.nl{display:block;padding:.75rem 0;border-bottom:1px solid rgba(11,28,51,0.07);font-family:var(--serif);font-size:22px;color:var(--text2);text-decoration:none;transition:color .2s}
+.nl:hover{color:var(--gold)}
+.nl span{display:block;font-family:var(--sans);font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-top:1px}
+.nf{margin-top:auto;font-size:9px;color:var(--text3);line-height:1.7}
+
+/* ── Common Elements ── */
+.eye{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:9px}
+.eye::before{content:'';width:20px;height:1px;background:var(--gold);display:block}
+
+/* ── PAGE WRAPPER ── */
+body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh}
+
+.src-page{max-width:1000px;margin:0 auto;padding:2.5rem 2rem 5rem}
+
+/* ── HEADER ── */
+.src-header{text-align:center;margin-bottom:2.5rem}
+.src-eye{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;display:inline-flex;align-items:center;gap:10px}
+.src-eye::before,.src-eye::after{content:'';width:24px;height:1px;background:var(--gold);opacity:.5}
+.src-title{font-family:var(--serif);font-size:clamp(36px,5vw,48px);color:var(--navy);line-height:1.0;letter-spacing:-.02em;margin-bottom:.6rem}
+.src-title em{font-style:italic;color:var(--gold)}
+.src-desc{font-size:13px;color:var(--text3);max-width:560px;margin:0 auto;line-height:1.7;font-weight:300}
+
+/* ── CONTROLS ── */
+.src-controls{display:flex;gap:1rem;margin-bottom:2rem;align-items:center;flex-wrap:wrap}
+.src-search{flex:1;min-width:220px;padding:10px 14px;border:1px solid rgba(11,28,51,.12);border-radius:6px;font-size:13px;font-family:var(--sans);color:var(--text);background:#fff}
+.src-search::placeholder{color:var(--text3)}
+.src-filter{padding:10px 12px;border:1px solid rgba(11,28,51,.12);border-radius:6px;font-size:13px;font-family:var(--sans);color:var(--text);background:#fff;cursor:pointer}
+.src-search:focus,.src-filter:focus{outline:none;border-color:var(--navy);box-shadow:0 0 0 2px rgba(107,28,217,.08)}
+
+/* ── TABLE ── */
+.src-table{overflow-x:auto}
+.src-table-wrap{border:1px solid rgba(11,28,51,.08);border-radius:8px;overflow:hidden}
+.src-row{display:grid;grid-template-columns:2fr 1fr 1.5fr 1fr;gap:0;border-bottom:1px solid rgba(11,28,51,.06);background:#fff;align-items:start}
+.src-row:hover{background:rgba(11,28,51,.02)}
+.src-row.header{background:rgba(11,28,51,.04);font-weight:600;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy)}
+.src-cell{padding:1rem 1.25rem;font-size:13px;color:var(--text2);line-height:1.6}
+.src-cell.header{color:var(--navy);font-weight:600}
+.src-title-link{color:var(--navy);text-decoration:none;font-weight:500;display:inline-block}
+.src-title-link:hover{color:var(--gold);text-decoration:underline}
+.src-category{display:inline-block;background:rgba(212,135,10,.08);color:#B45309;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:4px;font-weight:500}
+.src-where{font-size:12px;color:var(--text3);line-height:1.5}
+.src-loading{text-align:center;padding:3rem;color:var(--text3);font-size:13px;font-family:var(--mono)}
+
+@media(max-width:1000px){
+  .src-row{grid-template-columns:1.5fr 1fr 1fr}
+  .src-row.header{grid-template-columns:1.5fr 1fr 1fr}
+  .src-where{display:none}
+}
+
+@media(max-width:640px){
+  .src-page{padding:2rem 1.5rem 4rem}
+  .src-controls{flex-direction:column}
+  .src-search,.src-filter{width:100%}
+  .src-row{grid-template-columns:1fr;gap:0}
+  .src-row.header{display:none}
+  .src-cell{display:flex;justify-content:space-between;align-items:start;padding:.75rem 1rem;border-bottom:1px solid rgba(11,28,51,.06);position:relative}
+  .src-cell::before{content:attr(data-label);font-weight:600;color:var(--navy);font-size:11px;text-transform:uppercase;letter-spacing:.08em;min-width:80px}
+}
+
+</style>
+</head>
+<body>
+
+<div id="pwGate" style="position:fixed;inset:0;z-index:9999;background:#EAF4FC;display:flex;align-items:center;justify-content:center;font-family:'Outfit', sans-serif">
+<div style="text-align:center;max-width:340px;padding:2rem">
+<div style="font-family:'DM Serif Display', Georgia, serif;font-size:clamp(24px,4vw,36px);color:#0B1C33;margin-bottom:.5rem">Affordability <em style="color:#D4870A;font-style:italic">for All</em></div>
+<div style="font-family:'DM Mono', monospace;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:#6A8AAA;margin-bottom:2rem">Draft Review Access</div>
+<input id="pwIn" type="password" placeholder="Enter password" style="width:100%;padding:10px 14px;border:1px solid rgba(11,28,51,.15);border-radius:6px;font-size:14px;font-family:'Outfit', sans-serif;outline:none;text-align:center;margin-bottom:.75rem;background:rgba(255,255,255,.7)" onkeydown="if(event.key==='Enter')checkPw()">
+<button onclick="checkPw()" style="width:100%;padding:9px;background:#0B1C33;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;font-family:'Outfit', sans-serif;letter-spacing:.05em">Access Site</button>
+<div id="pwErr" style="font-size:11px;color:#DC2626;margin-top:.75rem;opacity:0;transition:opacity .2s"></div>
+<div style="font-size:10px;color:#6A8AAA;margin-top:1.5rem">Contact Michael Green II for access</div>
+</div></div>
+<script>
+(function(){var k='aff_access',h='bass2026';if(sessionStorage.getItem(k)===h){document.getElementById('pwGate').style.display='none';}
+window.checkPw=function(){var v=document.getElementById('pwIn').value;if(v===h){sessionStorage.setItem(k,h);document.getElementById('pwGate').style.display='none';}else{var e=document.getElementById('pwErr');e.textContent='Incorrect password';e.style.opacity='1';document.getElementById('pwIn').value='';setTimeout(function(){e.style.opacity='0';},2000);}};
+document.getElementById('pwIn').focus();})();
+</script>
+
+<nav class="topnav">
+  <a class="nav-back" href="index.html"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>Back</a>
+  <div class="nav-ttl">Sources & References</div>
+  <div class="ham" id="ham" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="nav-ov" id="nOv" onclick="closeNav()"></div>
+<nav class="nav-dr" id="nDr">
+  <a class="nl" href="index.html" onclick="closeNav()">Home<span>Five Fights</span></a>
+  <a class="nl" href="inventory.html" onclick="closeNav()">Inventory<span>209 Programs</span></a>
+  <a class="nl" href="dashboard.html" onclick="closeNav()">Dashboard<span>Charts &amp; Data</span></a>
+  <a class="nl" href="campaigns.html" onclick="closeNav()">Campaigns<span>Awareness</span></a>
+  <a class="nl" href="recommendations.html" onclick="closeNav()">Policy Shortlist<span>Five Recommendations</span></a>
+  <a class="nl" href="talking-points.html" onclick="closeNav()">Talking Points<span>Narratives</span></a>
+  <a class="nl" href="sources.html" onclick="closeNav()">Sources<span>Research</span></a>
+  <a class="nl" href="about.html" onclick="closeNav()">About<span>Project</span></a>
+  <a class="nl" href="contact.html" onclick="closeNav()">Contact<span>Michael Green II</span></a>
+
+  <div class="nf">Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026</div>
+</nav>
+
+
+<div class="src-page">
+  <div class="src-header">
+    <div class="src-eye" id="srcEye">Research</div>
+    <h1 class="src-title">Sources & <em>References</em></h1>
+    <p class="src-desc" id="srcDesc">Loading...</p>
+  </div>
+
+  <div class="src-controls">
+    <input type="text" id="srcSearch" class="src-search" placeholder="Search by title, category, or where used...">
+    <select id="srcCategory" class="src-filter">
+      <option value="">All Categories</option>
+      <option value="Government Data">Government Data</option>
+      <option value="Government Policy">Government Policy</option>
+      <option value="Academic Research">Academic Research</option>
+      <option value="Advocacy Research">Advocacy Research</option>
+      <option value="Community Data">Community Data</option>
+    </select>
+  </div>
+
+  <div id="srcTable" class="src-table">
+    <div class="src-loading">Loading sources...</div>
+  </div>
+</div>
+
+<footer style="text-align:center;padding:1.375rem;font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.06em;border-top:1px solid rgba(11,28,51,0.07)"></footer>
+
+
+<script>
+function toggleNav(){var o=document.getElementById('nDr').classList.toggle('open');document.getElementById('ham').classList.toggle('open',o);document.getElementById('nOv').classList.toggle('open',o);}
+function closeNav(){document.getElementById('nDr').classList.remove('open');document.getElementById('ham').classList.remove('open');document.getElementById('nOv').classList.remove('open');}
+
+var allSources = [];
+
+// Fetch content.json and sources.csv
+Promise.all([
+  fetch('content.json?v='+Date.now()).then(function(r){return r.json();}),
+  fetch('sources.csv?v='+Date.now()).then(function(r){return r.text();})
+]).then(function(results){
+  var content = results[0];
+  var csvText = results[1];
+
+  // Parse CSV
+  var lines = csvText.trim().split('\n');
+  lines.slice(1).forEach(function(line){
+    var parts = [];
+    var current = '';
+    var inQuotes = false;
+    for(var i=0;i<line.length;i++){
+      var char = line[i];
+      if(char==='"'){
+        inQuotes = !inQuotes;
+      } else if(char===',' && !inQuotes){
+        parts.push(current.replace(/^"|"$/g,''));
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+    parts.push(current.replace(/^"|"$/g,''));
+    if(parts.length>=5){
+      allSources.push({
+        title: parts[0].trim(),
+        url: parts[1].trim(),
+        description: parts[2].trim(),
+        where_used: parts[3].trim(),
+        category: parts[4].trim()
+      });
+    }
+  });
+
+  // Header text
+  document.getElementById('srcEye').textContent = content.site.subtitle || 'Mayor Karen Bass';
+  document.getElementById('srcDesc').textContent = 'Research sources, data, and references supporting Affordability for All. All links are public and paywall-free.';
+
+  // Render table
+  renderTable(allSources);
+
+  // Wire search and filter
+  document.getElementById('srcSearch').addEventListener('keyup', applyFilters);
+  document.getElementById('srcCategory').addEventListener('change', applyFilters);
+
+}).catch(function(err){
+  document.getElementById('srcTable').innerHTML =
+    '<div class="src-loading">Could not load sources. Make sure sources.csv is in the public folder.</div>';
+  console.error('Sources load error:', err);
+});
+
+function renderTable(sources){
+  if(sources.length===0){
+    document.getElementById('srcTable').innerHTML =
+      '<div class="src-loading">No sources found.</div>';
+    return;
+  }
+
+  var html = '<div class="src-table-wrap"><div class="src-row header">'+
+    '<div class="src-cell header">Title</div>'+
+    '<div class="src-cell header">Category</div>'+
+    '<div class="src-cell header">Where Used</div>'+
+    '<div class="src-cell header"></div>'+
+    '</div>';
+
+  sources.forEach(function(src){
+    html += '<div class="src-row">'+
+      '<div class="src-cell"><a href="'+escapeHtml(src.url)+'" target="_blank" rel="noopener" class="src-title-link">'+escapeHtml(src.title)+'</a><div style="font-size:11px;color:var(--text3);margin-top:.3rem;font-family:var(--mono)">'+escapeHtml(src.url.replace(/https?:\/\//,''))+'</div><div style="font-size:12px;color:var(--text2);margin-top:.5rem;line-height:1.6">'+escapeHtml(src.description)+'</div></div>'+
+      '<div class="src-cell"><span class="src-category">'+escapeHtml(src.category)+'</span></div>'+
+      '<div class="src-cell src-where">'+escapeHtml(src.where_used)+'</div>'+
+      '<div class="src-cell" style="display:flex;align-items:center;justify-content:center;padding:1rem"><a href="'+escapeHtml(src.url)+'" target="_blank" rel="noopener" title="Open in new tab" style="width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid rgba(11,28,51,.15);color:var(--text3);text-decoration:none;font-size:14px;transition:all .18s">→</a></div>'+
+      '</div>';
+  });
+  html += '</div>';
+  document.getElementById('srcTable').innerHTML = html;
+}
+
+function applyFilters(){
+  var searchVal = document.getElementById('srcSearch').value.toLowerCase();
+  var categoryVal = document.getElementById('srcCategory').value;
+
+  var filtered = allSources.filter(function(src){
+    var matchSearch = !searchVal ||
+      src.title.toLowerCase().indexOf(searchVal)>-1 ||
+      src.description.toLowerCase().indexOf(searchVal)>-1 ||
+      src.where_used.toLowerCase().indexOf(searchVal)>-1 ||
+      src.category.toLowerCase().indexOf(searchVal)>-1;
+
+    var matchCategory = !categoryVal || src.category === categoryVal;
+
+    return matchSearch && matchCategory;
+  });
+
+  renderTable(filtered);
+}
+
+function escapeHtml(text){
+  var map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g,function(m){return map[m];});
+}
+
+</script>
+</body>
+</html>
