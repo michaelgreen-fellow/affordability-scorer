@@ -212,7 +212,7 @@ document.getElementById('pwIn').focus();}})();
 build_variant('index-pillars.html', 'Home (Pillars Draft)', 'index-pillars')
 
 # Copy JSON, CSV, and assets to public (fix permissions first)
-for jf in ['content.json', 'config.json', 'inventory.csv', 'talkingPoints.json']:
+for jf in ['content.json', 'config.json', 'inventory.csv', 'talking-points.csv', 'sources.csv']:
     src = os.path.join(ROOT, jf)
     dst = os.path.join(PUBLIC, jf)
     if os.path.exists(src):

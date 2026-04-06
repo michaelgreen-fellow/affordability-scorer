@@ -1,12 +1,38 @@
 {{NAV_JS}}
 
-// Fetch both content.json (fight metadata) and talkingPoints.json (the database)
+// Fetch content.json for fight metadata and talking-points.csv for points
 Promise.all([
   fetch('content.json?v='+Date.now()).then(function(r){return r.json();}),
-  fetch('talkingPoints.json?v='+Date.now()).then(function(r){return r.json();})
+  fetch('talking-points.csv?v='+Date.now()).then(function(r){return r.text();})
 ]).then(function(results){
   var content = results[0];
-  var tpDB = results[1];
+  var csvText = results[1];
+
+  // Parse CSV
+  var lines = csvText.trim().split('\n');
+  var tpDB = {};
+  lines.slice(1).forEach(function(line){
+    var parts = [];
+    var current = '';
+    var inQuotes = false;
+    for(var i=0;i<line.length;i++){
+      var char = line[i];
+      if(char==='"'){
+        inQuotes = !inQuotes;
+      } else if(char===',' && !inQuotes){
+        parts.push(current.replace(/^"|"$/g,''));
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+    parts.push(current.replace(/^"|"$/g,''));
+    if(parts.length>=3){
+      var fightId = parts[0].trim();
+      if(!tpDB[fightId]) tpDB[fightId] = [];
+      tpDB[fightId].push(parts[2]);
+    }
+  });
 
   // Page header text
   document.getElementById('tpEye').textContent = content.site.subtitle || 'Mayor Karen Bass';
@@ -70,7 +96,7 @@ Promise.all([
 
 }).catch(function(err){
   document.getElementById('tpGrid').innerHTML =
-    '<div class="tp-loading">Could not load talking points. Make sure talkingPoints.json is in the public folder.</div>';
+    '<div class="tp-loading">Could not load talking points. Make sure talking-points.csv is in the public folder.</div>';
   console.error('Talking points load error:', err);
 });
 

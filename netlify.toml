@@ -12,6 +12,11 @@
     Cache-Control = "no-cache, no-store, must-revalidate"
 
 [[headers]]
-  for = "/talkingPoints.json"
+  for = "/talking-points.csv"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/sources.csv"
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"

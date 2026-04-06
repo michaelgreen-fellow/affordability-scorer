@@ -14,7 +14,7 @@
 
   "features": {
     "showTalkingPoints": true,
-    "talkingPointsDraft": true,
+    "talkingPointsDraft": false,
     "showInventory": true,
     "showDashboard": true,
     "showCampaigns": true,
