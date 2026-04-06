@@ -104,24 +104,24 @@
   box-shadow:0 12px 48px rgba(11,28,51,.18);
   opacity:0;pointer-events:none;
   transition:opacity .3s cubic-bezier(.2,.8,.2,1),transform .3s cubic-bezier(.2,.8,.2,1);
-  z-index:10;
+  z-index:100;
   backdrop-filter:blur(8px);
 }
 
-/* Top circle: card appears below */
+/* Top circle: card appears to the right */
 .ed-circle[data-ed="0"] .ed-hover-card{
-  top:calc(100% + 12px);left:50%;transform:translate(-50%,8px);
-}
-.ed-circle[data-ed="0"]:hover .ed-hover-card{
-  opacity:1;pointer-events:all;transform:translate(-50%,0);
-}
-
-/* Bottom-left circle: card appears to the right */
-.ed-circle[data-ed="1"] .ed-hover-card{
   top:50%;left:calc(100% + 14px);transform:translate(8px,-50%);
 }
-.ed-circle[data-ed="1"]:hover .ed-hover-card{
+.ed-circle[data-ed="0"]:hover .ed-hover-card{
   opacity:1;pointer-events:all;transform:translate(0,-50%);
+}
+
+/* Bottom-left circle: card appears above */
+.ed-circle[data-ed="1"] .ed-hover-card{
+  bottom:calc(100% + 12px);left:50%;top:auto;transform:translate(-50%,-8px);
+}
+.ed-circle[data-ed="1"]:hover .ed-hover-card{
+  opacity:1;pointer-events:all;transform:translate(-50%,0);
 }
 
 /* Bottom-right circle: card appears to the left */
@@ -131,6 +131,9 @@
 .ed-circle[data-ed="2"]:hover .ed-hover-card{
   opacity:1;pointer-events:all;transform:translate(0,-50%);
 }
+
+/* Hovered circle goes above siblings */
+.ed-circle:hover{z-index:50}
 
 @media(max-width:640px){
   .ed-hover-card{display:none}
@@ -229,7 +232,7 @@ footer{text-align:center;padding:1.375rem;font-family:var(--mono);font-size:9px;
 <div style="font-size:10px;color:#6A8AAA;margin-top:1.5rem">Contact Michael Green II for access</div>
 </div></div>
 <script>
-(function(){var k='aff_access',h='bass2026';if(sessionStorage.getItem(k)===h){document.getElementById('pwGate').style.display='none';}
+(function(){var k='aff_access',h='LAC+USC Medical Center';if(sessionStorage.getItem(k)===h){document.getElementById('pwGate').style.display='none';}
 window.checkPw=function(){var v=document.getElementById('pwIn').value;if(v===h){sessionStorage.setItem(k,h);document.getElementById('pwGate').style.display='none';}else{var e=document.getElementById('pwErr');e.textContent='Incorrect password';e.style.opacity='1';document.getElementById('pwIn').value='';setTimeout(function(){e.style.opacity='0';},2000);}};
 document.getElementById('pwIn').focus();})();
 </script>
@@ -299,12 +302,6 @@ document.getElementById('pwIn').focus();})();
     </div>
   </div>
 
-  <div class="ed-legend">
-    <div class="ed-leg-item"><span class="ed-leg-dot" style="background:var(--save)"></span> Save More</div>
-    <div class="ed-leg-item"><span class="ed-leg-dot" style="background:var(--build)"></span> Build More</div>
-    <div class="ed-leg-item"><span class="ed-leg-dot" style="background:var(--earn)"></span> Earn More</div>
-    <div class="ed-leg-item"><span class="ed-leg-dot" style="background:var(--care)"></span> Care More</div>
-  </div>
 </div>
 
 <footer style="text-align:center;padding:1.375rem;font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.06em;border-top:1px solid rgba(11,28,51,0.07)"></footer>
