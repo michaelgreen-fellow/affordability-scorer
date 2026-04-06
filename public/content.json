@@ -1,0 +1,586 @@
+{
+  "_meta": {
+    "description": "Single source of truth for all editable copy on the Affordability for All site.",
+    "lastUpdated": "2026-04-01",
+    "author": "Michael Green II",
+    "notes": "Edit this file to update any text on the site. Pages that read from this file will auto-populate on load."
+  },
+  "site": {
+    "title": "Affordability for All & The Five Fights",
+    "subtitle": "Mayor Karen Bass",
+    "byline": "Michael Green II · Coro Fellow",
+    "headerTitle": "Mayor Bass: Affordability for All & The Five Fights",
+    "footerText": "",
+    "overviewBody": "Los Angeles is one of the least affordable cities in America. Mayor Bass is not fighting this on one front. She is fighting five simultaneous battles, each essential, all interconnected. Together they form a complete strategy. Separately they get lost.",
+    "centerText": {
+      "line1": "THE",
+      "line2": "Five",
+      "line3": "FIGHTS"
+    },
+    "pageTitle": "The Five Fights",
+    "thumbnails": {
+      "inventory": { "title": "Inventory", "sub": "209 programs" },
+      "dashboard": { "title": "Dashboard", "sub": "Charts" },
+      "campaigns": { "title": "Campaigns", "sub": "Five fights" },
+      "recommendations": { "title": "Policy", "sub": "Shortlist", "label": "5 recs" },
+      "talkingPoints": { "title": "Talking", "sub": "Points", "label": "WIP" },
+      "contact": { "title": "Contact", "sub": "Michael Green II", "label": "MG II" }
+    }
+  },
+  "fights": [
+    {
+      "id": "earn",
+      "name": "Earn More",
+      "color": "#6D28D9",
+      "num": "01",
+      "subtitle": "Wages & Workforce",
+      "wheelDescription": "Bass built a floor under LA wages. She brokered landmark labor agreements, signing minimum wage laws, and enforced living wage standards at city contractors.",
+      "campaignDescription": "Working Angelenos deserve wages that keep up with what it actually costs to live here. Bass brokered agreements, signed ordinances, and enforced standards.",
+      "stats": [
+        {
+          "value": "30K",
+          "label": "workers in LAUSD/SEIU agreement"
+        },
+        {
+          "value": "$22.52",
+          "label": "new LAUSD min wage/hr"
+        }
+      ],
+      "wheelPrograms": [
+        "LAUSD/SEIU 99 Labor Agreement",
+        "Airport & Hotel Worker Min. Wage",
+        "HACLA Project Labor Agreement",
+        "Living Wage Enforcement"
+      ]
+    },
+    {
+      "id": "build",
+      "name": "Build More",
+      "color": "#047857",
+      "num": "02",
+      "subtitle": "Housing Production",
+      "wheelDescription": "ED1 streamlined approvals for 100% affordable housing. Adaptive Reuse converts vacant buildings into homes. Bass inherited 50 years of underbuilding.",
+      "campaignDescription": "LA underbuilt housing for fifty years. Bass dismantled the bureaucratic barriers that made it impossible to catch up.",
+      "stats": [
+        {
+          "value": "~29K",
+          "label": "units approved under ED1"
+        },
+        {
+          "value": "Over $300M",
+          "label": "ULA construction programs"
+        }
+      ],
+      "wheelPrograms": [
+        "Executive Directive 1",
+        "Adaptive Reuse Ordinance",
+        "ULA Construction Programs",
+        "Pooled Financing Programs"
+      ]
+    },
+    {
+      "id": "save",
+      "name": "Save More",
+      "color": "#BE185D",
+      "num": "03",
+      "subtitle": "Utilities & Tax Credits",
+      "wheelDescription": "DWP savings. Free tax prep that puts thousands back. Utility relief for seniors. Public power that keeps rates lower than any private utility in the state.",
+      "campaignDescription": "Every dollar Angelenos earn should go further. Lower utility costs, tax credits most people do not know exist, and savings programs that stretch every paycheck.",
+      "stats": [
+        {
+          "value": "$41.5M",
+          "label": "annual Lifeline reimbursements"
+        },
+        {
+          "value": "$1,800",
+          "label": "Mobility Wallet transit cards"
+        }
+      ],
+      "wheelPrograms": [
+        "DWP Rate Advantage",
+        "EZ-SAVE / Lifeline Programs",
+        "Free Tax Prep LA",
+        "Cool LA"
+      ]
+    },
+    {
+      "id": "care",
+      "name": "Care More",
+      "color": "#C2410C",
+      "num": "04",
+      "subtitle": "Families, Homelessness & Safety Net",
+      "wheelDescription": "FamilySource. Inside Safe. Youth programs. Eviction defense. Maternal health. The safety net that catches people before they fall and lifts them when they do.",
+      "campaignDescription": "The programs that catch people before they fall and lift them when they do. Families, youth, homelessness, eviction defense, veterans, and maternal health.",
+      "stats": [
+        {
+          "value": "50K+",
+          "label": "households via FamilySource"
+        },
+        {
+          "value": "2",
+          "label": "years homelessness declined"
+        }
+      ],
+      "wheelPrograms": [
+        "FamilySource System",
+        "Inside Safe",
+        "Right to Counsel",
+        "Youth Service Corps"
+      ]
+    },
+    {
+      "id": "protect",
+      "name": "Protect More Rights",
+      "color": "#B45309",
+      "num": "05",
+      "subtitle": "Tenant Rights & Housing Stability",
+      "wheelDescription": "Renters are the majority of Angelenos. Bass signed the first RSO overhaul in 40 years, funded eviction defense through ULA, and built a legal shield for tenants facing displacement.",
+      "campaignDescription": "Protecting tenants from displacement, funding eviction defense, and enforcing the strongest renter protections LA has seen in a generation.",
+      "stats": [
+        {
+          "value": "$57M+",
+          "label": "ULA eviction defense funding"
+        },
+        {
+          "value": "11K+",
+          "label": "households served by Right to Counsel"
+        }
+      ],
+      "wheelPrograms": [
+        "ULA Eviction Defense & Prevention",
+        "RSO Reform",
+        "Stay Housed LA",
+        "TAHO (Tenant Anti-Harassment)"
+      ]
+    }
+  ],
+  "campaigns": {
+    "_note": "Three featured programs per fight, shown as flip cards on the Campaigns page.",
+    "earn": [
+      {
+        "num": "01",
+        "name": "LAUSD / SEIU 99 Agreement",
+        "preview": "Historic contract for 30,000 school workers.",
+        "stat": "30% wage increase for 30,000 LAUSD workers. Average salary lifted from $25,000 to $33,000.",
+        "source": "SEIU Local 99 (April 2023)",
+        "url": "https://www.seiu99.org/2023/05/19/see-everything-we-won-in-our-historic-contract/"
+      },
+      {
+        "num": "02",
+        "name": "Airport & Hotel Minimum Wage",
+        "preview": "Wage floor timed to LA28.",
+        "stat": "Escalating floor reaching $30/hr by 2028 for thousands of tourism and hospitality workers.",
+        "source": "NBC LA / City Council (May 2025)",
+        "url": "https://www.nbclosangeles.com/news/local/la-city-council-tourism-wage-increase/3708138/"
+      },
+      {
+        "num": "03",
+        "name": "WorkSource Centers",
+        "preview": "Career centers across the city.",
+        "stat": "$19M invested annually in career counseling, training, and placement across 14 centers.",
+        "source": "City of LA / EWDD",
+        "url": "https://ewdd.lacity.gov/index.php/employment/worksource"
+      }
+    ],
+    "build": [
+      {
+        "num": "01",
+        "name": "Executive Directive 1",
+        "preview": "Fast-track for 100% affordable housing.",
+        "stat": "Over 42,000 affordable units proposed, ~31,700 approved since December 2022.",
+        "source": "Propmodo / WSJ (Nov 2025)",
+        "url": "https://propmodo.com/the-permit-shortcut-thats-rebooting-affordable-housing-development/"
+      },
+      {
+        "num": "02",
+        "name": "RSO Reform",
+        "preview": "First major update in nearly 40 years.",
+        "stat": "First overhaul of LA's Rent Stabilization Ordinance in roughly 40 years. Caps annual increases at 1-4%. Signed December 2025.",
+        "source": "Mayor Bass (Dec 2025)",
+        "url": "https://mayor.lacity.gov/news/making-la-more-affordable-mayor-bass-enacts-new-tenant-protections-caps-rent-apartment-units"
+      },
+      {
+        "num": "03",
+        "name": "ULA Construction Programs",
+        "preview": "Voter-approved housing investment.",
+        "stat": "Over $300M in ULA-funded construction programs for affordable housing production.",
+        "source": "City of LA / LAHD",
+        "url": "https://housing.lacity.gov/"
+      }
+    ],
+    "save": [
+      {
+        "num": "01",
+        "name": "DWP Rate Advantage",
+        "preview": "Public power, lower rates.",
+        "stat": "LADWP rates are among the lowest of any major metro utility in California. Public ownership keeps costs down for 4 million residents.",
+        "source": "UCLA / Legal Planet (Oct 2025)",
+        "url": "https://legal-planet.org/2025/10/15/which-is-better-ladwp-or-sce/"
+      },
+      {
+        "num": "02",
+        "name": "Free Tax Prep / EITC",
+        "preview": "Free filing, thousands back.",
+        "stat": "Eligible families can claim up to $11,000 in combined federal EITC and CalEITC credits. Billions go unclaimed every year.",
+        "source": "IRS / CA Franchise Tax Board",
+        "url": "https://www.irs.gov/credits-deductions/individuals/earned-income-tax-credit/"
+      },
+      {
+        "num": "03",
+        "name": "Lifeline Reimbursement",
+        "preview": "Utility relief for seniors.",
+        "stat": "$41.5M in annual reimbursements for low-income seniors and disabled residents.",
+        "source": "City of LA / LADWP",
+        "url": "https://www.ladwp.com/residential-services/bill-help/low-income-discount-programs"
+      }
+    ],
+    "care": [
+      {
+        "num": "01",
+        "name": "Inside Safe",
+        "preview": "Housing-first homelessness strategy.",
+        "stat": "Homelessness declined two consecutive years under Bass, a first in the city's recent history.",
+        "source": "Mayor Karen Bass",
+        "url": "https://mayor.lacity.gov/insideSafe"
+      },
+      {
+        "num": "02",
+        "name": "FamilySource System",
+        "preview": "19 one-stop centers citywide.",
+        "stat": "19 centers serving ~50,000 households annually. $30.5M in case management, coaching, legal aid.",
+        "source": "City of LA / CIFD",
+        "url": "https://communityinvestment.lacity.gov/familysource-centers"
+      },
+      {
+        "num": "03",
+        "name": "Right to Counsel",
+        "preview": "Eviction defense for tenants.",
+        "stat": "Free legal representation for tenants facing eviction. ULA-funded. Keeps families housed.",
+        "source": "City of LA / LAHD",
+        "url": "https://housing.lacity.gov/"
+      }
+    ],
+    "protect": [
+      {
+        "num": "01",
+        "name": "ULA Eviction Defense & Prevention",
+        "preview": "Legal representation for tenants facing eviction.",
+        "stat": "$57M+ in ULA funding for eviction defense, prevention services, and the Right to Counsel program since 2023.",
+        "source": "City of LA / LAHD",
+        "url": "https://housing.lacity.gov/"
+      },
+      {
+        "num": "02",
+        "name": "RSO Reform",
+        "preview": "First overhaul in nearly 40 years.",
+        "stat": "Caps annual rent increases at 1 to 4%, down from the prior 3 to 8% range. Signed December 2025.",
+        "source": "Mayor Bass (Dec 2025)",
+        "url": "https://mayor.lacity.gov/news/making-la-more-affordable-mayor-bass-enacts-new-tenant-protections-caps-rent-apartment-units"
+      },
+      {
+        "num": "03",
+        "name": "TAHO (Tenant Anti-Harassment)",
+        "preview": "Protecting tenants from landlord intimidation.",
+        "stat": "$5.6M in ULA funding for targeted outreach, education, and legal enforcement against tenant harassment.",
+        "source": "City of LA / LAHD",
+        "url": "https://housing.lacity.gov/"
+      }
+    ]
+  },
+  "recommendations": [
+    {
+      "fight": "Build More",
+      "fightId": "build",
+      "color": "#047857",
+      "num": "01",
+      "title": "Expand EO1 Citywide",
+      "subtitle": "The Affordable Housing Acceleration Act",
+      "cardClass": "bc",
+      "background": [
+        "After the Palisades fire, Bass signed EO1 on January 13, 2025. The City stood up an entirely new permitting system in weeks.",
+        "The first rebuilding permit was issued 57 days after the wildfires. That is more than twice as fast as after the Camp and Woolsey fires.",
+        "Permits are being approved three times faster than before. Over 70% of single-family permit clearances are no longer required.",
+        "Of the roughly 42,000 affordable units entitled under ED1, only about 4,993 have received building permits. The bottleneck is not planning. It is permitting.",
+        "ED1 opened the door. EO1 proved the system could move at speed. The question is whether that speed is only available after a disaster."
+      ],
+      "backgroundStat": "3x faster permits under EO1. Only 4,993 of 42,000 entitled units have received building permits.",
+      "asks": [
+        "Expand the EO1 permitting framework citywide to all affordable housing projects with 30% or more units at or below 60% AMI.",
+        "Establish Affordable Housing One-Stop Centers staffed by Building and Safety, City Planning, Transportation, DWP, Fire, Housing, and Public Works in each APC jurisdiction.",
+        "Stand up a permanent Affordable Housing Department Strike Force with 30-day permit reviews, two-business-day inspections, and simultaneous department clearances.",
+        "Deploy one Affordable Housing Navigator per APC jurisdiction to guide developers through the process start to finish.",
+        "Create a Fee Deferral and Installment Program letting qualifying projects defer impact fees from permit issuance to certificate of occupancy, secured by a recorded lien."
+      ],
+      "asksStat": "Terner Center found impact fees exceeded $30,000 on 20% of affordable projects studied."
+    },
+    {
+      "fight": "Save More",
+      "fightId": "save",
+      "color": "#BE185D",
+      "num": "02",
+      "title": "Tri-Share Childcare Initiative",
+      "subtitle": "Affordable Childcare Through Cost-Sharing",
+      "cardClass": "sc",
+      "background": [
+        "Center-based infant care in Los Angeles runs $1,800 to $2,500 per month. That is $22,000 to $30,000 a year, more than annual tuition at every CSU campus in the state.",
+        "For a single-parent family earning below the county median, childcare can consume 30 to 40% of take-home pay. It locks parents out of full-time work and forces impossible tradeoffs between rent and care.",
+        "Michigan launched the Tri-Share Child Care Program in 2021. Costs split three ways: one-third employer, one-third employee, one-third state. Participating families save roughly $464 per month.",
+        "The cost burden falls hardest on single mothers and low-income families of color. For every parent locked out of full-time work by childcare costs, the city loses a taxpayer, an employee, and a household that could be stable."
+      ],
+      "backgroundStat": "Michigan Tri-Share: $464/month average savings per family. 290 employers, 900+ families served statewide.",
+      "asks": [
+        "Pilot a Tri-Share Childcare Program in three Council Districts. Costs split three ways: one-third employer, one-third employee, one-third City. Start with city contractors and city-adjacent employers.",
+        "Cap the pilot at 500 families with a 24-month expansion decision point.",
+        "Partner with EWDD and CIFD to integrate childcare navigation into FamilySource center intake across all 19 centers."
+      ],
+      "asksStat": "$464/month average family savings under Michigan Tri-Share. 290 employers participating statewide."
+    },
+    {
+      "fight": "Care More",
+      "fightId": "care",
+      "color": "#C2410C",
+      "num": "03",
+      "title": "Mayors for Moms Coalition",
+      "subtitle": "A National Municipal Maternal Health Initiative",
+      "cardClass": "cc",
+      "background": [
+        "Black women in LA County are four times more likely to die from pregnancy-related causes than women of other racial groups. Nationally, the maternal mortality rate for Black women was 44.8 per 100,000 live births in 2024. For white women it was 14.2.",
+        "New York City launched its Citywide Doula Initiative in 2022. Total cost: $4 million over three years. Over 3,200 people served. More than 2,300 births attended. Zero maternal deaths among participants.",
+        "NYC's program reduced C-section and preterm birth rates among Black and Hispanic participants compared to citywide averages. The comptroller's audit confirmed the results.",
+        "LA County already runs the AAIMM initiative through the Department of Public Health. It funds doulas, group prenatal care, and community health workers. But the city itself has no dedicated maternal health program.",
+        "No mayor in the country has Bass's relationships across state and federal government. That is not a talking point. It is an asset that should be deployed on a crisis that kills Black mothers at four times the rate of white mothers in her own city."
+      ],
+      "backgroundStat": "Black maternal mortality: 44.8 per 100,000 live births (2024). White: 14.2. NYC doula program: 3,200 served, zero deaths.",
+      "asks": [
+        "Launch the Mayors for Moms Coalition with ten founding cities. New York, Chicago, Atlanta, Houston, and Detroit are natural co-founders given existing maternal health programs.",
+        "Through the coalition, jointly advocate to CMS for standardized Medicaid doula reimbursement rates across all participating states.",
+        "Publish an annual Maternal Health Equity Report Card tracking maternal mortality, doula coverage, and prenatal care access by race across coalition cities.",
+        "Use the coalition platform to share program design, training curricula, and outcome data so that no city has to build from scratch.",
+        "Set a coalition-wide target: reduce Black maternal mortality by 20% within five years across participating cities."
+      ],
+      "asksStat": "NYC spent $4M over three years. Zero maternal deaths among participants. LA can match that and scale it nationally."
+    },
+    {
+      "fight": "Protect More Rights",
+      "fightId": "protect",
+      "color": "#B45309",
+      "num": "04",
+      "title": "Proactive Tenant Protection Unit",
+      "subtitle": "Expanding LAHD Enforcement and Renter Education",
+      "cardClass": "pr",
+      "background": [
+        "Over 60% of Angelenos are renters. In many neighborhoods, that number exceeds 80%. Tenant displacement is not a side effect of the housing crisis. It is the housing crisis for most residents.",
+        "LAHD's RSO enforcement is complaint-driven. Tenants who do not know their rights, or who fear retaliation, never file. Violations go unaddressed for years in buildings where residents cannot afford to fight back.",
+        "Landlord harassment, including illegal lockouts, utility shutoffs, construction disruption, and verbal intimidation, pushes tenants out without a formal eviction. TAHO created the legal framework to address it, but enforcement capacity has not matched the scale of the problem.",
+        "The ULA-funded Right to Counsel program has proven that legal representation changes outcomes. Tenants with attorneys are far more likely to remain housed. But coverage does not yet reach every neighborhood or every courtroom.",
+        "The infrastructure exists. RSO reform, TAHO, ULA eviction defense, Stay Housed LA. What is missing is a proactive enforcement posture that reaches tenants before they are already in crisis."
+      ],
+      "backgroundStat": "Over 60% of Angelenos are renters. LAHD enforcement is complaint-driven, leaving thousands of violations unaddressed.",
+      "asks": [
+        "Create a Proactive Tenant Protection Unit within LAHD that conducts building-level audits in high-displacement ZIP codes without waiting for individual complaints.",
+        "Deploy mobile tenant rights clinics in partnership with FamilySource Centers, rotating through the 19 centers on a quarterly basis to provide legal screening, RSO education, and TAHO intake.",
+        "Establish whistleblower protections for tenants and building staff who report habitability violations or landlord harassment, including a dedicated anonymous reporting line.",
+        "Expand Right to Counsel coverage to guarantee representation in 100% of eviction proceedings citywide by 2028.",
+        "Publish a quarterly Tenant Protection Report Card tracking eviction filings, TAHO complaints, RSO violations, and displacement rates by Council District."
+      ],
+      "asksStat": "ULA has committed $57M+ to eviction defense. Proactive enforcement ensures that funding reaches tenants before they reach court."
+    },
+    {
+      "fight": "Earn More",
+      "fightId": "earn",
+      "color": "#6D28D9",
+      "num": "05",
+      "title": "LA Ownership Economy Initiative",
+      "subtitle": "Worker Cooperatives and Transit Rewards",
+      "cardClass": "ec",
+      "background": [
+        "Los Angeles lost roughly 42,000 entertainment industry jobs between 2022 and 2024. The gig economy keeps replacing traditional employment across food service, cleaning, transportation, and delivery.",
+        "Workers in those sectors earn low wages, get no benefits, build no equity, and own nothing.",
+        "A worker cooperative is a business owned and governed by the people who work in it. Profits go to worker-owners, not outside shareholders. About 60% of new cooperative worker-owners since 2010 are people of color.",
+        "New York City seeded its Worker Cooperative Business Development Initiative with $1.2 million in 2014. By the program's ninth year: 133 cooperatives, 442 new worker-owners. Funding scaled from $1.2 million to over $3 million annually as results proved out.",
+        "If you work in this city, the city should work for you."
+      ],
+      "backgroundStat": "NYC WCBDI: 133 co-ops, 442 worker-owners in nine years. 60% of new co-op worker-owners since 2010 are people of color.",
+      "asks": [
+        "Create a Worker Cooperative Incubator through the Mayor's Office of Economic Development. Business planning, legal formation, seed financing, and guaranteed city contract access for qualifying worker-owned businesses.",
+        "Launch a first cohort of 15 co-ops in building maintenance, food service, childcare, landscaping, and last-mile delivery.",
+        "Create a city procurement set-aside for certified cooperatives so co-ops have a customer on day one.",
+        "Launch a Transit Rewards Pilot with Metro. Workers earning below 80% AMI in hospitality, food service, healthcare, education, and building services earn $2 per trip on a TAP card, capped at $80 a month.",
+        "Start in three Council Districts with the highest ridership and lowest median income."
+      ],
+      "asksStat": "Model on NYC WCBDI, tied to city procurement in a way New York never did. $2 per trip, capped at $80/month."
+    }
+  ],
+  "talkingPoints": {
+    "_note": "Three talking points per fight. Grounded in real numbers. Field rep ready.",
+    "earn": [
+      "We brokered the largest school worker strike settlement in U.S. history. 30,000 LAUSD employees went from $25,000 to $33,000 in average salary. When working people earn more, families stay housed.",
+      "By 2028, every hotel worker and airport employee in Los Angeles earns at least $30 an hour. I signed that law. Tourism should not be a poverty industry in our city.",
+      "We have 14 WorkSource Centers across Los Angeles offering free career counseling, job training, and placement. If you are looking for work or looking for better work, there is a center near you, at no cost."
+    ],
+    "build": [
+      "Since I took office, we have approved over 31,000 affordable units under Executive Directive 1. Los Angeles underbuilt for 50 years. We are catching up.",
+      "Over $300 million in voter-approved ULA funding is actively going toward affordable housing construction right now. Not projected. Moving.",
+      "We reformed the Adaptive Reuse process so vacant office buildings can become homes. The permitting is faster, the conversion is cheaper, and the units are coming online."
+    ],
+    "save": [
+      "Because Los Angeles owns its power grid through LADWP, 4 million residents pay less for electricity than most of the rest of LA County. That is what public ownership does for working families.",
+      "If your family qualifies, you can claim up to $11,000 in EITC and CalEITC tax credits. We have free tax preparation sites across the city to help you claim every dollar you are owed. Billions go unclaimed every year. That money belongs to you.",
+      "$41.5 million goes back to low-income seniors and disabled residents every year through the Lifeline Reimbursement Program. If you or someone you know qualifies, we want to make sure you are enrolled."
+    ],
+    "care": [
+      "We have 19 FamilySource Centers serving 50,000 households a year with case management, legal aid, job coaching, and benefits access. These centers are free, they are in your neighborhood, and most people who need them do not know they exist.",
+      "Homelessness in Los Angeles declined two consecutive years under my administration. That has not happened in recent city history. Inside Safe is our housing-first strategy and the numbers bear it out.",
+      "Youth Service Corps, Summer Lunch, PlayLA, SwimLA. We built and expanded programs so young Angelenos stay connected, employed, and safe when school is out. These programs are real, they are available, and we are expanding them."
+    ],
+    "protect": [
+      "I signed the first overhaul of the Rent Stabilization Ordinance in nearly 40 years. Your annual rent increase is now capped at 1 to 4 percent. That protection is permanent.",
+      "Through the ULA Right to Counsel program, if you are a tenant facing eviction, you can get free legal representation in court. $57 million funds that program. You do not have to face a landlord's attorney alone.",
+      "The Tenant Anti-Harassment Ordinance protects you from intimidation and pressure tactics designed to push you out of your rent-stabilized home. It is enforceable. If your landlord is doing this to you, there are resources and we will use them."
+    ],
+    "pageTitle": "Talking Points",
+    "pageIntro": "Concise narratives for each fight. What the Mayor says when someone asks what are you doing about affordability. These are the answers."
+  },
+  "contact": {
+    "name": "Michael Green II",
+    "title": "Coro Fellow in Public Affairs",
+    "organization": "Mayor's Office of Policy & Communications",
+    "location": "City of Los Angeles · 2025-2026",
+    "email": "michael.green@corofellowsla.org",
+    "description": "Currently placed with Mayor Karen Bass's Office of Policy & Communications, working on the Affordability for All strategic communications framework and EO1 expansion."
+  },
+  "about": {
+    "projectDescription": "Affordability for All is a strategic communications framework developed during a Coro Southern California Fellowship placement with Mayor Karen Bass's Office of Policy and Communications. The goal: take 209 programs across 20+ departments and build a unified narrative architecture that any Angeleno, press contact, or field representative can understand in a single conversation.",
+    "frameworkDescription": "The Five Fights framework organizes those programs into five constituent-facing categories: Earn More, Build More, Save More, Care More, and Protect More Rights. Each fight maps to a real economic pressure Angelenos face and is backed by concrete programs, dollar figures, and measurable outcomes.",
+    "rubricDescription": "Programs are scored on a 14-point rubric across five criteria: Bass Attribution, Scale of Impact, Communications Value, Strategic Alignment with the Affordability Agenda, and Implementation Reality. Two binary flags (Equity Depth and Durability) are noted but do not affect the score.",
+    "acknowledgments": [
+      {
+        "name": "Jenny Delwood",
+        "role": "Deputy Chief of Staff, Mayor's Office",
+        "description": "Placement Supervisor"
+      },
+      {
+        "name": "Larry Frank",
+        "role": "Senior Policy Advisor, Mayor's Office",
+        "description": "Framework Co-Developer"
+      },
+      {
+        "name": "Department Representatives",
+        "role": "LAHD, HACLA, EWDD, CIFD, CAO",
+        "description": "Database Sources"
+      }
+    ],
+    "primarySources": [
+      "Mayor's Office of Policy and Communications internal program database",
+      "Mayor Bass Executive Directive 1 (December 16, 2022) and subsequent revisions",
+      "LAHSA Greater Los Angeles Homeless Count (2023, 2024)",
+      "LAUSD/SEIU Local 99 Tentative Agreement (March 24, 2023)",
+      "United to House Los Angeles (ULA) program data via LAHD",
+      "LA City Planning ED1 case data; Bisnow (December 2025)",
+      "California Legislative Analyst's Office (CalEITC utilization data)"
+    ],
+    "tierDescriptions": [
+      {
+        "tier": "A-List",
+        "range": "12+",
+        "description": "Bass's signature programs with the highest public recognition and impact"
+      },
+      {
+        "tier": "Tier 1",
+        "range": "9-11",
+        "description": "High-impact programs with strong Bass attribution"
+      },
+      {
+        "tier": "Tier 2",
+        "range": "5-8",
+        "description": "Solid programmatic work with moderate communications potential"
+      },
+      {
+        "tier": "Tier 3",
+        "range": "Below 5",
+        "description": "Infrastructure, passthroughs, or programs with limited public legibility"
+      }
+    ]
+  },
+  "dashboard": {
+    "_note": "Dashboard chart data and labels. Chart configs remain in dashboard.html but labels and descriptions are editable here.",
+    "title": "The Numbers",
+    "dataNote": "Total program cost figures reflect reported TPC values from the Mayor's Office internal database as of early 2026. Programs with $0 TPC represent mayoral directives, regulatory actions, or non-city-funded programs. The $5.16B figure is the sum of programs with documented expenditure data only.",
+    "bigStats": [
+      {
+        "value": "$5.16B",
+        "label": "Total documented program expenditure",
+        "caption": "Sum of programs with reported TPC data"
+      },
+      {
+        "value": "209",
+        "label": "Active affordability programs (deduplicated)",
+        "caption": "Across 20+ city departments"
+      },
+      {
+        "value": "50K+",
+        "label": "Households served annually via FamilySource",
+        "caption": "Across 19 centers citywide"
+      },
+      {
+        "value": "~29K",
+        "label": "Housing units approved under ED1",
+        "caption": "As of August 2025 · LA City Planning"
+      }
+    ],
+    "fightStrip": [
+      {
+        "name": "Earn More",
+        "count": 57,
+        "color": "#6D28D9"
+      },
+      {
+        "name": "Build More",
+        "count": 48,
+        "color": "#047857"
+      },
+      {
+        "name": "Care More",
+        "count": 83,
+        "color": "#C2410C"
+      },
+      {
+        "name": "Protect More Rights",
+        "count": 11,
+        "color": "#B45309"
+      },
+      {
+        "name": "Save More",
+        "count": 10,
+        "color": "#BE185D"
+      }
+    ],
+    "charts": [
+      {
+        "id": "c1",
+        "title": "Programs by Tier",
+        "subtitle": "A-List: 8 · Tier 1: 49 · Tier 2: 59 · Tier 3: 93"
+      },
+      {
+        "id": "c2",
+        "title": "Programs by Fight",
+        "subtitle": "Distribution across the five fights"
+      },
+      {
+        "id": "c3",
+        "title": "Programs by Topic Area",
+        "subtitle": "All 17 topic categories"
+      },
+      {
+        "id": "c4",
+        "title": "Ongoing vs. One-Time",
+        "subtitle": "Program durability across the inventory"
+      },
+      {
+        "id": "c5",
+        "title": "A-List + Tier 1 by Fight",
+        "subtitle": "Highest-tier programs per fight area"
+      }
+    ]
+  }
+}

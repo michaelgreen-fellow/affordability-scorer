@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Dashboard | Affordability for All</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   SHARED.CSS - Generated from config.json
+   Do not edit directly. Edit config.json and rebuild.
+   ══════════════════════════════════════════════ */
+
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0}
+
+/* CSS Variables - from config.json */
+:root{
+  --bg:#EAF4FC;--navy:#0B1C33;--gold:#D4870A;--gold-lt:#F5A623;
+  --text:#0B1C33;--text2:#2C4A6A;--text3:#6A8AAA;--white:#FFFFFF;
+  --earn:#6D28D9;--build:#047857;--save:#BE185D;
+  --care:#C2410C;--protect:#B45309;
+  --serif:'DM Serif Display', Georgia, serif;--sans:'Outfit', sans-serif;--mono:'DM Mono', monospace;
+}
+
+/* ── Top Nav ── */
+.topnav{position:sticky;top:0;z-index:50;height:58px;background:rgba(234,244,252,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(11,28,51,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem}
+.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text3);font-size:13px;transition:color .2s}
+.nav-back:hover{color:var(--navy)}
+.nav-back svg{width:15px;height:15px}
+.nav-ttl{font-family:var(--serif);font-size:19px;color:var(--navy)}
+
+/* ── Hamburger ── */
+.ham{width:36px;height:36px;background:rgba(11,28,51,0.08);border:1px solid rgba(11,28,51,0.13);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;flex-shrink:0;position:relative;z-index:200}
+.ham span{display:block;width:16px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .28s;transform-origin:center}
+.ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ── Nav Overlay + Drawer ── */
+.nav-ov{position:fixed;inset:0;z-index:100;background:rgba(11,28,51,0);pointer-events:none;transition:background .3s}
+.nav-ov.open{background:rgba(11,28,51,0.22);pointer-events:all}
+.nav-dr{position:fixed;top:0;right:0;bottom:0;width:210px;background:#fff;border-left:1px solid rgba(11,28,51,0.09);z-index:150;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:5rem 1.5rem 2rem;box-shadow:-8px 0 32px rgba(11,28,51,0.08)}
+.nav-dr.open{transform:translateX(0)}
+.nl{display:block;padding:.75rem 0;border-bottom:1px solid rgba(11,28,51,0.07);font-family:var(--serif);font-size:22px;color:var(--text2);text-decoration:none;transition:color .2s}
+.nl:hover{color:var(--gold)}
+.nl span{display:block;font-family:var(--sans);font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-top:1px}
+.nf{margin-top:auto;font-size:9px;color:var(--text3);line-height:1.7}
+
+/* ── Common Elements ── */
+.eye{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:9px}
+.eye::before{content:'';width:20px;height:1px;background:var(--gold);display:block}
+
+main{max-width:1200px;margin:0 auto;padding:2.25rem 1.75rem 5rem}
+.eye{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:9px}
+.eye::before{content:'';width:20px;height:1px;background:var(--gold);display:block}
+h1{font-family:var(--serif);font-size:clamp(30px,3.5vw,46px);color:var(--navy);line-height:1.1;margin-bottom:.625rem}
+h1 em{font-style:italic;color:var(--gold)}
+.note{background:rgba(212,135,10,.1);border:1px solid rgba(212,135,10,.28);border-radius:6px;padding:.75rem 1rem;margin-bottom:1.75rem;font-size:13px;color:var(--text2);line-height:1.65}
+.note strong{color:var(--navy)}
+.bigs{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(11,28,51,.08);border-radius:9px;overflow:hidden;margin-bottom:1.5rem}
+.bs{background:rgba(255,255,255,.7);padding:1.5rem;transition:background .2s}
+.bs:hover{background:#fff}
+.bsn{font-family:var(--serif);font-size:44px;line-height:1;margin-bottom:5px;color:var(--navy)}
+.bsn em{color:var(--gold);font-style:normal}
+.bsl{font-size:12px;color:var(--text2);line-height:1.5}
+.bsc{font-family:var(--mono);font-size:8px;color:var(--text3);margin-top:3px}
+.fstrip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(11,28,51,.08);border-radius:9px;overflow:hidden;margin-bottom:1.5rem}
+.fc{background:rgba(255,255,255,.6);padding:1.125rem}
+.ff{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+.fn{font-family:var(--serif);font-size:34px;line-height:1;color:var(--navy)}
+.fl{font-size:10px;color:var(--text3)}
+.fb{height:2.5px;border-radius:2px;margin-top:.75rem;opacity:.7}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:1.125rem}
+.cc{background:rgba(255,255,255,.7);border:1px solid rgba(11,28,51,.08);border-radius:9px;padding:1.375rem}
+.cc.full{grid-column:1/-1}
+.cct{font-family:var(--serif);font-size:18px;color:var(--navy);margin-bottom:2px}
+.ccs{font-size:11px;color:var(--text3);margin-bottom:1.125rem}
+.cw{position:relative;height:220px}
+.cw.tall{height:300px}
+</style>
+</head>
+<body>
+
+<div id="pwGate" style="position:fixed;inset:0;z-index:9999;background:#EAF4FC;display:flex;align-items:center;justify-content:center;font-family:'Outfit', sans-serif">
+<div style="text-align:center;max-width:340px;padding:2rem">
+<div style="font-family:'DM Serif Display', Georgia, serif;font-size:clamp(24px,4vw,36px);color:#0B1C33;margin-bottom:.5rem">Affordability <em style="color:#D4870A;font-style:italic">for All</em></div>
+<div style="font-family:'DM Mono', monospace;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:#6A8AAA;margin-bottom:2rem">Draft Review Access</div>
+<input id="pwIn" type="password" placeholder="Enter password" style="width:100%;padding:10px 14px;border:1px solid rgba(11,28,51,.15);border-radius:6px;font-size:14px;font-family:'Outfit', sans-serif;outline:none;text-align:center;margin-bottom:.75rem;background:rgba(255,255,255,.7)" onkeydown="if(event.key==='Enter')checkPw()">
+<button onclick="checkPw()" style="width:100%;padding:9px;background:#0B1C33;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;font-family:'Outfit', sans-serif;letter-spacing:.05em">Access Site</button>
+<div id="pwErr" style="font-size:11px;color:#DC2626;margin-top:.75rem;opacity:0;transition:opacity .2s"></div>
+<div style="font-size:10px;color:#6A8AAA;margin-top:1.5rem">Contact Michael Green II for access</div>
+</div></div>
+<script>
+(function(){var k='aff_access',h='bass2026';if(sessionStorage.getItem(k)===h){document.getElementById('pwGate').style.display='none';}
+window.checkPw=function(){var v=document.getElementById('pwIn').value;if(v===h){sessionStorage.setItem(k,h);document.getElementById('pwGate').style.display='none';}else{var e=document.getElementById('pwErr');e.textContent='Incorrect password';e.style.opacity='1';document.getElementById('pwIn').value='';setTimeout(function(){e.style.opacity='0';},2000);}};
+document.getElementById('pwIn').focus();})();
+</script>
+
+<nav class="topnav">
+  <a class="nav-back" href="index.html"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>Back</a>
+  <div class="nav-ttl">Data Dashboard</div>
+  <div class="ham" id="ham" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="nav-ov" id="nOv" onclick="closeNav()"></div>
+<nav class="nav-dr" id="nDr">
+  <a class="nl" href="index.html" onclick="closeNav()">Home<span>Five Fights</span></a>
+  <a class="nl" href="inventory.html" onclick="closeNav()">Inventory<span>209 Programs</span></a>
+  <a class="nl" href="dashboard.html" onclick="closeNav()">Dashboard<span>Charts &amp; Data</span></a>
+  <a class="nl" href="campaigns.html" onclick="closeNav()">Campaigns<span>Awareness</span></a>
+  <a class="nl" href="recommendations.html" onclick="closeNav()">Policy Shortlist<span>Five Recommendations</span></a>
+  <a class="nl" href="talking-points.html" onclick="closeNav()">Talking Points<span>Narratives</span></a>
+  <a class="nl" href="about.html" onclick="closeNav()">About<span>Sources</span></a>
+  <a class="nl" href="contact.html" onclick="closeNav()">Contact<span>Michael Green II</span></a>
+
+  <div class="nf">Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026</div>
+</nav>
+
+<main>
+  <div class="eye">Affordability for All</div>
+  <h1>The <em>Numbers</em></h1>
+  <div class="note" id="dataNote"><strong>Data note:</strong> Loading...</div>
+  <div class="bigs" id="bigStats"></div>
+  <div class="fstrip" id="fightStrip"></div>
+  <div class="cgrid">
+    <div class="cc"><div class="cct" id="c1t">Programs by Tier</div><div class="ccs" id="c1s">Loading...</div><div class="cw"><canvas id="c1"></canvas></div></div>
+    <div class="cc"><div class="cct" id="c2t">Programs by Fight</div><div class="ccs" id="c2s">Loading...</div><div class="cw"><canvas id="c2"></canvas></div></div>
+    <div class="cc full"><div class="cct" id="c3t">Programs by Topic Area</div><div class="ccs" id="c3s">Loading...</div><div class="cw tall"><canvas id="c3"></canvas></div></div>
+    <div class="cc"><div class="cct" id="c4t">Ongoing vs. One-Time</div><div class="ccs" id="c4s">Loading...</div><div class="cw"><canvas id="c4"></canvas></div></div>
+    <div class="cc"><div class="cct" id="c5t">A-List + Tier 1 by Fight</div><div class="ccs" id="c5s">Loading...</div><div class="cw"><canvas id="c5"></canvas></div></div>
+  </div>
+</main><footer style="text-align:center;padding:1.375rem;font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.06em;border-top:1px solid rgba(11,28,51,0.07)"></footer>
+
+
+<script>
+var FC={'Earn More':'#6D28D9','Build More':'#047857','Save More':'#BE185D','Care More':'#C2410C','Protect More Rights':'#B45309'};
+var FIGHTS=['Earn More','Build More','Care More','Protect More Rights','Save More'];
+var TIERS=['A-List','Tier 1','Tier 2','Tier 3'];
+var N='#0B1C33';
+
+// CSV parser (same as inventory page)
+function parseCSV(text){
+  var lines=[];var row=[];var field='';var inQuote=false;
+  for(var i=0;i<text.length;i++){
+    var ch=text[i];
+    if(inQuote){
+      if(ch==='"'&&text[i+1]==='"'){field+='"';i++;}
+      else if(ch==='"'){inQuote=false;}
+      else{field+=ch;}
+    } else {
+      if(ch==='"'){inQuote=true;}
+      else if(ch===','){row.push(field);field='';}
+      else if(ch==='\n'||ch==='\r'){
+        if(ch==='\r'&&text[i+1]==='\n') i++;
+        row.push(field);field='';
+        if(row.length>1||row[0]!=='') lines.push(row);
+        row=[];
+      } else {field+=ch;}
+    }
+  }
+  if(field||row.length){row.push(field);lines.push(row);}
+  return lines;
+}
+
+// Parse TPC dollar string to number
+function parseTPC(s){
+  if(!s) return 0;
+  var n=s.replace(/[$,]/g,'');
+  var v=parseFloat(n);
+  return isNaN(v)?0:v;
+}
+
+// Format large numbers
+function fmtB(n){
+  if(n>=1e9) return '$'+(n/1e9).toFixed(2)+'B';
+  if(n>=1e6) return '$'+(n/1e6).toFixed(1)+'M';
+  return '$'+n.toLocaleString();
+}
+
+// Count helper
+function countBy(arr,key){
+  var m={};
+  arr.forEach(function(p){var v=p[key]||'Unknown';m[v]=(m[v]||0)+1;});
+  return m;
+}
+
+Promise.all([
+  fetch('inventory.csv?v='+Date.now()).then(function(r){return r.text();}),
+  fetch('content.json?v='+Date.now()).then(function(r){return r.json();})
+]).then(function(results){
+  var csv=results[0];
+  var content=results[1];
+  var db=content.dashboard;
+
+  // Parse CSV
+  var rows=parseCSV(csv);
+  var headers=rows[0];
+  var programs=[];
+  for(var i=1;i<rows.length;i++){
+    var obj={};
+    for(var j=0;j<headers.length;j++){obj[headers[j]]=rows[i][j]||'';}
+    programs.push(obj);
+  }
+
+  // Compute stats
+  var totalPrograms=programs.length;
+  var totalTPC=0;
+  programs.forEach(function(p){totalTPC+=parseTPC(p.tpc);});
+
+  var tierCounts=countBy(programs,'tier');
+  var fightCounts=countBy(programs,'fight');
+  var topicCounts=countBy(programs,'topic');
+  var ongoingCount=programs.filter(function(p){return p.ongoing==='Yes';}).length;
+  var oneTimeCount=totalPrograms-ongoingCount;
+
+  // A-List + Tier 1 by fight
+  var aListByFight={};var t1ByFight={};
+  FIGHTS.forEach(function(f){aListByFight[f]=0;t1ByFight[f]=0;});
+  programs.forEach(function(p){
+    if(p.tier==='A-List'&&aListByFight.hasOwnProperty(p.fight)) aListByFight[p.fight]++;
+    if(p.tier==='Tier 1'&&t1ByFight.hasOwnProperty(p.fight)) t1ByFight[p.fight]++;
+  });
+
+  // Data note from content.json
+  var noteEl=document.getElementById('dataNote');
+  if(noteEl && db && db.dataNote) noteEl.innerHTML='<strong>Data note:</strong> '+db.dataNote;
+
+  // Big stats (first two are dynamic, last two from content.json)
+  var bigStatsEl=document.getElementById('bigStats');
+  var tpcFormatted=fmtB(totalTPC);
+  var tpcParts=tpcFormatted.match(/\$([\d.]+)([BM])/);
+  var tpcNum=tpcParts?tpcParts[1]:'0';
+  var tpcUnit=tpcParts?tpcParts[2]:'';
+
+  var statsHtml='';
+  statsHtml+='<div class="bs"><div class="bsn">$<em>'+tpcNum+'</em>'+tpcUnit+'</div><div class="bsl">Total documented program expenditure</div><div class="bsc">Sum of programs with reported TPC data</div></div>';
+  statsHtml+='<div class="bs"><div class="bsn"><em>'+totalPrograms+'</em></div><div class="bsl">Active affordability programs (deduplicated)</div><div class="bsc">Across 20+ city departments</div></div>';
+
+  // Remaining big stats from content.json
+  if(db && db.bigStats){
+    for(var si=2;si<db.bigStats.length;si++){
+      var s=db.bigStats[si];
+      statsHtml+='<div class="bs"><div class="bsn">'+s.value+'</div><div class="bsl">'+s.label+'</div><div class="bsc">'+s.caption+'</div></div>';
+    }
+  }
+  bigStatsEl.innerHTML=statsHtml;
+
+  // Fight strip (fully dynamic)
+  var stripEl=document.getElementById('fightStrip');
+  var maxFight=Math.max.apply(null,FIGHTS.map(function(f){return fightCounts[f]||0;}));
+  stripEl.innerHTML=FIGHTS.map(function(f){
+    var ct=fightCounts[f]||0;
+    var pct=maxFight>0?Math.round((ct/maxFight)*100):0;
+    return '<div class="fc"><div class="ff" style="color:'+FC[f]+'">'+f+'</div><div class="fn">'+ct+'</div><div class="fl">programs</div><div class="fb" style="background:'+FC[f]+';width:'+pct+'%"></div></div>';
+  }).join('');
+
+  // Chart titles/subtitles from content.json
+  if(db && db.charts){
+    db.charts.forEach(function(ch,ci){
+      var tEl=document.getElementById('c'+(ci+1)+'t');
+      var sEl=document.getElementById('c'+(ci+1)+'s');
+      if(tEl) tEl.textContent=ch.title;
+      if(sEl) sEl.textContent=ch.subtitle;
+    });
+  }
+
+  // Update tier subtitle dynamically
+  var c1s=document.getElementById('c1s');
+  if(c1s) c1s.textContent='A-List: '+(tierCounts['A-List']||0)+' \u00B7 Tier 1: '+(tierCounts['Tier 1']||0)+' \u00B7 Tier 2: '+(tierCounts['Tier 2']||0)+' \u00B7 Tier 3: '+(tierCounts['Tier 3']||0);
+
+  // Topic subtitle
+  var topicKeys=Object.keys(topicCounts);
+  var c3s=document.getElementById('c3s');
+  if(c3s) c3s.textContent='All '+topicKeys.length+' topic categories';
+
+  // Ongoing subtitle
+  var c4s=document.getElementById('c4s');
+  if(c4s) c4s.textContent=ongoingCount+' ongoing, '+oneTimeCount+' one-time or pilot';
+
+  // ── CHARTS ──
+  Chart.defaults.color='#6A8AAA';
+  Chart.defaults.borderColor='rgba(11,28,51,0.07)';
+  Chart.defaults.font.family="'Outfit',sans-serif";
+
+  // C1: Programs by Tier (doughnut)
+  new Chart(document.getElementById('c1'),{
+    type:'doughnut',
+    data:{labels:TIERS,datasets:[{
+      data:TIERS.map(function(t){return tierCounts[t]||0;}),
+      backgroundColor:['#D4870ACC','#6D28D9CC','#047857CC','#CBD5E1CC'],
+      borderColor:'rgba(255,255,255,0.9)',borderWidth:3,hoverOffset:5
+    }]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.label+': '+c.parsed+' programs';}}}},cutout:'68%'}
+  });
+
+  // C2: Programs by Fight (horizontal bar)
+  new Chart(document.getElementById('c2'),{
+    type:'bar',
+    data:{labels:FIGHTS,datasets:[{
+      data:FIGHTS.map(function(f){return fightCounts[f]||0;}),
+      backgroundColor:FIGHTS.map(function(f){return FC[f]+'CC';}),
+      borderColor:'transparent',borderRadius:4
+    }]},
+    options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(11,28,51,0.05)'},ticks:{color:'#6A8AAA'}},y:{grid:{display:false},ticks:{color:N,font:{size:12}}}}}
+  });
+
+  // C3: Programs by Topic Area (horizontal bar, sorted descending)
+  var topicSorted=topicKeys.sort(function(a,b){return topicCounts[b]-topicCounts[a];});
+  new Chart(document.getElementById('c3'),{
+    type:'bar',
+    data:{labels:topicSorted,datasets:[{
+      data:topicSorted.map(function(t){return topicCounts[t];}),
+      backgroundColor:'rgba(11,28,51,0.18)',borderColor:'rgba(11,28,51,0.45)',borderWidth:1,borderRadius:3
+    }]},
+    options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(11,28,51,0.05)'},ticks:{color:'#6A8AAA'}},y:{grid:{display:false},ticks:{color:N,font:{size:11}}}}}
+  });
+
+  // C4: Ongoing vs One-Time (doughnut)
+  new Chart(document.getElementById('c4'),{
+    type:'doughnut',
+    data:{labels:['Ongoing','One-time / Pilot'],datasets:[{
+      data:[ongoingCount,oneTimeCount],
+      backgroundColor:['#047857CC','rgba(11,28,51,0.18)'],
+      borderColor:'rgba(255,255,255,0.9)',borderWidth:3,hoverOffset:5
+    }]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{padding:14,color:'#6A8AAA',font:{size:11}}},tooltip:{callbacks:{label:function(c){return ' '+c.label+': '+c.parsed;}}}},cutout:'65%'}
+  });
+
+  // C5: A-List + Tier 1 by Fight (grouped bar)
+  new Chart(document.getElementById('c5'),{
+    type:'bar',
+    data:{labels:FIGHTS,datasets:[
+      {label:'A-List',data:FIGHTS.map(function(f){return aListByFight[f];}),backgroundColor:'#D4870ACC',borderRadius:3},
+      {label:'Tier 1',data:FIGHTS.map(function(f){return t1ByFight[f];}),backgroundColor:'rgba(11,28,51,0.32)',borderRadius:3}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{padding:13,color:'#6A8AAA',font:{size:11}}}},scales:{x:{grid:{display:false},ticks:{color:N,font:{size:11}}},y:{grid:{color:'rgba(11,28,51,0.05)'},ticks:{color:'#6A8AAA'}}}}
+  });
+
+}).catch(function(err){console.error('Dashboard load error:',err);});
+
+function toggleNav(){var o=document.getElementById('nDr').classList.toggle('open');document.getElementById('ham').classList.toggle('open',o);document.getElementById('nOv').classList.toggle('open',o);}
+function closeNav(){document.getElementById('nDr').classList.remove('open');document.getElementById('ham').classList.remove('open');document.getElementById('nOv').classList.remove('open');}
+
+</script>
+</body>
+</html>

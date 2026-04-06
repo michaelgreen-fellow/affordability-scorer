@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Policy Shortlist | Affordability for All</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   SHARED.CSS - Generated from config.json
+   Do not edit directly. Edit config.json and rebuild.
+   ══════════════════════════════════════════════ */
+
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0}
+
+/* CSS Variables - from config.json */
+:root{
+  --bg:#EAF4FC;--navy:#0B1C33;--gold:#D4870A;--gold-lt:#F5A623;
+  --text:#0B1C33;--text2:#2C4A6A;--text3:#6A8AAA;--white:#FFFFFF;
+  --earn:#6D28D9;--build:#047857;--save:#BE185D;
+  --care:#C2410C;--protect:#B45309;
+  --serif:'DM Serif Display', Georgia, serif;--sans:'Outfit', sans-serif;--mono:'DM Mono', monospace;
+}
+
+/* ── Top Nav ── */
+.topnav{position:sticky;top:0;z-index:50;height:58px;background:rgba(234,244,252,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(11,28,51,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem}
+.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text3);font-size:13px;transition:color .2s}
+.nav-back:hover{color:var(--navy)}
+.nav-back svg{width:15px;height:15px}
+.nav-ttl{font-family:var(--serif);font-size:19px;color:var(--navy)}
+
+/* ── Hamburger ── */
+.ham{width:36px;height:36px;background:rgba(11,28,51,0.08);border:1px solid rgba(11,28,51,0.13);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;flex-shrink:0;position:relative;z-index:200}
+.ham span{display:block;width:16px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .28s;transform-origin:center}
+.ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ── Nav Overlay + Drawer ── */
+.nav-ov{position:fixed;inset:0;z-index:100;background:rgba(11,28,51,0);pointer-events:none;transition:background .3s}
+.nav-ov.open{background:rgba(11,28,51,0.22);pointer-events:all}
+.nav-dr{position:fixed;top:0;right:0;bottom:0;width:210px;background:#fff;border-left:1px solid rgba(11,28,51,0.09);z-index:150;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:5rem 1.5rem 2rem;box-shadow:-8px 0 32px rgba(11,28,51,0.08)}
+.nav-dr.open{transform:translateX(0)}
+.nl{display:block;padding:.75rem 0;border-bottom:1px solid rgba(11,28,51,0.07);font-family:var(--serif);font-size:22px;color:var(--text2);text-decoration:none;transition:color .2s}
+.nl:hover{color:var(--gold)}
+.nl span{display:block;font-family:var(--sans);font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-top:1px}
+.nf{margin-top:auto;font-size:9px;color:var(--text3);line-height:1.7}
+
+/* ── Common Elements ── */
+.eye{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:9px}
+.eye::before{content:'';width:20px;height:1px;background:var(--gold);display:block}
+
+/* PAGE HEADER */
+.pg-head{padding:2.75rem 2.5rem 2rem;max-width:1300px;margin:0 auto}
+.pg-eye{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:9px}
+.pg-eye::before{content:'';width:20px;height:1px;background:var(--gold)}
+.pg-title{font-family:var(--serif);font-size:clamp(34px,5vw,64px);color:var(--navy);line-height:1.0;letter-spacing:-.02em}
+.pg-title em{font-style:italic;color:var(--gold)}
+.pg-intro{font-size:13.5px;color:var(--text2);max-width:500px;line-height:1.75;font-weight:300;margin-top:.75rem}
+
+/* MAIN GRID */
+.layout{display:grid;grid-template-columns:160px 1fr;max-width:1300px;margin:0 auto;padding:.5rem 2.5rem 5rem;align-items:start;position:relative}
+@media(max-width:640px){.layout{grid-template-columns:1fr;padding:.5rem 1.25rem 3rem}.fights-col{display:none}.conn-line{display:none}}
+
+/* FIGHT LABELS */
+.fights-col{position:sticky;top:80px}
+.fight-item{height:88px;display:flex;flex-direction:column;justify-content:center;padding-right:1.5rem;cursor:pointer;transition:opacity .25s}
+.fight-item.faded{opacity:0.28}
+.fight-item:not(.faded){opacity:1}
+.fi-name{font-family:var(--serif);font-size:clamp(17px,1.8vw,22px);color:var(--navy);line-height:1.1;margin-bottom:7px}
+.fi-bar{height:4px;border-radius:2px;width:32px;transition:width .3s}
+.fight-item:not(.faded) .fi-bar{width:40px}
+
+/* RECS COLUMN */
+.recs-col{display:flex;flex-direction:column}
+.rec-row{height:88px;display:flex;align-items:center;position:relative;border-bottom:1px solid rgba(11,28,51,0.05)}
+.rec-row:last-child{border-bottom:none}
+@media(max-width:640px){.rec-row{height:auto;padding:.5rem 0}}
+.conn-line{position:absolute;left:-1.5rem;top:50%;transform:translateY(-50%);width:1.5rem;height:1px}
+
+/* THIN CARD */
+.rec-card{flex:1;height:64px;border-radius:4px;padding:0 1rem 0 .875rem;cursor:pointer;border:1px solid transparent;display:flex;align-items:center;justify-content:space-between;gap:.75rem;transition:all .2s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
+@media(max-width:640px){.rec-card{height:auto;padding:.75rem .875rem}}
+.rc-left{display:flex;flex-direction:column;gap:3px;min-width:0}
+.rc-fight-tag{font-family:var(--mono);font-size:7.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.65}
+.rc-title{font-family:var(--serif);font-size:clamp(13px,1.4vw,16px);color:var(--navy);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:640px){.rc-title{white-space:normal}}
+.rc-sub{font-size:9px;font-style:italic;color:var(--text3);font-family:var(--serif)}
+.rc-plus{font-family:var(--mono);font-size:16px;color:var(--text3);flex-shrink:0;transition:transform .2s,color .2s;line-height:1}
+
+/* Color variants */
+.ec{--fc:var(--earn);background:rgba(109,40,217,0.06);border-color:rgba(109,40,217,0.15)}
+.ec .rc-fight-tag{color:var(--earn)}.ec:hover{background:rgba(109,40,217,0.1);border-color:rgba(109,40,217,0.28)}
+.bc{--fc:var(--build);background:rgba(4,120,87,0.06);border-color:rgba(4,120,87,0.15)}
+.bc .rc-fight-tag{color:var(--build)}.bc:hover{background:rgba(4,120,87,0.1);border-color:rgba(4,120,87,0.28)}
+.sc{--fc:var(--save);background:rgba(190,24,93,0.06);border-color:rgba(190,24,93,0.15)}
+.sc .rc-fight-tag{color:var(--save)}.sc:hover{background:rgba(190,24,93,0.1);border-color:rgba(190,24,93,0.28)}
+.cc{--fc:var(--care);background:rgba(194,65,12,0.06);border-color:rgba(194,65,12,0.15)}
+.cc .rc-fight-tag{color:var(--care)}.cc:hover{background:rgba(194,65,12,0.1);border-color:rgba(194,65,12,0.28)}
+.pr{--fc:var(--protect);background:rgba(180,83,9,0.06);border-color:rgba(180,83,9,0.15)}
+.pr .rc-fight-tag{color:var(--protect)}.pr:hover{background:rgba(180,83,9,0.1);border-color:rgba(180,83,9,0.28)}
+
+/* OVERLAY + POPUP */
+.ov{display:none;position:fixed;inset:0;z-index:1000;background:rgba(11,28,51,.68);backdrop-filter:blur(7px);align-items:center;justify-content:center;padding:1.5rem}
+.ov.open{display:flex}
+.popup{width:100%;max-width:680px;max-height:calc(100vh - 3rem);border-radius:16px;position:relative;animation:popIn .32s cubic-bezier(.2,.8,.2,1);box-shadow:0 20px 60px rgba(0,0,0,.4);display:flex;flex-direction:column;overflow:hidden}
+@keyframes popIn{from{transform:translateY(18px) scale(.94);opacity:0}to{transform:none;opacity:1}}
+.pop-hdr{padding:1.5rem 1.75rem 1rem;flex-shrink:0}
+.pop-label{font-family:var(--mono);font-size:8px;letter-spacing:4px;text-transform:uppercase;opacity:.4;font-weight:700;color:#fff;margin-bottom:4px}
+.pop-title{font-family:var(--serif);font-size:clamp(22px,3vw,30px);color:#fff;line-height:1.15}
+.pop-subtitle{font-family:var(--serif);font-size:13px;font-style:italic;color:rgba(255,255,255,.6);margin-top:4px}
+.pop-close{position:absolute;top:1rem;right:1rem;width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:10}
+.pop-close:hover{background:rgba(255,255,255,.28)}
+.pop-body{flex:1;overflow-y:auto;padding:0 1.75rem 1.5rem;-webkit-overflow-scrolling:touch}
+.pop-body::-webkit-scrollbar{width:4px}
+.pop-body::-webkit-scrollbar-track{background:transparent}
+.pop-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:2px}
+
+/* Section styling */
+.pop-section{margin-bottom:1.5rem}.pop-section:last-child{margin-bottom:0}
+.pop-sec-label{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.625rem;padding-bottom:.375rem;border-bottom:1px solid rgba(255,255,255,.12)}
+.pop-bullets{list-style:none;padding:0;margin:0}
+.pop-bullets li{font-size:13px;line-height:1.75;color:rgba(255,255,255,.88);font-weight:300;padding:.375rem 0 .375rem 1rem;position:relative;border-bottom:1px solid rgba(255,255,255,.06)}
+.pop-bullets li:last-child{border-bottom:none}
+.pop-bullets li::before{content:'\2022';position:absolute;left:0;color:rgba(255,255,255,.4);font-size:14px}
+.pop-numbers{list-style:none;padding:0;margin:0;counter-reset:pol}
+.pop-numbers li{font-size:13px;line-height:1.75;color:rgba(255,255,255,.88);font-weight:300;padding:.5rem 0 .5rem 2rem;position:relative;border-bottom:1px solid rgba(255,255,255,.06);counter-increment:pol}
+.pop-numbers li:last-child{border-bottom:none}
+.pop-numbers li::before{content:counter(pol);position:absolute;left:0;font-family:var(--serif);font-size:16px;color:rgba(255,255,255,.35);top:.45rem;width:1.5rem;text-align:center}
+.pop-stat{display:inline-block;font-family:var(--serif);font-size:13px;color:#fff;margin-top:.75rem;padding:.375rem .75rem;border-radius:4px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);line-height:1.5}
+.pop-divider{height:1px;background:rgba(255,255,255,.1);margin:0 0 1.5rem}
+
+
+footer{text-align:center;padding:1.375rem;font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.06em;border-top:1px solid rgba(11,28,51,0.07)}
+</style>
+</head>
+<body>
+
+<div id="pwGate" style="position:fixed;inset:0;z-index:9999;background:#EAF4FC;display:flex;align-items:center;justify-content:center;font-family:'Outfit', sans-serif">
+<div style="text-align:center;max-width:340px;padding:2rem">
+<div style="font-family:'DM Serif Display', Georgia, serif;font-size:clamp(24px,4vw,36px);color:#0B1C33;margin-bottom:.5rem">Affordability <em style="color:#D4870A;font-style:italic">for All</em></div>
+<div style="font-family:'DM Mono', monospace;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:#6A8AAA;margin-bottom:2rem">Draft Review Access</div>
+<input id="pwIn" type="password" placeholder="Enter password" style="width:100%;padding:10px 14px;border:1px solid rgba(11,28,51,.15);border-radius:6px;font-size:14px;font-family:'Outfit', sans-serif;outline:none;text-align:center;margin-bottom:.75rem;background:rgba(255,255,255,.7)" onkeydown="if(event.key==='Enter')checkPw()">
+<button onclick="checkPw()" style="width:100%;padding:9px;background:#0B1C33;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;font-family:'Outfit', sans-serif;letter-spacing:.05em">Access Site</button>
+<div id="pwErr" style="font-size:11px;color:#DC2626;margin-top:.75rem;opacity:0;transition:opacity .2s"></div>
+<div style="font-size:10px;color:#6A8AAA;margin-top:1.5rem">Contact Michael Green II for access</div>
+</div></div>
+<script>
+(function(){var k='aff_access',h='bass2026';if(sessionStorage.getItem(k)===h){document.getElementById('pwGate').style.display='none';}
+window.checkPw=function(){var v=document.getElementById('pwIn').value;if(v===h){sessionStorage.setItem(k,h);document.getElementById('pwGate').style.display='none';}else{var e=document.getElementById('pwErr');e.textContent='Incorrect password';e.style.opacity='1';document.getElementById('pwIn').value='';setTimeout(function(){e.style.opacity='0';},2000);}};
+document.getElementById('pwIn').focus();})();
+</script>
+
+<nav class="topnav">
+  <a class="nav-back" href="index.html"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>Back</a>
+  <div class="nav-ttl">Policy Shortlist</div>
+  <div class="ham" id="ham" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="nav-ov" id="nOv" onclick="closeNav()"></div>
+<nav class="nav-dr" id="nDr">
+  <a class="nl" href="index.html" onclick="closeNav()">Home<span>Five Fights</span></a>
+  <a class="nl" href="inventory.html" onclick="closeNav()">Inventory<span>209 Programs</span></a>
+  <a class="nl" href="dashboard.html" onclick="closeNav()">Dashboard<span>Charts &amp; Data</span></a>
+  <a class="nl" href="campaigns.html" onclick="closeNav()">Campaigns<span>Awareness</span></a>
+  <a class="nl" href="recommendations.html" onclick="closeNav()">Policy Shortlist<span>Five Recommendations</span></a>
+  <a class="nl" href="talking-points.html" onclick="closeNav()">Talking Points<span>Narratives</span></a>
+  <a class="nl" href="about.html" onclick="closeNav()">About<span>Sources</span></a>
+  <a class="nl" href="contact.html" onclick="closeNav()">Contact<span>Michael Green II</span></a>
+
+  <div class="nf">Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026</div>
+</nav>
+
+
+<div class="pg-head">
+  <div class="pg-eye">Michael Green II &middot; Mayor's Office &middot; April 2026</div>
+  <h1 class="pg-title">Five Fights:<br><em>Policy Shortlist</em></h1>
+  <p class="pg-intro">Bass has built the foundation. These five recommendations extend it. Each one is mapped to a fight, grounded in a precedent, and designed to be announced.</p>
+</div>
+
+<div class="layout">
+  <div class="fights-col" id="fightsCol">
+    <div class="fight-item" data-fight="0" onclick="setActive(0)">
+      <div class="fi-name">Build<br>More</div>
+      <div class="fi-bar" style="background:var(--build)"></div>
+    </div>
+    <div class="fight-item" data-fight="1" onclick="setActive(1)">
+      <div class="fi-name">Save<br>More</div>
+      <div class="fi-bar" style="background:var(--save)"></div>
+    </div>
+    <div class="fight-item" data-fight="2" onclick="setActive(2)">
+      <div class="fi-name">Care<br>More</div>
+      <div class="fi-bar" style="background:var(--care)"></div>
+    </div>
+    <div class="fight-item" data-fight="3" onclick="setActive(3)">
+      <div class="fi-name">Protect More<br>Rights</div>
+      <div class="fi-bar" style="background:var(--protect)"></div>
+    </div>
+    <div class="fight-item" data-fight="4" onclick="setActive(4)">
+      <div class="fi-name">Earn<br>More</div>
+      <div class="fi-bar" style="background:var(--earn)"></div>
+    </div>
+  </div>
+
+  <div class="recs-col">
+    <div class="rec-row">
+      <svg class="conn-line" viewBox="0 0 24 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="24" y2="1" stroke="rgba(4,120,87,0.35)" stroke-width="1"/></svg>
+      <div class="rec-card bc" data-idx="0" onclick="openPopup(0)"><div class="rc-left"><div class="rc-fight-tag">Build More</div><div class="rc-title">Expand EO1 Citywide</div><div class="rc-sub">The Affordable Housing Acceleration Act</div></div><div class="rc-plus">+</div></div>
+    </div>
+    <div class="rec-row">
+      <svg class="conn-line" viewBox="0 0 24 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="24" y2="1" stroke="rgba(190,24,93,0.35)" stroke-width="1"/></svg>
+      <div class="rec-card sc" data-idx="1" onclick="openPopup(1)"><div class="rc-left"><div class="rc-fight-tag">Save More</div><div class="rc-title">Tri-Share Childcare Initiative</div><div class="rc-sub">Affordable Childcare Through Cost-Sharing</div></div><div class="rc-plus">+</div></div>
+    </div>
+    <div class="rec-row">
+      <svg class="conn-line" viewBox="0 0 24 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="24" y2="1" stroke="rgba(194,65,12,0.35)" stroke-width="1"/></svg>
+      <div class="rec-card cc" data-idx="2" onclick="openPopup(2)"><div class="rc-left"><div class="rc-fight-tag">Care More</div><div class="rc-title">Mayors for Moms Coalition</div><div class="rc-sub">A National Municipal Maternal Health Initiative</div></div><div class="rc-plus">+</div></div>
+    </div>
+    <div class="rec-row">
+      <svg class="conn-line" viewBox="0 0 24 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="24" y2="1" stroke="rgba(180,83,9,0.35)" stroke-width="1"/></svg>
+      <div class="rec-card pr" data-idx="3" onclick="openPopup(3)"><div class="rc-left"><div class="rc-fight-tag">Protect More Rights</div><div class="rc-title">Proactive Tenant Protection Unit</div><div class="rc-sub">Expanding LAHD Enforcement and Renter Education</div></div><div class="rc-plus">+</div></div>
+    </div>
+    <div class="rec-row">
+      <svg class="conn-line" viewBox="0 0 24 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="24" y2="1" stroke="rgba(109,40,217,0.35)" stroke-width="1"/></svg>
+      <div class="rec-card ec" data-idx="4" onclick="openPopup(4)"><div class="rc-left"><div class="rc-fight-tag">Earn More</div><div class="rc-title">LA Ownership Economy Initiative</div><div class="rc-sub">Worker Cooperatives and Transit Rewards</div></div><div class="rc-plus">+</div></div>
+    </div>
+  </div>
+</div>
+
+
+
+<footer style="text-align:center;padding:1.375rem;font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.06em;border-top:1px solid rgba(11,28,51,0.07)"></footer>
+
+
+<div class="ov" id="ov" onclick="handleOvClick(event)">
+  <div class="popup" id="popup">
+    <button class="pop-close" onclick="closePopup(event)">&#x2715;</button>
+    <div class="pop-hdr" id="popHdr"></div>
+    <div class="pop-body" id="popBody"></div>
+  </div>
+</div>
+<script>
+fetch('content.json?v='+Date.now()).then(function(r){return r.json();}).then(function(data){
+  var RECS=data.recommendations.map(function(rec){
+    return {
+      fight:rec.fight,color:rec.color,num:rec.num,
+      title:rec.title,subtitle:rec.subtitle,
+      bgItems:rec.background,
+      bgStat:rec.backgroundStat,
+      recItems:rec.asks,
+      recStat:rec.asksStat
+    };
+  });
+
+  window._RECS=RECS;
+  window._renderPopup=renderPopup;
+
+  function renderPopup(){
+    var r2=RECS[currentIdx];
+    var pop=document.getElementById('popup');
+    pop.style.background='linear-gradient(140deg,'+r2.color+'EE,'+r2.color+'CC)';
+    document.getElementById('popHdr').innerHTML=
+      '<div class="pop-label">'+r2.num+' / 05 &middot; '+r2.fight+'</div>'+
+      '<div class="pop-title">'+r2.title+'</div>'+
+      '<div class="pop-subtitle">'+r2.subtitle+'</div>';
+    var bgHtml='<ul class="pop-bullets">'+r2.bgItems.map(function(item){return '<li>'+item+'</li>';}).join('')+'</ul>';
+    var recHtml='<ol class="pop-numbers">'+r2.recItems.map(function(item){return '<li>'+item+'</li>';}).join('')+'</ol>';
+    document.getElementById('popBody').innerHTML=
+      '<div class="pop-section">'+
+        '<div class="pop-sec-label">Background</div>'+
+        bgHtml+
+        '<div class="pop-stat">'+r2.bgStat+'</div>'+
+      '</div>'+
+      '<div class="pop-divider"></div>'+
+      '<div class="pop-section">'+
+        '<div class="pop-sec-label">The Recommendation</div>'+
+        recHtml+
+        '<div class="pop-stat">'+r2.recStat+'</div>'+
+      '</div>';
+  }
+
+  window.openPopup=function(idx){
+    currentIdx=idx;
+    renderPopup();
+    document.getElementById('ov').classList.add('open');
+    setActive(idx);
+  };
+}).catch(function(err){console.error('Failed to load content.json:',err);});
+
+var currentIdx=null;
+
+function closePopup(e){e&&e.stopPropagation();document.getElementById('ov').classList.remove('open');currentIdx=null;
+  document.querySelectorAll('.fight-item').forEach(function(fi){fi.classList.remove('faded');});
+}
+function handleOvClick(e){if(e.target===document.getElementById('ov'))closePopup();}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closePopup();});
+
+function setActive(idx){
+  document.querySelectorAll('.fight-item').forEach(function(fi,i){fi.classList.toggle('faded',i!==idx);});
+}
+document.querySelectorAll('.rec-card').forEach(function(card){
+  card.addEventListener('mouseenter',function(){setActive(parseInt(this.getAttribute('data-idx')));});
+  card.addEventListener('mouseleave',function(){if(currentIdx===null){document.querySelectorAll('.fight-item').forEach(function(fi){fi.classList.remove('faded');});}});
+});
+
+function toggleNav(){var o=document.getElementById('nDr').classList.toggle('open');document.getElementById('ham').classList.toggle('open',o);document.getElementById('nOv').classList.toggle('open',o);}
+function closeNav(){document.getElementById('nDr').classList.remove('open');document.getElementById('ham').classList.remove('open');document.getElementById('nOv').classList.remove('open');}
+</script>
+</body>
+</html>

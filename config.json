@@ -1,0 +1,73 @@
+{
+  "_meta": {
+    "description": "Design tokens, feature flags, and environment settings. Controls how the site looks and behaves. Edit colors, fonts, and visibility here.",
+    "lastUpdated": "2026-04-02"
+  },
+
+  "env": {
+    "isPublic": false,
+    "showDraftWatermark": true,
+    "baseUrl": "",
+    "password": "bass2026",
+    "passwordHint": "Contact Michael Green II for access"
+  },
+
+  "features": {
+    "showTalkingPoints": true,
+    "talkingPointsDraft": true,
+    "showInventory": true,
+    "showDashboard": true,
+    "showCampaigns": true,
+    "showRecommendations": true,
+    "showAbout": true,
+    "showContact": true
+  },
+
+  "colors": {
+    "bg": "#EAF4FC",
+    "navy": "#0B1C33",
+    "gold": "#D4870A",
+    "goldLight": "#F5A623",
+    "text": "#0B1C33",
+    "text2": "#2C4A6A",
+    "text3": "#6A8AAA",
+    "white": "#FFFFFF",
+    "fights": {
+      "earn": "#6D28D9",
+      "build": "#047857",
+      "save": "#BE185D",
+      "care": "#C2410C",
+      "protect": "#B45309"
+    }
+  },
+
+  "fonts": {
+    "serif": "'DM Serif Display', Georgia, serif",
+    "sans": "'Outfit', sans-serif",
+    "mono": "'DM Mono', monospace",
+    "googleImport": "https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap"
+  },
+
+  "nav": {
+    "links": [
+      { "href": "index.html", "label": "Home", "sub": "Five Fights" },
+      { "href": "inventory.html", "label": "Inventory", "sub": "209 Programs", "feature": "showInventory" },
+      { "href": "dashboard.html", "label": "Dashboard", "sub": "Charts & Data", "feature": "showDashboard" },
+      { "href": "campaigns.html", "label": "Campaigns", "sub": "Awareness", "feature": "showCampaigns" },
+      { "href": "recommendations.html", "label": "Policy Shortlist", "sub": "Five Recommendations", "feature": "showRecommendations" },
+      { "href": "talking-points.html", "label": "Talking Points", "sub": "Narratives", "feature": "showTalkingPoints" },
+      { "href": "about.html", "label": "About", "sub": "Sources", "feature": "showAbout" },
+      { "href": "contact.html", "label": "Contact", "sub": "Michael Green II", "feature": "showContact" }
+    ],
+    "footer": "Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026"
+  },
+
+  "thumbnails": [
+    { "id": "inventory", "href": "inventory.html", "style": "lines", "feature": "showInventory" },
+    { "id": "dashboard", "href": "dashboard.html", "style": "bars", "feature": "showDashboard" },
+    { "id": "campaigns", "href": "campaigns.html", "style": "skew", "feature": "showCampaigns" },
+    { "id": "recommendations", "href": "recommendations.html", "style": "gradient", "feature": "showRecommendations" },
+    { "id": "talkingPoints", "href": "talking-points.html", "style": "draft", "feature": "showTalkingPoints" },
+    { "id": "contact", "href": "contact.html", "style": "initials", "feature": "showContact" }
+  ]
+}

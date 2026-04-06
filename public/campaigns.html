@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Five Fights | Affordability for All</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   SHARED.CSS - Generated from config.json
+   Do not edit directly. Edit config.json and rebuild.
+   ══════════════════════════════════════════════ */
+
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0}
+
+/* CSS Variables - from config.json */
+:root{
+  --bg:#EAF4FC;--navy:#0B1C33;--gold:#D4870A;--gold-lt:#F5A623;
+  --text:#0B1C33;--text2:#2C4A6A;--text3:#6A8AAA;--white:#FFFFFF;
+  --earn:#6D28D9;--build:#047857;--save:#BE185D;
+  --care:#C2410C;--protect:#B45309;
+  --serif:'DM Serif Display', Georgia, serif;--sans:'Outfit', sans-serif;--mono:'DM Mono', monospace;
+}
+
+/* ── Top Nav ── */
+.topnav{position:sticky;top:0;z-index:50;height:58px;background:rgba(234,244,252,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(11,28,51,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem}
+.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text3);font-size:13px;transition:color .2s}
+.nav-back:hover{color:var(--navy)}
+.nav-back svg{width:15px;height:15px}
+.nav-ttl{font-family:var(--serif);font-size:19px;color:var(--navy)}
+
+/* ── Hamburger ── */
+.ham{width:36px;height:36px;background:rgba(11,28,51,0.08);border:1px solid rgba(11,28,51,0.13);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;flex-shrink:0;position:relative;z-index:200}
+.ham span{display:block;width:16px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .28s;transform-origin:center}
+.ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ── Nav Overlay + Drawer ── */
+.nav-ov{position:fixed;inset:0;z-index:100;background:rgba(11,28,51,0);pointer-events:none;transition:background .3s}
+.nav-ov.open{background:rgba(11,28,51,0.22);pointer-events:all}
+.nav-dr{position:fixed;top:0;right:0;bottom:0;width:210px;background:#fff;border-left:1px solid rgba(11,28,51,0.09);z-index:150;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:5rem 1.5rem 2rem;box-shadow:-8px 0 32px rgba(11,28,51,0.08)}
+.nav-dr.open{transform:translateX(0)}
+.nl{display:block;padding:.75rem 0;border-bottom:1px solid rgba(11,28,51,0.07);font-family:var(--serif);font-size:22px;color:var(--text2);text-decoration:none;transition:color .2s}
+.nl:hover{color:var(--gold)}
+.nl span{display:block;font-family:var(--sans);font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-top:1px}
+.nf{margin-top:auto;font-size:9px;color:var(--text3);line-height:1.7}
+
+/* ── Common Elements ── */
+.eye{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:9px}
+.eye::before{content:'';width:20px;height:1px;background:var(--gold);display:block}
+
+/* ── PAGE LAYOUT ──────────────────── */
+.page{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:80px 2rem 2rem}
+.pg-head{text-align:center;margin-bottom:2.5rem}
+.pg-head h1{font-family:var(--serif);font-size:clamp(26px,3.5vw,40px);color:var(--navy);letter-spacing:.5px;margin-bottom:6px}
+.pg-head h1 em{font-style:italic;color:var(--gold)}
+.pg-head p{font-size:13px;color:var(--text3);max-width:420px;margin:0 auto;line-height:1.65;font-weight:300}
+
+/* ── PANELS ───────────────────────── */
+.panels{display:flex;align-items:stretch;justify-content:center;gap:0;max-width:900px;width:100%}
+.panel{
+  flex:1;min-width:0;
+  position:relative;cursor:pointer;
+  transform:skewX(-12deg);margin-left:-6px;
+  transition:flex .35s cubic-bezier(.4,0,.2,1),transform .2s;
+  overflow:hidden;border-radius:3px;
+  height:42vh;min-height:280px;max-height:400px;
+}
+.panel:first-child{margin-left:0}
+.panel:hover{flex:1.6;transform:skewX(-12deg) scale(1.02);z-index:5}
+.p-fill{position:absolute;inset:-3px -16px;opacity:.92;transition:opacity .3s}
+.panel:hover .p-fill{opacity:1}
+.p-inner{position:relative;z-index:2;height:100%;transform:skewX(12deg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.25rem .875rem;text-align:center;gap:5px}
+.p-num{font-size:8px;letter-spacing:4px;text-transform:uppercase;opacity:.45;font-weight:700;color:#fff}
+.p-name{font-family:var(--serif);font-size:clamp(15px,1.8vw,20px);line-height:1.2;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.25)}
+.p-sub{font-size:10px;opacity:.65;line-height:1.4;max-width:100px;color:#fff;font-weight:300}
+.p-line{width:20px;height:1.5px;background:rgba(255,255,255,.35);margin-top:8px;transition:width .3s,background .3s}
+.panel:hover .p-line{width:36px;background:rgba(255,255,255,.75)}
+
+/* ── OVERLAY & POPUP ──────────────── */
+.ov{display:none;position:fixed;inset:0;z-index:1000;background:rgba(5,14,28,.68);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:1.5rem}
+.ov.open{display:flex}
+.popup{width:100%;max-width:560px;border-radius:16px;padding:1.375rem 1.625rem;position:relative;animation:popIn .32s cubic-bezier(.2,.8,.2,1);box-shadow:0 16px 50px rgba(0,0,0,.4)}
+@keyframes popIn{from{transform:translateY(18px) scale(.94);opacity:0}to{transform:none;opacity:1}}
+.pop-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.875rem}
+.pop-lbl{font-size:8px;letter-spacing:4px;text-transform:uppercase;opacity:.4;font-weight:700;color:#fff}
+.pop-ttl{font-family:var(--serif);font-size:24px;margin-top:2px;color:#fff}
+.pop-x{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0}
+.pop-x:hover{background:rgba(255,255,255,.25)}
+.pop-desc{font-size:12px;line-height:1.7;opacity:.78;margin-bottom:1.125rem;font-weight:300;color:#fff}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.flip{perspective:800px;cursor:pointer;min-height:165px}
+.flip-c{position:relative;width:100%;height:100%;min-height:165px;transition:transform .5s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
+.flip-c.on{transform:rotateY(180deg)}
+.ff,.fb{position:absolute;inset:0;border-radius:9px;border:1px solid;padding:.75rem;backface-visibility:hidden;display:flex;flex-direction:column;justify-content:space-between}
+.fb{transform:rotateY(180deg)}
+.c-lbl{font-size:7px;letter-spacing:3px;text-transform:uppercase;opacity:.4;font-weight:700;margin-bottom:4px;color:#fff}
+.c-name{font-family:var(--serif);font-size:14px;line-height:1.25;margin-bottom:3px;color:#fff}
+.c-prev{font-size:10px;opacity:.6;line-height:1.45;color:#fff}
+.c-stat{font-size:11px;line-height:1.6;font-weight:500;color:#fff;margin-bottom:6px}
+.c-src{font-size:9px;opacity:.5;color:#fff}
+.c-src a{color:#fff;opacity:.8;text-decoration:underline}
+.c-hint{font-size:8px;letter-spacing:2px;text-transform:uppercase;opacity:.3;text-align:right;color:#fff}
+
+footer{text-align:center;padding:1.5rem;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text3)}
+</style>
+</head>
+<body>
+
+<div id="pwGate" style="position:fixed;inset:0;z-index:9999;background:#EAF4FC;display:flex;align-items:center;justify-content:center;font-family:'Outfit', sans-serif">
+<div style="text-align:center;max-width:340px;padding:2rem">
+<div style="font-family:'DM Serif Display', Georgia, serif;font-size:clamp(24px,4vw,36px);color:#0B1C33;margin-bottom:.5rem">Affordability <em style="color:#D4870A;font-style:italic">for All</em></div>
+<div style="font-family:'DM Mono', monospace;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:#6A8AAA;margin-bottom:2rem">Draft Review Access</div>
+<input id="pwIn" type="password" placeholder="Enter password" style="width:100%;padding:10px 14px;border:1px solid rgba(11,28,51,.15);border-radius:6px;font-size:14px;font-family:'Outfit', sans-serif;outline:none;text-align:center;margin-bottom:.75rem;background:rgba(255,255,255,.7)" onkeydown="if(event.key==='Enter')checkPw()">
+<button onclick="checkPw()" style="width:100%;padding:9px;background:#0B1C33;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;font-family:'Outfit', sans-serif;letter-spacing:.05em">Access Site</button>
+<div id="pwErr" style="font-size:11px;color:#DC2626;margin-top:.75rem;opacity:0;transition:opacity .2s"></div>
+<div style="font-size:10px;color:#6A8AAA;margin-top:1.5rem">Contact Michael Green II for access</div>
+</div></div>
+<script>
+(function(){var k='aff_access',h='bass2026';if(sessionStorage.getItem(k)===h){document.getElementById('pwGate').style.display='none';}
+window.checkPw=function(){var v=document.getElementById('pwIn').value;if(v===h){sessionStorage.setItem(k,h);document.getElementById('pwGate').style.display='none';}else{var e=document.getElementById('pwErr');e.textContent='Incorrect password';e.style.opacity='1';document.getElementById('pwIn').value='';setTimeout(function(){e.style.opacity='0';},2000);}};
+document.getElementById('pwIn').focus();})();
+</script>
+
+<nav class="topnav">
+  <a class="nav-back" href="index.html"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>Back</a>
+  <div class="nav-ttl">Five Fights</div>
+  <div class="ham" id="ham" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+
+<div class="nav-ov" id="nOv" onclick="closeNav()"></div>
+<nav class="nav-dr" id="nDr">
+  <a class="nl" href="index.html" onclick="closeNav()">Home<span>Five Fights</span></a>
+  <a class="nl" href="inventory.html" onclick="closeNav()">Inventory<span>209 Programs</span></a>
+  <a class="nl" href="dashboard.html" onclick="closeNav()">Dashboard<span>Charts &amp; Data</span></a>
+  <a class="nl" href="campaigns.html" onclick="closeNav()">Campaigns<span>Awareness</span></a>
+  <a class="nl" href="recommendations.html" onclick="closeNav()">Policy Shortlist<span>Five Recommendations</span></a>
+  <a class="nl" href="talking-points.html" onclick="closeNav()">Talking Points<span>Narratives</span></a>
+  <a class="nl" href="about.html" onclick="closeNav()">About<span>Sources</span></a>
+  <a class="nl" href="contact.html" onclick="closeNav()">Contact<span>Michael Green II</span></a>
+
+  <div class="nf">Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026</div>
+</nav>
+
+
+<main class="page">
+  <div class="pg-head">
+    <h1>Awareness <em>Campaigns</em></h1>
+    <p>Five fights Angelenos need to know about, five sets of programs most people have never heard of, and the numbers that prove they're working.</p>
+  </div>
+  <div class="panels" id="panels"></div>
+</main>
+
+<footer style="text-align:center;padding:1.375rem;font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.06em;border-top:1px solid rgba(11,28,51,0.07)"></footer>
+
+
+<div class="ov" id="ov">
+  <div class="popup" id="popup">
+    <div class="pop-hdr">
+      <div><div class="pop-lbl" id="pLbl"></div><div class="pop-ttl" id="pTtl"></div></div>
+      <button class="pop-x" onclick="closePopup()">&#x2715;</button>
+    </div>
+    <p class="pop-desc" id="pDesc"></p>
+    <div class="cards" id="cards"></div>
+  </div>
+</div>
+<script>
+fetch('content.json?v='+Date.now()).then(function(r){return r.json();}).then(function(data){
+  var fightIds=['earn','build','save','care','protect'];
+  var FIGHTS=data.fights.map(function(f,i){
+    var id=f.id;
+    var progs=data.campaigns[id]||[];
+    return {
+      name:f.name,num:f.num,sub:f.subtitle,color:f.color,
+      desc:f.campaignDescription,
+      programs:progs.map(function(p){return {l:p.num,n:p.name,p:p.preview,s:p.stat,src:p.source,url:p.url};})
+    };
+  });
+
+  var pEl=document.getElementById('panels');
+  FIGHTS.forEach(function(f,i){
+    var d=document.createElement('div');
+    d.className='panel';d.setAttribute('data-i',i);
+    d.innerHTML='<div class="p-fill" style="background:linear-gradient(170deg,'+f.color+' 0%,'+f.color+'CC 100%);"></div>'+
+      '<div class="p-inner"><div class="p-num">'+f.num+'</div><div class="p-name">'+f.name+'</div><div class="p-sub">'+f.sub+'</div><div class="p-line"></div></div>';
+    pEl.appendChild(d);
+  });
+
+  document.querySelectorAll('.panel').forEach(function(p){
+    p.addEventListener('click',function(){openPopup(parseInt(this.getAttribute('data-i')));});
+  });
+
+  function openPopup(i){
+    var f=FIGHTS[i];
+    var pop=document.getElementById('popup');
+    pop.style.background='linear-gradient(140deg,'+f.color+'F0,'+f.color+'CC)';
+    document.getElementById('pLbl').textContent=f.num;
+    document.getElementById('pTtl').textContent=f.name;
+    document.getElementById('pDesc').textContent=f.desc;
+    var gc=document.getElementById('cards');gc.innerHTML='';
+    f.programs.forEach(function(pr){
+      var c2=document.createElement('div');c2.className='flip';
+      var df=f.color+'44',db=f.color+'55',bf=f.color+'66',bb=f.color+'77';
+      c2.innerHTML='<div class="flip-c"><div class="ff" style="background:'+df+';border-color:'+bf+'">'+
+        '<div><div class="c-lbl">'+pr.l+'</div><div class="c-name">'+pr.n+'</div><div class="c-prev">'+pr.p+'</div></div>'+
+        '<div class="c-hint">Tap to reveal</div></div>'+
+        '<div class="fb" style="background:'+db+';border-color:'+bb+'">'+
+        '<div><div class="c-stat">'+pr.s+'</div><div class="c-src">'+pr.src+'<br><a href="'+pr.url+'" target="_blank" rel="noopener">View source</a></div></div>'+
+        '<div class="c-hint">Tap to flip back</div></div></div>';
+      gc.appendChild(c2);
+    });
+    gc.querySelectorAll('.flip').forEach(function(fc){
+      fc.addEventListener('click',function(e){e.stopPropagation();this.querySelector('.flip-c').classList.toggle('on');});
+    });
+    document.getElementById('ov').classList.add('open');
+  }
+  window.closePopup=function(){document.getElementById('ov').classList.remove('open');};
+  document.getElementById('ov').addEventListener('click',function(e){if(e.target===this)closePopup();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closePopup();});
+}).catch(function(err){console.error('Failed to load content.json:',err);});
+
+function toggleNav(){
+  var o=document.getElementById('nDr').classList.toggle('open');
+  document.getElementById('ham').classList.toggle('open',o);
+  document.getElementById('nOv').classList.toggle('open',o);
+}
+function closeNav(){
+  document.getElementById('nDr').classList.remove('open');
+  document.getElementById('ham').classList.remove('open');
+  document.getElementById('nOv').classList.remove('open');
+}
+</script>
+</body>
+</html>

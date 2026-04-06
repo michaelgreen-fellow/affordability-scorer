@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Program Inventory | Affordability for All</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   SHARED.CSS - Generated from config.json
+   Do not edit directly. Edit config.json and rebuild.
+   ══════════════════════════════════════════════ */
+
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0}
+
+/* CSS Variables - from config.json */
+:root{
+  --bg:#EAF4FC;--navy:#0B1C33;--gold:#D4870A;--gold-lt:#F5A623;
+  --text:#0B1C33;--text2:#2C4A6A;--text3:#6A8AAA;--white:#FFFFFF;
+  --earn:#6D28D9;--build:#047857;--save:#BE185D;
+  --care:#C2410C;--protect:#B45309;
+  --serif:'DM Serif Display', Georgia, serif;--sans:'Outfit', sans-serif;--mono:'DM Mono', monospace;
+}
+
+/* ── Top Nav ── */
+.topnav{position:sticky;top:0;z-index:50;height:58px;background:rgba(234,244,252,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(11,28,51,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem}
+.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text3);font-size:13px;transition:color .2s}
+.nav-back:hover{color:var(--navy)}
+.nav-back svg{width:15px;height:15px}
+.nav-ttl{font-family:var(--serif);font-size:19px;color:var(--navy)}
+
+/* ── Hamburger ── */
+.ham{width:36px;height:36px;background:rgba(11,28,51,0.08);border:1px solid rgba(11,28,51,0.13);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;flex-shrink:0;position:relative;z-index:200}
+.ham span{display:block;width:16px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .28s;transform-origin:center}
+.ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ── Nav Overlay + Drawer ── */
+.nav-ov{position:fixed;inset:0;z-index:100;background:rgba(11,28,51,0);pointer-events:none;transition:background .3s}
+.nav-ov.open{background:rgba(11,28,51,0.22);pointer-events:all}
+.nav-dr{position:fixed;top:0;right:0;bottom:0;width:210px;background:#fff;border-left:1px solid rgba(11,28,51,0.09);z-index:150;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:5rem 1.5rem 2rem;box-shadow:-8px 0 32px rgba(11,28,51,0.08)}
+.nav-dr.open{transform:translateX(0)}
+.nl{display:block;padding:.75rem 0;border-bottom:1px solid rgba(11,28,51,0.07);font-family:var(--serif);font-size:22px;color:var(--text2);text-decoration:none;transition:color .2s}
+.nl:hover{color:var(--gold)}
+.nl span{display:block;font-family:var(--sans);font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-top:1px}
+.nf{margin-top:auto;font-size:9px;color:var(--text3);line-height:1.7}
+
+/* ── Common Elements ── */
+.eye{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:9px}
+.eye::before{content:'';width:20px;height:1px;background:var(--gold);display:block}
+
+main{max-width:1300px;margin:0 auto;padding:2.25rem 1.75rem 4rem}
+.eye{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:9px}
+.eye::before{content:'';width:20px;height:1px;background:var(--gold);display:block}
+h1{font-family:var(--serif);font-size:clamp(30px,3.5vw,46px);color:var(--navy);line-height:1.1;margin-bottom:.625rem}
+h1 em{font-style:italic;color:var(--gold)}
+.desc{font-size:13px;color:var(--text2);max-width:460px;line-height:1.7;margin-bottom:1.75rem;font-weight:300}
+.rubric{background:rgba(255,255,255,.7);border:1px solid rgba(11,28,51,.08);border-left:3px solid var(--gold);border-radius:8px;padding:1.125rem 1.375rem;margin-bottom:1.25rem}
+.rtog{display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
+.rtog h3{font-family:var(--serif);font-size:17px;color:var(--navy)}
+.rtog span{font-family:var(--mono);font-size:9px;color:var(--text3)}
+.rbody{display:none;margin-top:.875rem;padding-top:.875rem;border-top:1px solid rgba(11,28,51,.07)}
+.rbody.open{display:block}
+.rgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(11,28,51,.07);border-radius:5px;overflow:hidden;margin-bottom:.75rem}
+.rcol{background:rgba(255,255,255,.85);padding:.75rem}
+.rcol h4{font-family:var(--mono);font-size:8px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+.rrow{display:flex;gap:6px;margin-bottom:.3rem;font-size:10px;color:var(--text2);line-height:1.4}
+.rpt{font-family:var(--mono);color:var(--navy);min-width:14px;font-size:9px;flex-shrink:0;font-weight:500}
+.trow{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem;padding-top:.5rem;border-top:1px solid rgba(11,28,51,.07);align-items:center}
+.controls{display:flex;gap:7px;margin-bottom:.875rem;flex-wrap:wrap;align-items:center}
+.cs{font-family:var(--sans);font-size:12px;padding:8px 13px;border-radius:5px;border:1px solid rgba(11,28,51,.14);background:rgba(255,255,255,.8);color:var(--text);flex:1;min-width:180px;outline:none;transition:border-color .2s}
+.cs::placeholder{color:var(--text3)}
+.cs:focus{border-color:var(--gold)}
+.csel{font-family:var(--sans);font-size:11px;padding:8px 11px;border-radius:5px;border:1px solid rgba(11,28,51,.14);background:rgba(255,255,255,.8);color:var(--text);outline:none;cursor:pointer}
+.cnt{font-family:var(--mono);font-size:10px;color:var(--text3);margin-left:auto;white-space:nowrap}
+.tw{overflow-x:auto;border:1px solid rgba(11,28,51,.08);border-radius:9px;background:rgba(255,255,255,.7)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead tr{border-bottom:1px solid rgba(11,28,51,.09);background:rgba(255,255,255,.5)}
+th{text-align:left;font-family:var(--mono);font-size:8px;font-weight:500;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;padding:11px 13px;white-space:nowrap;cursor:pointer;user-select:none;transition:color .2s}
+th:hover{color:var(--navy)}
+td{padding:11px 13px;border-bottom:1px solid rgba(11,28,51,.05);vertical-align:top;color:var(--text)}
+tr:hover td{background:rgba(11,28,51,.02)}
+tr:last-child td{border-bottom:none}
+.pn{font-weight:600;max-width:250px;line-height:1.4;color:var(--navy)}
+.pt{font-size:10px;color:var(--text3);margin-top:2px}
+.pd{font-size:10px;color:var(--text2);line-height:1.5;max-width:300px;margin-top:4px;display:none}
+tr.exp .pd{display:block}
+tr.exp td{background:rgba(11,28,51,.015)}
+.tb{display:inline-block;font-family:var(--mono);font-size:8px;font-weight:500;padding:2px 7px;border-radius:3px;white-space:nowrap;letter-spacing:.04em}
+.tal{background:rgba(212,135,10,.15);color:#A06008;border:1px solid rgba(212,135,10,.28)}
+.t1{background:rgba(109,40,217,.1);color:#5B21B6;border:1px solid rgba(109,40,217,.22)}
+.t2{background:rgba(11,28,51,.07);color:var(--text2);border:1px solid rgba(11,28,51,.12)}
+.t3{background:rgba(11,28,51,.04);color:var(--text3);border:1px solid rgba(11,28,51,.08)}
+.ft{display:flex;align-items:center;font-size:11px;color:var(--text2);white-space:nowrap}
+.fd{width:6px;height:6px;border-radius:50%;margin-right:5px;flex-shrink:0}
+.od{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:4px}
+.dy{background:#16A34A}.dn{background:var(--text3)}
+.xb{background:none;border:none;color:var(--text3);cursor:pointer;font-size:14px;padding:0 3px;line-height:1}
+.xb:hover{color:var(--navy)}
+.pag{display:flex;align-items:center;justify-content:space-between;margin-top:.875rem;font-size:11px;color:var(--text3)}
+.pb-row{display:flex;gap:3px}
+.pb{background:rgba(255,255,255,.75);border:1px solid rgba(11,28,51,.12);color:var(--text);padding:5px 10px;border-radius:4px;font-size:11px;cursor:pointer;transition:background .15s;font-family:var(--sans)}
+.pb:hover{background:#fff}
+.pb:disabled{opacity:.3;cursor:not-allowed}
+.pb.on{background:var(--gold);color:#fff;border-color:var(--gold)}
+</style>
+</head>
+<body>
+
+<div id="pwGate" style="position:fixed;inset:0;z-index:9999;background:#EAF4FC;display:flex;align-items:center;justify-content:center;font-family:'Outfit', sans-serif">
+<div style="text-align:center;max-width:340px;padding:2rem">
+<div style="font-family:'DM Serif Display', Georgia, serif;font-size:clamp(24px,4vw,36px);color:#0B1C33;margin-bottom:.5rem">Affordability <em style="color:#D4870A;font-style:italic">for All</em></div>
+<div style="font-family:'DM Mono', monospace;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:#6A8AAA;margin-bottom:2rem">Draft Review Access</div>
+<input id="pwIn" type="password" placeholder="Enter password" style="width:100%;padding:10px 14px;border:1px solid rgba(11,28,51,.15);border-radius:6px;font-size:14px;font-family:'Outfit', sans-serif;outline:none;text-align:center;margin-bottom:.75rem;background:rgba(255,255,255,.7)" onkeydown="if(event.key==='Enter')checkPw()">
+<button onclick="checkPw()" style="width:100%;padding:9px;background:#0B1C33;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;font-family:'Outfit', sans-serif;letter-spacing:.05em">Access Site</button>
+<div id="pwErr" style="font-size:11px;color:#DC2626;margin-top:.75rem;opacity:0;transition:opacity .2s"></div>
+<div style="font-size:10px;color:#6A8AAA;margin-top:1.5rem">Contact Michael Green II for access</div>
+</div></div>
+<script>
+(function(){var k='aff_access',h='bass2026';if(sessionStorage.getItem(k)===h){document.getElementById('pwGate').style.display='none';}
+window.checkPw=function(){var v=document.getElementById('pwIn').value;if(v===h){sessionStorage.setItem(k,h);document.getElementById('pwGate').style.display='none';}else{var e=document.getElementById('pwErr');e.textContent='Incorrect password';e.style.opacity='1';document.getElementById('pwIn').value='';setTimeout(function(){e.style.opacity='0';},2000);}};
+document.getElementById('pwIn').focus();})();
+</script>
+
+<nav class="topnav">
+  <a class="nav-back" href="index.html"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>Back</a>
+  <div class="nav-ttl">Program Inventory</div>
+  <div class="ham" id="ham" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="nav-ov" id="nOv" onclick="closeNav()"></div>
+<nav class="nav-dr" id="nDr">
+  <a class="nl" href="index.html" onclick="closeNav()">Home<span>Five Fights</span></a>
+  <a class="nl" href="inventory.html" onclick="closeNav()">Inventory<span>209 Programs</span></a>
+  <a class="nl" href="dashboard.html" onclick="closeNav()">Dashboard<span>Charts &amp; Data</span></a>
+  <a class="nl" href="campaigns.html" onclick="closeNav()">Campaigns<span>Awareness</span></a>
+  <a class="nl" href="recommendations.html" onclick="closeNav()">Policy Shortlist<span>Five Recommendations</span></a>
+  <a class="nl" href="talking-points.html" onclick="closeNav()">Talking Points<span>Narratives</span></a>
+  <a class="nl" href="about.html" onclick="closeNav()">About<span>Sources</span></a>
+  <a class="nl" href="contact.html" onclick="closeNav()">Contact<span>Michael Green II</span></a>
+
+  <div class="nf">Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026</div>
+</nav>
+
+<main>
+  <div class="eye">Affordability for All</div>
+  <h1>The Full <em>Inventory</em></h1>
+  <p class="desc">209 active programs across Mayor Bass's affordability agenda, organized by tier, fight, and topic area.</p>
+  <div class="rubric">
+    <div class="rtog" onclick="toggleRubric()"><h3>Scoring Rubric , 14 point ceiling</h3><span id="rtl">SHOW ↓</span></div>
+    <div class="rbody" id="rb">
+      <div class="rgrid">
+        <div class="rcol"><h4>Bass Attribution</h4><div class="rrow"><span class="rpt">3</span>Bass created, signed, or championed</div><div class="rrow"><span class="rpt">2</span>Bass expanded or reformed</div><div class="rrow"><span class="rpt">1</span>Bass administers, did not create</div><div class="rrow"><span class="rpt">0</span>Predates Bass, no involvement</div></div>
+        <div class="rcol"><h4>Scale of Impact</h4><div class="rrow"><span class="rpt">3</span>10,000+ Angelenos or 0M+</div><div class="rrow"><span class="rpt">2</span>1,000–10,000 or M–0M</div><div class="rrow"><span class="rpt">1</span>Under 1,000 or under M</div><div class="rrow"><span class="rpt">0</span>No data or admin only</div></div>
+        <div class="rcol"><h4>Comms Value</h4><div class="rrow"><span class="rpt">3</span>Recognizable, Bass legacy</div><div class="rrow"><span class="rpt">2</span>Immediately understandable</div><div class="rrow"><span class="rpt">1</span>Needs one sentence context</div><div class="rrow"><span class="rpt">0</span>Needs significant explanation</div></div>
+        <div class="rcol"><h4>Strategic Alignment</h4><div class="rrow"><span class="rpt">3</span>Visibly impacts millions</div><div class="rrow"><span class="rpt">2</span>Directly reduces costs or displacement</div><div class="rrow"><span class="rpt">1</span>Indirectly supports affordability</div><div class="rrow"><span class="rpt">0</span>Tangential connection</div></div>
+        <div class="rcol"><h4>Implementation</h4><div class="rrow"><span class="rpt">2</span>Demonstrated measurable results</div><div class="rrow"><span class="rpt">1</span>Operational, limited data</div><div class="rrow"><span class="rpt">0</span>Announced or early stage</div></div>
+      </div>
+      <div class="trow"><span class="tb tal">A-List</span> 12+ &nbsp;<span class="tb t1">Tier 1</span> 9–11 &nbsp;<span class="tb t2">Tier 2</span> 5–8 &nbsp;<span class="tb t3">Tier 3</span> below 5</div>
+    </div>
+  </div>
+  <div class="controls">
+    <input class="cs" id="sq" placeholder="Search programs..." oninput="fr()">
+    <select class="csel" id="st" onchange="fr()"><option value="">All tiers</option><option>A-List</option><option>Tier 1</option><option>Tier 2</option><option>Tier 3</option></select>
+    <select class="csel" id="sf" onchange="fr()"><option value="">All fights</option><option>Earn More</option><option>Build More</option><option>Save More</option><option>Care More</option><option>Protect More Rights</option></select>
+    <div class="cnt" id="cnt">209 programs</div>
+  </div>
+  <div class="tw"><table><thead><tr><th onclick="sb('name')">Program</th><th onclick="sb('tier')">Tier</th><th onclick="sb('fight')">Fight</th><th onclick="sb('topic')">Topic</th><th>Active</th><th></th></tr></thead><tbody id="tb"></tbody></table></div>
+  <div class="pag"><div id="pi">Showing 1–50</div><div class="pb-row" id="pb"></div></div>
+</main><footer style="text-align:center;padding:1.375rem;font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.06em;border-top:1px solid rgba(11,28,51,0.07)"></footer>
+
+
+<script>
+var FC={'Earn More':'#6D28D9','Build More':'#047857','Save More':'#BE185D','Care More':'#C2410C','Protect More Rights':'#B45309'};
+var PROGRAMS=[];
+var filt=[],sk='tier',sd=1,pg=0,exp=new Set();
+var PER=50;
+
+// Parse CSV (handles quoted fields with commas inside)
+function parseCSV(text){
+  var lines=[];var row=[];var field='';var inQuote=false;
+  for(var i=0;i<text.length;i++){
+    var ch=text[i];
+    if(inQuote){
+      if(ch==='"'&&text[i+1]==='"'){field+='"';i++;}
+      else if(ch==='"'){inQuote=false;}
+      else{field+=ch;}
+    } else {
+      if(ch==='"'){inQuote=true;}
+      else if(ch===','){row.push(field);field='';}
+      else if(ch==='\n'||ch==='\r'){
+        if(ch==='\r'&&text[i+1]==='\n') i++;
+        row.push(field);field='';
+        if(row.length>1||row[0]!=='') lines.push(row);
+        row=[];
+      } else {field+=ch;}
+    }
+  }
+  if(field||row.length) {row.push(field);lines.push(row);}
+  return lines;
+}
+
+fetch('inventory.csv?v='+Date.now()).then(function(r){return r.text();}).then(function(csv){
+  var rows=parseCSV(csv);
+  var headers=rows[0];
+  for(var i=1;i<rows.length;i++){
+    var obj={};
+    for(var j=0;j<headers.length;j++){
+      obj[headers[j]]=rows[i][j]||'';
+    }
+    PROGRAMS.push(obj);
+  }
+  filt=[].concat(PROGRAMS);
+  document.getElementById('cnt').textContent=PROGRAMS.length+' programs';
+  srt();rnd();
+}).catch(function(err){
+  console.error('Failed to load inventory.csv:',err);
+  document.getElementById('tb').innerHTML='<tr><td colspan="6" style="text-align:center;padding:2rem;color:var(--text3)">Failed to load inventory data</td></tr>';
+});
+
+function tc(t){if(t==='A-List')return 'tal';if(t==='Tier 1')return 't1';if(t==='Tier 2')return 't2';return 't3';}
+
+function fr(){
+  pg=0;
+  var q=document.getElementById('sq').value.toLowerCase();
+  var ft=document.getElementById('st').value;
+  var ff=document.getElementById('sf').value;
+  filt=PROGRAMS.filter(function(p){
+    return(!q||p.name.toLowerCase().indexOf(q)>=0||p.topic.toLowerCase().indexOf(q)>=0)&&(!ft||p.tier===ft)&&(!ff||p.fight===ff);
+  });
+  srt();rnd();
+}
+
+function sb(k){if(sk===k)sd*=-1;else{sk=k;sd=1;}srt();rnd();}
+
+function srt(){
+  var to={'A-List':0,'Tier 1':1,'Tier 2':2,'Tier 3':3};
+  filt.sort(function(a,b){
+    if(sk==='tier') return((to[a.tier]||9)-(to[b.tier]||9))*sd;
+    return((a[sk]||'').localeCompare(b[sk]||''))*sd;
+  });
+}
+
+function rnd(){
+  var st=pg*PER;
+  var sl=filt.slice(st,st+PER);
+  document.getElementById('tb').innerHTML=sl.map(function(p,i){
+    var fc=FC[p.fight]||'#6A8AAA';
+    var ie=exp.has(p.name);
+    return '<tr class="'+(ie?'exp':'')+'"><td><div class="pn">'+p.name+'</div><div class="pt">'+p.topic+'</div>'+(ie?'<div class="pd">'+p.desc+'</div>':'')+'</td><td><span class="tb '+tc(p.tier)+'">'+p.tier+'</span></td><td><div class="ft"><span class="fd" style="background:'+fc+'"></span>'+p.fight+'</div></td><td style="font-size:10px;color:var(--text3)">'+p.topic+'</td><td><span class="od '+(p.ongoing==='Yes'?'dy':'dn')+'"></span></td><td><button class="xb" onclick="tx(\''+p.name.replace(/'/g,"\\'")+'\')">'+(ie?'\u2212':'+')+'</button></td></tr>';
+  }).join('');
+  document.getElementById('cnt').textContent=filt.length+' programs';
+  document.getElementById('pi').textContent='Showing '+(st+1)+'\u2013'+Math.min(st+PER,filt.length)+' of '+filt.length;
+  var tp=Math.ceil(filt.length/PER);
+  var pbEl=document.getElementById('pb');pbEl.innerHTML='';
+  var pv=document.createElement('button');pv.className='pb';pv.textContent='\u2190';pv.disabled=pg===0;pv.onclick=function(){pg--;rnd();};pbEl.appendChild(pv);
+  for(var p2=Math.max(0,pg-2);p2<=Math.min(tp-1,pg+2);p2++){
+    var b=document.createElement('button');b.className='pb'+(p2===pg?' on':'');b.textContent=p2+1;
+    b.onclick=(function(pp){return function(){pg=pp;rnd();};})(p2);
+    pbEl.appendChild(b);
+  }
+  var nx=document.createElement('button');nx.className='pb';nx.textContent='\u2192';nx.disabled=pg>=tp-1;nx.onclick=function(){pg++;rnd();};pbEl.appendChild(nx);
+}
+
+function tx(n){if(exp.has(n))exp.delete(n);else exp.add(n);rnd();}
+function toggleRubric(){var b=document.getElementById('rb'),l=document.getElementById('rtl');b.classList.toggle('open');l.textContent=b.classList.contains('open')?'HIDE \u2191':'SHOW \u2193';}
+function toggleNav(){var o=document.getElementById('nDr').classList.toggle('open');document.getElementById('ham').classList.toggle('open',o);document.getElementById('nOv').classList.toggle('open',o);}
+function closeNav(){document.getElementById('nDr').classList.remove('open');document.getElementById('ham').classList.remove('open');document.getElementById('nOv').classList.remove('open');}
+
+</script>
+</body>
+</html>

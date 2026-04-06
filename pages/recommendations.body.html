@@ -1,0 +1,68 @@
+{{TOPNAV}}
+{{NAV_DRAWER}}
+
+<div class="pg-head">
+  <div class="pg-eye">Michael Green II &middot; Mayor's Office &middot; April 2026</div>
+  <h1 class="pg-title">Five Fights:<br><em>Policy Shortlist</em></h1>
+  <p class="pg-intro">Bass has built the foundation. These five recommendations extend it. Each one is mapped to a fight, grounded in a precedent, and designed to be announced.</p>
+</div>
+
+<div class="layout">
+  <div class="fights-col" id="fightsCol">
+    <div class="fight-item" data-fight="0" onclick="setActive(0)">
+      <div class="fi-name">Build<br>More</div>
+      <div class="fi-bar" style="background:var(--build)"></div>
+    </div>
+    <div class="fight-item" data-fight="1" onclick="setActive(1)">
+      <div class="fi-name">Save<br>More</div>
+      <div class="fi-bar" style="background:var(--save)"></div>
+    </div>
+    <div class="fight-item" data-fight="2" onclick="setActive(2)">
+      <div class="fi-name">Care<br>More</div>
+      <div class="fi-bar" style="background:var(--care)"></div>
+    </div>
+    <div class="fight-item" data-fight="3" onclick="setActive(3)">
+      <div class="fi-name">Protect More<br>Rights</div>
+      <div class="fi-bar" style="background:var(--protect)"></div>
+    </div>
+    <div class="fight-item" data-fight="4" onclick="setActive(4)">
+      <div class="fi-name">Earn<br>More</div>
+      <div class="fi-bar" style="background:var(--earn)"></div>
+    </div>
+  </div>
+
+  <div class="recs-col">
+    <div class="rec-row">
+      <svg class="conn-line" viewBox="0 0 24 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="24" y2="1" stroke="rgba(4,120,87,0.35)" stroke-width="1"/></svg>
+      <div class="rec-card bc" data-idx="0" onclick="openPopup(0)"><div class="rc-left"><div class="rc-fight-tag">Build More</div><div class="rc-title">Expand EO1 Citywide</div><div class="rc-sub">The Affordable Housing Acceleration Act</div></div><div class="rc-plus">+</div></div>
+    </div>
+    <div class="rec-row">
+      <svg class="conn-line" viewBox="0 0 24 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="24" y2="1" stroke="rgba(190,24,93,0.35)" stroke-width="1"/></svg>
+      <div class="rec-card sc" data-idx="1" onclick="openPopup(1)"><div class="rc-left"><div class="rc-fight-tag">Save More</div><div class="rc-title">Tri-Share Childcare Initiative</div><div class="rc-sub">Affordable Childcare Through Cost-Sharing</div></div><div class="rc-plus">+</div></div>
+    </div>
+    <div class="rec-row">
+      <svg class="conn-line" viewBox="0 0 24 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="24" y2="1" stroke="rgba(194,65,12,0.35)" stroke-width="1"/></svg>
+      <div class="rec-card cc" data-idx="2" onclick="openPopup(2)"><div class="rc-left"><div class="rc-fight-tag">Care More</div><div class="rc-title">Mayors for Moms Coalition</div><div class="rc-sub">A National Municipal Maternal Health Initiative</div></div><div class="rc-plus">+</div></div>
+    </div>
+    <div class="rec-row">
+      <svg class="conn-line" viewBox="0 0 24 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="24" y2="1" stroke="rgba(180,83,9,0.35)" stroke-width="1"/></svg>
+      <div class="rec-card pr" data-idx="3" onclick="openPopup(3)"><div class="rc-left"><div class="rc-fight-tag">Protect More Rights</div><div class="rc-title">Proactive Tenant Protection Unit</div><div class="rc-sub">Expanding LAHD Enforcement and Renter Education</div></div><div class="rc-plus">+</div></div>
+    </div>
+    <div class="rec-row">
+      <svg class="conn-line" viewBox="0 0 24 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="24" y2="1" stroke="rgba(109,40,217,0.35)" stroke-width="1"/></svg>
+      <div class="rec-card ec" data-idx="4" onclick="openPopup(4)"><div class="rc-left"><div class="rc-fight-tag">Earn More</div><div class="rc-title">LA Ownership Economy Initiative</div><div class="rc-sub">Worker Cooperatives and Transit Rewards</div></div><div class="rc-plus">+</div></div>
+    </div>
+  </div>
+</div>
+
+
+
+{{FOOTER}}
+
+<div class="ov" id="ov" onclick="handleOvClick(event)">
+  <div class="popup" id="popup">
+    <button class="pop-close" onclick="closePopup(event)">&#x2715;</button>
+    <div class="pop-hdr" id="popHdr"></div>
+    <div class="pop-body" id="popBody"></div>
+  </div>
+</div>

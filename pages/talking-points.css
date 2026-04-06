@@ -1,0 +1,160 @@
+/* ── PAGE WRAPPER ── */
+body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh}
+
+.tp-page{max-width:1400px;margin:0 auto;padding:2.5rem 2rem 5rem}
+
+/* ── HEADER ── */
+.tp-header{text-align:center;margin-bottom:3rem}
+.tp-eye{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;display:inline-flex;align-items:center;gap:10px}
+.tp-eye::before,.tp-eye::after{content:'';width:24px;height:1px;background:var(--gold);opacity:.5}
+.tp-title{font-family:var(--serif);font-size:clamp(36px,5vw,60px);color:var(--navy);line-height:1.0;letter-spacing:-.02em;margin-bottom:.6rem}
+.tp-title em{font-style:italic;color:var(--gold)}
+.tp-desc{font-size:13px;color:var(--text3);max-width:480px;margin:0 auto;line-height:1.7;font-weight:300}
+
+/* ── CARD GRID ── */
+.tp-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:1.25rem;
+  align-items:start;
+}
+@media(max-width:1100px){.tp-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.tp-grid{grid-template-columns:repeat(1,1fr)}}
+
+.tp-loading{grid-column:1/-1;text-align:center;color:var(--text3);font-size:13px;padding:3rem;font-family:var(--mono);letter-spacing:.05em}
+
+/* ── INDIVIDUAL CARD ── */
+.tp-card{
+  background:#fff;
+  border-radius:10px;
+  box-shadow:0 2px 12px rgba(11,28,51,.07),0 1px 3px rgba(11,28,51,.05);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  transition:box-shadow .2s,transform .2s;
+  min-height:320px;
+}
+.tp-card:hover{
+  box-shadow:0 6px 24px rgba(11,28,51,.11),0 2px 6px rgba(11,28,51,.07);
+  transform:translateY(-2px);
+}
+
+/* ── COLOR BAR ── */
+.tp-bar{
+  height:6px;
+  width:100%;
+  flex-shrink:0;
+}
+
+/* ── CARD TOP ── */
+.tp-card-top{
+  padding:1.25rem 1.25rem .75rem;
+  border-bottom:1px solid rgba(11,28,51,.06);
+}
+.tp-fight-name{
+  font-family:var(--serif);
+  font-size:clamp(17px,1.6vw,21px);
+  color:var(--navy);
+  line-height:1.1;
+  margin-bottom:4px;
+}
+.tp-fight-sub{
+  font-family:var(--mono);
+  font-size:7.5px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--text3);
+}
+
+/* ── TEXT AREA ── */
+.tp-text-wrap{
+  flex:1;
+  padding:1.125rem 1.25rem 1rem;
+  position:relative;
+  overflow:hidden;
+  min-height:140px;
+}
+.tp-text{
+  font-size:13px;
+  line-height:1.8;
+  color:var(--text2);
+  font-weight:400;
+  position:absolute;
+  top:1.125rem;
+  left:1.25rem;
+  right:1.25rem;
+  transition:opacity .22s ease, transform .22s ease;
+}
+.tp-text.exit-left{opacity:0;transform:translateX(-18px);pointer-events:none}
+.tp-text.exit-right{opacity:0;transform:translateX(18px);pointer-events:none}
+.tp-text.enter-left{animation:slideInLeft .22s ease forwards}
+.tp-text.enter-right{animation:slideInRight .22s ease forwards}
+
+@keyframes slideInLeft{
+  from{opacity:0;transform:translateX(18px)}
+  to{opacity:1;transform:translateX(0)}
+}
+@keyframes slideInRight{
+  from{opacity:0;transform:translateX(-18px)}
+  to{opacity:1;transform:translateX(0)}
+}
+
+/* ── NAVIGATION ── */
+.tp-nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:.75rem 1.25rem 1.125rem;
+  border-top:1px solid rgba(11,28,51,.06);
+  flex-shrink:0;
+}
+.tp-arrow{
+  width:32px;height:32px;
+  border-radius:50%;
+  border:1.5px solid rgba(11,28,51,.15);
+  background:transparent;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text3);
+  transition:all .18s;
+  font-size:14px;
+  line-height:1;
+  flex-shrink:0;
+}
+.tp-arrow:hover{
+  border-color:currentColor;
+  color:var(--navy);
+  background:rgba(11,28,51,.04);
+}
+.tp-arrow:active{transform:scale(.92)}
+.tp-arrow svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.tp-counter{
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:.12em;
+  color:var(--text3);
+  text-align:center;
+  flex:1;
+  user-select:none;
+}
+
+/* Dot indicators */
+.tp-dots{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  flex:1;
+}
+.tp-dot{
+  width:5px;height:5px;
+  border-radius:50%;
+  background:rgba(11,28,51,.15);
+  transition:background .2s,transform .2s;
+  flex-shrink:0;
+}
+.tp-dot.active{
+  background:var(--fight-color,var(--navy));
+  transform:scale(1.3);
+}

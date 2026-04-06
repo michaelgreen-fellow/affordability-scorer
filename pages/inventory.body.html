@@ -1,0 +1,28 @@
+{{TOPNAV}}
+{{NAV_DRAWER}}
+<main>
+  <div class="eye">Affordability for All</div>
+  <h1>The Full <em>Inventory</em></h1>
+  <p class="desc">209 active programs across Mayor Bass's affordability agenda, organized by tier, fight, and topic area.</p>
+  <div class="rubric">
+    <div class="rtog" onclick="toggleRubric()"><h3>Scoring Rubric , 14 point ceiling</h3><span id="rtl">SHOW ↓</span></div>
+    <div class="rbody" id="rb">
+      <div class="rgrid">
+        <div class="rcol"><h4>Bass Attribution</h4><div class="rrow"><span class="rpt">3</span>Bass created, signed, or championed</div><div class="rrow"><span class="rpt">2</span>Bass expanded or reformed</div><div class="rrow"><span class="rpt">1</span>Bass administers, did not create</div><div class="rrow"><span class="rpt">0</span>Predates Bass, no involvement</div></div>
+        <div class="rcol"><h4>Scale of Impact</h4><div class="rrow"><span class="rpt">3</span>10,000+ Angelenos or 0M+</div><div class="rrow"><span class="rpt">2</span>1,000–10,000 or M–0M</div><div class="rrow"><span class="rpt">1</span>Under 1,000 or under M</div><div class="rrow"><span class="rpt">0</span>No data or admin only</div></div>
+        <div class="rcol"><h4>Comms Value</h4><div class="rrow"><span class="rpt">3</span>Recognizable, Bass legacy</div><div class="rrow"><span class="rpt">2</span>Immediately understandable</div><div class="rrow"><span class="rpt">1</span>Needs one sentence context</div><div class="rrow"><span class="rpt">0</span>Needs significant explanation</div></div>
+        <div class="rcol"><h4>Strategic Alignment</h4><div class="rrow"><span class="rpt">3</span>Visibly impacts millions</div><div class="rrow"><span class="rpt">2</span>Directly reduces costs or displacement</div><div class="rrow"><span class="rpt">1</span>Indirectly supports affordability</div><div class="rrow"><span class="rpt">0</span>Tangential connection</div></div>
+        <div class="rcol"><h4>Implementation</h4><div class="rrow"><span class="rpt">2</span>Demonstrated measurable results</div><div class="rrow"><span class="rpt">1</span>Operational, limited data</div><div class="rrow"><span class="rpt">0</span>Announced or early stage</div></div>
+      </div>
+      <div class="trow"><span class="tb tal">A-List</span> 12+ &nbsp;<span class="tb t1">Tier 1</span> 9–11 &nbsp;<span class="tb t2">Tier 2</span> 5–8 &nbsp;<span class="tb t3">Tier 3</span> below 5</div>
+    </div>
+  </div>
+  <div class="controls">
+    <input class="cs" id="sq" placeholder="Search programs..." oninput="fr()">
+    <select class="csel" id="st" onchange="fr()"><option value="">All tiers</option><option>A-List</option><option>Tier 1</option><option>Tier 2</option><option>Tier 3</option></select>
+    <select class="csel" id="sf" onchange="fr()"><option value="">All fights</option><option>Earn More</option><option>Build More</option><option>Save More</option><option>Care More</option><option>Protect More Rights</option></select>
+    <div class="cnt" id="cnt">209 programs</div>
+  </div>
+  <div class="tw"><table><thead><tr><th onclick="sb('name')">Program</th><th onclick="sb('tier')">Tier</th><th onclick="sb('fight')">Fight</th><th onclick="sb('topic')">Topic</th><th>Active</th><th></th></tr></thead><tbody id="tb"></tbody></table></div>
+  <div class="pag"><div id="pi">Showing 1–50</div><div class="pb-row" id="pb"></div></div>
+</main>{{FOOTER}}

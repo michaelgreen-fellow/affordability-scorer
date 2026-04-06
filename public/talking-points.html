@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talking Points | Affordability for All</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   SHARED.CSS - Generated from config.json
+   Do not edit directly. Edit config.json and rebuild.
+   ══════════════════════════════════════════════ */
+
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0}
+
+/* CSS Variables - from config.json */
+:root{
+  --bg:#EAF4FC;--navy:#0B1C33;--gold:#D4870A;--gold-lt:#F5A623;
+  --text:#0B1C33;--text2:#2C4A6A;--text3:#6A8AAA;--white:#FFFFFF;
+  --earn:#6D28D9;--build:#047857;--save:#BE185D;
+  --care:#C2410C;--protect:#B45309;
+  --serif:'DM Serif Display', Georgia, serif;--sans:'Outfit', sans-serif;--mono:'DM Mono', monospace;
+}
+
+/* ── Top Nav ── */
+.topnav{position:sticky;top:0;z-index:50;height:58px;background:rgba(234,244,252,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(11,28,51,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem}
+.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text3);font-size:13px;transition:color .2s}
+.nav-back:hover{color:var(--navy)}
+.nav-back svg{width:15px;height:15px}
+.nav-ttl{font-family:var(--serif);font-size:19px;color:var(--navy)}
+
+/* ── Hamburger ── */
+.ham{width:36px;height:36px;background:rgba(11,28,51,0.08);border:1px solid rgba(11,28,51,0.13);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;flex-shrink:0;position:relative;z-index:200}
+.ham span{display:block;width:16px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .28s;transform-origin:center}
+.ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ── Nav Overlay + Drawer ── */
+.nav-ov{position:fixed;inset:0;z-index:100;background:rgba(11,28,51,0);pointer-events:none;transition:background .3s}
+.nav-ov.open{background:rgba(11,28,51,0.22);pointer-events:all}
+.nav-dr{position:fixed;top:0;right:0;bottom:0;width:210px;background:#fff;border-left:1px solid rgba(11,28,51,0.09);z-index:150;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:5rem 1.5rem 2rem;box-shadow:-8px 0 32px rgba(11,28,51,0.08)}
+.nav-dr.open{transform:translateX(0)}
+.nl{display:block;padding:.75rem 0;border-bottom:1px solid rgba(11,28,51,0.07);font-family:var(--serif);font-size:22px;color:var(--text2);text-decoration:none;transition:color .2s}
+.nl:hover{color:var(--gold)}
+.nl span{display:block;font-family:var(--sans);font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-top:1px}
+.nf{margin-top:auto;font-size:9px;color:var(--text3);line-height:1.7}
+
+/* ── Common Elements ── */
+.eye{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:9px}
+.eye::before{content:'';width:20px;height:1px;background:var(--gold);display:block}
+
+/* ── PAGE WRAPPER ── */
+body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh}
+
+.tp-page{max-width:1400px;margin:0 auto;padding:2.5rem 2rem 5rem}
+
+/* ── HEADER ── */
+.tp-header{text-align:center;margin-bottom:3rem}
+.tp-eye{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;display:inline-flex;align-items:center;gap:10px}
+.tp-eye::before,.tp-eye::after{content:'';width:24px;height:1px;background:var(--gold);opacity:.5}
+.tp-title{font-family:var(--serif);font-size:clamp(36px,5vw,60px);color:var(--navy);line-height:1.0;letter-spacing:-.02em;margin-bottom:.6rem}
+.tp-title em{font-style:italic;color:var(--gold)}
+.tp-desc{font-size:13px;color:var(--text3);max-width:480px;margin:0 auto;line-height:1.7;font-weight:300}
+
+/* ── CARD GRID ── */
+.tp-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:1.25rem;
+  align-items:start;
+}
+@media(max-width:1100px){.tp-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.tp-grid{grid-template-columns:repeat(1,1fr)}}
+
+.tp-loading{grid-column:1/-1;text-align:center;color:var(--text3);font-size:13px;padding:3rem;font-family:var(--mono);letter-spacing:.05em}
+
+/* ── INDIVIDUAL CARD ── */
+.tp-card{
+  background:#fff;
+  border-radius:10px;
+  box-shadow:0 2px 12px rgba(11,28,51,.07),0 1px 3px rgba(11,28,51,.05);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  transition:box-shadow .2s,transform .2s;
+  min-height:320px;
+}
+.tp-card:hover{
+  box-shadow:0 6px 24px rgba(11,28,51,.11),0 2px 6px rgba(11,28,51,.07);
+  transform:translateY(-2px);
+}
+
+/* ── COLOR BAR ── */
+.tp-bar{
+  height:6px;
+  width:100%;
+  flex-shrink:0;
+}
+
+/* ── CARD TOP ── */
+.tp-card-top{
+  padding:1.25rem 1.25rem .75rem;
+  border-bottom:1px solid rgba(11,28,51,.06);
+}
+.tp-fight-name{
+  font-family:var(--serif);
+  font-size:clamp(17px,1.6vw,21px);
+  color:var(--navy);
+  line-height:1.1;
+  margin-bottom:4px;
+}
+.tp-fight-sub{
+  font-family:var(--mono);
+  font-size:7.5px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--text3);
+}
+
+/* ── TEXT AREA ── */
+.tp-text-wrap{
+  flex:1;
+  padding:1.125rem 1.25rem 1rem;
+  position:relative;
+  overflow:hidden;
+  min-height:140px;
+}
+.tp-text{
+  font-size:13px;
+  line-height:1.8;
+  color:var(--text2);
+  font-weight:400;
+  position:absolute;
+  top:1.125rem;
+  left:1.25rem;
+  right:1.25rem;
+  transition:opacity .22s ease, transform .22s ease;
+}
+.tp-text.exit-left{opacity:0;transform:translateX(-18px);pointer-events:none}
+.tp-text.exit-right{opacity:0;transform:translateX(18px);pointer-events:none}
+.tp-text.enter-left{animation:slideInLeft .22s ease forwards}
+.tp-text.enter-right{animation:slideInRight .22s ease forwards}
+
+@keyframes slideInLeft{
+  from{opacity:0;transform:translateX(18px)}
+  to{opacity:1;transform:translateX(0)}
+}
+@keyframes slideInRight{
+  from{opacity:0;transform:translateX(-18px)}
+  to{opacity:1;transform:translateX(0)}
+}
+
+/* ── NAVIGATION ── */
+.tp-nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:.75rem 1.25rem 1.125rem;
+  border-top:1px solid rgba(11,28,51,.06);
+  flex-shrink:0;
+}
+.tp-arrow{
+  width:32px;height:32px;
+  border-radius:50%;
+  border:1.5px solid rgba(11,28,51,.15);
+  background:transparent;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text3);
+  transition:all .18s;
+  font-size:14px;
+  line-height:1;
+  flex-shrink:0;
+}
+.tp-arrow:hover{
+  border-color:currentColor;
+  color:var(--navy);
+  background:rgba(11,28,51,.04);
+}
+.tp-arrow:active{transform:scale(.92)}
+.tp-arrow svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.tp-counter{
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:.12em;
+  color:var(--text3);
+  text-align:center;
+  flex:1;
+  user-select:none;
+}
+
+/* Dot indicators */
+.tp-dots{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  flex:1;
+}
+.tp-dot{
+  width:5px;height:5px;
+  border-radius:50%;
+  background:rgba(11,28,51,.15);
+  transition:background .2s,transform .2s;
+  flex-shrink:0;
+}
+.tp-dot.active{
+  background:var(--fight-color,var(--navy));
+  transform:scale(1.3);
+}
+
+</style>
+</head>
+<body>
+
+<div id="pwGate" style="position:fixed;inset:0;z-index:9999;background:#EAF4FC;display:flex;align-items:center;justify-content:center;font-family:'Outfit', sans-serif">
+<div style="text-align:center;max-width:340px;padding:2rem">
+<div style="font-family:'DM Serif Display', Georgia, serif;font-size:clamp(24px,4vw,36px);color:#0B1C33;margin-bottom:.5rem">Affordability <em style="color:#D4870A;font-style:italic">for All</em></div>
+<div style="font-family:'DM Mono', monospace;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:#6A8AAA;margin-bottom:2rem">Draft Review Access</div>
+<input id="pwIn" type="password" placeholder="Enter password" style="width:100%;padding:10px 14px;border:1px solid rgba(11,28,51,.15);border-radius:6px;font-size:14px;font-family:'Outfit', sans-serif;outline:none;text-align:center;margin-bottom:.75rem;background:rgba(255,255,255,.7)" onkeydown="if(event.key==='Enter')checkPw()">
+<button onclick="checkPw()" style="width:100%;padding:9px;background:#0B1C33;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;font-family:'Outfit', sans-serif;letter-spacing:.05em">Access Site</button>
+<div id="pwErr" style="font-size:11px;color:#DC2626;margin-top:.75rem;opacity:0;transition:opacity .2s"></div>
+<div style="font-size:10px;color:#6A8AAA;margin-top:1.5rem">Contact Michael Green II for access</div>
+</div></div>
+<script>
+(function(){var k='aff_access',h='bass2026';if(sessionStorage.getItem(k)===h){document.getElementById('pwGate').style.display='none';}
+window.checkPw=function(){var v=document.getElementById('pwIn').value;if(v===h){sessionStorage.setItem(k,h);document.getElementById('pwGate').style.display='none';}else{var e=document.getElementById('pwErr');e.textContent='Incorrect password';e.style.opacity='1';document.getElementById('pwIn').value='';setTimeout(function(){e.style.opacity='0';},2000);}};
+document.getElementById('pwIn').focus();})();
+</script>
+<div style="position:fixed;top:14px;right:16px;z-index:8000;background:#D4870A;color:#fff;font-family:'DM Mono', monospace;font-size:8px;letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;border-radius:4px;pointer-events:none;opacity:.92">Draft</div>
+<nav class="topnav">
+  <a class="nav-back" href="index.html"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>Back</a>
+  <div class="nav-ttl">Talking Points</div>
+  <div class="ham" id="ham" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="nav-ov" id="nOv" onclick="closeNav()"></div>
+<nav class="nav-dr" id="nDr">
+  <a class="nl" href="index.html" onclick="closeNav()">Home<span>Five Fights</span></a>
+  <a class="nl" href="inventory.html" onclick="closeNav()">Inventory<span>209 Programs</span></a>
+  <a class="nl" href="dashboard.html" onclick="closeNav()">Dashboard<span>Charts &amp; Data</span></a>
+  <a class="nl" href="campaigns.html" onclick="closeNav()">Campaigns<span>Awareness</span></a>
+  <a class="nl" href="recommendations.html" onclick="closeNav()">Policy Shortlist<span>Five Recommendations</span></a>
+  <a class="nl" href="talking-points.html" onclick="closeNav()">Talking Points<span>Narratives</span></a>
+  <a class="nl" href="about.html" onclick="closeNav()">About<span>Sources</span></a>
+  <a class="nl" href="contact.html" onclick="closeNav()">Contact<span>Michael Green II</span></a>
+
+  <div class="nf">Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026</div>
+</nav>
+
+
+<div class="tp-page">
+  <div class="tp-header">
+    <div class="tp-eye" id="tpEye">Mayor Karen Bass</div>
+    <h1 class="tp-title">Talking <em>Points</em></h1>
+    <p class="tp-desc" id="tpDesc">Loading...</p>
+  </div>
+
+  <div class="tp-grid" id="tpGrid">
+    <div class="tp-loading">Loading talking points...</div>
+  </div>
+</div>
+
+<footer style="text-align:center;padding:1.375rem;font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.06em;border-top:1px solid rgba(11,28,51,0.07)"></footer>
+
+
+<script>
+function toggleNav(){var o=document.getElementById('nDr').classList.toggle('open');document.getElementById('ham').classList.toggle('open',o);document.getElementById('nOv').classList.toggle('open',o);}
+function closeNav(){document.getElementById('nDr').classList.remove('open');document.getElementById('ham').classList.remove('open');document.getElementById('nOv').classList.remove('open');}
+
+// Fetch both content.json (fight metadata) and talkingPoints.json (the database)
+Promise.all([
+  fetch('content.json?v='+Date.now()).then(function(r){return r.json();}),
+  fetch('talkingPoints.json?v='+Date.now()).then(function(r){return r.json();})
+]).then(function(results){
+  var content = results[0];
+  var tpDB = results[1];
+
+  // Page header text
+  document.getElementById('tpEye').textContent = content.site.subtitle || 'Mayor Karen Bass';
+  document.getElementById('tpDesc').textContent = 'The Five Fights. What the Mayor says when constituents ask what are you doing about affordability.';
+
+  // State: current index per fight
+  var state = {};
+  content.fights.forEach(function(f){ state[f.id] = 0; });
+
+  // Build cards
+  var grid = document.getElementById('tpGrid');
+  grid.innerHTML = '';
+
+  content.fights.forEach(function(fight){
+    var points = tpDB[fight.id] || ['No talking points loaded.'];
+    state[fight.id] = 0;
+
+    var card = document.createElement('div');
+    card.className = 'tp-card';
+    card.setAttribute('data-fight', fight.id);
+
+    card.innerHTML =
+      '<div class="tp-bar" style="background:'+fight.color+'"></div>' +
+      '<div class="tp-card-top">' +
+        '<div class="tp-fight-name">'+fight.name+'</div>' +
+        '<div class="tp-fight-sub">'+fight.subtitle+'</div>' +
+      '</div>' +
+      '<div class="tp-text-wrap">' +
+        '<div class="tp-text" id="text-'+fight.id+'">'+points[0]+'</div>' +
+      '</div>' +
+      '<div class="tp-nav">' +
+        '<button class="tp-arrow" id="prev-'+fight.id+'" aria-label="Previous talking point">' +
+          '<svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>' +
+        '</button>' +
+        '<div class="tp-dots" id="dots-'+fight.id+'"></div>' +
+        '<button class="tp-arrow" id="next-'+fight.id+'" aria-label="Next talking point">' +
+          '<svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>' +
+        '</button>' +
+      '</div>';
+
+    grid.appendChild(card);
+
+    // Build dots
+    buildDots(fight.id, points.length, fight.color);
+
+    // Wire arrows
+    document.getElementById('prev-'+fight.id).addEventListener('click', function(){
+      var cur = state[fight.id];
+      var next = (cur - 1 + points.length) % points.length;
+      animateCard(fight.id, points, cur, next, 'prev');
+      state[fight.id] = next;
+    });
+
+    document.getElementById('next-'+fight.id).addEventListener('click', function(){
+      var cur = state[fight.id];
+      var next = (cur + 1) % points.length;
+      animateCard(fight.id, points, cur, next, 'next');
+      state[fight.id] = next;
+    });
+  });
+
+}).catch(function(err){
+  document.getElementById('tpGrid').innerHTML =
+    '<div class="tp-loading">Could not load talking points. Make sure talkingPoints.json is in the public folder.</div>';
+  console.error('Talking points load error:', err);
+});
+
+function buildDots(fightId, count, color){
+  var container = document.getElementById('dots-'+fightId);
+  container.innerHTML = '';
+  for(var i=0;i<count;i++){
+    var dot = document.createElement('div');
+    dot.className = 'tp-dot' + (i===0?' active':'');
+    dot.style.setProperty('--fight-color', color);
+    container.appendChild(dot);
+  }
+}
+
+function updateDots(fightId, activeIdx, color){
+  var dots = document.getElementById('dots-'+fightId).querySelectorAll('.tp-dot');
+  dots.forEach(function(d,i){
+    d.className = 'tp-dot' + (i===activeIdx?' active':'');
+    d.style.setProperty('--fight-color', color);
+  });
+}
+
+function animateCard(fightId, points, fromIdx, toIdx, direction){
+  var textEl = document.getElementById('text-'+fightId);
+  var exitClass = direction === 'next' ? 'exit-left' : 'exit-right';
+  var enterClass = direction === 'next' ? 'enter-left' : 'enter-right';
+
+  // Exit current
+  textEl.className = 'tp-text ' + exitClass;
+
+  setTimeout(function(){
+    // Swap text and enter
+    textEl.textContent = points[toIdx];
+    textEl.className = 'tp-text ' + enterClass;
+
+    // Reset class after animation
+    setTimeout(function(){
+      textEl.className = 'tp-text';
+    }, 240);
+
+    // Get fight color for dots
+    var card = document.querySelector('[data-fight="'+fightId+'"]');
+    var bar = card ? card.querySelector('.tp-bar') : null;
+    var color = bar ? bar.style.background : '#0B1C33';
+    updateDots(fightId, toIdx, color);
+
+  }, 200);
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;display:flex;flex-direction:column}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:3rem 2rem}
+.card{max-width:500px;width:100%;text-align:center}
+.name{font-family:var(--serif);font-size:clamp(42px,6vw,72px);line-height:1.05;margin-bottom:.5rem;color:var(--navy)}
+.name em{font-style:italic;color:var(--gold)}
+.tl{font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2.25rem;line-height:1.9}
+.div{width:32px;height:1px;background:rgba(11,28,51,0.15);margin:0 auto 2.25rem}
+.el{font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+.ea{font-family:var(--serif);font-size:clamp(16px,2vw,23px);color:var(--navy);text-decoration:none;border-bottom:1px solid rgba(212,135,10,.4);padding-bottom:2px;transition:color .2s,border-color .2s}
+.ea:hover{color:var(--gold);border-color:var(--gold)}
+.ctx{font-size:12.5px;color:var(--text2);line-height:1.75;max-width:380px;margin:1.75rem auto}
+.lks{display:flex;justify-content:center;gap:1.125rem;flex-wrap:wrap}
+.lk{font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.07em;text-transform:uppercase;text-decoration:none;transition:color .2s}
+.lk:hover{color:var(--gold)}

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home (Pillars Draft) | Affordability for All</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   SHARED.CSS - Generated from config.json
+   Do not edit directly. Edit config.json and rebuild.
+   ══════════════════════════════════════════════ */
+
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0}
+
+/* CSS Variables - from config.json */
+:root{
+  --bg:#EAF4FC;--navy:#0B1C33;--gold:#D4870A;--gold-lt:#F5A623;
+  --text:#0B1C33;--text2:#2C4A6A;--text3:#6A8AAA;--white:#FFFFFF;
+  --earn:#6D28D9;--build:#047857;--save:#BE185D;
+  --care:#C2410C;--protect:#B45309;
+  --serif:'DM Serif Display', Georgia, serif;--sans:'Outfit', sans-serif;--mono:'DM Mono', monospace;
+}
+
+/* ── Top Nav ── */
+.topnav{position:sticky;top:0;z-index:50;height:58px;background:rgba(234,244,252,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(11,28,51,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem}
+.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text3);font-size:13px;transition:color .2s}
+.nav-back:hover{color:var(--navy)}
+.nav-back svg{width:15px;height:15px}
+.nav-ttl{font-family:var(--serif);font-size:19px;color:var(--navy)}
+
+/* ── Hamburger ── */
+.ham{width:36px;height:36px;background:rgba(11,28,51,0.08);border:1px solid rgba(11,28,51,0.13);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;flex-shrink:0;position:relative;z-index:200}
+.ham span{display:block;width:16px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .28s;transform-origin:center}
+.ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ── Nav Overlay + Drawer ── */
+.nav-ov{position:fixed;inset:0;z-index:100;background:rgba(11,28,51,0);pointer-events:none;transition:background .3s}
+.nav-ov.open{background:rgba(11,28,51,0.22);pointer-events:all}
+.nav-dr{position:fixed;top:0;right:0;bottom:0;width:210px;background:#fff;border-left:1px solid rgba(11,28,51,0.09);z-index:150;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:5rem 1.5rem 2rem;box-shadow:-8px 0 32px rgba(11,28,51,0.08)}
+.nav-dr.open{transform:translateX(0)}
+.nl{display:block;padding:.75rem 0;border-bottom:1px solid rgba(11,28,51,0.07);font-family:var(--serif);font-size:22px;color:var(--text2);text-decoration:none;transition:color .2s}
+.nl:hover{color:var(--gold)}
+.nl span{display:block;font-family:var(--sans);font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-top:1px}
+.nf{margin-top:auto;font-size:9px;color:var(--text3);line-height:1.7}
+
+/* ── Common Elements ── */
+.eye{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:9px}
+.eye::before{content:'';width:20px;height:1px;background:var(--gold);display:block}
+
+/* ── HEADER ── */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:50;padding:1.1rem 1.75rem;display:flex;align-items:flex-start;justify-content:space-between;background:rgba(234,244,252,0.0)}
+.hdr-left{}
+.hdr-byline{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:3px}
+.hdr-title{font-family:var(--serif);font-size:clamp(18px,2.2vw,28px);color:var(--navy);line-height:1.15}
+.hdr-title b{color:var(--gold);font-weight:400;font-style:italic}
+
+/* ── PILLARS CONTAINER ── */
+.pillars-wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;overflow:hidden}
+.pillars{display:flex;align-items:stretch;justify-content:center;gap:0;height:62vh;min-height:340px;max-height:520px;width:auto;transition:gap .5s cubic-bezier(.4,0,.2,1)}
+.pillars:hover{gap:6px}
+.pillars.has-sel{gap:6px}
+
+/* ── INDIVIDUAL PILLAR ── */
+.pillar{
+  width:clamp(72px,8vw,100px);
+  position:relative;cursor:pointer;
+  border-radius:6px;overflow:hidden;
+  transition:width .45s cubic-bezier(.4,0,.2,1),transform .3s,box-shadow .3s,border-radius .3s;
+  box-shadow:0 4px 20px rgba(11,28,51,.12);
+}
+.pillar:hover{
+  width:clamp(96px,11vw,140px);
+  transform:scaleY(1.02);
+  box-shadow:0 8px 36px rgba(11,28,51,.22);
+  z-index:5;
+}
+.pillar.selected{
+  width:clamp(96px,11vw,140px);
+  transform:scaleY(1.04);
+  box-shadow:0 12px 44px rgba(11,28,51,.28);
+  z-index:6;
+}
+.pillar.dimmed{
+  opacity:.45;
+  filter:saturate(.6);
+}
+
+/* Pillar fill */
+.pil-fill{position:absolute;inset:0;transition:opacity .3s}
+.pillar:hover .pil-fill{opacity:1}
+
+/* Pillar content */
+.pil-inner{
+  position:relative;z-index:2;
+  height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:1.5rem .75rem;text-align:center;gap:8px;
+}
+.pil-num{
+  font-family:var(--mono);font-size:8px;letter-spacing:4px;
+  text-transform:uppercase;opacity:.35;font-weight:700;color:#fff;
+}
+.pil-name{
+  font-family:var(--serif);font-size:clamp(18px,2.2vw,26px);
+  line-height:1.1;color:#fff;
+  text-shadow:0 2px 12px rgba(0,0,0,.25);
+  writing-mode:vertical-lr;text-orientation:mixed;
+  transform:rotate(180deg);
+  letter-spacing:.02em;
+  transition:writing-mode .3s,transform .3s;
+}
+.pillar:hover .pil-name,
+.pillar.selected .pil-name{
+  writing-mode:horizontal-tb;
+  transform:rotate(0);
+}
+.pil-sub{
+  font-size:9px;opacity:0;line-height:1.4;
+  max-width:100px;color:#fff;font-weight:300;
+  transition:opacity .3s .1s;
+}
+.pillar:hover .pil-sub,
+.pillar.selected .pil-sub{opacity:.7}
+.pil-accent{
+  width:24px;height:2px;background:rgba(255,255,255,.25);
+  border-radius:1px;margin-top:4px;
+  transition:width .3s,background .3s;
+}
+.pillar:hover .pil-accent{width:36px;background:rgba(255,255,255,.65)}
+
+/* ── CENTER LABEL (between pillars, visible at rest) ── */
+.pillars-center{
+  position:fixed;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  z-index:3;pointer-events:none;
+  text-align:center;
+  opacity:1;transition:opacity .4s;
+}
+.pillars:hover .pillars-center,
+.pillars.has-sel .pillars-center{opacity:0}
+.pc-eye{
+  font-family:var(--mono);font-size:8px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--text3);margin-bottom:6px;
+}
+.pc-title{
+  font-family:var(--serif);font-size:clamp(22px,3vw,36px);
+  color:var(--navy);line-height:1.1;cursor:pointer;pointer-events:all;
+}
+.pc-title em{font-style:italic;color:var(--gold)}
+.pc-hint{
+  font-family:var(--mono);font-size:7px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text3);margin-top:8px;
+  opacity:.5;
+}
+
+/* ── FIGHT PANEL (slide in from right) ── */
+.fp{position:fixed;top:50%;right:2rem;transform:translateY(-50%) translateX(calc(100% + 3rem));width:255px;background:#fff;border:1px solid rgba(11,28,51,0.1);border-radius:12px;padding:1.375rem;z-index:20;box-shadow:0 6px 28px rgba(11,28,51,0.11);transition:transform .36s cubic-bezier(.4,0,.2,1),opacity .36s;opacity:0;pointer-events:none}
+.fp.show{transform:translateY(-50%) translateX(0);opacity:1;pointer-events:all}
+.fp-x{position:absolute;top:.75rem;right:.75rem;width:24px;height:24px;background:rgba(11,28,51,0.07);border:none;border-radius:4px;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);transition:background .2s}
+.fp-x:hover{background:rgba(11,28,51,0.13)}
+.fp-bar{height:3px;border-radius:2px;margin-bottom:.875rem;width:100%}
+.fp-name{font-family:var(--serif);font-size:27px;line-height:1.1;margin-bottom:.375rem}
+.fp-desc{font-size:11.5px;color:var(--text2);line-height:1.65;margin-bottom:.875rem}
+.fp-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(11,28,51,0.07);border-radius:6px;overflow:hidden;margin-bottom:.875rem}
+.fp-stat{background:#F4F9FD;padding:.625rem .75rem}
+.fp-sn{font-family:var(--serif);font-size:19px;line-height:1;margin-bottom:2px}
+.fp-sl{font-size:9px;color:var(--text3);line-height:1.4}
+.fp-progs{display:flex;flex-direction:column;gap:0}
+.fp-p{font-size:11px;color:var(--text2);padding:5px 0;border-bottom:1px solid rgba(11,28,51,0.05);display:flex;align-items:center;gap:6px}
+.fp-p:last-child{border-bottom:none}
+.fp-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.fp-more{display:flex;align-items:center;justify-content:space-between;margin-top:.875rem;padding-top:.75rem;border-top:1px solid rgba(11,28,51,0.07);font-size:10px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;font-family:var(--sans)}
+.fp-more:hover{opacity:.7}
+
+/* ── CENTER OVERVIEW PANEL ── */
+.cp{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.92);width:400px;max-width:90vw;background:#fff;border:1px solid rgba(11,28,51,0.1);border-radius:14px;padding:1.75rem;z-index:25;box-shadow:0 10px 40px rgba(11,28,51,0.13);transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .32s;opacity:0;pointer-events:none}
+.cp.show{transform:translate(-50%,-50%) scale(1);opacity:1;pointer-events:all}
+.cp-x{position:absolute;top:.875rem;right:.875rem;width:26px;height:26px;background:rgba(11,28,51,0.07);border:none;border-radius:4px;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2)}
+.cp-x:hover{background:rgba(11,28,51,0.13)}
+.cp-eye{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:.375rem;font-family:var(--sans)}
+.cp-h{font-family:var(--serif);font-size:28px;color:var(--navy);line-height:1.1;margin-bottom:.625rem}
+.cp-h em{font-style:italic;color:var(--gold)}
+.cp-body{font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:1rem}
+.cp-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.cp-f{border-radius:7px;padding:.5rem .75rem;font-size:11px;font-weight:600;color:#fff}
+.cp-f span{display:block;font-size:9px;font-weight:300;opacity:.8;margin-top:1px}
+.cp-f.full{grid-column:1/-1}
+
+/* ── THUMBNAILS ── */
+.thumbs{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:10}
+.th{width:96px;background:rgba(255,255,255,0.8);border:1px solid rgba(11,28,51,0.1);border-radius:8px;overflow:hidden;text-decoration:none;color:var(--navy);transition:border-color .2s,transform .18s,background .2s;display:flex;flex-direction:column;box-shadow:0 2px 8px rgba(11,28,51,0.06)}
+.th:hover{border-color:rgba(212,135,10,.45);background:#fff;transform:translateY(-2px)}
+.th-prev{height:42px;position:relative;flex-shrink:0;background:linear-gradient(140deg,#D4EAF8,#EAF4FC)}
+.th-prev::before,.th-prev::after{content:'';position:absolute;border-radius:2px}
+.inv-p::before{top:7px;left:8px;right:8px;height:2.5px;background:rgba(212,135,10,.45)}
+.inv-p::after{top:14px;left:8px;right:8px;bottom:7px;background:repeating-linear-gradient(0deg,rgba(11,28,51,.07) 0,rgba(11,28,51,.07) 1px,transparent 1px,transparent 7px)}
+.dash-p::after{bottom:7px;left:8px;right:8px;top:9px;background:linear-gradient(to right,#6D28D933 17%,#04785733 34%,#BE185D33 51%,#C2410C33 68%,#B4530933 85%);border-radius:2px}
+.camp-p::after{inset:5px;background:linear-gradient(to right,#6D28D955 18%,#04785755 36%,#BE185D55 54%,#C2410C55 72%,#B4530955 90%);border-radius:2px;transform:skewX(-6deg)}
+.contact-p{display:flex;align-items:center;justify-content:center}
+.th-body{padding:5px 7px 6px}
+.th-ttl{font-size:10px;font-weight:600;color:var(--navy)}
+.th-sub{font-size:8px;color:var(--text3);margin-top:1px}
+
+/* ── MOBILE ── */
+@media(max-width:640px){
+  .pillars{height:50vh;min-height:260px}
+  .pillar{width:clamp(52px,14vw,72px)}
+  .pillar:hover{width:clamp(68px,18vw,96px)}
+  .pil-name{font-size:clamp(14px,3.5vw,18px)}
+  .thumbs{gap:4px;bottom:1rem}
+  .th{width:80px}
+  .th-prev{height:36px}
+  .th-body{padding:4px 6px 5px}
+  .th-ttl{font-size:9px}
+  .th-sub{font-size:7px}
+  .fp{right:1rem;width:220px;padding:1rem}
+  .fp-name{font-size:22px}
+}
+
+</style>
+</head>
+<body>
+
+<div id="pwGate" style="position:fixed;inset:0;z-index:9999;background:#EAF4FC;display:flex;align-items:center;justify-content:center;font-family:'Outfit', sans-serif">
+<div style="text-align:center;max-width:340px;padding:2rem">
+<div style="font-family:'DM Serif Display', Georgia, serif;font-size:clamp(24px,4vw,36px);color:#0B1C33;margin-bottom:.5rem">Affordability <em style="color:#D4870A;font-style:italic">for All</em></div>
+<div style="font-family:'DM Mono', monospace;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:#6A8AAA;margin-bottom:2rem">Draft Review Access</div>
+<input id="pwIn" type="password" placeholder="Enter password" style="width:100%;padding:10px 14px;border:1px solid rgba(11,28,51,.15);border-radius:6px;font-size:14px;font-family:'Outfit', sans-serif;outline:none;text-align:center;margin-bottom:.75rem;background:rgba(255,255,255,.7)" onkeydown="if(event.key==='Enter')checkPw()">
+<button onclick="checkPw()" style="width:100%;padding:9px;background:#0B1C33;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;font-family:'Outfit', sans-serif;letter-spacing:.05em">Access Site</button>
+<div id="pwErr" style="font-size:11px;color:#DC2626;margin-top:.75rem;opacity:0;transition:opacity .2s"></div>
+<div style="font-size:10px;color:#6A8AAA;margin-top:1.5rem">Contact Michael Green II for access</div>
+</div></div>
+<script>
+(function(){var k='aff_access',h='bass2026';if(sessionStorage.getItem(k)===h){document.getElementById('pwGate').style.display='none';}
+window.checkPw=function(){var v=document.getElementById('pwIn').value;if(v===h){sessionStorage.setItem(k,h);document.getElementById('pwGate').style.display='none';}else{var e=document.getElementById('pwErr');e.textContent='Incorrect password';e.style.opacity='1';document.getElementById('pwIn').value='';setTimeout(function(){e.style.opacity='0';},2000);}};
+document.getElementById('pwIn').focus();})();
+</script>
+<header class="hdr"><div class="hdr-left"><div class="hdr-byline" id="hdrByline"></div><div class="hdr-title" id="hdrTitle"></div></div><div class="ham" id="ham" onclick="toggleNav()"><span></span><span></span><span></span></div></header>
+
+<div class="nav-ov" id="nOv" onclick="closeNav()"></div>
+<nav class="nav-dr" id="nDr">
+  <a class="nl" href="index.html" onclick="closeNav()">Home<span>Five Fights</span></a>
+  <a class="nl" href="inventory.html" onclick="closeNav()">Inventory<span>209 Programs</span></a>
+  <a class="nl" href="dashboard.html" onclick="closeNav()">Dashboard<span>Charts &amp; Data</span></a>
+  <a class="nl" href="campaigns.html" onclick="closeNav()">Campaigns<span>Awareness</span></a>
+  <a class="nl" href="recommendations.html" onclick="closeNav()">Policy Shortlist<span>Five Recommendations</span></a>
+  <a class="nl" href="talking-points.html" onclick="closeNav()">Talking Points<span>Narratives</span></a>
+  <a class="nl" href="about.html" onclick="closeNav()">About<span>Sources</span></a>
+  <a class="nl" href="contact.html" onclick="closeNav()">Contact<span>Michael Green II</span></a>
+
+  <div class="nf">Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026</div>
+</nav>
+
+
+<div class="pillars-wrap">
+  <div class="pillars" id="pillars"></div>
+</div>
+
+<div class="fp" id="fp">
+  <button class="fp-x" onclick="closeFP()">&#x2715;</button>
+  <div class="fp-bar" id="fpBar"></div>
+  <div class="fp-name" id="fpName"></div>
+  <div class="fp-desc" id="fpDesc"></div>
+  <div class="fp-stats" id="fpStats"></div>
+  <div class="fp-progs" id="fpProgs"></div>
+  <a class="fp-more" href="inventory.html" id="fpMore">All programs <span>&#8594;</span></a>
+</div>
+
+<div class="cp" id="cp">
+  <button class="cp-x" onclick="closeCP()">&#x2715;</button>
+  <div class="cp-eye" id="cpEye"></div>
+  <div class="cp-h" id="cpH"></div>
+  <div class="cp-body" id="cpBody"></div>
+  <div class="cp-grid" id="cpGrid"></div>
+</div>
+
+<div class="thumbs">
+  <a class="th" href="inventory.html"><div class="th-prev inv-p"></div><div class="th-body"><div class="th-ttl">Inventory</div><div class="th-sub">209 programs</div></div></a>
+  <a class="th" href="dashboard.html"><div class="th-prev dash-p"></div><div class="th-body"><div class="th-ttl">Dashboard</div><div class="th-sub">Charts</div></div></a>
+  <a class="th" href="campaigns.html"><div class="th-prev camp-p"></div><div class="th-body"><div class="th-ttl">Campaigns</div><div class="th-sub">Five fights</div></div></a>
+  <a class="th" href="recommendations.html"><div class="th-prev" style="background:linear-gradient(140deg,#EAF4FC,#D4EAF8);position:relative"><div style="position:absolute;top:8px;left:8px;font-family:var(--mono);font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:rgba(11,28,51,0.4)">5 recs</div><div style="position:absolute;bottom:8px;left:8px;right:8px;height:2px;background:linear-gradient(to right,#6D28D9,#047857,#BE185D,#C2410C,#B45309);border-radius:1px"></div></div><div class="th-body"><div class="th-ttl">Policy</div><div class="th-sub">Shortlist</div></div></a>
+  <a class="th" href="talking-points.html"><div class="th-prev tp-p" style="position:relative"><div style="position:absolute;top:7px;left:8px;right:8px;display:flex;flex-direction:column;gap:4px"><div style="height:2px;background:rgba(11,28,51,0.08);border-radius:1px;width:70%"></div><div style="height:2px;background:rgba(11,28,51,0.06);border-radius:1px;width:55%"></div><div style="height:2px;background:rgba(11,28,51,0.04);border-radius:1px;width:40%"></div></div><div style="position:absolute;bottom:7px;right:8px;font-family:var(--mono);font-size:6px;letter-spacing:.08em;text-transform:uppercase;color:rgba(212,135,10,.5)">WIP</div></div><div class="th-body"><div class="th-ttl">Talking</div><div class="th-sub">Points</div></div></a>
+  <a class="th" href="contact.html"><div class="th-prev contact-p"><span style="font-family:var(--serif);font-size:13px;color:rgba(11,28,51,0.18)">MG II</span></div><div class="th-body"><div class="th-ttl">Contact</div><div class="th-sub">Michael Green II</div></div></a>
+</div><footer style="text-align:center;padding:1.375rem;font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.06em;border-top:1px solid rgba(11,28,51,0.07)"></footer>
+
+
+<script>
+var F=[];
+var sel=null;
+var pillarsEl=document.getElementById('pillars');
+
+fetch('content.json?v='+Date.now()).then(function(r){return r.json();}).then(function(data){
+  data.fights.forEach(function(f){
+    F.push({
+      n:f.name,c:f.color,
+      d:f.wheelDescription,
+      s:f.stats.map(function(s){return {v:s.value,l:s.label};}),
+      p:f.wheelPrograms
+    });
+  });
+
+  // Populate site-level copy
+  var s=data.site;
+  document.getElementById('hdrByline').textContent=s.byline;
+  var ht=document.getElementById('hdrTitle');
+  ht.innerHTML=s.headerTitle.replace('Affordability for All','<b>Affordability for All</b>');
+  document.getElementById('cpEye').textContent=s.subtitle+' \u00B7 2026';
+  var ch=document.getElementById('cpH');
+  ch.innerHTML=s.title.replace('Affordability for All','Affordability <em>for All</em>');
+  document.getElementById('cpBody').textContent=s.overviewBody;
+
+  // Populate fight grid in overview
+  var grid=document.getElementById('cpGrid');
+  data.fights.forEach(function(f,i){
+    var div=document.createElement('div');
+    div.className='cp-f'+(i===data.fights.length-1?' full':'');
+    div.style.background=f.color;
+    div.innerHTML=f.name+'<span>'+f.subtitle+'</span>';
+    grid.appendChild(div);
+  });
+
+  // Build pillars
+  F.forEach(function(f,i){
+    var pil=document.createElement('div');
+    pil.className='pillar';
+    pil.setAttribute('data-i',i);
+    pil.innerHTML=
+      '<div class="pil-fill" style="background:linear-gradient(180deg,'+f.c+' 0%,'+f.c+'BB 100%);"></div>'+
+      '<div class="pil-inner">'+
+        '<div class="pil-num">0'+(i+1)+'</div>'+
+        '<div class="pil-name">'+f.n+'</div>'+
+        '<div class="pil-sub">'+f.n.split(' ')[0]+'</div>'+
+        '<div class="pil-accent"></div>'+
+      '</div>';
+    pillarsEl.appendChild(pil);
+  });
+
+  // Add center label overlay
+  var center=document.createElement('div');
+  center.className='pillars-center';
+  center.innerHTML=
+    '<div class="pc-eye">'+s.subtitle+'</div>'+
+    '<div class="pc-title" onclick="document.getElementById(\'cp\').classList.add(\'show\')">'+
+      s.title.replace('Affordability for All','Affordability <em>for All</em>')+
+    '</div>'+
+    '<div class="pc-hint">hover pillars to explore</div>';
+  document.querySelector('.pillars-wrap').appendChild(center);
+
+  // Pillar click handlers
+  document.querySelectorAll('.pillar').forEach(function(p){
+    p.addEventListener('click',function(){
+      var idx=parseInt(this.getAttribute('data-i'));
+      if(sel===idx){closeAll();return;}
+      sel=idx;
+      pillarsEl.classList.add('has-sel');
+      document.querySelectorAll('.pillar').forEach(function(pp,j){
+        pp.classList.toggle('selected',j===idx);
+        pp.classList.toggle('dimmed',j!==idx);
+      });
+      document.getElementById('cp').classList.remove('show');
+      showFP(F[idx]);
+    });
+  });
+
+}).catch(function(err){console.error('Failed to load content.json:',err);});
+
+function showFP(f){
+  document.getElementById('fpBar').style.background=f.c;
+  document.getElementById('fpName').textContent=f.n;
+  document.getElementById('fpName').style.color=f.c;
+  document.getElementById('fpDesc').textContent=f.d;
+  document.getElementById('fpStats').innerHTML=f.s.map(function(s){
+    return '<div class="fp-stat"><div class="fp-sn" style="color:'+f.c+'">'+s.v+'</div><div class="fp-sl">'+s.l+'</div></div>';
+  }).join('');
+  document.getElementById('fpProgs').innerHTML=f.p.map(function(p){
+    return '<div class="fp-p"><span class="fp-dot" style="background:'+f.c+'"></span>'+p+'</div>';
+  }).join('');
+  document.getElementById('fpMore').style.color=f.c;
+  document.getElementById('fp').classList.add('show');
+}
+
+function closeFP(){
+  sel=null;
+  document.getElementById('fp').classList.remove('show');
+  pillarsEl.classList.remove('has-sel');
+  document.querySelectorAll('.pillar').forEach(function(p){
+    p.classList.remove('selected','dimmed');
+  });
+}
+function closeCP(){document.getElementById('cp').classList.remove('show');}
+function closeAll(){closeFP();closeCP();}
+
+function toggleNav(){
+  var o=document.getElementById('nDr').classList.toggle('open');
+  document.getElementById('ham').classList.toggle('open',o);
+  document.getElementById('nOv').classList.toggle('open',o);
+}
+function closeNav(){
+  document.getElementById('nDr').classList.remove('open');
+  document.getElementById('ham').classList.remove('open');
+  document.getElementById('nOv').classList.remove('open');
+}
+
+</script>
+</body>
+</html>
