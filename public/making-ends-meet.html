@@ -53,33 +53,42 @@
 
 main{max-width:900px;margin:0 auto;padding:2.25rem 1.75rem 4rem}
 
+/* LA City color tokens (used to tone down gold) */
+:root{--la-blue:#0E4677;--la-blue-deep:#08305A;--la-blue-light:#1A5D9E}
+
+/* Export-time padding so PNG has breathing room around content */
+#exportTarget{padding:0}
+.exporting #exportTarget{padding:2.5rem 2.25rem;background:var(--bg);border-radius:14px}
+
 /* Head */
-.mem-head{margin-bottom:1.75rem}
-h1{font-family:var(--serif);font-size:clamp(30px,3.5vw,46px);color:var(--navy);line-height:1.1;margin-bottom:.625rem}
-h1 em{font-style:italic;color:var(--gold)}
-.desc{font-size:13px;color:var(--text2);max-width:520px;line-height:1.7;font-weight:300}
+.mem-head{margin-bottom:1.75rem;display:flex;align-items:center;gap:1.25rem}
+.mem-seal{width:56px;height:56px;flex-shrink:0;opacity:.92}
+.mem-head-text{flex:1;min-width:0}
+h1{font-family:var(--serif);font-size:clamp(30px,3.5vw,46px);color:var(--navy);line-height:1.1;margin-bottom:.5rem}
+h1 em{font-style:italic;color:var(--la-blue)}
+.desc{font-size:13px;color:var(--text2);max-width:520px;line-height:1.6;font-weight:300}
 
 /* Profile sentence (above hero, also captured in PNG export) */
-.profile-line{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);text-align:center;margin-bottom:.5rem;padding:.5rem;border-top:1px solid rgba(11,28,51,.06);border-bottom:1px solid rgba(11,28,51,.06)}
+.profile-line{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);text-align:center;margin-bottom:.5rem;padding:.5rem;border-top:1px solid rgba(11,28,51,.08);border-bottom:1px solid rgba(11,28,51,.08)}
 
 /* Configuration block (in export only by default; visible class shows it always) */
-.config-block{display:none;background:rgba(255,255,255,.7);border:1px solid rgba(11,28,51,.08);border-radius:8px;padding:.875rem 1.125rem;margin-bottom:1.25rem}
+.config-block{display:none;background:rgba(255,255,255,.7);border:1px solid rgba(11,28,51,.1);border-left:3px solid var(--la-blue);border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.25rem}
 .exporting .config-block{display:block}
 .config-block.show{display:block}
-.config-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.625rem 1rem}
+.config-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem 1.25rem}
 .config-item{font-size:11px;line-height:1.4}
-.config-key{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
-.config-val{color:var(--navy);font-family:var(--sans);font-weight:500}
+.config-key{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--la-blue);margin-bottom:3px;font-weight:600}
+.config-val{color:var(--navy);font-family:var(--sans);font-weight:500;font-size:12px}
 
 /* Cost context (annual childcare for families) */
-.cost-context{text-align:center;font-size:11px;color:var(--text2);margin-bottom:1.25rem;padding:.625rem .875rem;background:rgba(11,28,51,.04);border-radius:6px;display:none}
+.cost-context{text-align:center;font-size:11px;color:var(--text2);margin-bottom:1.25rem;padding:.625rem .875rem;background:rgba(14,70,119,.05);border:1px solid rgba(14,70,119,.12);border-radius:6px;display:none}
 .cost-context.show{display:block}
 .cost-context strong{color:var(--navy);font-family:var(--serif);font-size:14px;font-variant-numeric:tabular-nums}
 
 /* Hero delta number */
-.hero{text-align:center;padding:2rem 1.5rem 2.25rem;background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(212,135,10,.06));border:1px solid rgba(212,135,10,.18);border-top:3px solid var(--gold);border-radius:10px;margin-bottom:1.25rem}
-.hero-label{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:.625rem}
-.hero-amount{font-family:var(--serif);font-size:clamp(56px,9vw,96px);line-height:1;color:var(--gold);font-variant-numeric:tabular-nums;transition:color .3s}
+.hero{text-align:center;padding:2.25rem 1.5rem 2.5rem;background:linear-gradient(180deg,#fff,rgba(14,70,119,.04));border:1px solid rgba(11,28,51,.1);border-top:4px solid var(--navy);border-radius:10px;margin-bottom:1.25rem}
+.hero-label{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:.75rem}
+.hero-amount{font-family:var(--serif);font-size:clamp(56px,9vw,96px);line-height:1;color:var(--navy);font-variant-numeric:tabular-nums;transition:color .3s}
 .hero-amount.zero{color:var(--text3)}
 .hero-period{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-top:.5rem}
 
@@ -87,7 +96,7 @@ h1 em{font-style:italic;color:var(--gold)}
 .stack-wrap{background:rgba(255,255,255,.7);border:1px solid rgba(11,28,51,.08);border-radius:10px;padding:1.125rem 1.25rem 1.25rem;margin-bottom:1.25rem}
 .stack-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:.875rem;padding-bottom:.625rem;border-bottom:1px solid rgba(11,28,51,.08)}
 .stack-title{font-family:var(--serif);font-size:17px;color:var(--navy)}
-.stack-count{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.stack-count{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--la-blue)}
 
 /* Stack: grows up. Use column-reverse so newest/biggest sits on top visually. */
 .stack-up{display:flex;flex-direction:column;gap:3px;min-height:80px}
@@ -101,7 +110,7 @@ h1 em{font-style:italic;color:var(--gold)}
 .program-fight{font-weight:600}
 .program-dept{color:var(--text3)}
 .program-amount{font-family:var(--serif);font-size:19px;color:var(--navy);font-variant-numeric:tabular-nums;white-space:nowrap;margin-left:12px}
-.program-amount .plus{color:var(--gold)}
+.program-amount .plus{color:var(--la-blue)}
 .program-amount .ot{display:block;font-family:var(--mono);font-size:7px;letter-spacing:.08em;color:var(--text3);text-transform:uppercase;margin-top:1px;text-align:right;font-weight:400}
 
 /* Fight band colors */
@@ -133,13 +142,13 @@ h1 em{font-style:italic;color:var(--gold)}
 .pt-btn{background:none;border:none;padding:7px 16px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);cursor:pointer;border-radius:4px;transition:all .2s}
 .pt-btn.on{background:var(--navy);color:#fff}
 
-.export-btn{display:inline-flex;align-items:center;gap:7px;background:var(--gold);color:#fff;border:none;padding:9px 16px;border-radius:6px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:opacity .2s}
+.export-btn{display:inline-flex;align-items:center;gap:7px;background:var(--navy);color:#fff;border:none;padding:9px 16px;border-radius:6px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:opacity .2s}
 .export-btn:hover{opacity:.88}
 .export-btn:disabled{opacity:.5;cursor:wait}
 .export-btn svg{width:14px;height:14px}
 
 /* Selectors section (at bottom) */
-.selectors-section{background:rgba(255,255,255,.7);border:1px solid rgba(11,28,51,.08);border-top:3px solid var(--navy);border-radius:10px;padding:1.5rem 1.5rem 1.75rem}
+.selectors-section{background:rgba(255,255,255,.7);border:1px solid rgba(11,28,51,.08);border-top:3px solid var(--la-blue);border-radius:10px;padding:1.5rem 1.5rem 1.75rem}
 .selectors-head{margin-bottom:1.25rem;text-align:center}
 .selectors-head .eye{justify-content:center}
 .selectors-head .eye::before{display:none}
@@ -147,7 +156,7 @@ h1 em{font-style:italic;color:var(--gold)}
 .selectors-head .sub{font-size:11px;color:var(--text3);font-style:italic}
 
 .selectors{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem 1.5rem}
-.selector label{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;font-weight:500}
+.selector label{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--la-blue);margin-bottom:.5rem;font-weight:600}
 .pills{display:flex;flex-wrap:wrap;gap:4px}
 .pill{background:rgba(11,28,51,.04);border:1px solid rgba(11,28,51,.1);color:var(--text2);padding:6px 11px;font-family:var(--sans);font-size:11px;border-radius:4px;cursor:pointer;transition:all .15s;white-space:nowrap}
 .pill:hover{background:rgba(11,28,51,.08);color:var(--navy)}
@@ -223,9 +232,12 @@ document.getElementById('pwIn').focus();})();
 <main>
   <div id="exportTarget">
     <div class="mem-head">
-      <div class="eye">Affordability for All</div>
-      <h1>Making Ends Meet <em>Calculator</em></h1>
-      <p class="desc">See how much money you could be leaving on the table each year by not using the city's affordability programs.</p>
+      <img class="mem-seal" src="seal.svg" alt="City of Los Angeles seal">
+      <div class="mem-head-text">
+        <div class="eye">City of Los Angeles · Affordability for All</div>
+        <h1>Making Ends Meet <em>Calculator</em></h1>
+        <p class="desc">See how much money you could be leaving on the table each year by not using the city's affordability programs.</p>
+      </div>
     </div>
 
     <div class="profile-line" id="profileLine"></div>
