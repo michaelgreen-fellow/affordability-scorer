@@ -1,97 +1,108 @@
 {{TOPNAV}}
 {{NAV_DRAWER}}
 <main>
-  <div class="eye">Affordability for All</div>
-  <h1>Making <em>Ends Meet</em></h1>
-  <p class="desc">See how much an Angeleno could save each year by using the city's affordability programs. Set your profile below.</p>
+  <div id="exportTarget">
+    <div class="mem-head">
+      <div class="eye">Affordability for All</div>
+      <h1>Making Ends Meet <em>Calculator</em></h1>
+      <p class="desc">See how much money you could be leaving on the table each year by not using the city's affordability programs.</p>
+    </div>
 
-  <div class="period-toggle">
-    <button class="pt-btn on" data-period="annual" onclick="setPeriod('annual')">Annual</button>
-    <button class="pt-btn" data-period="monthly" onclick="setPeriod('monthly')">Monthly</button>
-  </div>
+    <div class="hero" id="hero">
+      <div class="hero-label">You could be leaving on the table</div>
+      <div class="hero-amount" id="heroAmount">$0</div>
+      <div class="hero-period" id="heroPeriod">per year</div>
+    </div>
 
-  <div class="selectors" id="selectors">
-    <div class="selector">
-      <label>Income</label>
-      <div class="pills" data-key="income">
-        <button class="pill" data-value="under30k">Under $30k</button>
-        <button class="pill on" data-value="50_80k">$50k-$80k</button>
-        <button class="pill" data-value="30_50k">$30k-$50k</button>
-        <button class="pill" data-value="80_120k">$80k-$120k</button>
-        <button class="pill" data-value="over120k">Over $120k</button>
+    <div class="stack-wrap">
+      <div class="stack-head">
+        <span class="stack-title" id="stackTitle">Programs You Could Access</span>
+        <span class="stack-count" id="stackCount"></span>
       </div>
-    </div>
-    <div class="selector">
-      <label>Housing</label>
-      <div class="pills" data-key="housing">
-        <button class="pill on" data-value="renter_apt">Renter (apt)</button>
-        <button class="pill" data-value="renter_house">Renter (house)</button>
-        <button class="pill" data-value="homeowner">Homeowner</button>
-        <button class="pill" data-value="unhoused">Unhoused</button>
-      </div>
-    </div>
-    <div class="selector">
-      <label>Transportation</label>
-      <div class="pills" data-key="transportation">
-        <button class="pill on" data-value="drives">Drives</button>
-        <button class="pill" data-value="transit">Transit</button>
-        <button class="pill" data-value="both">Both</button>
-        <button class="pill" data-value="no_commute">No commute</button>
-      </div>
-    </div>
-    <div class="selector">
-      <label>Family</label>
-      <div class="pills" data-key="family">
-        <button class="pill on" data-value="single">Single</button>
-        <button class="pill" data-value="couple">Couple</button>
-        <button class="pill" data-value="family_2">Family (2 kids)</button>
-        <button class="pill" data-value="family_3">Family (3+ kids)</button>
-        <button class="pill" data-value="single_parent">Single parent</button>
-      </div>
-    </div>
-    <div class="selector">
-      <label>Age</label>
-      <div class="pills" data-key="age">
-        <button class="pill" data-value="18_24">18-24</button>
-        <button class="pill on" data-value="25_54">25-54</button>
-        <button class="pill" data-value="55_64">55-64</button>
-        <button class="pill" data-value="65plus">65+</button>
-      </div>
-    </div>
-    <div class="selector">
-      <label>Status</label>
-      <div class="pills multi" data-key="status">
-        <button class="pill" data-value="veteran">Veteran</button>
-        <button class="pill" data-value="disability">Disability</button>
-        <button class="pill on" data-value="neither">Neither</button>
+      <div class="stack-up" id="stack"></div>
+      <div class="stack-base">
+        <div class="base-note" id="baseNote"></div>
       </div>
     </div>
   </div>
 
-  <div class="columns" id="columns">
-    <div class="col col-left">
-      <div class="col-head">
-        <div class="col-title">Without Programs</div>
-        <div class="col-sub">Your annual budget</div>
-      </div>
-      <div class="stack" id="stackLeft"></div>
-      <div class="leftover" id="leftoverLeft"></div>
-      <div class="leftover-note" id="leftoverNoteLeft"></div>
+  <div class="actions">
+    <div class="period-toggle">
+      <button class="pt-btn on" data-period="annual" onclick="setPeriod('annual')">Annual</button>
+      <button class="pt-btn" data-period="monthly" onclick="setPeriod('monthly')">Monthly</button>
     </div>
-    <div class="col col-right">
-      <div class="col-head">
-        <div class="col-title">With Programs</div>
-        <div class="col-sub" id="rightSub">Loading programs...</div>
+    <button class="export-btn" onclick="exportPNG()" id="exportBtn">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v9m0 0l-3-3m3 3l3-3M3 13h10"/></svg>
+      Export as PNG
+    </button>
+  </div>
+
+  <div class="selectors-section">
+    <div class="selectors-head">
+      <div class="eye">Your Profile</div>
+      <h2>Configure your situation</h2>
+      <p class="sub">Each selection updates the calculator instantly.</p>
+    </div>
+
+    <div class="selectors" id="selectors">
+      <div class="selector">
+        <label>Income</label>
+        <div class="pills" data-key="income">
+          <button class="pill" data-value="under30k">Under $30k</button>
+          <button class="pill" data-value="30_50k">$30k-$50k</button>
+          <button class="pill on" data-value="50_80k">$50k-$80k</button>
+          <button class="pill" data-value="80_120k">$80k-$120k</button>
+          <button class="pill" data-value="over120k">Over $120k</button>
+        </div>
       </div>
-      <div class="stack" id="stackRight"></div>
-      <div class="programs" id="programsRight"></div>
-      <div class="leftover" id="leftoverRight"></div>
-      <div class="savings-counter" id="savingsCounter"></div>
+      <div class="selector">
+        <label>Housing</label>
+        <div class="pills" data-key="housing">
+          <button class="pill on" data-value="renter_apt">Renter (apt)</button>
+          <button class="pill" data-value="renter_house">Renter (house)</button>
+          <button class="pill" data-value="homeowner">Homeowner</button>
+          <button class="pill" data-value="unhoused">Unhoused</button>
+        </div>
+      </div>
+      <div class="selector">
+        <label>Transportation</label>
+        <div class="pills" data-key="transportation">
+          <button class="pill on" data-value="drives">Drives</button>
+          <button class="pill" data-value="transit">Transit</button>
+          <button class="pill" data-value="both">Both</button>
+          <button class="pill" data-value="no_commute">No commute</button>
+        </div>
+      </div>
+      <div class="selector">
+        <label>Family</label>
+        <div class="pills" data-key="family">
+          <button class="pill on" data-value="single">Single</button>
+          <button class="pill" data-value="couple">Couple</button>
+          <button class="pill" data-value="family_2">Family (2 kids)</button>
+          <button class="pill" data-value="family_3">Family (3+ kids)</button>
+          <button class="pill" data-value="single_parent">Single parent</button>
+        </div>
+      </div>
+      <div class="selector">
+        <label>Age</label>
+        <div class="pills" data-key="age">
+          <button class="pill" data-value="18_24">18-24</button>
+          <button class="pill on" data-value="25_54">25-54</button>
+          <button class="pill" data-value="55_64">55-64</button>
+          <button class="pill" data-value="65plus">65+</button>
+        </div>
+      </div>
+      <div class="selector">
+        <label>Status</label>
+        <div class="pills multi" data-key="status">
+          <button class="pill" data-value="veteran">Veteran</button>
+          <button class="pill" data-value="disability">Disability</button>
+          <button class="pill on" data-value="neither">Neither</button>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="summary" id="summary"></div>
-
-  <div class="disclaimer">Figures are estimates built from published sources (MIT Living Wage Calculator, LADWP, Metro, HUD, LA Housing Department). Assumptions are editable in <code>making-ends-meet-assumptions.csv</code>. Programs are sourced from <code>making-ends-meet-programs.csv</code>. This calculator is a planning tool, not a benefits determination. Actual eligibility is set by each program.</div>
+  <div class="disclaimer">Figures are estimates built from published sources (MIT Living Wage Calculator, LADWP, Metro, HUD, LA Housing Department, KFF). Assumptions are editable in <code>making-ends-meet-assumptions.csv</code>. Programs are sourced from <code>making-ends-meet-programs.csv</code>. This calculator is a planning tool, not a benefits determination. Actual eligibility is set by each program.</div>
 </main>
 {{FOOTER}}

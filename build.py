@@ -141,7 +141,7 @@ pages = [
     ('campaigns.html', 'Five Fights'),
     ('recommendations.html', 'Executive Directives'),
     ('inventory.html', 'Program Inventory'),
-    ('making-ends-meet.html', 'Making Ends Meet'),
+    ('making-ends-meet.html', 'Making Ends Meet Calculator'),
     ('talking-points.html', 'Talking Points'),
     ('sources.html', 'Sources &amp; References'),
     ('about.html', 'About'),

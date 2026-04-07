@@ -1,7 +1,7 @@
 // ══════════════════════════════════════════════
-// Making Ends Meet — Affordability Calculator
-// Fetches two CSVs, runs profile-based eligibility,
-// renders baseline + programs-applied stacks.
+// Making Ends Meet Calculator
+// Pure delta: how much you could be leaving on
+// the table by not using city programs.
 // ══════════════════════════════════════════════
 
 var PROFILE={income:'50_80k',housing:'renter_apt',transportation:'drives',family:'single',age:'25_54',status:['neither']};
@@ -65,11 +65,8 @@ function fmt(n){
   return v.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
 }
 
-// ---- Loading skeleton ----
 function showSkeleton(){
-  var sk='<div class="skeleton">'+Array(7).fill('<div class="sk-band"></div>').join('')+'</div>';
-  document.getElementById('stackLeft').innerHTML=sk;
-  document.getElementById('stackRight').innerHTML=sk;
+  document.getElementById('stack').innerHTML='<div class="skeleton">'+Array(6).fill('<div class="sk-band"></div>').join('')+'</div>';
 }
 
 // ---- Fetch both CSVs ----
@@ -84,7 +81,7 @@ function loadData(){
     render();
   }).catch(function(err){
     console.error('Load failed:',err);
-    document.getElementById('columns').innerHTML='<div class="err">Could not load affordability data. Check that <code>making-ends-meet-programs.csv</code> and <code>making-ends-meet-assumptions.csv</code> are published to <code>public/</code>.<br><button onclick="loadData()">Retry</button></div>';
+    document.getElementById('stack').innerHTML='<div class="err">Could not load affordability data. Check that <code>making-ends-meet-programs.csv</code> and <code>making-ends-meet-assumptions.csv</code> are published to <code>public/</code>.<br><button onclick="loadData()">Retry</button></div>';
   });
 }
 
@@ -139,10 +136,8 @@ function displayAmount(annualValue,isOneTime){
   return fmt(annualValue);
 }
 
-// ---- Cost calculations ----
+// ---- Cost calculations (used for benefit math, not displayed as stack) ----
 function getIncome(){return A('income_'+PROFILE.income+'_midpoint');}
-
-function getTaxes(){return getIncome()*A('tax_rate_'+PROFILE.income);}
 
 function getRent(){
   if(PROFILE.housing==='unhoused')return 0;
@@ -157,33 +152,15 @@ function getRent(){
 
 function getUtilities(){return A('utility_'+PROFILE.housing);}
 
-function personCount(){
-  var m={single:1,couple:2,family_2:4,family_3:5,single_parent:2};
-  return m[PROFILE.family]||1;
-}
-function getGroceries(){return A('food_cost_per_person')*personCount();}
-
-function getTransportation(){
-  if(PROFILE.transportation==='drives')return A('annual_driving_cost');
-  if(PROFILE.transportation==='transit')return A('annual_transit_cost');
-  if(PROFILE.transportation==='both')return A('annual_transit_blended');
+function getChildcare(){
+  if(PROFILE.family==='family_2')return A('childcare_family_2');
+  if(PROFILE.family==='family_3')return A('childcare_family_3');
+  if(PROFILE.family==='single_parent')return A('childcare_single_parent');
   return 0;
 }
 
-function getHealthcare(){
-  var level=(PROFILE.income==='under30k'||PROFILE.income==='30_50k')?'low':'mid';
-  return A('healthcare_'+PROFILE.age+'_'+level);
-}
-
-function getCostBreakdown(){
-  return [
-    {label:'Taxes',amount:getTaxes()},
-    {label:'Housing',amount:getRent()},
-    {label:'Utilities',amount:getUtilities()},
-    {label:'Groceries',amount:getGroceries()},
-    {label:'Transportation',amount:getTransportation()},
-    {label:'Healthcare',amount:getHealthcare()}
-  ];
+function hasChildren(){
+  return ['family_2','family_3','single_parent'].indexOf(PROFILE.family)>=0;
 }
 
 // ---- Eligibility ----
@@ -201,14 +178,11 @@ function matchField(required,userValue){
 
 function matchFamilyWithChildren(required){
   if(!required)return true;
-  if(required==='family_with_children'){
-    return ['family_2','family_3','single_parent'].indexOf(PROFILE.family)>=0;
-  }
+  if(required==='family_with_children')return hasChildren();
   return PROFILE.family===required;
 }
 
 function isEligible(p){
-  // Income: user bracket must be <= program cap
   if(p.income_max_bracket){
     if(bracketIndex(PROFILE.income)>bracketIndex(p.income_max_bracket))return false;
   }
@@ -216,7 +190,6 @@ function isEligible(p){
   if(!matchField(p.transportation_required,PROFILE.transportation))return false;
   if(!matchField(p.age_required,PROFILE.age))return false;
   if(p.status_required){
-    // Status: neither means none match
     if(PROFILE.status.indexOf('neither')>=0)return false;
     if(!matchField(p.status_required,PROFILE.status))return false;
   }
@@ -232,6 +205,7 @@ function calcBenefit(p){
   if(type==='percentage_income')return amt*getIncome();
   if(type==='percentage_rent')return amt*getRent();
   if(type==='percentage_utility')return amt*getUtilities();
+  if(type==='percentage_childcare')return amt*getChildcare();
   if(type==='cost_offset')return amt;
   if(type==='rent_gap'){
     var gap=getRent()-(getIncome()*0.30);
@@ -241,90 +215,47 @@ function calcBenefit(p){
 }
 
 // ---- Rendering ----
-function renderStack(el,income,breakdown){
-  var html='<div class="band band-gross"><span class="band-label">Gross Income</span><span class="band-amount">'+displayAmount(income,false)+'</span></div>';
-  breakdown.forEach(function(c){
-    html+='<div class="band band-cost"><span class="band-label">'+c.label+'</span><span class="band-amount">-'+displayAmount(c.amount,false)+'</span></div>';
-  });
-  el.innerHTML=html;
-}
-
-function renderLeftover(el,noteEl,value){
-  var cls=value<0?'neg':(value>0?'pos':'');
-  el.innerHTML='<span class="leftover-label">Left Over</span><span class="leftover-amount '+cls+'">'+displayAmount(value,false)+'</span>';
-  if(noteEl){
-    if(value<0){
-      noteEl.textContent='Most Angelenos at this income level spend more than they earn before any programs apply.';
-    } else {
-      noteEl.textContent='';
-    }
-  }
-}
-
 function fightClass(fight){
   var m={'Earn More':'fight-earn','Build More':'fight-build','Save More':'fight-save','Care More':'fight-care','Protect More':'fight-protect','Protect More Rights':'fight-protect'};
   return m[fight]||'fight-save';
 }
 
-function renderPrograms(eligible){
-  var el=document.getElementById('programsRight');
+function renderStack(eligible){
+  var el=document.getElementById('stack');
   if(!eligible.length){
-    el.innerHTML='<div class="programs-empty">No programs in our database currently match this profile. Try adjusting your income, housing, or status.</div>';
-    document.getElementById('rightSub').textContent='0 programs apply';
+    el.innerHTML='<div class="programs-empty">No programs in our database currently match this profile. Try adjusting your income, housing, family, or status to see what becomes available.</div>';
     return;
   }
+  // Sort biggest first so largest benefits sit at the top of the stack
+  eligible.sort(function(a,b){return b.value-a.value;});
+  // Reverse so animation plays bottom-up (smaller ones appear first, bigger ones stack on top)
   var html='';
-  eligible.forEach(function(item,i){
+  var ordered=eligible.slice().reverse();
+  ordered.forEach(function(item,i){
     var p=item.program,value=item.value;
     var isOneTime=p.benefit_period==='one-time';
-    var amountHtml=displayAmount(value,isOneTime)+(isOneTime&&PERIOD==='monthly'?'<span class="ot">one-time</span>':'');
+    var amountHtml='<span class="plus">+</span>'+displayAmount(value,isOneTime);
+    if(isOneTime)amountHtml+='<span class="ot">one-time</span>';
     var formula=(p.benefit_formula||'').replace(/"/g,'&quot;');
-    html+='<div class="program-band '+fightClass(p.fight)+'" data-formula="'+formula+'" style="animation-delay:'+(i*60)+'ms">'
-      +'<div><div class="program-label">'+p.name+'</div><div class="program-fight">'+p.fight+'</div></div>'
-      +'<div class="program-amount">+'+amountHtml+'</div></div>';
+    var dept=(p.department||'').replace(/"/g,'&quot;');
+    html+='<div class="program-band '+fightClass(p.fight)+'" data-formula="'+formula+'" style="animation-delay:'+(i*55)+'ms">'
+      +'<div class="program-left"><div class="program-label">'+p.name+'</div>'
+      +'<div class="program-meta"><span class="program-fight">'+p.fight+'</span><span class="program-dept">'+dept+'</span></div></div>'
+      +'<div class="program-amount">'+amountHtml+'</div></div>';
   });
-  el.innerHTML=html;
-  document.getElementById('rightSub').textContent=eligible.length+' program'+(eligible.length===1?'':'s')+' apply';
+  // Render in reverse visual order so biggest ends on top
+  el.innerHTML='<div style="display:flex;flex-direction:column-reverse;gap:3px">'+html+'</div>';
 }
 
-function profileSentence(){
-  var inc={'under30k':'under $30k','30_50k':'$30k-$50k','50_80k':'$50k-$80k','80_120k':'$80k-$120k','over120k':'over $120k'}[PROFILE.income];
-  var house={renter_apt:'renter',renter_house:'renter (house)',homeowner:'homeowner',unhoused:'unhoused Angeleno'}[PROFILE.housing];
-  var fam={single:'single',couple:'couple',family_2:'family with 2 kids',family_3:'family with 3+ kids',single_parent:'single parent'}[PROFILE.family];
-  var age={'18_24':'age 18-24','25_54':'age 25-54','55_64':'age 55-64','65plus':'age 65+'}[PROFILE.age];
-  var trans={drives:'drives',transit:'takes transit',both:'both drives and transit',no_commute:'does not commute'}[PROFILE.transportation];
-  var status='';
-  if(PROFILE.status.indexOf('neither')<0){
-    var parts=[];
-    if(PROFILE.status.indexOf('veteran')>=0)parts.push('veteran');
-    if(PROFILE.status.indexOf('disability')>=0)parts.push('with a disability');
-    if(parts.length)status=', '+parts.join(' ');
-  }
-  return 'A '+fam+' '+house+' earning '+inc+' who '+trans+', '+age+status+'.';
-}
-
-function renderSummary(eligible,baselineLeft,programsLeft){
-  var totalSavings=0;
-  eligible.forEach(function(e){totalSavings+=e.value;});
-  var html='<div class="sum-profile">'+profileSentence()+'</div>'
-    +'<div class="sum-stat"><span class="sum-label">Programs Apply</span><span class="sum-value">'+eligible.length+'</span></div>'
-    +'<div class="sum-stat"><span class="sum-label">Annual Savings</span><span class="sum-value pos">'+fmt(totalSavings)+'</span></div>'
-    +'<div class="sum-stat"><span class="sum-label">With Programs</span><span class="sum-value">'+fmt(programsLeft)+'</span></div>';
-  document.getElementById('summary').innerHTML=html;
+function baseNoteText(eligible){
+  if(!eligible.length)return 'Adjust your profile to see eligible programs stack up.';
+  var childcareNote=hasChildren()?' Childcare is factored into the cost baseline for families with children.':'';
+  return 'Based on your profile, these are the annual programs you could be accessing.'+childcareNote;
 }
 
 function render(){
   if(!PROGRAMS.length||!Object.keys(ASSUMPTIONS).length)return;
-  var income=getIncome();
-  var breakdown=getCostBreakdown();
-  var totalCosts=breakdown.reduce(function(s,c){return s+c.amount;},0);
-  var baselineLeft=income-totalCosts;
 
-  renderStack(document.getElementById('stackLeft'),income,breakdown);
-  renderStack(document.getElementById('stackRight'),income,breakdown);
-  renderLeftover(document.getElementById('leftoverLeft'),document.getElementById('leftoverNoteLeft'),baselineLeft);
-
-  // Eligibility
   var eligible=[];
   PROGRAMS.forEach(function(p){
     if(isEligible(p)){
@@ -332,20 +263,63 @@ function render(){
       if(v>0)eligible.push({program:p,value:v});
     }
   });
-  // Sort by value desc for visual impact
-  eligible.sort(function(a,b){return b.value-a.value;});
-
-  renderPrograms(eligible);
 
   var totalSavings=eligible.reduce(function(s,e){return s+e.value;},0);
-  var programsLeft=baselineLeft+totalSavings;
-  renderLeftover(document.getElementById('leftoverRight'),null,programsLeft);
 
-  // Savings counter
-  var sc=document.getElementById('savingsCounter');
-  sc.innerHTML='<span class="sc-label">Total Annual Savings</span><span class="sc-amount">'+fmt(totalSavings)+'</span>';
+  // Hero number
+  var heroEl=document.getElementById('heroAmount');
+  heroEl.textContent=displayAmount(totalSavings,false);
+  heroEl.classList.toggle('zero',totalSavings===0);
+  document.getElementById('heroPeriod').textContent=PERIOD==='monthly'?'per month':'per year';
 
-  renderSummary(eligible,baselineLeft,programsLeft);
+  // Stack
+  renderStack(eligible);
+
+  // Header counts
+  document.getElementById('stackCount').textContent=eligible.length+' program'+(eligible.length===1?'':'s');
+  document.getElementById('baseNote').textContent=baseNoteText(eligible);
+}
+
+// ---- PNG Export ----
+function loadHtml2Canvas(){
+  return new Promise(function(resolve,reject){
+    if(window.html2canvas)return resolve(window.html2canvas);
+    var s=document.createElement('script');
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+    s.onload=function(){resolve(window.html2canvas);};
+    s.onerror=function(){reject(new Error('Could not load html2canvas'));};
+    document.head.appendChild(s);
+  });
+}
+
+function exportPNG(){
+  var btn=document.getElementById('exportBtn');
+  var originalText=btn.innerHTML;
+  btn.disabled=true;
+  btn.innerHTML='Preparing...';
+  loadHtml2Canvas().then(function(h2c){
+    var target=document.getElementById('exportTarget');
+    return h2c(target,{backgroundColor:'#EAF4FC',scale:2,useCORS:true,logging:false});
+  }).then(function(canvas){
+    canvas.toBlob(function(blob){
+      var url=URL.createObjectURL(blob);
+      var a=document.createElement('a');
+      a.href=url;
+      var date=new Date().toISOString().slice(0,10);
+      a.download='making-ends-meet-'+date+'.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function(){URL.revokeObjectURL(url);},1000);
+      btn.disabled=false;
+      btn.innerHTML=originalText;
+    });
+  }).catch(function(err){
+    console.error('Export failed:',err);
+    btn.disabled=false;
+    btn.innerHTML=originalText;
+    alert('Could not export PNG. Check your connection and try again.');
+  });
 }
 
 // Init

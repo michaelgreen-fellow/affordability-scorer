@@ -54,7 +54,7 @@
     "links": [
       { "href": "index.html", "label": "Home", "sub": "Five Fights" },
       { "href": "inventory.html", "label": "Inventory", "sub": "209 Programs", "feature": "showInventory" },
-      { "href": "making-ends-meet.html", "label": "Making Ends Meet", "sub": "Affordability Calculator", "feature": "showMakingEndsMeet" },
+      { "href": "making-ends-meet.html", "label": "Calculator", "sub": "Making Ends Meet", "feature": "showMakingEndsMeet" },
       { "href": "campaigns.html", "label": "Campaigns", "sub": "Awareness", "feature": "showCampaigns" },
       { "href": "recommendations.html", "label": "Executive Directives", "sub": "Three Proposals", "feature": "showRecommendations" },
       { "href": "talking-points.html", "label": "Talking Points", "sub": "Narratives", "feature": "showTalkingPoints" },
@@ -69,6 +69,7 @@
     { "id": "inventory", "href": "inventory.html", "style": "inventory", "feature": "showInventory" },
     { "id": "campaigns", "href": "campaigns.html", "style": "skew", "feature": "showCampaigns" },
     { "id": "recommendations", "href": "recommendations.html", "style": "circles", "feature": "showRecommendations" },
-    { "id": "talkingPoints", "href": "talking-points.html", "style": "points", "feature": "showTalkingPoints" }
+    { "id": "talkingPoints", "href": "talking-points.html", "style": "points", "feature": "showTalkingPoints" },
+    { "id": "makingEndsMeet", "href": "making-ends-meet.html", "style": "stack", "feature": "showMakingEndsMeet" }
   ]
 }

@@ -8,7 +8,7 @@
   "site": {
     "title": "Affordability for All & The Five Fights",
     "subtitle": "Mayor Karen Bass",
-    "byline": "Michael Green II · Coro Fellow",
+    "byline": "Michael Green II \u00b7 Coro Fellow",
     "headerTitle": "Mayor Bass: Affordability for All & The Five Fights",
     "footerText": "",
     "overviewBody": "Los Angeles is one of the least affordable cities in America. Mayor Bass is not fighting this on one front. She is fighting five simultaneous battles, each essential, all interconnected. Together they form a complete strategy. Separately they get lost.",
@@ -37,6 +37,11 @@
         "title": "Talking",
         "sub": "Points",
         "label": "25 pts"
+      },
+      "makingEndsMeet": {
+        "title": "Calculator",
+        "sub": "Making ends meet",
+        "label": "$$$"
       }
     }
   },

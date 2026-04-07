@@ -13,3 +13,5 @@ section-8,Housing Choice Voucher,HACLA,Protect More,Yes,Federal housing voucher 
 house-our-vets,House Our Vets,LAHSA,Care More,Yes,Full housing placement and services for unhoused veterans,flat,25200,Annual value at median LA rent,annual,,renter_apt|renter_house|unhoused,,,veteran,
 cityride,Cityride Senior Transportation,LADOT,Care More,Yes,Subsidized transportation program for seniors,flat,600,Estimated annual transportation value,annual,,,,65plus,,
 summer-lunch,Summer Lunch Program,LAUSD and City,Care More,Yes,Free meals for children during summer months,flat,600,180 days x $3.33 per meal per child,annual,,,,,,family_with_children
+universal-tk,Universal Transitional Kindergarten,LAUSD and State,Care More,Yes,Free TK for all 4 year olds replacing paid preschool or childcare,flat,10000,Average cost of full-day preschool in LA County,annual,,,,,,family_with_children
+calworks-childcare,CalWORKs Child Care,DPSS and CCDF,Care More,Yes,Subsidized child care for income-qualified families,flat,12000,Average full-time child care cost subsidy,annual,50_80k,,,,,family_with_children

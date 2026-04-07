@@ -13,14 +13,14 @@ utility_renter_apt,1800,annual,LADWP average 2024,2024-01
 utility_renter_house,2400,annual,LADWP average 2024,2024-01
 utility_homeowner,2400,annual,LADWP average 2024,2024-01
 utility_unhoused,0,annual,No utilities when unhoused,2024-01
-healthcare_18_24_low,1200,annual,KFF 2024 out-of-pocket low income,2024-01
-healthcare_18_24_mid,2400,annual,KFF 2024 out-of-pocket mid income,2024-01
-healthcare_25_54_low,1800,annual,KFF 2024 out-of-pocket low income,2024-01
-healthcare_25_54_mid,3600,annual,KFF 2024 out-of-pocket mid income,2024-01
-healthcare_55_64_low,3000,annual,KFF 2024 out-of-pocket low income,2024-01
-healthcare_55_64_mid,5400,annual,KFF 2024 out-of-pocket mid income,2024-01
-healthcare_65plus_low,2400,annual,KFF 2024 Medicare with low income,2024-01
-healthcare_65plus_mid,4200,annual,KFF 2024 Medicare with mid income,2024-01
+healthcare_18_24_low,1800,annual,KFF 2024 out-of-pocket low income young adult,2024-01
+healthcare_18_24_mid,3000,annual,KFF 2024 out-of-pocket mid income young adult,2024-01
+healthcare_25_54_low,3000,annual,KFF 2024 out-of-pocket low income working age,2024-01
+healthcare_25_54_mid,4800,annual,KFF 2024 out-of-pocket mid income working age,2024-01
+healthcare_55_64_low,4800,annual,KFF 2024 out-of-pocket low income pre-medicare,2024-01
+healthcare_55_64_mid,7200,annual,KFF 2024 out-of-pocket mid income pre-medicare,2024-01
+healthcare_65plus_low,6000,annual,KFF 2024 Medicare plus supplemental low income,2024-01
+healthcare_65plus_mid,8400,annual,KFF 2024 Medicare plus supplemental mid income,2024-01
 tax_rate_under30k,0.08,annual,Combined effective federal CA local rate,2024-01
 tax_rate_30_50k,0.14,annual,Combined effective federal CA local rate,2024-01
 tax_rate_50_80k,0.20,annual,Combined effective federal CA local rate,2024-01
@@ -32,3 +32,6 @@ income_50_80k_midpoint,65000,annual,Midpoint estimate,2025-01
 income_80_120k_midpoint,100000,annual,Midpoint estimate,2025-01
 income_over120k_midpoint,150000,annual,Midpoint estimate,2025-01
 food_cost_per_person,4200,annual,MIT Living Wage LA County food per person 2024,2024-01
+childcare_family_2,11000,annual,LA County avg cost blended one young + one school age,2024-01
+childcare_family_3,15000,annual,LA County avg cost blended three children mixed ages,2024-01
+childcare_single_parent,10000,annual,LA County avg cost blended one young + one school age,2024-01
