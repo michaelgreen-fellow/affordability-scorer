@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Program Editor · Affordability for All</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0B1C33;--blue:#0E4677;--gold:#D4870A;
+  --bg:#EAF4FC;--white:#fff;
+  --text:#0B1C33;--text2:#3A536B;--text3:#8AA3B5;
+  --border:rgba(11,28,51,.12);
+  --earn:#1A7E6B;--save:#C07A0A;--care:#1758A8;--protect:#7E3A1A;
+  --sans:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono','Fira Mono',monospace;
+  --serif:'Playfair Display','Georgia',serif;
+}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}
+a{color:var(--blue)}
+
+/* Layout */
+.wrap{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 4rem}
+.page-head{margin-bottom:2rem;padding-bottom:1.25rem;border-bottom:2px solid var(--navy)}
+.page-head h1{font-family:var(--serif);font-size:28px;color:var(--navy);margin-bottom:.25rem}
+.page-head p{font-size:13px;color:var(--text3)}
+.layout{display:grid;grid-template-columns:1fr 380px;gap:1.5rem;align-items:start}
+@media(max-width:820px){.layout{grid-template-columns:1fr}}
+
+/* Card */
+.card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1.5rem}
+.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;padding-bottom:.875rem;border-bottom:1px solid var(--border)}
+.card-title{font-family:var(--serif);font-size:17px;color:var(--navy)}
+.card-count{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+
+/* Program list */
+.prog-list{display:flex;flex-direction:column;gap:4px}
+.prog-row{display:flex;align-items:center;gap:.75rem;padding:.625rem .75rem;border-radius:6px;border:1px solid transparent;cursor:pointer;transition:all .15s}
+.prog-row:hover{background:var(--bg);border-color:var(--border)}
+.prog-row.active{background:rgba(14,70,119,.07);border-color:rgba(14,70,119,.25)}
+.prog-fight{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.prog-name{flex:1;font-size:12.5px;font-weight:500;color:var(--navy)}
+.prog-dept{font-family:var(--mono);font-size:8px;letter-spacing:.08em;color:var(--text3);text-transform:uppercase}
+.prog-amount{font-family:var(--serif);font-size:12px;color:var(--text2);white-space:nowrap}
+.prog-actions{display:flex;gap:4px;opacity:0;transition:opacity .15s}
+.prog-row:hover .prog-actions{opacity:1}
+.prog-row.active .prog-actions{opacity:1}
+.btn-icon{background:none;border:1px solid var(--border);border-radius:4px;padding:3px 6px;font-size:10px;cursor:pointer;color:var(--text3);transition:all .15s}
+.btn-icon:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-icon.del:hover{background:#C0392B;border-color:#C0392B}
+
+/* Form */
+.form-section{margin-bottom:1.5rem}
+.form-section-title{font-family:var(--mono);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:.875rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:11px;font-weight:600;color:var(--text2);margin-bottom:.3rem;letter-spacing:.02em}
+.field label span{font-weight:400;color:var(--text3);font-size:10px;margin-left:.25rem}
+.field input,.field textarea,.field select{width:100%;padding:.5rem .625rem;border:1px solid var(--border);border-radius:5px;font-family:var(--sans);font-size:13px;color:var(--navy);background:#fff;transition:border .15s}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--blue)}
+.field textarea{min-height:80px;resize:vertical;line-height:1.5}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.field-id{font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:.25rem}
+
+/* Checkboxes */
+.checks{display:flex;flex-wrap:wrap;gap:.5rem}
+.check-pill{display:flex;align-items:center;gap:.375rem;padding:.4rem .75rem;border:1px solid var(--border);border-radius:4px;cursor:pointer;font-size:11.5px;color:var(--text2);transition:all .15s;user-select:none}
+.check-pill input{width:13px;height:13px;accent-color:var(--navy);flex-shrink:0}
+.check-pill:has(input:checked){background:var(--navy);border-color:var(--navy);color:#fff}
+
+/* Radio pills */
+.radio-pills{display:flex;flex-wrap:wrap;gap:.4rem}
+.radio-pill{display:flex;align-items:center;gap:.375rem;padding:.4rem .75rem;border:1px solid var(--border);border-radius:4px;cursor:pointer;font-size:11.5px;color:var(--text2);transition:all .15s;user-select:none}
+.radio-pill input{display:none}
+.radio-pill:has(input:checked){background:var(--navy);border-color:var(--navy);color:#fff}
+.radio-pill.earn:has(input:checked){background:var(--earn);border-color:var(--earn)}
+.radio-pill.save:has(input:checked){background:var(--save);border-color:var(--save)}
+.radio-pill.care:has(input:checked){background:var(--care);border-color:var(--care)}
+.radio-pill.protect:has(input:checked){background:var(--protect);border-color:var(--protect)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.125rem;border:none;border-radius:6px;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;font-weight:600;transition:all .15s}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-primary:hover{background:var(--blue)}
+.btn-secondary{background:none;border:1px solid var(--border);color:var(--text2)}
+.btn-secondary:hover{background:var(--bg)}
+.btn-success{background:#1A7E6B;color:#fff}
+.btn-row{display:flex;gap:.625rem;margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border)}
+
+/* Top bar */
+.top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.new-btn{background:var(--blue);color:#fff}
+.new-btn:hover{background:var(--navy)}
+
+/* Import bar */
+.import-bar{background:rgba(14,70,119,.06);border:1px solid rgba(14,70,119,.15);border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.import-bar p{font-size:12px;color:var(--text2);flex:1}
+.import-bar strong{color:var(--navy)}
+.file-label{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border:1px solid var(--blue);border-radius:5px;font-size:11px;font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--blue);cursor:pointer;transition:all .15s}
+.file-label:hover{background:var(--blue);color:#fff}
+#fileInput{display:none}
+
+/* Toast */
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--navy);color:#fff;padding:.75rem 1.25rem;border-radius:8px;font-size:13px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9999}
+.toast.show{opacity:1}
+
+/* Empty state */
+.empty{text-align:center;padding:2rem;color:var(--text3);font-size:12px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-head">
+    <h1>Program Editor</h1>
+    <p>Add and edit programs for the Making Ends Meet Calculator. When done, click <strong>Download CSV</strong> and replace <code>making-ends-meet-programs.csv</code> in the project.</p>
+  </div>
+
+  <div class="import-bar">
+    <p><strong>Load your current programs:</strong> Click to open <code>making-ends-meet-programs.csv</code> from your project folder — or the editor will fetch them from the live site automatically.</p>
+    <label class="file-label" for="fileInput">Open CSV file</label>
+    <input type="file" id="fileInput" accept=".csv,text/csv">
+    <button class="btn btn-success" onclick="downloadCSV()">Download CSV</button>
+  </div>
+
+  <div class="layout">
+    <!-- Left: program list -->
+    <div>
+      <div class="top-bar">
+        <span style="font-family:var(--serif);font-size:18px;color:var(--navy)">Programs</span>
+        <button class="btn new-btn" onclick="newProgram()">+ Add Program</button>
+      </div>
+      <div class="card">
+        <div id="progList" class="prog-list">
+          <div class="empty">Loading programs…</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: editor form -->
+    <div>
+      <div class="card" id="editorCard">
+        <div class="card-head">
+          <span class="card-title" id="formTitle">Select a program to edit</span>
+          <span class="card-count" id="formMode"></span>
+        </div>
+        <div id="editorForm" style="display:none">
+
+          <div class="form-section">
+            <div class="form-section-title">Identity</div>
+            <div class="field">
+              <label>Program Name <span>required</span></label>
+              <input type="text" id="f-name" placeholder="e.g. Free Tax Prep Los Angeles" oninput="updateId()">
+              <div class="field-id" id="id-preview"></div>
+            </div>
+            <div class="field">
+              <label>Department / Administering Agency</label>
+              <select id="f-dept" onchange="toggleOtherDept()">
+                <option value="CIFD">CIFD – Community Investment for Families Dept</option>
+                <option value="LAHD">LAHD – LA Housing Department</option>
+                <option value="LADWP">LADWP – Dept of Water and Power</option>
+                <option value="LADOT">LADOT – Dept of Transportation</option>
+                <option value="EWDD">EWDD – Economic &amp; Workforce Development</option>
+                <option value="Recreation and Parks">Recreation and Parks</option>
+                <option value="LA Sanitation">LA Sanitation</option>
+                <option value="HACLA">HACLA – Housing Authority of the City of LA</option>
+                <option value="Mayor's Fund">Mayor's Fund for Los Angeles</option>
+                <option value="Mayor Bass and HACLA">Mayor Bass and HACLA</option>
+                <option value="LAPD">LAPD</option>
+                <option value="other">Other (type below)</option>
+              </select>
+            </div>
+            <div class="field" id="deptOtherField" style="display:none">
+              <label>Department Name <span>enter exact department name</span></label>
+              <input type="text" id="f-dept-other" placeholder="e.g. Office of the City Clerk">
+            </div>
+            <div class="field">
+              <label>Fight / Category</label>
+              <div class="radio-pills">
+                <label class="radio-pill earn"><input type="radio" name="fight" value="Earn More">Earn More</label>
+                <label class="radio-pill save"><input type="radio" name="fight" value="Save More">Save More</label>
+                <label class="radio-pill care"><input type="radio" name="fight" value="Care More">Care More</label>
+                <label class="radio-pill protect"><input type="radio" name="fight" value="Protect More">Protect More</label>
+              </div>
+            </div>
+            <div class="field">
+              <label>Still Active?</label>
+              <div class="radio-pills">
+                <label class="radio-pill"><input type="radio" name="ongoing" value="Yes" checked>Yes – ongoing</label>
+                <label class="radio-pill"><input type="radio" name="ongoing" value="No">No – ended / paused</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">Description &amp; Benefit</div>
+            <div class="field">
+              <label>Description <span>1–2 sentences explaining what the program is</span></label>
+              <textarea id="f-desc" placeholder="LA City program that…"></textarea>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label>Dollar Amount <span>annual default</span></label>
+                <input type="number" id="f-amount" placeholder="0" min="0">
+              </div>
+              <div class="field">
+                <label>Period</label>
+                <div class="radio-pills" style="margin-top:.3rem">
+                  <label class="radio-pill"><input type="radio" name="period" value="annual" checked>Annual</label>
+                  <label class="radio-pill"><input type="radio" name="period" value="monthly">Monthly</label>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label>Formula / How You Calculated It <span>plain English, e.g. "$1,000 per month × 12"</span></label>
+              <input type="text" id="f-formula" placeholder="e.g. Average combined refund for qualifying filer">
+            </div>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title">Who Qualifies — leave blank to mean "everyone"</div>
+
+            <div class="field">
+              <label>Maximum Income to Qualify</label>
+              <select id="f-income">
+                <option value="">All incomes (no limit)</option>
+                <option value="under30k">Under $30,000</option>
+                <option value="30_50k">$30,000 – $50,000</option>
+                <option value="50_80k">$50,000 – $80,000</option>
+                <option value="80_120k">$80,000 – $120,000</option>
+                <option value="over120k">Over $120,000</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Housing Type Required <span>check all that apply — leave unchecked for "any housing"</span></label>
+              <div class="checks">
+                <label class="check-pill"><input type="checkbox" name="housing" value="renter_apt"> Renter (apt)</label>
+                <label class="check-pill"><input type="checkbox" name="housing" value="renter_house"> Renter (house)</label>
+                <label class="check-pill"><input type="checkbox" name="housing" value="homeowner"> Homeowner</label>
+                <label class="check-pill"><input type="checkbox" name="housing" value="unhoused"> Unhoused</label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Age Required</label>
+              <select id="f-age">
+                <option value="">All ages</option>
+                <option value="18_24">18–24 only</option>
+                <option value="25_54">25–54 only</option>
+                <option value="55_64">55–64 only</option>
+                <option value="65plus">65+ only</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Special Status Required <span>leave unchecked for "no special status required"</span></label>
+              <div class="checks">
+                <label class="check-pill"><input type="checkbox" name="status" value="veteran"> Veteran</label>
+                <label class="check-pill"><input type="checkbox" name="status" value="disability"> Disability</label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="check-pill" style="display:inline-flex">
+                <input type="checkbox" id="f-or-status"> Either age OR status qualifies (not both required)
+              </label>
+            </div>
+
+            <div class="field">
+              <label>Transportation Required</label>
+              <select id="f-transport">
+                <option value="">Any / not relevant</option>
+                <option value="drives">Drives</option>
+                <option value="transit">Takes transit</option>
+                <option value="both">Both</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="check-pill" style="display:inline-flex">
+                <input type="checkbox" id="f-children"> Requires children in household (family_with_children)
+              </label>
+            </div>
+
+          </div>
+
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="saveProgram()">Save Program</button>
+            <button class="btn btn-secondary" onclick="cancelEdit()">Cancel</button>
+            <button class="btn" style="margin-left:auto;background:#C0392B;color:#fff" onclick="deleteProgram()" id="deleteBtn">Delete</button>
+          </div>
+        </div>
+        <div id="editorEmpty" style="color:var(--text3);font-size:13px;text-align:center;padding:2rem">
+          Click a program to edit it, or click <strong>+ Add Program</strong> to create a new one.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var PROGRAMS = [];
+var editingId = null; // null = new, string = editing existing
+
+// ---- CSV parsing ----
+function csvToObjects(text) {
+  var lines = text.trim().split('\n');
+  var headers = parseCSVLine(lines[0]);
+  return lines.slice(1).filter(function(l){return l.trim();}).map(function(line){
+    var vals = parseCSVLine(line);
+    var obj = {};
+    headers.forEach(function(h,i){ obj[h] = (vals[i]||'').trim(); });
+    return obj;
+  });
+}
+
+function parseCSVLine(line) {
+  var result = [], cur = '', inQ = false;
+  for(var i=0;i<line.length;i++){
+    var c=line[i];
+    if(c==='"'){ inQ=!inQ; }
+    else if(c===','&&!inQ){ result.push(cur); cur=''; }
+    else { cur+=c; }
+  }
+  result.push(cur);
+  return result;
+}
+
+function objectsToCSV(programs) {
+  var headers = ['id','name','department','fight','ongoing','description','benefit_type','benefit_amount','benefit_formula','benefit_period','or_age_status','income_max_bracket','housing_required','transportation_required','age_required','status_required','family_size_required'];
+  var lines = [headers.join(',')];
+  programs.forEach(function(p){
+    var row = headers.map(function(h){
+      var v = p[h]||'';
+      if(v.indexOf(',')>=0||v.indexOf('"')>=0||v.indexOf('\n')>=0) v='"'+v.replace(/"/g,'""')+'"';
+      return v;
+    });
+    lines.push(row.join(','));
+  });
+  return lines.join('\n');
+}
+
+// ---- ID generation ----
+function slugify(s){
+  return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+}
+
+function updateId(){
+  var name = document.getElementById('f-name').value;
+  var id = slugify(name);
+  document.getElementById('id-preview').textContent = id ? 'ID: '+id : '';
+}
+
+// ---- Load data ----
+function loadFromText(text){
+  PROGRAMS = csvToObjects(text);
+  renderList();
+  showToast('Loaded '+PROGRAMS.length+' programs');
+}
+
+document.getElementById('fileInput').addEventListener('change', function(e){
+  var file = e.target.files[0];
+  if(!file) return;
+  var reader = new FileReader();
+  reader.onload = function(ev){ loadFromText(ev.target.result); };
+  reader.readAsText(file);
+});
+
+// Try to fetch from live site on load
+fetch('making-ends-meet-programs.csv?v='+Date.now())
+  .then(function(r){ return r.ok ? r.text() : Promise.reject(); })
+  .then(loadFromText)
+  .catch(function(){
+    document.getElementById('progList').innerHTML='<div class="empty">Could not auto-load. Click <strong>Open CSV file</strong> above to load your programs.</div>';
+  });
+
+// ---- Render list ----
+var FIGHT_COLORS = {'Earn More':'var(--earn)','Save More':'var(--save)','Care More':'var(--care)','Protect More':'var(--protect)'};
+
+function renderList(){
+  var el = document.getElementById('progList');
+  if(!PROGRAMS.length){ el.innerHTML='<div class="empty">No programs yet. Click + Add Program.</div>'; return; }
+  el.innerHTML = PROGRAMS.map(function(p){
+    var active = editingId===p.id ? ' active' : '';
+    var dot = FIGHT_COLORS[p.fight]||'var(--text3)';
+    return '<div class="prog-row'+active+'" onclick="editProgram(\''+p.id+'\')">'
+      +'<span class="prog-fight" style="background:'+dot+'"></span>'
+      +'<span class="prog-name">'+p.name+'</span>'
+      +'<span class="prog-dept">'+p.department+'</span>'
+      +'<span class="prog-amount">$'+Number(p.benefit_amount||0).toLocaleString()+'</span>'
+      +'<span class="prog-actions">'
+      +'<button class="btn-icon del" onclick="event.stopPropagation();deleteById(\''+p.id+'\')">✕</button>'
+      +'</span></div>';
+  }).join('');
+  document.querySelector('.card-count') && (document.querySelector('.card-count').textContent = PROGRAMS.length+' programs');
+}
+
+// ---- Edit program ----
+function editProgram(id){
+  var p = PROGRAMS.find(function(x){return x.id===id;});
+  if(!p) return;
+  editingId = id;
+  document.getElementById('formTitle').textContent = p.name;
+  document.getElementById('formMode').textContent = 'Editing';
+  document.getElementById('deleteBtn').style.display='';
+  showForm();
+  fillForm(p);
+  renderList();
+}
+
+function newProgram(){
+  editingId = null;
+  document.getElementById('formTitle').textContent = 'New Program';
+  document.getElementById('formMode').textContent = 'New';
+  document.getElementById('deleteBtn').style.display='none';
+  showForm();
+  clearForm();
+  renderList();
+}
+
+function cancelEdit(){
+  editingId = null;
+  hideForm();
+  renderList();
+}
+
+function showForm(){
+  document.getElementById('editorForm').style.display='';
+  document.getElementById('editorEmpty').style.display='none';
+}
+function hideForm(){
+  document.getElementById('editorForm').style.display='none';
+  document.getElementById('editorEmpty').style.display='';
+  document.getElementById('formTitle').textContent='Select a program to edit';
+  document.getElementById('formMode').textContent='';
+}
+
+// ---- Fill form ----
+function fillForm(p){
+  document.getElementById('f-name').value = p.name||'';
+  document.getElementById('id-preview').textContent = 'ID: '+(p.id||'');
+
+  // Department
+  var deptSel = document.getElementById('f-dept');
+  var knownDepts = Array.from(deptSel.options).map(function(o){return o.value;});
+  if(knownDepts.indexOf(p.department)>=0){
+    deptSel.value = p.department;
+    document.getElementById('deptOtherField').style.display='none';
+  } else {
+    deptSel.value='other';
+    document.getElementById('deptOtherField').style.display='';
+    document.getElementById('f-dept-other').value=p.department||'';
+  }
+
+  // Fight
+  document.querySelectorAll('input[name=fight]').forEach(function(r){ r.checked=(r.value===p.fight); });
+  // Ongoing
+  document.querySelectorAll('input[name=ongoing]').forEach(function(r){ r.checked=(r.value===p.ongoing); });
+  // Description
+  document.getElementById('f-desc').value=p.description||'';
+  // Amount
+  document.getElementById('f-amount').value=p.benefit_amount||'';
+  // Period
+  document.querySelectorAll('input[name=period]').forEach(function(r){ r.checked=(r.value===p.benefit_period); });
+  // Formula
+  document.getElementById('f-formula').value=p.benefit_formula||'';
+  // Income
+  document.getElementById('f-income').value=p.income_max_bracket||'';
+  // Housing checkboxes
+  var housing = (p.housing_required||'').split('|').filter(Boolean);
+  document.querySelectorAll('input[name=housing]').forEach(function(cb){ cb.checked=housing.indexOf(cb.value)>=0; });
+  // Age
+  document.getElementById('f-age').value=p.age_required||'';
+  // Status checkboxes
+  var status=(p.status_required||'').split('|').filter(Boolean);
+  document.querySelectorAll('input[name=status]').forEach(function(cb){ cb.checked=status.indexOf(cb.value)>=0; });
+  // Or status
+  document.getElementById('f-or-status').checked=!!(p.or_age_status==='Yes');
+  // Transport
+  document.getElementById('f-transport').value=p.transportation_required||'';
+  // Children
+  document.getElementById('f-children').checked=!!(p.family_size_required||'').indexOf('family_with_children')>=0;
+}
+
+function clearForm(){
+  document.getElementById('f-name').value='';
+  document.getElementById('id-preview').textContent='';
+  document.getElementById('f-dept').value='CIFD';
+  document.getElementById('deptOtherField').style.display='none';
+  document.querySelector('input[name=fight]').checked=false;
+  document.querySelectorAll('input[name=ongoing]')[0].checked=true;
+  document.getElementById('f-desc').value='';
+  document.getElementById('f-amount').value='';
+  document.querySelectorAll('input[name=period]')[0].checked=true;
+  document.getElementById('f-formula').value='';
+  document.getElementById('f-income').value='';
+  document.querySelectorAll('input[name=housing]').forEach(function(cb){cb.checked=false;});
+  document.getElementById('f-age').value='';
+  document.querySelectorAll('input[name=status]').forEach(function(cb){cb.checked=false;});
+  document.getElementById('f-or-status').checked=false;
+  document.getElementById('f-transport').value='';
+  document.getElementById('f-children').checked=false;
+}
+
+function toggleOtherDept(){
+  var v = document.getElementById('f-dept').value;
+  document.getElementById('deptOtherField').style.display = v==='other' ? '' : 'none';
+}
+
+// ---- Save program ----
+function saveProgram(){
+  var name = document.getElementById('f-name').value.trim();
+  if(!name){ showToast('Name is required'); return; }
+
+  var dept = document.getElementById('f-dept').value;
+  if(dept==='other') dept=document.getElementById('f-dept-other').value.trim()||'Other';
+
+  var fight='';
+  document.querySelectorAll('input[name=fight]').forEach(function(r){if(r.checked)fight=r.value;});
+  var ongoing='Yes';
+  document.querySelectorAll('input[name=ongoing]').forEach(function(r){if(r.checked)ongoing=r.value;});
+  var period='annual';
+  document.querySelectorAll('input[name=period]').forEach(function(r){if(r.checked)period=r.value;});
+
+  var housing=[];
+  document.querySelectorAll('input[name=housing]:checked').forEach(function(cb){housing.push(cb.value);});
+  var status=[];
+  document.querySelectorAll('input[name=status]:checked').forEach(function(cb){status.push(cb.value);});
+
+  var id = editingId || slugify(name) || 'program-'+Date.now();
+
+  var p = {
+    id: id,
+    name: name,
+    department: dept,
+    fight: fight,
+    ongoing: ongoing,
+    description: document.getElementById('f-desc').value.trim(),
+    benefit_type: 'flat',
+    benefit_amount: document.getElementById('f-amount').value||'0',
+    benefit_formula: document.getElementById('f-formula').value.trim(),
+    benefit_period: period,
+    or_age_status: document.getElementById('f-or-status').checked ? 'Yes' : '',
+    income_max_bracket: document.getElementById('f-income').value,
+    housing_required: housing.join('|'),
+    transportation_required: document.getElementById('f-transport').value,
+    age_required: document.getElementById('f-age').value,
+    status_required: status.join('|'),
+    family_size_required: document.getElementById('f-children').checked ? ' family_with_children' : ''
+  };
+
+  if(editingId){
+    var idx = PROGRAMS.findIndex(function(x){return x.id===editingId;});
+    if(idx>=0) PROGRAMS[idx]=p;
+  } else {
+    PROGRAMS.push(p);
+  }
+  editingId = p.id;
+  document.getElementById('formTitle').textContent=p.name;
+  document.getElementById('formMode').textContent='Saved';
+  renderList();
+  showToast('Saved "'+p.name+'"');
+}
+
+// ---- Delete ----
+function deleteProgram(){
+  if(!editingId) return;
+  if(!confirm('Delete "'+document.getElementById('f-name').value+'"?')) return;
+  deleteById(editingId);
+  cancelEdit();
+}
+function deleteById(id){
+  PROGRAMS = PROGRAMS.filter(function(p){return p.id!==id;});
+  if(editingId===id){ editingId=null; hideForm(); }
+  renderList();
+  showToast('Deleted');
+}
+
+// ---- Download CSV ----
+function downloadCSV(){
+  if(!PROGRAMS.length){ showToast('No programs to download'); return; }
+  var csv = objectsToCSV(PROGRAMS);
+  var blob = new Blob([csv],{type:'text/csv'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href=url; a.download='making-ends-meet-programs.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('Downloaded making-ends-meet-programs.csv');
+}
+
+// ---- Toast ----
+function showToast(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},2200);
+}
+</script>
+</body>
+</html>
