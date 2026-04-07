@@ -17,6 +17,7 @@
     "talkingPointsDraft": false,
     "showSources": true,
     "showInventory": true,
+    "showMakingEndsMeet": true,
     "showDashboard": false,
     "showCampaigns": true,
     "showRecommendations": true,
@@ -53,6 +54,7 @@
     "links": [
       { "href": "index.html", "label": "Home", "sub": "Five Fights" },
       { "href": "inventory.html", "label": "Inventory", "sub": "209 Programs", "feature": "showInventory" },
+      { "href": "making-ends-meet.html", "label": "Making Ends Meet", "sub": "Affordability Calculator", "feature": "showMakingEndsMeet" },
       { "href": "campaigns.html", "label": "Campaigns", "sub": "Awareness", "feature": "showCampaigns" },
       { "href": "recommendations.html", "label": "Executive Directives", "sub": "Three Proposals", "feature": "showRecommendations" },
       { "href": "talking-points.html", "label": "Talking Points", "sub": "Narratives", "feature": "showTalkingPoints" },

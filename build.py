@@ -141,6 +141,7 @@ pages = [
     ('campaigns.html', 'Five Fights'),
     ('recommendations.html', 'Executive Directives'),
     ('inventory.html', 'Program Inventory'),
+    ('making-ends-meet.html', 'Making Ends Meet'),
     ('talking-points.html', 'Talking Points'),
     ('sources.html', 'Sources &amp; References'),
     ('about.html', 'About'),
@@ -212,7 +213,7 @@ document.getElementById('pwIn').focus();}})();
 build_variant('index-pillars.html', 'Home (Pillars Draft)', 'index-pillars')
 
 # Copy JSON, CSV, and assets to public (fix permissions first)
-for jf in ['content.json', 'config.json', 'inventory.csv', 'talking-points.csv', 'sources.csv']:
+for jf in ['content.json', 'config.json', 'inventory.csv', 'talking-points.csv', 'sources.csv', 'making-ends-meet-programs.csv', 'making-ends-meet-assumptions.csv']:
     src = os.path.join(ROOT, jf)
     dst = os.path.join(PUBLIC, jf)
     if os.path.exists(src):

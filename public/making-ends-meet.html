@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Making Ends Meet | Affordability for All</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   SHARED.CSS - Generated from config.json
+   Do not edit directly. Edit config.json and rebuild.
+   ══════════════════════════════════════════════ */
+
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0}
+
+/* CSS Variables - from config.json */
+:root{
+  --bg:#EAF4FC;--navy:#0B1C33;--gold:#D4870A;--gold-lt:#F5A623;
+  --text:#0B1C33;--text2:#2C4A6A;--text3:#6A8AAA;--white:#FFFFFF;
+  --earn:#6D28D9;--build:#047857;--save:#BE185D;
+  --care:#C2410C;--protect:#B45309;
+  --serif:'DM Serif Display', Georgia, serif;--sans:'Outfit', sans-serif;--mono:'DM Mono', monospace;
+}
+
+/* ── Top Nav ── */
+.topnav{position:sticky;top:0;z-index:50;height:58px;background:rgba(234,244,252,0.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(11,28,51,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem}
+.nav-back{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text3);font-size:13px;transition:color .2s}
+.nav-back:hover{color:var(--navy)}
+.nav-back svg{width:15px;height:15px}
+.nav-ttl{font-family:var(--serif);font-size:19px;color:var(--navy)}
+
+/* ── Hamburger ── */
+.ham{width:36px;height:36px;background:rgba(11,28,51,0.08);border:1px solid rgba(11,28,51,0.13);border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;flex-shrink:0;position:relative;z-index:200}
+.ham span{display:block;width:16px;height:1.5px;background:var(--navy);border-radius:2px;transition:all .28s;transform-origin:center}
+.ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ── Nav Overlay + Drawer ── */
+.nav-ov{position:fixed;inset:0;z-index:100;background:rgba(11,28,51,0);pointer-events:none;transition:background .3s}
+.nav-ov.open{background:rgba(11,28,51,0.22);pointer-events:all}
+.nav-dr{position:fixed;top:0;right:0;bottom:0;width:210px;background:#fff;border-left:1px solid rgba(11,28,51,0.09);z-index:150;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:5rem 1.5rem 2rem;box-shadow:-8px 0 32px rgba(11,28,51,0.08)}
+.nav-dr.open{transform:translateX(0)}
+.nl{display:block;padding:.75rem 0;border-bottom:1px solid rgba(11,28,51,0.07);font-family:var(--serif);font-size:22px;color:var(--text2);text-decoration:none;transition:color .2s}
+.nl:hover{color:var(--gold)}
+.nl span{display:block;font-family:var(--sans);font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-top:1px}
+.nf{margin-top:auto;font-size:9px;color:var(--text3);line-height:1.7}
+
+/* ── Common Elements ── */
+.eye{font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:9px}
+.eye::before{content:'';width:20px;height:1px;background:var(--gold);display:block}
+
+main{max-width:1300px;margin:0 auto;padding:2.25rem 1.75rem 4rem}
+h1{font-family:var(--serif);font-size:clamp(30px,3.5vw,46px);color:var(--navy);line-height:1.1;margin-bottom:.625rem}
+h1 em{font-style:italic;color:var(--gold)}
+.desc{font-size:13px;color:var(--text2);max-width:520px;line-height:1.7;margin-bottom:1.5rem;font-weight:300}
+
+/* Period toggle */
+.period-toggle{display:inline-flex;background:rgba(255,255,255,.7);border:1px solid rgba(11,28,51,.12);border-radius:6px;padding:3px;margin-bottom:1.25rem}
+.pt-btn{background:none;border:none;padding:6px 16px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);cursor:pointer;border-radius:4px;transition:all .2s}
+.pt-btn.on{background:var(--navy);color:#fff}
+
+/* Selectors */
+.selectors{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem 1.25rem;background:rgba(255,255,255,.6);border:1px solid rgba(11,28,51,.08);border-radius:10px;padding:1.125rem 1.25rem;margin-bottom:1.5rem}
+.selector label{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.pills{display:flex;flex-wrap:wrap;gap:4px}
+.pill{background:rgba(11,28,51,.04);border:1px solid rgba(11,28,51,.1);color:var(--text2);padding:5px 10px;font-family:var(--sans);font-size:11px;border-radius:4px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.pill:hover{background:rgba(11,28,51,.08);color:var(--navy)}
+.pill.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* Columns */
+.columns{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem}
+.col{background:rgba(255,255,255,.75);border:1px solid rgba(11,28,51,.08);border-radius:10px;padding:1.25rem 1.375rem 1.5rem;display:flex;flex-direction:column}
+.col-head{border-bottom:1px solid rgba(11,28,51,.08);padding-bottom:.75rem;margin-bottom:.875rem}
+.col-title{font-family:var(--serif);font-size:20px;color:var(--navy);line-height:1.1}
+.col-sub{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-top:3px}
+.col-right .col-sub{color:var(--gold)}
+
+/* Stack bands (cost categories) */
+.stack{display:flex;flex-direction:column;gap:2px}
+.band{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-radius:4px;font-size:12px;animation:fadeIn .25s ease-out}
+.band-gross{background:var(--navy);color:#fff}
+.band-gross .band-label{color:rgba(255,255,255,.7)}
+.band-cost{background:rgba(11,28,51,.05)}
+.band-cost:nth-child(even){background:rgba(11,28,51,.025)}
+.band-label{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--text3)}
+.band-amount{font-family:var(--serif);font-size:14px;color:var(--navy);font-variant-numeric:tabular-nums}
+.band-gross .band-amount{color:#fff;font-size:16px}
+
+/* Program bands (right column) */
+.programs{display:flex;flex-direction:column;gap:2px;margin-top:2px}
+.program-band{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;border-radius:4px;border-left:3px solid;position:relative;cursor:help;opacity:0;transform:translateX(-8px);animation:slideIn .35s ease-out forwards}
+.program-label{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--navy);line-height:1.3}
+.program-fight{font-family:var(--mono);font-size:7px;letter-spacing:.1em;text-transform:uppercase;margin-top:2px;opacity:.75}
+.program-amount{font-family:var(--serif);font-size:14px;color:var(--navy);font-variant-numeric:tabular-nums;white-space:nowrap;margin-left:10px}
+.program-amount .ot{display:block;font-family:var(--mono);font-size:7px;letter-spacing:.08em;color:var(--text3);text-transform:uppercase;margin-top:1px;text-align:right}
+
+/* Fight colors */
+.fight-earn{background:rgba(109,40,217,.12);border-left-color:var(--earn)}
+.fight-earn .program-fight{color:var(--earn)}
+.fight-build{background:rgba(4,120,87,.12);border-left-color:var(--build)}
+.fight-build .program-fight{color:var(--build)}
+.fight-save{background:rgba(190,24,93,.12);border-left-color:var(--save)}
+.fight-save .program-fight{color:var(--save)}
+.fight-care{background:rgba(194,65,12,.12);border-left-color:var(--care)}
+.fight-care .program-fight{color:var(--care)}
+.fight-protect{background:rgba(180,83,9,.12);border-left-color:var(--protect)}
+.fight-protect .program-fight{color:var(--protect)}
+
+/* Tooltip */
+.program-band:hover::after{content:attr(data-formula);position:absolute;bottom:100%;left:0;right:0;background:var(--navy);color:#fff;font-family:var(--mono);font-size:10px;padding:7px 10px;border-radius:4px;margin-bottom:5px;white-space:normal;line-height:1.4;z-index:20;pointer-events:none;box-shadow:0 4px 12px rgba(11,28,51,.15)}
+.program-band:hover::before{content:'';position:absolute;bottom:100%;left:14px;border:5px solid transparent;border-top-color:var(--navy);margin-bottom:-5px;z-index:20}
+
+/* Empty state in right column */
+.programs-empty{padding:1.25rem;border:1px dashed rgba(11,28,51,.15);border-radius:4px;font-size:11px;color:var(--text3);text-align:center;line-height:1.5;margin-top:6px}
+
+/* Leftover */
+.leftover{margin-top:auto;padding-top:1rem;display:flex;align-items:baseline;justify-content:space-between;border-top:1px solid rgba(11,28,51,.08);margin-top:1rem}
+.leftover-label{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3)}
+.leftover-amount{font-family:var(--serif);font-size:30px;color:var(--navy);font-variant-numeric:tabular-nums}
+.leftover-amount.neg{color:#B91C1C}
+.leftover-amount.pos{color:#047857}
+.leftover-note{font-size:10px;color:var(--text2);margin-top:.5rem;line-height:1.5;font-style:italic}
+
+/* Savings counter */
+.savings-counter{margin-top:.75rem;padding:.625rem .75rem;background:rgba(212,135,10,.1);border:1px solid rgba(212,135,10,.25);border-radius:5px;display:flex;align-items:baseline;justify-content:space-between}
+.sc-label{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.sc-amount{font-family:var(--serif);font-size:18px;color:var(--gold);font-variant-numeric:tabular-nums}
+
+/* Summary */
+.summary{background:rgba(255,255,255,.75);border:1px solid rgba(11,28,51,.08);border-radius:10px;padding:1.125rem 1.375rem;margin-bottom:1.25rem;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:1.25rem;align-items:center}
+.sum-profile{font-family:var(--serif);font-size:15px;color:var(--navy);line-height:1.4}
+.sum-stat .sum-label{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);display:block;margin-bottom:2px}
+.sum-stat .sum-value{font-family:var(--serif);font-size:20px;color:var(--navy);font-variant-numeric:tabular-nums}
+.sum-stat .sum-value.pos{color:#047857}
+
+.disclaimer{font-size:10px;color:var(--text3);line-height:1.6;max-width:780px;margin-top:1rem;font-style:italic}
+.disclaimer code{font-family:var(--mono);font-size:9px;background:rgba(11,28,51,.05);padding:1px 5px;border-radius:3px;color:var(--text2);font-style:normal}
+
+/* Loading skeleton */
+.skeleton{display:flex;flex-direction:column;gap:2px}
+.sk-band{height:36px;border-radius:4px;background:linear-gradient(90deg,rgba(11,28,51,.04),rgba(11,28,51,.08),rgba(11,28,51,.04));background-size:200% 100%;animation:shimmer 1.4s infinite}
+
+/* Error state */
+.err{padding:1.25rem;border:1px solid rgba(185,28,28,.3);background:rgba(185,28,28,.06);border-radius:6px;font-size:12px;color:#B91C1C;line-height:1.5}
+.err button{margin-top:.75rem;background:var(--navy);color:#fff;border:none;padding:6px 14px;border-radius:4px;font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideIn{to{opacity:1;transform:translateX(0)}}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* Responsive */
+@media(max-width:900px){
+  .selectors{grid-template-columns:repeat(2,1fr)}
+  .summary{grid-template-columns:1fr 1fr;gap:1rem}
+  .sum-profile{grid-column:1/-1}
+}
+@media(max-width:640px){
+  main{padding:1.75rem 1.125rem 3rem}
+  .columns{grid-template-columns:1fr}
+  .selectors{grid-template-columns:1fr 1fr;padding:1rem}
+  .pill{font-size:10px;padding:5px 8px}
+  .leftover-amount{font-size:26px}
+}
+
+</style>
+</head>
+<body>
+
+<div id="pwGate" style="position:fixed;inset:0;z-index:9999;background:#EAF4FC;display:flex;align-items:center;justify-content:center;font-family:'Outfit', sans-serif">
+<div style="text-align:center;max-width:340px;padding:2rem">
+<div style="font-family:'DM Serif Display', Georgia, serif;font-size:clamp(24px,4vw,36px);color:#0B1C33;margin-bottom:.5rem">Affordability <em style="color:#D4870A;font-style:italic">for All</em></div>
+<div style="font-family:'DM Mono', monospace;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:#6A8AAA;margin-bottom:2rem">Draft Review Access</div>
+<input id="pwIn" type="password" placeholder="Enter password" style="width:100%;padding:10px 14px;border:1px solid rgba(11,28,51,.15);border-radius:6px;font-size:14px;font-family:'Outfit', sans-serif;outline:none;text-align:center;margin-bottom:.75rem;background:rgba(255,255,255,.7)" onkeydown="if(event.key==='Enter')checkPw()">
+<button onclick="checkPw()" style="width:100%;padding:9px;background:#0B1C33;color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;font-family:'Outfit', sans-serif;letter-spacing:.05em">Access Site</button>
+<div id="pwErr" style="font-size:11px;color:#DC2626;margin-top:.75rem;opacity:0;transition:opacity .2s"></div>
+<div style="font-size:10px;color:#6A8AAA;margin-top:1.5rem">Contact Michael Green II for access</div>
+</div></div>
+<script>
+(function(){var k='aff_access',h='LAC+USC Medical Center';if(sessionStorage.getItem(k)===h){document.getElementById('pwGate').style.display='none';}
+window.checkPw=function(){var v=document.getElementById('pwIn').value;if(v===h){sessionStorage.setItem(k,h);document.getElementById('pwGate').style.display='none';}else{var e=document.getElementById('pwErr');e.textContent='Incorrect password';e.style.opacity='1';document.getElementById('pwIn').value='';setTimeout(function(){e.style.opacity='0';},2000);}};
+document.getElementById('pwIn').focus();})();
+</script>
+
+<nav class="topnav">
+  <a class="nav-back" href="index.html"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>Back</a>
+  <div class="nav-ttl">Making Ends Meet</div>
+  <div class="ham" id="ham" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="nav-ov" id="nOv" onclick="closeNav()"></div>
+<nav class="nav-dr" id="nDr">
+  <a class="nl" href="index.html" onclick="closeNav()">Home<span>Five Fights</span></a>
+  <a class="nl" href="inventory.html" onclick="closeNav()">Inventory<span>209 Programs</span></a>
+  <a class="nl" href="making-ends-meet.html" onclick="closeNav()">Making Ends Meet<span>Affordability Calculator</span></a>
+  <a class="nl" href="campaigns.html" onclick="closeNav()">Campaigns<span>Awareness</span></a>
+  <a class="nl" href="recommendations.html" onclick="closeNav()">Executive Directives<span>Three Proposals</span></a>
+  <a class="nl" href="talking-points.html" onclick="closeNav()">Talking Points<span>Narratives</span></a>
+  <a class="nl" href="sources.html" onclick="closeNav()">Sources<span>Research</span></a>
+  <a class="nl" href="about.html" onclick="closeNav()">About<span>Project</span></a>
+  <a class="nl" href="contact.html" onclick="closeNav()">Contact<span>Michael Green II</span></a>
+
+  <div class="nf">Mayor Karen Bass<br>Office of Policy &amp; Communications<br>2026</div>
+</nav>
+
+<main>
+  <div class="eye">Affordability for All</div>
+  <h1>Making <em>Ends Meet</em></h1>
+  <p class="desc">See how much an Angeleno could save each year by using the city's affordability programs. Set your profile below.</p>
+
+  <div class="period-toggle">
+    <button class="pt-btn on" data-period="annual" onclick="setPeriod('annual')">Annual</button>
+    <button class="pt-btn" data-period="monthly" onclick="setPeriod('monthly')">Monthly</button>
+  </div>
+
+  <div class="selectors" id="selectors">
+    <div class="selector">
+      <label>Income</label>
+      <div class="pills" data-key="income">
+        <button class="pill" data-value="under30k">Under $30k</button>
+        <button class="pill on" data-value="50_80k">$50k-$80k</button>
+        <button class="pill" data-value="30_50k">$30k-$50k</button>
+        <button class="pill" data-value="80_120k">$80k-$120k</button>
+        <button class="pill" data-value="over120k">Over $120k</button>
+      </div>
+    </div>
+    <div class="selector">
+      <label>Housing</label>
+      <div class="pills" data-key="housing">
+        <button class="pill on" data-value="renter_apt">Renter (apt)</button>
+        <button class="pill" data-value="renter_house">Renter (house)</button>
+        <button class="pill" data-value="homeowner">Homeowner</button>
+        <button class="pill" data-value="unhoused">Unhoused</button>
+      </div>
+    </div>
+    <div class="selector">
+      <label>Transportation</label>
+      <div class="pills" data-key="transportation">
+        <button class="pill on" data-value="drives">Drives</button>
+        <button class="pill" data-value="transit">Transit</button>
+        <button class="pill" data-value="both">Both</button>
+        <button class="pill" data-value="no_commute">No commute</button>
+      </div>
+    </div>
+    <div class="selector">
+      <label>Family</label>
+      <div class="pills" data-key="family">
+        <button class="pill on" data-value="single">Single</button>
+        <button class="pill" data-value="couple">Couple</button>
+        <button class="pill" data-value="family_2">Family (2 kids)</button>
+        <button class="pill" data-value="family_3">Family (3+ kids)</button>
+        <button class="pill" data-value="single_parent">Single parent</button>
+      </div>
+    </div>
+    <div class="selector">
+      <label>Age</label>
+      <div class="pills" data-key="age">
+        <button class="pill" data-value="18_24">18-24</button>
+        <button class="pill on" data-value="25_54">25-54</button>
+        <button class="pill" data-value="55_64">55-64</button>
+        <button class="pill" data-value="65plus">65+</button>
+      </div>
+    </div>
+    <div class="selector">
+      <label>Status</label>
+      <div class="pills multi" data-key="status">
+        <button class="pill" data-value="veteran">Veteran</button>
+        <button class="pill" data-value="disability">Disability</button>
+        <button class="pill on" data-value="neither">Neither</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns" id="columns">
+    <div class="col col-left">
+      <div class="col-head">
+        <div class="col-title">Without Programs</div>
+        <div class="col-sub">Your annual budget</div>
+      </div>
+      <div class="stack" id="stackLeft"></div>
+      <div class="leftover" id="leftoverLeft"></div>
+      <div class="leftover-note" id="leftoverNoteLeft"></div>
+    </div>
+    <div class="col col-right">
+      <div class="col-head">
+        <div class="col-title">With Programs</div>
+        <div class="col-sub" id="rightSub">Loading programs...</div>
+      </div>
+      <div class="stack" id="stackRight"></div>
+      <div class="programs" id="programsRight"></div>
+      <div class="leftover" id="leftoverRight"></div>
+      <div class="savings-counter" id="savingsCounter"></div>
+    </div>
+  </div>
+
+  <div class="summary" id="summary"></div>
+
+  <div class="disclaimer">Figures are estimates built from published sources (MIT Living Wage Calculator, LADWP, Metro, HUD, LA Housing Department). Assumptions are editable in <code>making-ends-meet-assumptions.csv</code>. Programs are sourced from <code>making-ends-meet-programs.csv</code>. This calculator is a planning tool, not a benefits determination. Actual eligibility is set by each program.</div>
+</main>
+<footer style="text-align:center;padding:1.375rem;font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.06em;border-top:1px solid rgba(11,28,51,0.07)"></footer>
+
+
+<script>
+// ══════════════════════════════════════════════
+// Making Ends Meet — Affordability Calculator
+// Fetches two CSVs, runs profile-based eligibility,
+// renders baseline + programs-applied stacks.
+// ══════════════════════════════════════════════
+
+var PROFILE={income:'50_80k',housing:'renter_apt',transportation:'drives',family:'single',age:'25_54',status:['neither']};
+var PERIOD='annual';
+var PROGRAMS=[];
+var ASSUMPTIONS={};
+var BRACKETS=['under30k','30_50k','50_80k','80_120k','over120k'];
+
+// ---- CSV Parser (trims every field) ----
+function parseCSV(text){
+  var lines=[];var row=[];var field='';var inQuote=false;
+  for(var i=0;i<text.length;i++){
+    var ch=text[i];
+    if(inQuote){
+      if(ch==='"'&&text[i+1]==='"'){field+='"';i++;}
+      else if(ch==='"'){inQuote=false;}
+      else{field+=ch;}
+    } else {
+      if(ch==='"'){inQuote=true;}
+      else if(ch===','){row.push(field.trim());field='';}
+      else if(ch==='\n'||ch==='\r'){
+        if(ch==='\r'&&text[i+1]==='\n')i++;
+        row.push(field.trim());field='';
+        if(row.length>1||row[0]!=='')lines.push(row);
+        row=[];
+      } else {field+=ch;}
+    }
+  }
+  if(field||row.length){row.push(field.trim());lines.push(row);}
+  return lines;
+}
+
+function csvToObjects(text){
+  var rows=parseCSV(text);
+  if(!rows.length)return [];
+  var headers=rows[0];
+  var out=[];
+  for(var i=1;i<rows.length;i++){
+    var o={};
+    for(var j=0;j<headers.length;j++){o[headers[j]]=rows[i][j]||'';}
+    out.push(o);
+  }
+  return out;
+}
+
+function parseAssumptions(text){
+  var objs=csvToObjects(text);
+  var map={};
+  for(var i=0;i<objs.length;i++){
+    var row=objs[i];
+    map[row.key]={value:parseFloat(row.value),period:row.period,source:row.source,last_updated:row.last_updated};
+  }
+  return map;
+}
+
+function A(key){return (ASSUMPTIONS[key]&&ASSUMPTIONS[key].value)||0;}
+
+// ---- Format ----
+function fmt(n){
+  var v=Math.round(n);
+  return v.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
+}
+
+// ---- Loading skeleton ----
+function showSkeleton(){
+  var sk='<div class="skeleton">'+Array(7).fill('<div class="sk-band"></div>').join('')+'</div>';
+  document.getElementById('stackLeft').innerHTML=sk;
+  document.getElementById('stackRight').innerHTML=sk;
+}
+
+// ---- Fetch both CSVs ----
+function loadData(){
+  showSkeleton();
+  Promise.all([
+    fetch('making-ends-meet-programs.csv?v='+Date.now()).then(function(r){if(!r.ok)throw new Error('programs');return r.text();}),
+    fetch('making-ends-meet-assumptions.csv?v='+Date.now()).then(function(r){if(!r.ok)throw new Error('assumptions');return r.text();})
+  ]).then(function(results){
+    PROGRAMS=csvToObjects(results[0]);
+    ASSUMPTIONS=parseAssumptions(results[1]);
+    render();
+  }).catch(function(err){
+    console.error('Load failed:',err);
+    document.getElementById('columns').innerHTML='<div class="err">Could not load affordability data. Check that <code>making-ends-meet-programs.csv</code> and <code>making-ends-meet-assumptions.csv</code> are published to <code>public/</code>.<br><button onclick="loadData()">Retry</button></div>';
+  });
+}
+
+// ---- Selectors ----
+function bindSelectors(){
+  var selectorsEl=document.getElementById('selectors');
+  var pills=selectorsEl.querySelectorAll('.pill');
+  pills.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var group=btn.parentElement;
+      var key=group.getAttribute('data-key');
+      var val=btn.getAttribute('data-value');
+      if(group.classList.contains('multi')){
+        if(val==='neither'){
+          group.querySelectorAll('.pill').forEach(function(b){b.classList.remove('on');});
+          btn.classList.add('on');
+          PROFILE.status=['neither'];
+        } else {
+          var neitherBtn=group.querySelector('[data-value="neither"]');
+          if(neitherBtn)neitherBtn.classList.remove('on');
+          btn.classList.toggle('on');
+          var selected=[];
+          group.querySelectorAll('.pill.on').forEach(function(b){selected.push(b.getAttribute('data-value'));});
+          if(!selected.length){
+            neitherBtn.classList.add('on');
+            selected=['neither'];
+          }
+          PROFILE.status=selected;
+        }
+      } else {
+        group.querySelectorAll('.pill').forEach(function(b){b.classList.remove('on');});
+        btn.classList.add('on');
+        PROFILE[key]=val;
+      }
+      render();
+    });
+  });
+}
+
+// ---- Period toggle ----
+function setPeriod(p){
+  PERIOD=p;
+  document.querySelectorAll('.pt-btn').forEach(function(b){
+    b.classList.toggle('on',b.getAttribute('data-period')===p);
+  });
+  render();
+}
+
+function displayAmount(annualValue,isOneTime){
+  if(isOneTime)return fmt(annualValue);
+  if(PERIOD==='monthly')return fmt(annualValue/12);
+  return fmt(annualValue);
+}
+
+// ---- Cost calculations ----
+function getIncome(){return A('income_'+PROFILE.income+'_midpoint');}
+
+function getTaxes(){return getIncome()*A('tax_rate_'+PROFILE.income);}
+
+function getRent(){
+  if(PROFILE.housing==='unhoused')return 0;
+  var monthly;
+  if(PROFILE.housing==='renter_apt'){
+    monthly=(PROFILE.family==='single'||PROFILE.family==='couple')?A('la_median_rent_1br'):A('la_median_rent_2br');
+  } else {
+    monthly=A('la_median_rent_2br');
+  }
+  return monthly*12;
+}
+
+function getUtilities(){return A('utility_'+PROFILE.housing);}
+
+function personCount(){
+  var m={single:1,couple:2,family_2:4,family_3:5,single_parent:2};
+  return m[PROFILE.family]||1;
+}
+function getGroceries(){return A('food_cost_per_person')*personCount();}
+
+function getTransportation(){
+  if(PROFILE.transportation==='drives')return A('annual_driving_cost');
+  if(PROFILE.transportation==='transit')return A('annual_transit_cost');
+  if(PROFILE.transportation==='both')return A('annual_transit_blended');
+  return 0;
+}
+
+function getHealthcare(){
+  var level=(PROFILE.income==='under30k'||PROFILE.income==='30_50k')?'low':'mid';
+  return A('healthcare_'+PROFILE.age+'_'+level);
+}
+
+function getCostBreakdown(){
+  return [
+    {label:'Taxes',amount:getTaxes()},
+    {label:'Housing',amount:getRent()},
+    {label:'Utilities',amount:getUtilities()},
+    {label:'Groceries',amount:getGroceries()},
+    {label:'Transportation',amount:getTransportation()},
+    {label:'Healthcare',amount:getHealthcare()}
+  ];
+}
+
+// ---- Eligibility ----
+function bracketIndex(b){return BRACKETS.indexOf(b);}
+
+function matchField(required,userValue){
+  if(!required)return true;
+  var opts=required.split('|').map(function(s){return s.trim();});
+  if(Array.isArray(userValue)){
+    for(var i=0;i<opts.length;i++){if(userValue.indexOf(opts[i])>=0)return true;}
+    return false;
+  }
+  return opts.indexOf(userValue)>=0;
+}
+
+function matchFamilyWithChildren(required){
+  if(!required)return true;
+  if(required==='family_with_children'){
+    return ['family_2','family_3','single_parent'].indexOf(PROFILE.family)>=0;
+  }
+  return PROFILE.family===required;
+}
+
+function isEligible(p){
+  // Income: user bracket must be <= program cap
+  if(p.income_max_bracket){
+    if(bracketIndex(PROFILE.income)>bracketIndex(p.income_max_bracket))return false;
+  }
+  if(!matchField(p.housing_required,PROFILE.housing))return false;
+  if(!matchField(p.transportation_required,PROFILE.transportation))return false;
+  if(!matchField(p.age_required,PROFILE.age))return false;
+  if(p.status_required){
+    // Status: neither means none match
+    if(PROFILE.status.indexOf('neither')>=0)return false;
+    if(!matchField(p.status_required,PROFILE.status))return false;
+  }
+  if(!matchFamilyWithChildren(p.family_size_required))return false;
+  return true;
+}
+
+// ---- Benefit calculation ----
+function calcBenefit(p){
+  var amt=parseFloat(p.benefit_amount)||0;
+  var type=p.benefit_type;
+  if(type==='flat')return amt;
+  if(type==='percentage_income')return amt*getIncome();
+  if(type==='percentage_rent')return amt*getRent();
+  if(type==='percentage_utility')return amt*getUtilities();
+  if(type==='cost_offset')return amt;
+  if(type==='rent_gap'){
+    var gap=getRent()-(getIncome()*0.30);
+    return Math.max(0,gap);
+  }
+  return 0;
+}
+
+// ---- Rendering ----
+function renderStack(el,income,breakdown){
+  var html='<div class="band band-gross"><span class="band-label">Gross Income</span><span class="band-amount">'+displayAmount(income,false)+'</span></div>';
+  breakdown.forEach(function(c){
+    html+='<div class="band band-cost"><span class="band-label">'+c.label+'</span><span class="band-amount">-'+displayAmount(c.amount,false)+'</span></div>';
+  });
+  el.innerHTML=html;
+}
+
+function renderLeftover(el,noteEl,value){
+  var cls=value<0?'neg':(value>0?'pos':'');
+  el.innerHTML='<span class="leftover-label">Left Over</span><span class="leftover-amount '+cls+'">'+displayAmount(value,false)+'</span>';
+  if(noteEl){
+    if(value<0){
+      noteEl.textContent='Most Angelenos at this income level spend more than they earn before any programs apply.';
+    } else {
+      noteEl.textContent='';
+    }
+  }
+}
+
+function fightClass(fight){
+  var m={'Earn More':'fight-earn','Build More':'fight-build','Save More':'fight-save','Care More':'fight-care','Protect More':'fight-protect','Protect More Rights':'fight-protect'};
+  return m[fight]||'fight-save';
+}
+
+function renderPrograms(eligible){
+  var el=document.getElementById('programsRight');
+  if(!eligible.length){
+    el.innerHTML='<div class="programs-empty">No programs in our database currently match this profile. Try adjusting your income, housing, or status.</div>';
+    document.getElementById('rightSub').textContent='0 programs apply';
+    return;
+  }
+  var html='';
+  eligible.forEach(function(item,i){
+    var p=item.program,value=item.value;
+    var isOneTime=p.benefit_period==='one-time';
+    var amountHtml=displayAmount(value,isOneTime)+(isOneTime&&PERIOD==='monthly'?'<span class="ot">one-time</span>':'');
+    var formula=(p.benefit_formula||'').replace(/"/g,'&quot;');
+    html+='<div class="program-band '+fightClass(p.fight)+'" data-formula="'+formula+'" style="animation-delay:'+(i*60)+'ms">'
+      +'<div><div class="program-label">'+p.name+'</div><div class="program-fight">'+p.fight+'</div></div>'
+      +'<div class="program-amount">+'+amountHtml+'</div></div>';
+  });
+  el.innerHTML=html;
+  document.getElementById('rightSub').textContent=eligible.length+' program'+(eligible.length===1?'':'s')+' apply';
+}
+
+function profileSentence(){
+  var inc={'under30k':'under $30k','30_50k':'$30k-$50k','50_80k':'$50k-$80k','80_120k':'$80k-$120k','over120k':'over $120k'}[PROFILE.income];
+  var house={renter_apt:'renter',renter_house:'renter (house)',homeowner:'homeowner',unhoused:'unhoused Angeleno'}[PROFILE.housing];
+  var fam={single:'single',couple:'couple',family_2:'family with 2 kids',family_3:'family with 3+ kids',single_parent:'single parent'}[PROFILE.family];
+  var age={'18_24':'age 18-24','25_54':'age 25-54','55_64':'age 55-64','65plus':'age 65+'}[PROFILE.age];
+  var trans={drives:'drives',transit:'takes transit',both:'both drives and transit',no_commute:'does not commute'}[PROFILE.transportation];
+  var status='';
+  if(PROFILE.status.indexOf('neither')<0){
+    var parts=[];
+    if(PROFILE.status.indexOf('veteran')>=0)parts.push('veteran');
+    if(PROFILE.status.indexOf('disability')>=0)parts.push('with a disability');
+    if(parts.length)status=', '+parts.join(' ');
+  }
+  return 'A '+fam+' '+house+' earning '+inc+' who '+trans+', '+age+status+'.';
+}
+
+function renderSummary(eligible,baselineLeft,programsLeft){
+  var totalSavings=0;
+  eligible.forEach(function(e){totalSavings+=e.value;});
+  var html='<div class="sum-profile">'+profileSentence()+'</div>'
+    +'<div class="sum-stat"><span class="sum-label">Programs Apply</span><span class="sum-value">'+eligible.length+'</span></div>'
+    +'<div class="sum-stat"><span class="sum-label">Annual Savings</span><span class="sum-value pos">'+fmt(totalSavings)+'</span></div>'
+    +'<div class="sum-stat"><span class="sum-label">With Programs</span><span class="sum-value">'+fmt(programsLeft)+'</span></div>';
+  document.getElementById('summary').innerHTML=html;
+}
+
+function render(){
+  if(!PROGRAMS.length||!Object.keys(ASSUMPTIONS).length)return;
+  var income=getIncome();
+  var breakdown=getCostBreakdown();
+  var totalCosts=breakdown.reduce(function(s,c){return s+c.amount;},0);
+  var baselineLeft=income-totalCosts;
+
+  renderStack(document.getElementById('stackLeft'),income,breakdown);
+  renderStack(document.getElementById('stackRight'),income,breakdown);
+  renderLeftover(document.getElementById('leftoverLeft'),document.getElementById('leftoverNoteLeft'),baselineLeft);
+
+  // Eligibility
+  var eligible=[];
+  PROGRAMS.forEach(function(p){
+    if(isEligible(p)){
+      var v=calcBenefit(p);
+      if(v>0)eligible.push({program:p,value:v});
+    }
+  });
+  // Sort by value desc for visual impact
+  eligible.sort(function(a,b){return b.value-a.value;});
+
+  renderPrograms(eligible);
+
+  var totalSavings=eligible.reduce(function(s,e){return s+e.value;},0);
+  var programsLeft=baselineLeft+totalSavings;
+  renderLeftover(document.getElementById('leftoverRight'),null,programsLeft);
+
+  // Savings counter
+  var sc=document.getElementById('savingsCounter');
+  sc.innerHTML='<span class="sc-label">Total Annual Savings</span><span class="sc-amount">'+fmt(totalSavings)+'</span>';
+
+  renderSummary(eligible,baselineLeft,programsLeft);
+}
+
+// Init
+bindSelectors();
+loadData();
+
+function toggleNav(){var o=document.getElementById('nDr').classList.toggle('open');document.getElementById('ham').classList.toggle('open',o);document.getElementById('nOv').classList.toggle('open',o);}
+function closeNav(){document.getElementById('nDr').classList.remove('open');document.getElementById('ham').classList.remove('open');document.getElementById('nOv').classList.remove('open');}
+
+</script>
+</body>
+</html>
