@@ -66,22 +66,33 @@ function fmt(n){
 }
 
 function showSkeleton(){
-  document.getElementById('stack').innerHTML='<div class="skeleton">'+Array(6).fill('<div class="sk-band"></div>').join('')+'</div>';
+  var sk='<div class="skeleton">'+Array(6).fill('<div class="sk-band"></div>').join('')+'</div>';
+  var l=document.getElementById('stackWithout');
+  var r=document.getElementById('stackWith');
+  if(l)l.innerHTML=sk;
+  if(r)r.innerHTML=sk;
+}
+
+function showLoadError(msg){
+  var el=document.getElementById('compareColumns');
+  if(el){
+    el.innerHTML='<div class="err" style="grid-column:1/-1">Could not load affordability data: '+msg+'<br><button onclick="loadData()">Retry</button></div>';
+  }
 }
 
 // ---- Fetch both CSVs ----
 function loadData(){
-  showSkeleton();
+  try{showSkeleton();}catch(e){console.error('skeleton:',e);}
   Promise.all([
-    fetch('making-ends-meet-programs.csv?v='+Date.now()).then(function(r){if(!r.ok)throw new Error('programs');return r.text();}),
-    fetch('making-ends-meet-assumptions.csv?v='+Date.now()).then(function(r){if(!r.ok)throw new Error('assumptions');return r.text();})
+    fetch('making-ends-meet-programs.csv?v='+Date.now()).then(function(r){if(!r.ok)throw new Error('programs HTTP '+r.status);return r.text();}),
+    fetch('making-ends-meet-assumptions.csv?v='+Date.now()).then(function(r){if(!r.ok)throw new Error('assumptions HTTP '+r.status);return r.text();})
   ]).then(function(results){
     PROGRAMS=csvToObjects(results[0]);
     ASSUMPTIONS=parseAssumptions(results[1]);
-    render();
+    try{render();}catch(e){console.error('render:',e);showLoadError('render error: '+e.message);}
   }).catch(function(err){
     console.error('Load failed:',err);
-    document.getElementById('stack').innerHTML='<div class="err">Could not load affordability data. Check that <code>making-ends-meet-programs.csv</code> and <code>making-ends-meet-assumptions.csv</code> are published to <code>public/</code>.<br><button onclick="loadData()">Retry</button></div>';
+    showLoadError(err.message||'unknown error');
   });
 }
 

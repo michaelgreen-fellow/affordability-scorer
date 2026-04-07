@@ -30,3 +30,8 @@
   for = "/making-ends-meet-assumptions.csv"
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/making-ends-meet.html"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
