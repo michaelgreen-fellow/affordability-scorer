@@ -288,6 +288,30 @@ function renderProfileLine(){
   document.getElementById('profileLine').textContent='Profile: '+profileSentence();
 }
 
+function renderConfigBlock(){
+  var inc={'under30k':'Under $30k','30_50k':'$30k-$50k','50_80k':'$50k-$80k','80_120k':'$80k-$120k','over120k':'Over $120k'}[PROFILE.income];
+  var house={'renter_apt':'Renter (apt)','renter_house':'Renter (house)','homeowner':'Homeowner','unhoused':'Unhoused'}[PROFILE.housing];
+  var trans={'drives':'Drives','transit':'Transit','both':'Both','no_commute':'No commute'}[PROFILE.transportation];
+  var fam={'single':'Single','couple':'Couple','family_2':'Family (2 kids)','family_3':'Family (3+ kids)','single_parent':'Single parent'}[PROFILE.family];
+  var age={'18_24':'18-24','25_54':'25-54','55_64':'55-64','65plus':'65+'}[PROFILE.age];
+  var status='Neither';
+  if(PROFILE.status.indexOf('neither')<0){
+    var labels=[];
+    if(PROFILE.status.indexOf('veteran')>=0)labels.push('Veteran');
+    if(PROFILE.status.indexOf('disability')>=0)labels.push('Disability');
+    status=labels.join(' + ');
+  }
+  var html='<div class="config-grid">'
+    +'<div class="config-item"><span class="config-key">Income</span><span class="config-val">'+inc+'</span></div>'
+    +'<div class="config-item"><span class="config-key">Housing</span><span class="config-val">'+house+'</span></div>'
+    +'<div class="config-item"><span class="config-key">Transportation</span><span class="config-val">'+trans+'</span></div>'
+    +'<div class="config-item"><span class="config-key">Family</span><span class="config-val">'+fam+'</span></div>'
+    +'<div class="config-item"><span class="config-key">Age</span><span class="config-val">'+age+'</span></div>'
+    +'<div class="config-item"><span class="config-key">Status</span><span class="config-val">'+status+'</span></div>'
+    +'</div>';
+  document.getElementById('configBlock').innerHTML=html;
+}
+
 function renderCostContext(){
   var el=document.getElementById('costContext');
   if(hasChildren()){
@@ -326,6 +350,7 @@ function render(){
 
   // Profile sentence (top of export target)
   renderProfileLine();
+  renderConfigBlock();
 
   // Cost context (childcare for families)
   renderCostContext();
@@ -357,8 +382,18 @@ function exportPNG(){
   btn.innerHTML='Preparing...';
   loadHtml2Canvas().then(function(h2c){
     var target=document.getElementById('exportTarget');
-    return h2c(target,{backgroundColor:'#EAF4FC',scale:2,useCORS:true,logging:false});
+    // Force all bands visible and reveal config block for the capture
+    document.body.classList.add('exporting');
+    // Wait two animation frames so the browser applies styles before capture
+    return new Promise(function(resolve){
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          h2c(target,{backgroundColor:'#EAF4FC',scale:2,useCORS:true,logging:false}).then(resolve);
+        });
+      });
+    });
   }).then(function(canvas){
+    document.body.classList.remove('exporting');
     canvas.toBlob(function(blob){
       var url=URL.createObjectURL(blob);
       var a=document.createElement('a');
@@ -373,6 +408,7 @@ function exportPNG(){
       btn.innerHTML=originalText;
     });
   }).catch(function(err){
+    document.body.classList.remove('exporting');
     console.error('Export failed:',err);
     btn.disabled=false;
     btn.innerHTML=originalText;

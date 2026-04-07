@@ -9,6 +9,15 @@ h1 em{font-style:italic;color:var(--gold)}
 /* Profile sentence (above hero, also captured in PNG export) */
 .profile-line{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);text-align:center;margin-bottom:.5rem;padding:.5rem;border-top:1px solid rgba(11,28,51,.06);border-bottom:1px solid rgba(11,28,51,.06)}
 
+/* Configuration block (in export only by default; visible class shows it always) */
+.config-block{display:none;background:rgba(255,255,255,.7);border:1px solid rgba(11,28,51,.08);border-radius:8px;padding:.875rem 1.125rem;margin-bottom:1.25rem}
+.exporting .config-block{display:block}
+.config-block.show{display:block}
+.config-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.625rem 1rem}
+.config-item{font-size:11px;line-height:1.4}
+.config-key{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
+.config-val{color:var(--navy);font-family:var(--sans);font-weight:500}
+
 /* Cost context (annual childcare for families) */
 .cost-context{text-align:center;font-size:11px;color:var(--text2);margin-bottom:1.25rem;padding:.625rem .875rem;background:rgba(11,28,51,.04);border-radius:6px;display:none}
 .cost-context.show{display:block}
@@ -31,6 +40,8 @@ h1 em{font-style:italic;color:var(--gold)}
 .stack-up{display:flex;flex-direction:column;gap:3px;min-height:80px}
 
 .program-band{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border-radius:5px;border-left:3px solid;position:relative;opacity:0;transform:translateY(10px);animation:stackUp .45s cubic-bezier(.22,.9,.28,1.1) forwards;cursor:help}
+/* Force all bands visible during PNG export (overrides animation delay) */
+.exporting .program-band{opacity:1!important;transform:none!important;animation:none!important}
 .program-left{flex:1;min-width:0}
 .program-label{font-family:var(--sans);font-size:12px;font-weight:600;color:var(--navy);line-height:1.25}
 .program-meta{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;margin-top:3px;display:flex;gap:8px;align-items:center}

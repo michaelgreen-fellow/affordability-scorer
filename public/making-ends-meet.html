@@ -62,6 +62,15 @@ h1 em{font-style:italic;color:var(--gold)}
 /* Profile sentence (above hero, also captured in PNG export) */
 .profile-line{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);text-align:center;margin-bottom:.5rem;padding:.5rem;border-top:1px solid rgba(11,28,51,.06);border-bottom:1px solid rgba(11,28,51,.06)}
 
+/* Configuration block (in export only by default; visible class shows it always) */
+.config-block{display:none;background:rgba(255,255,255,.7);border:1px solid rgba(11,28,51,.08);border-radius:8px;padding:.875rem 1.125rem;margin-bottom:1.25rem}
+.exporting .config-block{display:block}
+.config-block.show{display:block}
+.config-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.625rem 1rem}
+.config-item{font-size:11px;line-height:1.4}
+.config-key{display:block;font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
+.config-val{color:var(--navy);font-family:var(--sans);font-weight:500}
+
 /* Cost context (annual childcare for families) */
 .cost-context{text-align:center;font-size:11px;color:var(--text2);margin-bottom:1.25rem;padding:.625rem .875rem;background:rgba(11,28,51,.04);border-radius:6px;display:none}
 .cost-context.show{display:block}
@@ -84,6 +93,8 @@ h1 em{font-style:italic;color:var(--gold)}
 .stack-up{display:flex;flex-direction:column;gap:3px;min-height:80px}
 
 .program-band{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border-radius:5px;border-left:3px solid;position:relative;opacity:0;transform:translateY(10px);animation:stackUp .45s cubic-bezier(.22,.9,.28,1.1) forwards;cursor:help}
+/* Force all bands visible during PNG export (overrides animation delay) */
+.exporting .program-band{opacity:1!important;transform:none!important;animation:none!important}
 .program-left{flex:1;min-width:0}
 .program-label{font-family:var(--sans);font-size:12px;font-weight:600;color:var(--navy);line-height:1.25}
 .program-meta{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;margin-top:3px;display:flex;gap:8px;align-items:center}
@@ -218,6 +229,8 @@ document.getElementById('pwIn').focus();})();
     </div>
 
     <div class="profile-line" id="profileLine"></div>
+
+    <div class="config-block" id="configBlock"></div>
 
     <div class="hero" id="hero">
       <div class="hero-label">You could be leaving on the table</div>
@@ -612,6 +625,30 @@ function renderProfileLine(){
   document.getElementById('profileLine').textContent='Profile: '+profileSentence();
 }
 
+function renderConfigBlock(){
+  var inc={'under30k':'Under $30k','30_50k':'$30k-$50k','50_80k':'$50k-$80k','80_120k':'$80k-$120k','over120k':'Over $120k'}[PROFILE.income];
+  var house={'renter_apt':'Renter (apt)','renter_house':'Renter (house)','homeowner':'Homeowner','unhoused':'Unhoused'}[PROFILE.housing];
+  var trans={'drives':'Drives','transit':'Transit','both':'Both','no_commute':'No commute'}[PROFILE.transportation];
+  var fam={'single':'Single','couple':'Couple','family_2':'Family (2 kids)','family_3':'Family (3+ kids)','single_parent':'Single parent'}[PROFILE.family];
+  var age={'18_24':'18-24','25_54':'25-54','55_64':'55-64','65plus':'65+'}[PROFILE.age];
+  var status='Neither';
+  if(PROFILE.status.indexOf('neither')<0){
+    var labels=[];
+    if(PROFILE.status.indexOf('veteran')>=0)labels.push('Veteran');
+    if(PROFILE.status.indexOf('disability')>=0)labels.push('Disability');
+    status=labels.join(' + ');
+  }
+  var html='<div class="config-grid">'
+    +'<div class="config-item"><span class="config-key">Income</span><span class="config-val">'+inc+'</span></div>'
+    +'<div class="config-item"><span class="config-key">Housing</span><span class="config-val">'+house+'</span></div>'
+    +'<div class="config-item"><span class="config-key">Transportation</span><span class="config-val">'+trans+'</span></div>'
+    +'<div class="config-item"><span class="config-key">Family</span><span class="config-val">'+fam+'</span></div>'
+    +'<div class="config-item"><span class="config-key">Age</span><span class="config-val">'+age+'</span></div>'
+    +'<div class="config-item"><span class="config-key">Status</span><span class="config-val">'+status+'</span></div>'
+    +'</div>';
+  document.getElementById('configBlock').innerHTML=html;
+}
+
 function renderCostContext(){
   var el=document.getElementById('costContext');
   if(hasChildren()){
@@ -650,6 +687,7 @@ function render(){
 
   // Profile sentence (top of export target)
   renderProfileLine();
+  renderConfigBlock();
 
   // Cost context (childcare for families)
   renderCostContext();
@@ -681,8 +719,18 @@ function exportPNG(){
   btn.innerHTML='Preparing...';
   loadHtml2Canvas().then(function(h2c){
     var target=document.getElementById('exportTarget');
-    return h2c(target,{backgroundColor:'#EAF4FC',scale:2,useCORS:true,logging:false});
+    // Force all bands visible and reveal config block for the capture
+    document.body.classList.add('exporting');
+    // Wait two animation frames so the browser applies styles before capture
+    return new Promise(function(resolve){
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          h2c(target,{backgroundColor:'#EAF4FC',scale:2,useCORS:true,logging:false}).then(resolve);
+        });
+      });
+    });
   }).then(function(canvas){
+    document.body.classList.remove('exporting');
     canvas.toBlob(function(blob){
       var url=URL.createObjectURL(blob);
       var a=document.createElement('a');
@@ -697,6 +745,7 @@ function exportPNG(){
       btn.innerHTML=originalText;
     });
   }).catch(function(err){
+    document.body.classList.remove('exporting');
     console.error('Export failed:',err);
     btn.disabled=false;
     btn.innerHTML=originalText;
