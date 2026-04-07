@@ -3,12 +3,9 @@
 <main>
   <div id="exportTarget">
     <div class="mem-head">
-      <img class="mem-seal" src="seal.svg" alt="City of Los Angeles seal">
-      <div class="mem-head-text">
-        <div class="eye">City of Los Angeles · Affordability for All</div>
-        <h1>Making Ends Meet <em>Calculator</em></h1>
-        <p class="desc">See how much money you could be leaving on the table each year by not using the city's affordability programs.</p>
-      </div>
+      <div class="eye">City of Los Angeles · Affordability for All</div>
+      <h1>Making Ends Meet <em>Calculator</em></h1>
+      <p class="desc">See how much money you could be leaving on the table each year by not using the city's affordability programs. <strong>This is a potential estimate, not a quote.</strong></p>
     </div>
 
     <div class="profile-line" id="profileLine"></div>
@@ -16,9 +13,13 @@
     <div class="config-block" id="configBlock"></div>
 
     <div class="hero" id="hero">
-      <div class="hero-label">You could be leaving on the table</div>
-      <div class="hero-amount" id="heroAmount">$0</div>
-      <div class="hero-period" id="heroPeriod">per year</div>
+      <img class="hero-seal" src="seal.svg" alt="" aria-hidden="true">
+      <div class="hero-content">
+        <div class="hero-label">Estimated maximum you could be leaving on the table</div>
+        <div class="hero-amount" id="heroAmount">$0</div>
+        <div class="hero-period" id="heroPeriod">per year</div>
+        <div class="hero-disclaimer">Estimated maximum potential value · Not a quote, application, or guaranteed benefit · Assumes full enrollment in every program you may qualify for · Actual amounts depend on application, eligibility verification, and current program availability</div>
+      </div>
     </div>
 
     <div class="cost-context" id="costContext"></div>
@@ -112,6 +113,8 @@
     </div>
   </div>
 
-  <div class="disclaimer">Figures are estimates built from published sources (MIT Living Wage Calculator, LADWP, Metro, HUD, LA Housing Department, KFF). Assumptions are editable in <code>making-ends-meet-assumptions.csv</code>. Programs are sourced from <code>making-ends-meet-programs.csv</code>. This calculator is a planning tool, not a benefits determination. Actual eligibility is set by each program.</div>
+  <div class="disclaimer">
+    <strong>This is a potential estimate, not a quote or guaranteed benefit amount.</strong> The Making Ends Meet Calculator shows the maximum value an Angeleno could receive if enrolled in every LA City program they qualify for at the maximum benefit level. It is not an application, not a benefits determination, and not a promise of payment. Actual eligibility for each program is set by that program and requires separate enrollment, income verification, and current program availability. Some programs have waitlists, limited capacity, or are currently closed to new applicants. Dollar figures are sourced from LA City departments, the project's fact-checked program inventory, and published cost-of-living data (Zumper, PPIC, LADWP, LAHD, HACLA). Assumptions are editable in <code>making-ends-meet-assumptions.csv</code>. Programs are sourced from <code>making-ends-meet-programs.csv</code>.
+  </div>
 </main>
 {{FOOTER}}
