@@ -1,37 +1,15 @@
 key,value,period,source,last_updated
-la_median_rent_1br,2100,monthly,Zumper LA Rent Report 2025,2025-01
-la_median_rent_2br,2800,monthly,Zumper LA Rent Report 2025,2025-01
-mit_living_wage_single,25872,annual,MIT Living Wage Calculator LA County 2024,2024-01
-mit_living_wage_couple,39120,annual,MIT Living Wage Calculator LA County 2024,2024-01
-mit_living_wage_family_2_children,58032,annual,MIT Living Wage Calculator LA County 2024,2024-01
-mit_living_wage_family_3_children,72144,annual,MIT Living Wage Calculator LA County 2024,2024-01
-mit_living_wage_single_parent,46560,annual,MIT Living Wage Calculator LA County 2024,2024-01
-annual_driving_cost,12000,annual,AAA Your Driving Costs 2024,2024-01
-annual_transit_cost,1260,annual,Metro TAP monthly pass $105 x 12,2025-01
-annual_transit_blended,6630,annual,Average of driving and transit costs,2025-01
-utility_renter_apt,1800,annual,LADWP average 2024,2024-01
-utility_renter_house,2400,annual,LADWP average 2024,2024-01
-utility_homeowner,2400,annual,LADWP average 2024,2024-01
-utility_unhoused,0,annual,No utilities when unhoused,2024-01
-healthcare_18_24_low,1800,annual,KFF 2024 out-of-pocket low income young adult,2024-01
-healthcare_18_24_mid,3000,annual,KFF 2024 out-of-pocket mid income young adult,2024-01
-healthcare_25_54_low,3000,annual,KFF 2024 out-of-pocket low income working age,2024-01
-healthcare_25_54_mid,4800,annual,KFF 2024 out-of-pocket mid income working age,2024-01
-healthcare_55_64_low,4800,annual,KFF 2024 out-of-pocket low income pre-medicare,2024-01
-healthcare_55_64_mid,7200,annual,KFF 2024 out-of-pocket mid income pre-medicare,2024-01
-healthcare_65plus_low,6000,annual,KFF 2024 Medicare plus supplemental low income,2024-01
-healthcare_65plus_mid,8400,annual,KFF 2024 Medicare plus supplemental mid income,2024-01
-tax_rate_under30k,0.08,annual,Combined effective federal CA local rate,2024-01
-tax_rate_30_50k,0.14,annual,Combined effective federal CA local rate,2024-01
-tax_rate_50_80k,0.20,annual,Combined effective federal CA local rate,2024-01
-tax_rate_80_120k,0.26,annual,Combined effective federal CA local rate,2024-01
-tax_rate_over120k,0.33,annual,Combined effective federal CA local rate,2024-01
-income_under30k_midpoint,22000,annual,Midpoint estimate,2025-01
-income_30_50k_midpoint,40000,annual,Midpoint estimate,2025-01
-income_50_80k_midpoint,65000,annual,Midpoint estimate,2025-01
-income_80_120k_midpoint,100000,annual,Midpoint estimate,2025-01
-income_over120k_midpoint,150000,annual,Midpoint estimate,2025-01
-food_cost_per_person,4200,annual,MIT Living Wage LA County food per person 2024,2024-01
-childcare_family_2,11000,annual,LA County avg cost blended one young + one school age,2024-01
-childcare_family_3,15000,annual,LA County avg cost blended three children mixed ages,2024-01
-childcare_single_parent,10000,annual,LA County avg cost blended one young + one school age,2024-01
+la_median_rent_1br,2290,monthly,Zumper LA Rent Report March 2026,2026-03
+la_median_rent_2br,3110,monthly,Zumper LA Rent Report March 2026,2026-03
+utility_renter_apt,1800,annual,LADWP residential apartment estimate,2025-01
+utility_renter_house,2400,annual,LADWP residential single-family estimate,2025-01
+utility_homeowner,2400,annual,LADWP residential single-family estimate,2025-01
+utility_unhoused,0,annual,No utilities when unhoused,2025-01
+income_under30k_midpoint,22000,annual,Midpoint estimate,2026-01
+income_30_50k_midpoint,40000,annual,Midpoint estimate,2026-01
+income_50_80k_midpoint,65000,annual,Midpoint estimate,2026-01
+income_80_120k_midpoint,100000,annual,Midpoint estimate,2026-01
+income_over120k_midpoint,150000,annual,Midpoint estimate,2026-01
+childcare_family_2,18000,annual,PPIC and Brightwheel LA County child care 2024,2024-01
+childcare_family_3,24000,annual,PPIC and Brightwheel LA County child care 2024 weighted,2024-01
+childcare_single_parent,18000,annual,PPIC and Brightwheel LA County child care 2024,2024-01

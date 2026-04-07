@@ -1,7 +1,7 @@
 // ══════════════════════════════════════════════
 // Making Ends Meet Calculator
 // Pure delta: how much you could be leaving on
-// the table by not using city programs.
+// the table by not using LA City programs.
 // ══════════════════════════════════════════════
 
 var PROFILE={income:'50_80k',housing:'renter_apt',transportation:'drives',family:'single',age:'25_54',status:['neither']};
@@ -136,7 +136,7 @@ function displayAmount(annualValue,isOneTime){
   return fmt(annualValue);
 }
 
-// ---- Cost calculations (used for benefit math, not displayed as stack) ----
+// ---- Cost helpers (used by benefit math and context display) ----
 function getIncome(){return A('income_'+PROFILE.income+'_midpoint');}
 
 function getRent(){
@@ -188,11 +188,24 @@ function isEligible(p){
   }
   if(!matchField(p.housing_required,PROFILE.housing))return false;
   if(!matchField(p.transportation_required,PROFILE.transportation))return false;
-  if(!matchField(p.age_required,PROFILE.age))return false;
-  if(p.status_required){
-    if(PROFILE.status.indexOf('neither')>=0)return false;
-    if(!matchField(p.status_required,PROFILE.status))return false;
+
+  // OR-logic between age and status: program eligibility passes if EITHER matches.
+  // Used for programs like LADWP Lifeline (65+ OR disability), Cityride, ULA ISP.
+  if(p.or_age_status==='Yes'){
+    var ageOk=p.age_required?matchField(p.age_required,PROFILE.age):false;
+    var statusOk=false;
+    if(p.status_required && PROFILE.status.indexOf('neither')<0){
+      statusOk=matchField(p.status_required,PROFILE.status);
+    }
+    if(!ageOk && !statusOk)return false;
+  } else {
+    if(!matchField(p.age_required,PROFILE.age))return false;
+    if(p.status_required){
+      if(PROFILE.status.indexOf('neither')>=0)return false;
+      if(!matchField(p.status_required,PROFILE.status))return false;
+    }
   }
+
   if(!matchFamilyWithChildren(p.family_size_required))return false;
   return true;
 }
@@ -214,6 +227,19 @@ function calcBenefit(p){
   return 0;
 }
 
+// Summer Lunch and PlayLA scale per child
+function scaledBenefit(p){
+  var base=calcBenefit(p);
+  // Per-child scaling for family programs whose benefit is per-child
+  if(p.id==='summer-lunch'||p.id==='play-la'){
+    if(PROFILE.family==='family_2')return base*2;
+    if(PROFILE.family==='family_3')return base*3;
+    if(PROFILE.family==='single_parent')return base*1;
+    return base;
+  }
+  return base;
+}
+
 // ---- Rendering ----
 function fightClass(fight){
   var m={'Earn More':'fight-earn','Build More':'fight-build','Save More':'fight-save','Care More':'fight-care','Protect More':'fight-protect','Protect More Rights':'fight-protect'};
@@ -223,19 +249,15 @@ function fightClass(fight){
 function renderStack(eligible){
   var el=document.getElementById('stack');
   if(!eligible.length){
-    el.innerHTML='<div class="programs-empty">No programs in our database currently match this profile. Try adjusting your income, housing, family, or status to see what becomes available.</div>';
+    el.innerHTML='<div class="programs-empty">No LA City programs in our database currently match this profile. Try adjusting your income, housing, family, or status to see what becomes available.</div>';
     return;
   }
-  // Sort biggest first so largest benefits sit at the top of the stack
   eligible.sort(function(a,b){return b.value-a.value;});
-  // Reverse so animation plays bottom-up (smaller ones appear first, bigger ones stack on top)
   var html='';
   var ordered=eligible.slice().reverse();
   ordered.forEach(function(item,i){
     var p=item.program,value=item.value;
-    var isOneTime=p.benefit_period==='one-time';
-    var amountHtml='<span class="plus">+</span>'+displayAmount(value,isOneTime);
-    if(isOneTime)amountHtml+='<span class="ot">one-time</span>';
+    var amountHtml='<span class="plus">+</span>'+displayAmount(value,false);
     var formula=(p.benefit_formula||'').replace(/"/g,'&quot;');
     var dept=(p.department||'').replace(/"/g,'&quot;');
     html+='<div class="program-band '+fightClass(p.fight)+'" data-formula="'+formula+'" style="animation-delay:'+(i*55)+'ms">'
@@ -243,14 +265,44 @@ function renderStack(eligible){
       +'<div class="program-meta"><span class="program-fight">'+p.fight+'</span><span class="program-dept">'+dept+'</span></div></div>'
       +'<div class="program-amount">'+amountHtml+'</div></div>';
   });
-  // Render in reverse visual order so biggest ends on top
   el.innerHTML='<div style="display:flex;flex-direction:column-reverse;gap:3px">'+html+'</div>';
 }
 
-function baseNoteText(eligible){
-  if(!eligible.length)return 'Adjust your profile to see eligible programs stack up.';
-  var childcareNote=hasChildren()?' Childcare is factored into the cost baseline for families with children.':'';
-  return 'Based on your profile, these are the annual programs you could be accessing.'+childcareNote;
+function profileSentence(){
+  var inc={'under30k':'under $30k','30_50k':'$30k-$50k','50_80k':'$50k-$80k','80_120k':'$80k-$120k','over120k':'over $120k'}[PROFILE.income];
+  var house={'renter_apt':'renter','renter_house':'renter (house)','homeowner':'homeowner','unhoused':'unhoused Angeleno'}[PROFILE.housing];
+  var fam={'single':'single','couple':'couple','family_2':'family with 2 kids','family_3':'family with 3+ kids','single_parent':'single parent'}[PROFILE.family];
+  var age={'18_24':'age 18-24','25_54':'age 25-54','55_64':'age 55-64','65plus':'age 65+'}[PROFILE.age];
+  var trans={'drives':'drives','transit':'takes transit','both':'both drives and transit','no_commute':'does not commute'}[PROFILE.transportation];
+  var status='';
+  if(PROFILE.status.indexOf('neither')<0){
+    var parts=[];
+    if(PROFILE.status.indexOf('veteran')>=0)parts.push('veteran');
+    if(PROFILE.status.indexOf('disability')>=0)parts.push('with a disability');
+    if(parts.length)status=', '+parts.join(' ');
+  }
+  return fam+' '+house+' earning '+inc+' who '+trans+', '+age+status;
+}
+
+function renderProfileLine(){
+  document.getElementById('profileLine').textContent='Profile: '+profileSentence();
+}
+
+function renderCostContext(){
+  var el=document.getElementById('costContext');
+  if(hasChildren()){
+    var cc=getChildcare();
+    el.innerHTML='With kids in this profile, estimated annual childcare cost is <strong>'+fmt(cc)+'</strong>. The programs below help offset that and other expenses.';
+    el.classList.add('show');
+  } else {
+    el.classList.remove('show');
+    el.innerHTML='';
+  }
+}
+
+function bottomNote(eligible){
+  if(!eligible.length)return 'Adjust your profile to see eligible LA City programs stack up.';
+  return 'Each band is a real LA City program you may qualify for based on your profile. Hover any program for benefit calculation details.';
 }
 
 function render(){
@@ -259,7 +311,7 @@ function render(){
   var eligible=[];
   PROGRAMS.forEach(function(p){
     if(isEligible(p)){
-      var v=calcBenefit(p);
+      var v=scaledBenefit(p);
       if(v>0)eligible.push({program:p,value:v});
     }
   });
@@ -272,12 +324,18 @@ function render(){
   heroEl.classList.toggle('zero',totalSavings===0);
   document.getElementById('heroPeriod').textContent=PERIOD==='monthly'?'per month':'per year';
 
+  // Profile sentence (top of export target)
+  renderProfileLine();
+
+  // Cost context (childcare for families)
+  renderCostContext();
+
   // Stack
   renderStack(eligible);
 
   // Header counts
   document.getElementById('stackCount').textContent=eligible.length+' program'+(eligible.length===1?'':'s');
-  document.getElementById('baseNote').textContent=baseNoteText(eligible);
+  document.getElementById('baseNote').textContent=bottomNote(eligible);
 }
 
 // ---- PNG Export ----
