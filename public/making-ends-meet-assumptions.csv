@@ -5,6 +5,18 @@ utility_renter_apt,1800,annual,LADWP residential apartment estimate,2025-01
 utility_renter_house,2400,annual,LADWP residential single-family estimate,2025-01
 utility_homeowner,2400,annual,LADWP residential single-family estimate,2025-01
 utility_unhoused,0,annual,No utilities when unhoused,2025-01
+food_cost_per_person,4200,annual,MIT Living Wage LA County food cost per person 2024,2024-01
+annual_driving_cost,11577,annual,AAA Your Driving Costs 2025 release,2025-09
+annual_transit_cost,936,annual,Metro fare cap $18 per week x 52 weeks,2025-01
+annual_transit_blended,6250,annual,Average of driving and transit,2025-01
+healthcare_18_24_low,1800,annual,Estimated from KFF Health System Tracker 2024,2024-01
+healthcare_18_24_mid,3000,annual,Estimated from KFF Health System Tracker 2024,2024-01
+healthcare_25_54_low,3000,annual,Estimated from KFF Health System Tracker 2024,2024-01
+healthcare_25_54_mid,4800,annual,Estimated from KFF Health System Tracker 2024,2024-01
+healthcare_55_64_low,4800,annual,Estimated from KFF Health System Tracker 2024,2024-01
+healthcare_55_64_mid,7200,annual,Estimated from KFF Health System Tracker 2024,2024-01
+healthcare_65plus_low,6000,annual,Estimated from KFF Medicare with supplemental 2024,2024-01
+healthcare_65plus_mid,8400,annual,Estimated from KFF Medicare with supplemental 2024,2024-01
 income_under30k_midpoint,22000,annual,Midpoint estimate,2026-01
 income_30_50k_midpoint,40000,annual,Midpoint estimate,2026-01
 income_50_80k_midpoint,65000,annual,Midpoint estimate,2026-01

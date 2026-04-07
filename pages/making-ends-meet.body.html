@@ -24,14 +24,35 @@
 
     <div class="cost-context" id="costContext"></div>
 
-    <div class="stack-wrap">
-      <div class="stack-head">
-        <span class="stack-title" id="stackTitle">Programs You Could Access</span>
-        <span class="stack-count" id="stackCount"></span>
+    <div class="compare-section-head">
+      <span class="csh-rule"></span>
+      <span class="csh-label">How we get there</span>
+      <span class="csh-rule"></span>
+    </div>
+
+    <div class="compare-columns" id="compareColumns">
+      <div class="compare-col" id="colWithout">
+        <div class="cc-head">
+          <div class="cc-eye">Without Programs</div>
+          <div class="cc-sub">What you pay each year</div>
+        </div>
+        <div class="cc-stack" id="stackWithout"></div>
+        <div class="cc-foot">
+          <span class="cc-foot-label">Total</span>
+          <span class="cc-foot-amount" id="totalWithout">$0</span>
+        </div>
       </div>
-      <div class="stack-up" id="stack"></div>
-      <div class="stack-base">
-        <div class="base-note" id="baseNote"></div>
+
+      <div class="compare-col" id="colWith">
+        <div class="cc-head">
+          <div class="cc-eye">With Programs</div>
+          <div class="cc-sub">Same costs, plus what programs add back</div>
+        </div>
+        <div class="cc-stack" id="stackWith"></div>
+        <div class="cc-foot">
+          <span class="cc-foot-label">Programs add back</span>
+          <span class="cc-foot-amount cc-foot-pos" id="totalWith">$0</span>
+        </div>
       </div>
     </div>
   </div>
@@ -114,7 +135,7 @@
   </div>
 
   <div class="disclaimer">
-    <strong>This is a potential estimate, not a quote or guaranteed benefit amount.</strong> The Making Ends Meet Calculator shows the maximum value an Angeleno could receive if enrolled in every LA City program they qualify for at the maximum benefit level. It is not an application, not a benefits determination, and not a promise of payment. Actual eligibility for each program is set by that program and requires separate enrollment, income verification, and current program availability. Some programs have waitlists, limited capacity, or are currently closed to new applicants. Dollar figures are sourced from LA City departments, the project's fact-checked program inventory, and published cost-of-living data (Zumper, PPIC, LADWP, LAHD, HACLA). Assumptions are editable in <code>making-ends-meet-assumptions.csv</code>. Programs are sourced from <code>making-ends-meet-programs.csv</code>.
+    <strong>This is a potential estimate, not a quote or guaranteed benefit amount.</strong> The Making Ends Meet Calculator shows the maximum value an Angeleno could receive if enrolled in every LA City program they qualify for at the maximum benefit level. It is not an application, not a benefits determination, and not a promise of payment. Actual eligibility for each program is set by that program and requires separate enrollment, income verification, and current program availability. Some programs have waitlists, limited capacity, or are currently closed to new applicants. Dollar figures are sourced from LA City departments, the project's fact-checked program inventory, and published cost-of-living data (Zumper rents, MIT Living Wage food costs, AAA driving costs, Metro transit fares, KFF healthcare estimates, PPIC childcare costs, LADWP, LAHD, HACLA). Assumptions are editable in <code>making-ends-meet-assumptions.csv</code>. Programs are sourced from <code>making-ends-meet-programs.csv</code>.
   </div>
 </main>
 {{FOOTER}}

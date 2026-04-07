@@ -136,7 +136,7 @@ function displayAmount(annualValue,isOneTime){
   return fmt(annualValue);
 }
 
-// ---- Cost helpers (used by benefit math and context display) ----
+// ---- Cost helpers (used by benefit math and the two-column compare) ----
 function getIncome(){return A('income_'+PROFILE.income+'_midpoint');}
 
 function getRent(){
@@ -152,6 +152,25 @@ function getRent(){
 
 function getUtilities(){return A('utility_'+PROFILE.housing);}
 
+function personCount(){
+  var m={single:1,couple:2,family_2:4,family_3:5,single_parent:2};
+  return m[PROFILE.family]||1;
+}
+
+function getFood(){return A('food_cost_per_person')*personCount();}
+
+function getTransportation(){
+  if(PROFILE.transportation==='drives')return A('annual_driving_cost');
+  if(PROFILE.transportation==='transit')return A('annual_transit_cost');
+  if(PROFILE.transportation==='both')return A('annual_transit_blended');
+  return 0;
+}
+
+function getHealthcare(){
+  var level=(PROFILE.income==='under30k'||PROFILE.income==='30_50k')?'low':'mid';
+  return A('healthcare_'+PROFILE.age+'_'+level);
+}
+
 function getChildcare(){
   if(PROFILE.family==='family_2')return A('childcare_family_2');
   if(PROFILE.family==='family_3')return A('childcare_family_3');
@@ -161,6 +180,19 @@ function getChildcare(){
 
 function hasChildren(){
   return ['family_2','family_3','single_parent'].indexOf(PROFILE.family)>=0;
+}
+
+function getCostBreakdown(){
+  // Order: bottom-up. Rent first (will appear at the bottom of the column-reverse stack).
+  var bands=[
+    {label:'Rent',amount:getRent()},
+    {label:'Utilities',amount:getUtilities()},
+    {label:'Food',amount:getFood()},
+    {label:'Transportation',amount:getTransportation()},
+    {label:'Healthcare',amount:getHealthcare()}
+  ];
+  if(hasChildren())bands.push({label:'Childcare',amount:getChildcare()});
+  return bands.filter(function(b){return b.amount>0;});
 }
 
 // ---- Eligibility ----
@@ -246,26 +278,45 @@ function fightClass(fight){
   return m[fight]||'fight-save';
 }
 
-function renderStack(eligible){
-  var el=document.getElementById('stack');
-  if(!eligible.length){
-    el.innerHTML='<div class="programs-empty">No LA City programs in our database currently match this profile. Try adjusting your income, housing, family, or status to see what becomes available.</div>';
-    return;
+function costBandHtml(band){
+  return '<div class="cost-band">'
+    +'<span class="cost-band-label">'+band.label+'</span>'
+    +'<span class="cost-band-amount">'+displayAmount(band.amount,false)+'</span>'
+    +'</div>';
+}
+
+function programBandHtml(item,index){
+  var p=item.program,value=item.value;
+  var amountHtml='<span class="plus">+</span>'+displayAmount(value,false);
+  var formula=(p.benefit_formula||'').replace(/"/g,'&quot;');
+  var dept=(p.department||'').replace(/"/g,'&quot;');
+  return '<div class="program-band '+fightClass(p.fight)+'" data-formula="'+formula+'" style="animation-delay:'+(index*55)+'ms">'
+    +'<div class="program-left"><div class="program-label">'+p.name+'</div>'
+    +'<div class="program-meta"><span class="program-fight">'+p.fight+'</span><span class="program-dept">'+dept+'</span></div></div>'
+    +'<div class="program-amount">'+amountHtml+'</div></div>';
+}
+
+function renderColumns(costBands,eligible){
+  // LEFT column: just the cost bands (rent at bottom via column-reverse)
+  var leftHtml=costBands.map(costBandHtml).join('');
+  document.getElementById('stackWithout').innerHTML=leftHtml;
+
+  // RIGHT column: same cost bands at the bottom, then divider, then programs above
+  // (column-reverse means HTML order [bottom...top]: cost bands, divider, programs)
+  var rightHtml=costBands.map(costBandHtml).join('');
+
+  if(eligible.length){
+    rightHtml+='<div class="cc-divider">Programs add back</div>';
+    // Sort programs ascending so smaller bands are closer to the divider, biggest at the very top
+    var sorted=eligible.slice().sort(function(a,b){return a.value-b.value;});
+    sorted.forEach(function(item,i){
+      rightHtml+=programBandHtml(item,i);
+    });
+  } else {
+    rightHtml+='<div class="cc-divider">Programs add back</div>';
+    rightHtml+='<div class="programs-empty-inline">No LA City programs match this profile. Try adjusting your income, housing, family, or status.</div>';
   }
-  eligible.sort(function(a,b){return b.value-a.value;});
-  var html='';
-  var ordered=eligible.slice().reverse();
-  ordered.forEach(function(item,i){
-    var p=item.program,value=item.value;
-    var amountHtml='<span class="plus">+</span>'+displayAmount(value,false);
-    var formula=(p.benefit_formula||'').replace(/"/g,'&quot;');
-    var dept=(p.department||'').replace(/"/g,'&quot;');
-    html+='<div class="program-band '+fightClass(p.fight)+'" data-formula="'+formula+'" style="animation-delay:'+(i*55)+'ms">'
-      +'<div class="program-left"><div class="program-label">'+p.name+'</div>'
-      +'<div class="program-meta"><span class="program-fight">'+p.fight+'</span><span class="program-dept">'+dept+'</span></div></div>'
-      +'<div class="program-amount">'+amountHtml+'</div></div>';
-  });
-  el.innerHTML='<div style="display:flex;flex-direction:column-reverse;gap:3px">'+html+'</div>';
+  document.getElementById('stackWith').innerHTML=rightHtml;
 }
 
 function profileSentence(){
@@ -324,14 +375,10 @@ function renderCostContext(){
   }
 }
 
-function bottomNote(eligible){
-  if(!eligible.length)return 'Adjust your profile to see eligible LA City programs stack up.';
-  return 'Each band is a real LA City program you may qualify for based on your profile. Hover any program for benefit calculation details.';
-}
-
 function render(){
   if(!PROGRAMS.length||!Object.keys(ASSUMPTIONS).length)return;
 
+  // Eligibility + benefits
   var eligible=[];
   PROGRAMS.forEach(function(p){
     if(isEligible(p)){
@@ -342,25 +389,29 @@ function render(){
 
   var totalSavings=eligible.reduce(function(s,e){return s+e.value;},0);
 
+  // Cost breakdown (used by both columns)
+  var costBands=getCostBreakdown();
+  var totalCosts=costBands.reduce(function(s,c){return s+c.amount;},0);
+
   // Hero number
   var heroEl=document.getElementById('heroAmount');
   heroEl.textContent=displayAmount(totalSavings,false);
   heroEl.classList.toggle('zero',totalSavings===0);
   document.getElementById('heroPeriod').textContent=PERIOD==='monthly'?'per month':'per year';
 
-  // Profile sentence (top of export target)
+  // Profile sentence + config block (PNG export inputs)
   renderProfileLine();
   renderConfigBlock();
 
-  // Cost context (childcare for families)
+  // Childcare context line for families
   renderCostContext();
 
-  // Stack
-  renderStack(eligible);
+  // Two-column compare
+  renderColumns(costBands,eligible);
 
-  // Header counts
-  document.getElementById('stackCount').textContent=eligible.length+' program'+(eligible.length===1?'':'s');
-  document.getElementById('baseNote').textContent=bottomNote(eligible);
+  // Footer totals
+  document.getElementById('totalWithout').textContent=displayAmount(totalCosts,false);
+  document.getElementById('totalWith').textContent='+'+displayAmount(totalSavings,false);
 }
 
 // ---- PNG Export ----
