@@ -173,50 +173,55 @@
     }
   ],
   "campaigns": {
-    "_note": "One featured campaign per fight. Tagline plus three bullets. Awareness and adoption focus.",
+    "_note": "One featured campaign per fight. Internal communication doc. Each campaign uses a four-bullet structured format: WHAT IT IS (fact-checked), HOW MAYOR BASS IS INVOLVED, WHY IT MATTERS, HOW CONSTITUENTS ACCESS IT. For 'could do' proposals (e.g., Mayors for Moms), the second bullet describes the gap and the model Bass could adopt.",
     "earn": {
       "name": "WorkSource Centers",
-      "tagline": "If you are looking for work, or better work, there is a free center near you.",
+      "tagline": "If you are looking for work, or better work, there is a free city center near you.",
       "bullets": [
-        "The City of Los Angeles operates 14 WorkSource Centers offering free career counseling, job training, resume help, and placement services to adults, veterans, returning residents, and anyone navigating a job transition. Services are available in Armenian, Farsi, Korean, Russian, Spanish, and Tagalog.",
-        "WorkSource Centers are connected to the city's Olympic, World Cup, and FIFA procurement pipelines through 2028, meaning the next three years represent an unusually large window for Angelenos to enter new industries and secure contracts they would not otherwise reach.",
-        "Most Angelenos who qualify have never walked through the door. Find your nearest center and walk in this week at ewdd.lacity.gov."
+        "<strong>WHAT IT IS:</strong> The City of Los Angeles operates 16 WorkSource Centers and 3 portal offices through the Economic and Workforce Development Department (EWDD). They offer free career counseling, job training, resume help, and direct employer placement to adults, dislocated workers, veterans, returning residents, and unhoused Angelenos. Services are available in Armenian, Farsi, Korean, Russian, Spanish, Tagalog, and English.",
+        "<strong>HOW MAYOR BASS IS INVOLVED:</strong> WorkSource Centers existed before Mayor Bass took office. Her administration directs and funds them through EWDD as part of her workforce development priorities and is connecting them to the city's procurement pipeline for the 2028 Olympics, the 2026 World Cup, and other major contracts where the city has hiring leverage.",
+        "<strong>WHY IT MATTERS:</strong> Most Angelenos who qualify for free job placement and training have never walked through a WorkSource door. The next three years contain a uniquely large window of city-procured construction, hospitality, security, and event jobs tied to LA28 and World Cup 2026. People who connect now position themselves for that pipeline.",
+        "<strong>HOW TO ACCESS IT:</strong> Walk into any of the 16 WorkSource Centers without an appointment. Find your nearest at ewdd.lacity.gov/employment/worksource. Bring an ID. A counselor is assigned same day."
       ]
     },
     "build": {
       "name": "ADUs",
       "tagline": "The fastest way to add housing in Los Angeles is already on your property.",
       "bullets": [
-        "California law now allows most homeowners to build an accessory dwelling unit with four-foot side setbacks, no parking requirement, and a permit decision within 60 days. LADBS's Standard Plan Program offers pre-approved architectural plans that can cut approval time significantly and reduce design costs compared to custom plans.",
-        "ADUs cost less to build than any other new housing type because they require no new land purchase. They generate rental income, provide housing for family members, and increase property value on the same lot you already own.",
-        "Eligibility depends on your property's zoning and existing structures. Use ZIMAS at zimas.lacity.org to check your property and visit adu.lacity.gov to start the process."
+        "<strong>WHAT IT IS:</strong> An Accessory Dwelling Unit is a separate legal living unit on a single-family lot, either attached, detached, or converted from a garage. California state law allows ADUs on most single-family lots with four-foot side setbacks, no parking requirement near transit, and a city decision within 60 days of a complete application. LA's Department of Building and Safety also runs a Standard Plan Program offering pre-approved architectural plans that cut design and review time.",
+        "<strong>HOW MAYOR BASS IS INVOLVED:</strong> ADU rules are set by California state law, not by the mayor. Mayor Bass's role has been to support LADBS in expanding the Standard Plan Program and reducing permitting friction. Her Executive Directive 1, signed December 2022, fast-tracks affordable and supportive housing approvals; ADUs benefit from the same expedited LADBS infrastructure.",
+        "<strong>WHY IT MATTERS:</strong> ADUs cost less to build than any other new housing type because they require no land purchase. They can house family members, generate rental income for the homeowner, and add to the city's housing supply without changing neighborhood character. For a homeowner facing rising property taxes or a high mortgage payment, an ADU can become a meaningful income stream.",
+        "<strong>HOW TO ACCESS IT:</strong> Check your property's zoning at zimas.lacity.org. Visit adu.lacity.gov for the Standard Plan options and an application checklist. Pre-submittal consultation with LADBS is free."
       ]
     },
     "save": {
-      "name": "Low-Cost Auto Insurance & EITC",
-      "tagline": "There is money waiting for you. Here is how to claim it.",
+      "name": "Free Tax Prep + Low-Cost Auto Insurance",
+      "tagline": "There is money already waiting for you. Here is how to claim it.",
       "bullets": [
-        "California's Low-Cost Auto Insurance program covers eligible drivers for $401 per year, with 10/20/3 liability coverage. To qualify, your household income must be at or below 250 percent of the federal poverty level and your driving record must have no more than one point. Seventy-three percent of enrollees had no insurance before signing up. Ask about it at any FamilySource or WorkSource Center.",
-        "If your household qualifies, you may be able to claim up to $11,802 in combined federal EITC and CalEITC tax credits for tax year 2025. Free Tax Prep LA filed over 17,400 returns in 2024 and returned $21.4 million to low-income Angelenos. Forty-five locations. No cost to file.",
-        "Both programs are available through the city's 19 FamilySource Centers and 14 WorkSource Centers. No appointment needed to ask a navigator what you qualify for."
+        "<strong>WHAT IT IS:</strong> Two programs delivered through LA City sites. Free Tax Prep Los Angeles, led by the Community Investment for Families Department (CIFD), offers free in-person tax preparation through 45 city sites, ensuring eligible Angelenos claim federal EITC and CalEITC. In 2024, Free Tax Prep LA filed 17,400 returns and returned $21.4 million to filers. Separately, California's Low-Cost Auto Insurance program provides liability coverage at $401 a year (10/20/3 limits) to low-income drivers; LA City has expanded outreach for it through FamilySource Centers.",
+        "<strong>HOW MAYOR BASS IS INVOLVED:</strong> Mayor Bass directs CIFD, which leads the Free Tax Prep LA program, and her administration has expanded its reach to 45 sites. The Low-Cost Auto Insurance program is state-run, but Mayor Bass's administration uses the city's FamilySource Center network as the primary intake point for low-income families to learn about it.",
+        "<strong>WHY IT MATTERS:</strong> Billions of dollars in EITC and CalEITC go unclaimed every year. A qualifying low-income family can leave several thousand dollars on the table by not filing through a free site. Auto insurance is a fixed monthly cost most LA drivers pay $150 to $300 a month for; the state low-cost program drops that to roughly $33 a month for those who qualify.",
+        "<strong>HOW TO ACCESS IT:</strong> Walk into any of the 19 FamilySource Centers (familysource.lacity.org) or 16 WorkSource Centers and ask a navigator about both programs. No appointment needed. Free Tax Prep sites are also listed at freetaxprepla.com."
       ]
     },
     "care": {
-      "name": "Mayors for Moms",
-      "tagline": "Black mothers in this city are dying at three to four times the rate of white mothers. That is not inevitable.",
+      "name": "Mayors for Moms (Proposed)",
+      "tagline": "Black mothers in this city are dying at four times the rate of other women. There is a model that works. Mayor Bass could bring it home.",
       "bullets": [
-        "LA County's AAIMM initiative, run through the Department of Public Health, funds doulas, group prenatal care, and community health workers for pregnant women in the highest-risk communities. Most women who qualify do not know it exists.",
-        "New York City's Citywide Doula Initiative has served over 3,245 mothers since 2022 with no maternal deaths reported among participants and reduced rates of C-section and preterm birth among Black and Hispanic participants compared to citywide averages. Mayor Bass is building a national coalition of mayors to replicate and scale that model.",
-        "If you are pregnant or know someone who is, connect now with LA County's maternal health programs at publichealth.lacounty.gov before the next prenatal appointment."
+        "<strong>WHAT IT IS (PROPOSED):</strong> A proposed City of Los Angeles maternal health initiative modeled on New York City's Citywide Doula Initiative. It would fund free doula services, group prenatal care, and community health workers for pregnant Angelenos in the highest-risk neighborhoods, delivered through FamilySource Centers and city-funded clinics. This is not a current LA City program. It is a path Mayor Bass could lead.",
+        "<strong>HOW MAYOR BASS COULD BE INVOLVED:</strong> Mayor Bass has not yet launched a city-led maternal health initiative. The current LA work falls under LA County's African American Infant and Maternal Mortality Initiative (AAIMM), run by the County Department of Public Health, which has enrolled approximately 1,530 clients since 2019. NYC's parallel city-led initiative under Mayor Adams has served over 3,245 clients since 2022 with zero participant deaths reported and improved C-section and preterm birth rates among Black and Hispanic clients. Mayor Bass has the authority and the platform to launch a city-level complement that fills the gap between county services and individual hospitals.",
+        "<strong>WHY IT WOULD MATTER:</strong> Black women in LA County are four times more likely to die from pregnancy-related causes than women of other racial and ethnic groups. The national disparity is three times. NYC's intervention has demonstrated that scaled doula support produces measurable outcomes. Without city-led action, the LA disparity persists and the existing county program cannot close it alone.",
+        "<strong>HOW CONSTITUENTS COULD ACCESS IT:</strong> Today, pregnant Angelenos can already get no-cost doula support through LA County's AAIMM Doula Program by calling (213) 639-6448. A future Mayor Bass-led city initiative would route enrollment through the 19 existing FamilySource Centers, where city navigators are already in place. The infrastructure to deliver this is already built."
       ]
     },
     "protect": {
       "name": "Tenant Anti-Harassment Ordinance",
       "tagline": "If your landlord is trying to push you out, that is not just wrong. In Los Angeles, it is against the law.",
       "bullets": [
-        "The Tenant Anti-Harassment Ordinance makes it illegal for landlords to use pressure tactics to force tenants out of their homes. This covers all residential renters in the City of Los Angeles, regardless of whether the unit is rent-stabilized. Illegal tactics include lockouts, utility shutoffs, construction disruption, and verbal intimidation designed to make you leave.",
-        "Most tenants being harassed do not know what is happening to them has a legal name or that the city will act on a complaint. Over 16,000 households have filed TAHO complaints since the program launched. The ordinance is enforceable and ULA funding supports ongoing outreach and enforcement.",
-        "If your landlord is doing this to you, file a complaint with LAHD at housing.lacity.gov or call 866-557-7368. You do not have to leave. You have rights and the city will back them up."
+        "<strong>WHAT IT IS:</strong> The Tenant Anti-Harassment Ordinance (TAHO) is an LA City law that makes it illegal for landlords to use pressure tactics to force tenants out of their homes. It covers all residential renters in the City of Los Angeles, not just rent-stabilized units. Illegal tactics include lockouts, utility shutoffs, weaponized construction, refusing necessary repairs, threats based on immigration status, and verbal intimidation. Tenants can recover civil penalties and the city can also bring enforcement.",
+        "<strong>HOW MAYOR BASS IS INVOLVED:</strong> TAHO was passed before Mayor Bass took office. Her administration has expanded enforcement and outreach by directing Measure ULA funding to support a non-profit administrator overseeing legal services and ongoing community education. The Mayor's office and LAHD have made tenant harassment a city enforcement priority.",
+        "<strong>WHY IT MATTERS:</strong> Over 16,000 households have filed TAHO complaints since the program launched. Most tenants being harassed do not know what is happening to them has a legal name or that the city will act on a complaint. A tenant facing eviction-by-pressure now has both a complaint pathway and a legal protection that did not exist a decade ago.",
+        "<strong>HOW TO ACCESS IT:</strong> File a TAHO complaint with LAHD at housing.lacity.gov or call 866-557-7368. Free legal navigation is available through Stay Housed LA at stayhousedla.org. You do not have to leave. The complaint is free."
       ]
     }
   },
