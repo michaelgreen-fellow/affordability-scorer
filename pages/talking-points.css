@@ -21,14 +21,15 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 @media(max-width:1100px){.tp-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:700px){.tp-grid{grid-template-columns:repeat(1,1fr)}}
 
-/* ── FRAME CARD (full-width navy) ── */
+/* ── FRAME CARD (full-width with graphic) ── */
 .tp-card-frame{
   grid-column:1/-1;
-  background:#0B1C33;
-  color:#fff;
+  background:#fff;
+  color:var(--navy);
   min-height:280px;
   display:flex;
   flex-direction:column;
+  border:1px solid var(--border);
 }
 .tp-card-frame:hover{
   transform:none;
@@ -39,49 +40,48 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
   align-items:center;
   gap:1.5rem;
   padding:1.75rem 1.75rem 1.25rem;
-  border-bottom:1px solid rgba(255,255,255,.1);
+  border-bottom:1px solid rgba(11,28,51,.08);
 }
 .tp-frame-seal{
-  width:48px;
-  height:48px;
+  width:80px;
+  height:80px;
   flex-shrink:0;
-  opacity:.85;
 }
 .tp-frame-title{
   font-family:var(--serif);
   font-size:28px;
-  color:#fff;
+  color:var(--navy);
   margin:0;
   line-height:1.2;
 }
 .tp-card-frame .tp-text-wrap{
   flex:1;
   padding:1.5rem 1.75rem;
-  min-height:100px;
+  min-height:80px;
 }
 .tp-card-frame .tp-text{
   font-size:14px;
   line-height:1.8;
-  color:rgba(255,255,255,.9);
+  color:var(--text2);
 }
 .tp-nav-frame{
-  border-top:1px solid rgba(255,255,255,.1);
+  border-top:1px solid rgba(11,28,51,.08);
   padding:.875rem 1.75rem 1.125rem;
 }
 .tp-arrow-frame{
-  border-color:rgba(255,255,255,.25);
-  color:rgba(255,255,255,.5);
+  border-color:rgba(11,28,51,.15);
+  color:var(--text3);
 }
 .tp-arrow-frame:hover{
-  background:rgba(255,255,255,.08);
-  border-color:rgba(255,255,255,.4);
-  color:#fff;
+  background:rgba(11,28,51,.04);
+  border-color:rgba(11,28,51,.25);
+  color:var(--navy);
 }
 .tp-card-frame .tp-dot{
-  background:rgba(255,255,255,.25);
+  background:rgba(11,28,51,.15);
 }
 .tp-card-frame .tp-dot.active{
-  background:#fff;
+  background:var(--navy);
 }
 
 .tp-loading{grid-column:1/-1;text-align:center;color:var(--text3);font-size:13px;padding:3rem;font-family:var(--mono);letter-spacing:.05em}
