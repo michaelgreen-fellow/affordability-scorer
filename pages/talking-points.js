@@ -57,7 +57,7 @@ Promise.all([
       card.className = 'tp-card tp-card-frame';
       card.innerHTML =
         '<div class="tp-frame-top">'+
-          '<img src="five-fights-circle.svg" alt="" class="tp-frame-seal">'+
+          '<img src="FiveFightsGraphic.png" alt="" class="tp-frame-seal">'+
           '<h2 class="tp-frame-title">The Five Fights</h2>'+
         '</div>'+
         '<div class="tp-text-wrap">'+
