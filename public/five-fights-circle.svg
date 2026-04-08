@@ -1,0 +1,17 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Five Fights Circle - No Text -->
+  <!-- Earn More: #6D28D9 (0° to 72°) -->
+  <path d="M 100 100 L 100 10 A 90 90 0 0 1 185.36 34.73 Z" fill="#6D28D9"/>
+
+  <!-- Build More: #047857 (72° to 144°) -->
+  <path d="M 100 100 L 185.36 34.73 A 90 90 0 0 1 155.90 175.90 Z" fill="#047857"/>
+
+  <!-- Save More: #BE185D (144° to 216°) -->
+  <path d="M 100 100 L 155.90 175.90 A 90 90 0 0 1 0 100 Z" fill="#BE185D"/>
+
+  <!-- Care More: #C2410C (216° to 288°) -->
+  <path d="M 100 100 L 0 100 A 90 90 0 0 1 44.10 24.10 Z" fill="#C2410C"/>
+
+  <!-- Protect More: #B45309 (288° to 360°) -->
+  <path d="M 100 100 L 44.10 24.10 A 90 90 0 0 1 100 10 Z" fill="#B45309"/>
+</svg>
