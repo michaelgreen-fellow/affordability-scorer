@@ -46,37 +46,74 @@ Promise.all([
   var grid = document.getElementById('tpGrid');
   grid.innerHTML = '';
 
+  // Fight pills for the frame card (all five, in their colors)
+  var fightPills = content.fights.filter(function(f){return !f.isFrame;}).map(function(f){
+    return '<span class="tp-frame-pill" style="background:'+f.color+'">'+f.name+'</span>';
+  }).join('');
+
   content.fights.forEach(function(fight){
     var points = tpDB[fight.id] || ['No talking points loaded.'];
     state[fight.id] = 0;
 
     var card = document.createElement('div');
-    card.className = 'tp-card';
     card.setAttribute('data-fight', fight.id);
 
-    card.innerHTML =
-      '<div class="tp-bar" style="background:'+fight.color+'"></div>' +
-      '<div class="tp-card-top">' +
-        '<div class="tp-fight-name">'+fight.name+'</div>' +
-        '<div class="tp-fight-sub">'+fight.subtitle+'</div>' +
-      '</div>' +
-      '<div class="tp-text-wrap">' +
-        '<div class="tp-text" id="text-'+fight.id+'">'+points[0]+'</div>' +
-      '</div>' +
-      '<div class="tp-nav">' +
-        '<button class="tp-arrow" id="prev-'+fight.id+'" aria-label="Previous talking point">' +
-          '<svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>' +
-        '</button>' +
-        '<div class="tp-dots" id="dots-'+fight.id+'"></div>' +
-        '<button class="tp-arrow" id="next-'+fight.id+'" aria-label="Next talking point">' +
-          '<svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>' +
-        '</button>' +
-      '</div>';
+    if(fight.isFrame){
+      // Full-width frame card — navy, white text, fight pills
+      card.className = 'tp-card tp-card-frame';
+      card.innerHTML =
+        '<div class="tp-frame-multibar">'+
+          content.fights.filter(function(f){return !f.isFrame;}).map(function(f){
+            return '<span style="flex:1;background:'+f.color+'"></span>';
+          }).join('')+
+        '</div>'+
+        '<div class="tp-frame-body">'+
+          '<div class="tp-frame-left">'+
+            '<div class="tp-frame-eye">The Five Fights</div>'+
+            '<div class="tp-frame-label">How Mayor Bass talks<br>about affordability</div>'+
+            '<div class="tp-frame-pills">'+fightPills+'</div>'+
+          '</div>'+
+          '<div class="tp-frame-right">'+
+            '<div class="tp-text-wrap">'+
+              '<div class="tp-text" id="text-'+fight.id+'">'+points[0]+'</div>'+
+            '</div>'+
+            '<div class="tp-nav tp-nav-frame">'+
+              '<button class="tp-arrow tp-arrow-frame" id="prev-'+fight.id+'" aria-label="Previous">'+
+                '<svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>'+
+              '</button>'+
+              '<div class="tp-dots" id="dots-'+fight.id+'"></div>'+
+              '<button class="tp-arrow tp-arrow-frame" id="next-'+fight.id+'" aria-label="Next">'+
+                '<svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>'+
+              '</button>'+
+            '</div>'+
+          '</div>'+
+        '</div>';
+    } else {
+      card.className = 'tp-card';
+      card.innerHTML =
+        '<div class="tp-bar" style="background:'+fight.color+'"></div>' +
+        '<div class="tp-card-top">' +
+          '<div class="tp-fight-name">'+fight.name+'</div>' +
+          '<div class="tp-fight-sub">'+fight.subtitle+'</div>' +
+        '</div>' +
+        '<div class="tp-text-wrap">' +
+          '<div class="tp-text" id="text-'+fight.id+'">'+points[0]+'</div>' +
+        '</div>' +
+        '<div class="tp-nav">' +
+          '<button class="tp-arrow" id="prev-'+fight.id+'" aria-label="Previous talking point">' +
+            '<svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>' +
+          '</button>' +
+          '<div class="tp-dots" id="dots-'+fight.id+'"></div>' +
+          '<button class="tp-arrow" id="next-'+fight.id+'" aria-label="Next talking point">' +
+            '<svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>' +
+          '</button>' +
+        '</div>';
+    }
 
     grid.appendChild(card);
 
     // Build dots
-    buildDots(fight.id, points.length, fight.color);
+    buildDots(fight.id, points.length, fight.isFrame ? '#ffffff' : fight.color);
 
     // Wire arrows
     document.getElementById('prev-'+fight.id).addEventListener('click', function(){
