@@ -47,6 +47,12 @@
   },
   "fights": [
     {
+      "id": "frame",
+      "name": "The Five Fights",
+      "color": "#0B1C33",
+      "subtitle": "How Mayor Bass talks about affordability"
+    },
+    {
       "id": "earn",
       "name": "Earn More",
       "color": "#6D28D9",

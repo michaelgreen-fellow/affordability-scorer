@@ -51,32 +51,54 @@ Promise.all([
     state[fight.id] = 0;
 
     var card = document.createElement('div');
-    card.className = 'tp-card';
     card.setAttribute('data-fight', fight.id);
 
-    card.innerHTML =
-      '<div class="tp-bar" style="background:'+fight.color+'"></div>' +
-      '<div class="tp-card-top">' +
-        '<div class="tp-fight-name">'+fight.name+'</div>' +
-        '<div class="tp-fight-sub">'+fight.subtitle+'</div>' +
-      '</div>' +
-      '<div class="tp-text-wrap">' +
-        '<div class="tp-text" id="text-'+fight.id+'">'+points[0]+'</div>' +
-      '</div>' +
-      '<div class="tp-nav">' +
-        '<button class="tp-arrow" id="prev-'+fight.id+'" aria-label="Previous talking point">' +
-          '<svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>' +
-        '</button>' +
-        '<div class="tp-dots" id="dots-'+fight.id+'"></div>' +
-        '<button class="tp-arrow" id="next-'+fight.id+'" aria-label="Next talking point">' +
-          '<svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>' +
-        '</button>' +
-      '</div>';
+    if(fight.id === 'frame'){
+      card.className = 'tp-card tp-card-frame';
+      card.innerHTML =
+        '<div class="tp-frame-top">'+
+          '<img src="seal.svg" alt="" class="tp-frame-seal">'+
+          '<h2 class="tp-frame-title">The Five Fights</h2>'+
+        '</div>'+
+        '<div class="tp-text-wrap">'+
+          '<div class="tp-text" id="text-'+fight.id+'">'+points[0]+'</div>'+
+        '</div>'+
+        '<div class="tp-nav tp-nav-frame">'+
+          '<button class="tp-arrow tp-arrow-frame" id="prev-'+fight.id+'" aria-label="Previous">'+
+            '<svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>'+
+          '</button>'+
+          '<div class="tp-dots" id="dots-'+fight.id+'"></div>'+
+          '<button class="tp-arrow tp-arrow-frame" id="next-'+fight.id+'" aria-label="Next">'+
+            '<svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>'+
+          '</button>'+
+        '</div>';
+    } else {
+      card.className = 'tp-card';
+      card.innerHTML =
+        '<div class="tp-bar" style="background:'+fight.color+'"></div>' +
+        '<div class="tp-card-top">' +
+          '<div class="tp-fight-name">'+fight.name+'</div>' +
+          '<div class="tp-fight-sub">'+fight.subtitle+'</div>' +
+        '</div>' +
+        '<div class="tp-text-wrap">' +
+          '<div class="tp-text" id="text-'+fight.id+'">'+points[0]+'</div>' +
+        '</div>' +
+        '<div class="tp-nav">' +
+          '<button class="tp-arrow" id="prev-'+fight.id+'" aria-label="Previous talking point">' +
+            '<svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>' +
+          '</button>' +
+          '<div class="tp-dots" id="dots-'+fight.id+'"></div>' +
+          '<button class="tp-arrow" id="next-'+fight.id+'" aria-label="Next talking point">' +
+            '<svg viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>' +
+          '</button>' +
+        '</div>';
+    }
 
     grid.appendChild(card);
 
     // Build dots
-    buildDots(fight.id, points.length, fight.color);
+    var dotColor = fight.id === 'frame' ? '#ffffff' : fight.color;
+    buildDots(fight.id, points.length, dotColor);
 
     // Wire arrows
     document.getElementById('prev-'+fight.id).addEventListener('click', function(){
