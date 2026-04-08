@@ -83,6 +83,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
   display:flex;
   flex-direction:column;
   border:1px solid var(--border);
+  border-top:4px solid;
+  border-image:linear-gradient(to right, #6D28D9, #047857, #BE185D, #C2410C, #B45309) 1;
 }
 .tp-card-frame:hover{
   transform:none;
@@ -101,9 +103,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
   flex-shrink:0;
   margin-top:2px;
   border-radius:50%;
-  border-left:4px solid #6D28D9;
-  border-right:4px solid #B45309;
-  box-sizing:border-box;
 }
 .tp-frame-title{
   font-family:var(--serif);
