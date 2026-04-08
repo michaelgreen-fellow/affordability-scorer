@@ -373,22 +373,22 @@ Promise.all([
   document.getElementById('tpEye').textContent = content.site.subtitle || 'Mayor Karen Bass';
   document.getElementById('tpDesc').textContent = 'The Five Fights. What the Mayor says when constituents ask what are you doing about affordability.';
 
-  // State: current index per fight
+  // State: current index per card
   var state = {};
+  if(content.frameCard) state[content.frameCard.id] = 0;
   content.fights.forEach(function(f){ state[f.id] = 0; });
 
   // Build cards
   var grid = document.getElementById('tpGrid');
   grid.innerHTML = '';
 
-  content.fights.forEach(function(fight){
-    var points = tpDB[fight.id] || ['No talking points loaded.'];
-    state[fight.id] = 0;
-
+  // Helper function to wire up a card
+  function renderCard(fight, points){
     var card = document.createElement('div');
     card.setAttribute('data-fight', fight.id);
+    var isFrame = fight.id === 'frame';
 
-    if(fight.id === 'frame'){
+    if(isFrame){
       card.className = 'tp-card tp-card-frame';
       card.innerHTML =
         '<div class="tp-frame-top">'+
@@ -432,7 +432,7 @@ Promise.all([
     grid.appendChild(card);
 
     // Build dots
-    var dotColor = fight.id === 'frame' ? '#ffffff' : fight.color;
+    var dotColor = isFrame ? '#ffffff' : fight.color;
     buildDots(fight.id, points.length, dotColor);
 
     // Wire arrows
@@ -449,6 +449,20 @@ Promise.all([
       animateCard(fight.id, points, cur, next, 'next');
       state[fight.id] = next;
     });
+  }
+
+  // Render frameCard first if it exists
+  if(content.frameCard){
+    var framePoints = tpDB[content.frameCard.id] || ['No talking points loaded.'];
+    state[content.frameCard.id] = 0;
+    renderCard(content.frameCard, framePoints);
+  }
+
+  // Render normal fights
+  content.fights.forEach(function(fight){
+    var points = tpDB[fight.id] || ['No talking points loaded.'];
+    state[fight.id] = 0;
+    renderCard(fight, points);
   });
 
 }).catch(function(err){

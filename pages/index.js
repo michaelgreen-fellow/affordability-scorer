@@ -25,6 +25,7 @@ Promise.all([
   BG=cfg.colors.bg||BG;
 
   data.fights.forEach(function(f){
+    if(!f.wheelDescription) return; // Skip fights without wheel data
     F.push({
       n:f.name,c:f.color,
       d:f.wheelDescription,
