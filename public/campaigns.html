@@ -147,7 +147,7 @@ footer{text-align:center;padding:1.5rem;font-size:9px;letter-spacing:2px;text-tr
 <div style="font-size:10px;color:#6A8AAA;margin-top:1.5rem">Contact Michael Green II for access</div>
 </div></div>
 <script>
-(function(){var k='aff_access',h='LAC+USC Medical Center';if(sessionStorage.getItem(k)===h){document.getElementById('pwGate').style.display='none';}
+(function(){var k='aff_access',h='FIVEFIGHTS';if(sessionStorage.getItem(k)===h){document.getElementById('pwGate').style.display='none';}
 window.checkPw=function(){var v=document.getElementById('pwIn').value;if(v===h){sessionStorage.setItem(k,h);document.getElementById('pwGate').style.display='none';}else{var e=document.getElementById('pwErr');e.textContent='Incorrect password';e.style.opacity='1';document.getElementById('pwIn').value='';setTimeout(function(){e.style.opacity='0';},2000);}};
 document.getElementById('pwIn').focus();})();
 </script>

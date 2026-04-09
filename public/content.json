@@ -228,7 +228,7 @@
   "executiveDirectives": [
     {
       "id": "making-ends-meet",
-      "num": "18",
+      "num": "19",
       "title": "Making Ends Meet",
       "subject": "Reducing the Cost of Living for Angelenos",
       "issueDate": "April 2026",
@@ -288,7 +288,7 @@
     },
     {
       "id": "production-economy",
-      "num": "19",
+      "num": "20",
       "title": "Production Economy",
       "subject": "Housing and Jobs for Los Angeles",
       "issueDate": "April 2026",
@@ -332,7 +332,7 @@
     },
     {
       "id": "community-anchors",
-      "num": "20",
+      "num": "21",
       "title": "Community Anchors",
       "subject": "Neighborhood Business Networks for a Stronger City",
       "issueDate": "April 2026",
@@ -381,6 +381,42 @@
       ],
       "implementation": "The departments referenced in this Directive are authorized to reallocate existing resources, modify procurement timelines, and coordinate across agencies as necessary to execute these directives. Budget implications shall be reported to the Mayor's Office within 30 days of issuance.",
       "reporting": "The Mayor's Office shall receive quarterly integrated progress reports, consolidating updates from all sections of this Directive. The first comprehensive report is due 120 days after issuance."
+    }
+  ],
+  "programmaticRecommendations": [
+    {
+      "id": "familysource-bundled-service",
+      "type": "Programmatic",
+      "color": "#C2410C",
+      "title": "FamilySource: One Visit, Every Need",
+      "subject": "Eliminating the One-Service-Per-Appointment Rule",
+      "fights": ["Care More"],
+      "summary": "FamilySource navigators should be able to address multiple service needs in a single appointment. The infrastructure is there. The protocol isn't.",
+      "problem": "Los Angeles operates 19 FamilySource Centers serving more than 50,000 households per year. Each center offers a range of services — metro cards, free tax preparation, housing navigation, legal aid, childcare referrals. But under current appointment protocols, a navigator can only address one service category per visit. A family that needs transit assistance, tax prep, and housing navigation has to book three separate appointments. The families most likely to need bundled support are the least likely to navigate multiple appointment cycles.",
+      "recommendation": "Direct CIFD to pilot a Comprehensive Service Intake appointment type at all 19 FamilySource Centers, allowing navigators to address multiple service needs in a single visit and build a coordinated service plan for each household. No new budget. No new staff. No legislation required. A protocol change, a training update, and a scheduling system modification.",
+      "authority": "Mayoral authority over CIFD, which administers the FamilySource system directly.",
+      "leadDept": "Community Investment for Families Department (CIFD)",
+      "funding": "Existing CIFD operating budget. No new appropriation needed.",
+      "cost": "Navigator training (staff time). Appointment system modification (minimal IT change). Estimated at near-zero incremental cost.",
+      "timeline": "Pilot at 3 FamilySource Centers: 45 days. Full rollout to all 19 centers: 90 days. Data reporting begins at 60-day mark.",
+      "metrics": "Average service categories addressed per visit (baseline vs. post-pilot). Household return visit rate. Share of households leaving first appointment with a complete service plan."
+    },
+    {
+      "id": "inside-safe-community-tracker",
+      "type": "Policy",
+      "color": "#0B1C33",
+      "title": "Inside Safe Community Tracker",
+      "subject": "A Public Portal for Community-Initiated Inside Safe Requests",
+      "fights": ["Care More"],
+      "summary": "Designated Community Hubs should have an exclusive portal to request Inside Safe engagement in their area — with public real-time status tracking so everyone can see where the bottleneck is.",
+      "problem": "Inside Safe, the city's flagship homelessness intervention, is deployed through council-district decisions. There is no structured input pathway for the organizations that know their neighborhoods best. When an operation doesn't happen, nobody knows why — was it the council? Capacity? It just fell through? That opacity erodes trust and removes accountability.",
+      "recommendation": "Direct MOCS to build and operate a public-facing Inside Safe request portal exclusively accessible to designated LA City Community Hubs. Each request is logged, timestamped, and publicly visible with a real-time status field: Hub Request Submitted, Submitted to Council Office, Waiting for Council Approval, Waiting for IS Capacity, Operation in Progress, Resolved. Requests that receive no council response within 90 days automatically update to No Council Response. The database is public. Only Hubs can submit.",
+      "authority": "Mayoral authority over MOCS, which administers Inside Safe operations. Portal requires amendment to the existing Inside Safe administrative framework. Public status dashboard is an operational MOCS decision.",
+      "leadDept": "Mayor's Office of Community Safety (MOCS); coordinating with Council offices on notification protocols",
+      "funding": "Existing MOCS operating budget. One-time portal development cost.",
+      "cost": "Portal development: one-time build (cost TBD pending technical scope). Ongoing: minimal administrative overhead within existing MOCS staffing.",
+      "timeline": "Portal live at pilot launch of Community Hubs program (120 days). 90-day inactivity trigger built into launch. Full public launch at citywide Hub expansion (12 months).",
+      "metrics": "Inside Safe requests submitted through portal. Average days from request to response by status. Council response rate. Percentage of requests reaching Operation in Progress within 60 days."
     }
   ],
   "talkingPoints": {

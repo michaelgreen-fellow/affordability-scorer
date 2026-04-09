@@ -269,6 +269,99 @@ function downloadED(){
 document.getElementById('edOverlay').addEventListener('click',function(e){
   if(e.target===this) closeEdModal();
 });
+
+// ── PROGRAMMATIC RECOMMENDATIONS ──
+var PR_DATA=[];
+var currentPrIdx=null;
+
+fetch('content.json?v='+Date.now()).then(function(r){return r.json();}).then(function(data){
+  PR_DATA=data.programmaticRecommendations||[];
+  var grid=document.getElementById('prGrid');
+  if(!grid||!PR_DATA.length) return;
+
+  PR_DATA.forEach(function(rec,i){
+    var fightTags='';
+    (rec.fights||[]).forEach(function(f){
+      fightTags+='<span class="pr-fight-tag" style="background:'+(FIGHT_COLORS[f]||rec.color)+'">'+f+'</span>';
+    });
+
+    var badge=rec.type==='Policy'
+      ?'<span class="pr-type-badge pr-badge-policy">Policy Rec</span>'
+      :'<span class="pr-type-badge pr-badge-prog">Programmatic Rec</span>';
+
+    var card=document.createElement('div');
+    card.className='pr-card';
+    card.innerHTML=
+      '<div class="pr-card-stripe" style="background:'+rec.color+'"></div>'+
+      '<div class="pr-card-body">'+
+        '<div class="pr-card-top">'+
+          badge+
+          '<div class="pr-fights">'+fightTags+'</div>'+
+        '</div>'+
+        '<div class="pr-card-title">'+rec.title+'</div>'+
+        '<div class="pr-card-subject">'+rec.subject+'</div>'+
+        '<div class="pr-card-summary">'+rec.summary+'</div>'+
+        '<button class="pr-read-btn" style="--pr-color:'+rec.color+'">Read full brief</button>'+
+      '</div>';
+
+    card.querySelector('.pr-read-btn').addEventListener('click',function(){openPrModal(i);});
+    grid.appendChild(card);
+  });
+}).catch(function(err){console.error('PR load error:',err);});
+
+function openPrModal(idx){
+  currentPrIdx=idx;
+  var rec=PR_DATA[idx];
+  if(!rec) return;
+
+  var scroll=document.getElementById('edModalScroll');
+
+  var fightTags='';
+  (rec.fights||[]).forEach(function(f){
+    fightTags+='<span class="ehc-fight-tag" style="background:'+(FIGHT_COLORS[f]||rec.color)+'">'+f+'</span>';
+  });
+
+  var badgeStyle=rec.type==='Policy'
+    ?'background:#0B1C33;color:#fff'
+    :'background:#e8f0e9;color:#1a5c20;border:1px solid #b2d9b5';
+
+  var html=
+    '<div class="pr-doc">'+
+    '<div class="pr-doc-stripe" style="background:'+rec.color+'"></div>'+
+    '<div class="pr-doc-inner">'+
+    '<div class="pr-doc-header">'+
+      '<div>'+
+        '<span class="pr-doc-badge" style="'+badgeStyle+'">'+rec.type+' Recommendation</span>'+
+        '<div class="pr-doc-title">'+rec.title+'</div>'+
+        '<div class="pr-doc-subject">'+rec.subject+'</div>'+
+        '<div class="pr-doc-fights">'+fightTags+'</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="pr-doc-problem">'+
+      '<div class="pr-doc-label">The Problem</div>'+
+      '<div class="pr-doc-problem-text">'+rec.problem+'</div>'+
+    '</div>'+
+    '<div class="pr-doc-label" style="margin-bottom:8px">The Recommendation</div>'+
+    '<div class="pr-doc-rec-text">'+rec.recommendation+'</div>'+
+    '<div class="pr-doc-grid">'+
+      prCell('Legal Authority',rec.authority)+
+      prCell('Lead Department',rec.leadDept)+
+      prCell('Funding Source',rec.funding)+
+      prCell('Estimated Cost',rec.cost)+
+      prCell('Timeline',rec.timeline)+
+      prCell('Success Metrics',rec.metrics)+
+    '</div>'+
+    '</div></div>';
+
+  scroll.innerHTML=html;
+  scroll.scrollTop=0;
+  document.getElementById('edOverlay').classList.add('open');
+}
+
+function prCell(label,val){
+  return '<div class="pr-meta-cell"><div class="pr-meta-key">'+label+'</div><div class="pr-meta-val">'+(val||'TBD')+'</div></div>';
+}
+
 document.addEventListener('keydown',function(e){if(e.key==='Escape') closeEdModal();});
 
 {{NAV_JS}}

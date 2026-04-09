@@ -92,8 +92,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 }
 .tp-frame-top{
   display:flex;
-  align-items:center;
-  justify-content:center;
+  align-items:flex-start;
   gap:1rem;
   padding:1.5rem 1.75rem;
   border-bottom:1px solid rgba(11,28,51,.08);
@@ -116,18 +115,22 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 }
 .tp-card-frame .tp-text-wrap{
   flex:1;
-  padding:1rem 2rem 1.5rem;
+  padding:1.125rem 1.75rem 1rem;
   min-height:auto;
-  max-width:680px;
-  margin:0 auto;
+}
+.tp-card-frame .tp-text-wrap{
+  overflow:visible;
 }
 .tp-card-frame .tp-text{
+  position:static;
   font-size:18.5px;
   line-height:1.8;
   color:var(--text);
   font-weight:400;
   font-style:italic;
-  text-align:center;
+  top:auto;
+  left:auto;
+  right:auto;
 }
 .tp-nav-frame{
   border-top:1px solid rgba(11,28,51,.08);
@@ -305,7 +308,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:1
 <div style="font-size:10px;color:#6A8AAA;margin-top:1.5rem">Contact Michael Green II for access</div>
 </div></div>
 <script>
-(function(){var k='aff_access',h='LAC+USC Medical Center';if(sessionStorage.getItem(k)===h){document.getElementById('pwGate').style.display='none';}
+(function(){var k='aff_access',h='FIVEFIGHTS';if(sessionStorage.getItem(k)===h){document.getElementById('pwGate').style.display='none';}
 window.checkPw=function(){var v=document.getElementById('pwIn').value;if(v===h){sessionStorage.setItem(k,h);document.getElementById('pwGate').style.display='none';}else{var e=document.getElementById('pwErr');e.textContent='Incorrect password';e.style.opacity='1';document.getElementById('pwIn').value='';setTimeout(function(){e.style.opacity='0';},2000);}};
 document.getElementById('pwIn').focus();})();
 </script>
